@@ -1,0 +1,301 @@
+<div id="static_topnav">
+  <div class="breadcrumbs">
+    <a href="#main">SHOWHAUS</a> &gt; POST A SHOW
+  </div>
+</div>
+
+	<span class="mainbody">
+
+   	<!--logo-->
+    <div style="text-align: center;"><img src="assets/postashow.png" style=
+      "max-height: 70px; padding: 60px 0 15px 0;"></div>
+
+    <!--rules-->
+    <div class="readtherules" name="rules_anchor" style="background-color: #d62c2c;">
+      <p>BEFORE POSTING PLEASE <span style=
+                                       "font-weight: bold; text-decoration: underline;">READ THE
+        RULES</span>
+    </div>
+
+    <div class="rules">
+      <ul>
+        <li><span>Be Descriptive</span></li>
+        <li style="list-style: none">When posting a show, do your best to
+          provide as much information on who is playing, what they sound
+          like, and what they look like. It makes for quality listings, and a
+          better understanding of our local music scene. HTML and CSS on your
+          listings is allowed and encouraged.</li>
+        <li><span>Protect Smaller Venues</span></li>
+        <li style="list-style: none">Please do not post the addresses of
+          venues that are in residential areas or operate without an
+          entertainment/liquor license. Do not ask for the address in the
+          comments. Find these delicate places under your own
+          discretion.</li>
+        <li><span>Show Deletion</span></li>
+        <li style="list-style: none">The admins and moderators reserve the
+          right to delete your posting if it's... a) not a show (or spam) b)
+          not a quality listing c) a duplicate event</li>
+        <li><span>Don’t be a jerk</span></li>
+        <li style="list-style: none">We spent a lot of time making this a
+          nice place for shows. Be nice!</li>
+      </ul>
+    </div>
+    <form novalidate target="hiddenFrame" method="POST" action="assets/new.php" enctype="multipart/form-data">
+
+      <!--facebook input-->
+      <div class="fb" id="postshow_wrap" style=
+        "border-top: 1px solid lightgray; border-radius: 3px; margin-top: 10px;">
+        <input placeholder=
+                 "eg. https://www.facebook.com/events/1374511886107039/" style=
+                 "margin-top: 20px;" type="text" id="postshow_fb">
+        <p>Enter your show's Facebook event URL (if you have one).</p>
+      </div>
+
+      <!--event details-->
+      <div class="input_heading">
+        <strong>EVENT DETAILS</strong>
+      </div>
+      <div id="postshow_wrap">
+
+        <!--city-->
+        <div class="postshow_input_wrap">
+          <div class="error_return">Please make sure to fill out all required fields!</div>
+          <select id="postshow_city" name="city" required data-placeholder="SELECT CITY" class="chosen-select">
+            <option></option>
+            <option value="Baltimore">Baltimore</option>f
+            <option value="Brooklyn">Brooklyn</option>
+            <option value="DC">D.C</option>
+          </select>
+
+
+          <!--venue-->
+          <select id="postshow_venue" name="venue" required data-placeholder="SELECT VENUE" class="chosen-select">
+            <option></option>
+            <optgroup label="Please select a city"><option value="">&nbsp;</option></optgroup>
+          </select><a class="required" title="required">*</a>
+        </div>
+
+        <!--add new venue-->
+        <div class="postshow_input_wrap" style="display: none;">
+          <div class="addvenue">
+            <p><strong>Add New Venue</strong></p><input id=
+                                                          "postshow_newvenuename" maxlength="25" name="newvenue" placeholder=
+                                                          "name of venue" required type=
+                                                          "text" disabled="disabled" style="margin-left: 20px"><a class="required" title="required">*</a><br>
+            <br>
+            <input id="postshow_newvenueaddress" maxlength="75" name="venue_address"
+                   placeholder="address" type="text">
+          </div>
+        </div>
+
+        <!--title of show-->
+        <div class="postshow_input_wrap" style="margin-left: 20px;">
+          <input id="postshow_showtitle" maxlength="25" name="title"
+                 placeholder="title of show" required type="text"><a class=
+                                                                       "required">*</a>
+          <p>The overall title of your show / headliner.</p>
+          <div>
+            <div id="title_remaining">
+              30 characters remaining
+            </div>
+          </div>
+        </div><!--subtitle-->
+        <div class="postshow_input_wrap">
+          <input id="postshow_subtitle" maxlength="45" name="subtitle"
+                 placeholder="subtitle" type="text">
+
+          <p>Other bands, acts, etc.</p>
+
+          <div id="subtitle_remaining">
+            45 characters remaining
+          </div>
+        </div><!--date // price-->
+        <div class="postshow_input_wrap" style="margin-left: 20px;">
+          <input id="postshow_date" name="date" placeholder="date" readonly
+                 required type="text"> <input id="postshow_time" name="time"
+                                              readonly type="text" value="12:00 PM"> <input id="postshow_price"
+                                                                                            name="price" onkeypress="return numbersonly(this, event)"
+                                                                                            placeholder="price" required style="color: green;" type=
+          "text"><a class="required" title="required">*</a>
+          <p>Enter "0" for the price if your show is <a class="free" style=
+            "font-size: 12px;">free</a></p>
+        </div>
+      </div><!--event description-->
+      <div class="input_heading">
+        EVENT DESCRIPTION
+      </div>
+      <div id="postshow_wrap">
+        <!--wysiwyg // redactor-->
+        <div class="input_wrap">
+          <div class="postshow_input_wrap">
+            <p>This is the content that will appear in your listing. Feel
+              free to embed images and videos.</p>
+            <p><a style=
+                    "background-color: #dd2232; color:#fff; padding: 5px 10px; border-radius: 3px;">
+              Please remember to respect diy venues or private parties. Post
+              addresses at your own risk.</a></p>
+            <p id="slate">
+              <textarea id="editor" name="editor" name="description" rows="15"></textarea></p>
+          </div>
+        </div><!--tags-->
+        <div class="postshow_input_wrap">
+
+          <p><strong><a style="margin-left: 20px;">How would you describe
+            your show?</a></strong><a class="required" title="required">*</a></p>
+
+          <input type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;" minlength="1">
+
+          <p>Enter at least one tag (eg. "Math Rock" , "Metal", "Space
+            Jazz")<br/>Use commas to seperate tags</p>
+        </div>
+      </div><!--upload art-->
+      <div class="input_heading">
+        EVENT ART
+      </div>
+      <div id="postart_wrap">
+        <div class="postshow_input_wrap">
+
+          <img id="imgpreview" src="#" alt="Image Preview" style="display:none;" />
+          <div id="drop">
+            <input type="file" name="image" />
+            <input type="hidden" name="fbimage"/>
+                <span class="message"><p><strong>Drag and drop your poster here.</strong><br>
+                  (.gif, .jpg, .png formats allowed. 5MB max)</p></span>
+          </div>
+
+        </div>
+      </div><!--confirm & publish-->
+      <div class="input_heading">
+        CONFIRM &amp; PUBLISH
+      </div>
+      <div id="postshow_wrap">
+        <div class="postshow_input_wrap" style="padding-top: 25px;">
+          <p><span style="font-weight: bold;">This is very important!</span> If you do not provide a legitimate email address you will not be able to edit your show.</p>
+          <input id="postshow_email" name="email" placeholder="email" required type="email"/>
+          <a class="required" title="required">*</a>
+          <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6LdF4fMSAAAAAFTSd8YJSGMe61Eoc-O3f5NhihPz"></script>
+          <noscript>
+            <iframe src="http://www.google.com/recaptcha/api/noscript?k=6LdF4fMSAAAAAFTSd8YJSGMe61Eoc-O3f5NhihPz" height="300" width="500" frameborder="0"></iframe><br/>
+            <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+            <input type="hidden" name="recaptcha_response_field" value="manual_challenge"/>
+          </noscript>
+          <div id="captchaError" style="display:none">
+            Text entered does not match captcha
+          </div>
+        </div><!--post show-->
+        <p style="font-size: 16px; margin: 0 auto; width: 400px">By clicking 'post show' I have <a href="javascript:void();" style=
+          "font-size: 16px;" name="rulesagreement">read the rules</a> and agree to the <a href=
+                                                                                            "http://showhaus.org/rules" style="font-size: 16px;" target=
+                                                                                            "_blank">privacy agreement</a> and confirm that I am not a jerk.</p>
+        <div class="postshow_input_wrap">
+          <div style="text-align: center; margin: 10px auto 30px auto;">
+            <button class="postshow_button" type="submit">post
+              show</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <iframe name="hiddenFrame" style="display:none;"></iframe>
+</span>
+<span class="successbody" style="display:none;">
+    <div id="static_wrap">
+      <h1>Great success! Your show has been posted!</h1>
+
+      <div class="preview_contain">
+
+        <!-- ░░░░░░░░░░░░░░░░ gallery element ░░░░░░░░░░░░░░░░ -->
+
+        <div class="show" style="margin: 0 auto;">
+
+          <!-- venue -->
+          <div class="venue">
+            <div class="title venuetitle"> TITLE OF VENUE </div>
+          </div>
+
+          <!-- art -->
+          <div class="art">
+            <div class="poster"></div>
+          </div>
+
+          <div class="description">
+
+            <!-- date -->
+            <div class="divider"></div>
+            <span class="date"><strong>Thursday</strong></span>
+            <div class="divider"></div>
+            <br>
+
+            <!-- title -->
+            <span class="title"><a href="#"></a></span>
+            <br>
+
+            <!-- subtitle -->
+            <span class="act"></span><br>
+
+            <!-- price -->
+            <span class="price"> </span>
+
+          </div>
+
+          <div class="showfooter">
+
+            <!-- tags -->
+            <span class="categoryone"> </span>
+            <span class="categorytwo"> </span>
+
+            <!-- comments -->
+            <span class="comments">( <a href="http://showhaus.org/Baltimore/?post=349239#disqus_thread" data-disqus-identifier="349239"></a> ) </span>
+
+          </div>
+
+        </div>
+
+        <!-- ░░░░░░░░░░░░░░ end gallery element ░░░░░░░░░░░░░░ -->
+
+      </div>
+
+
+      <p style="text-align: center;"> We will email you instructions soon on how to edit or update your listing.</p>
+    </div>
+</span>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+  (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='http://www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+  ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+<!--Facebook API-->
+<script type="text/javascript" src="scripts/fbparse.js"></script>
+<!--<script type="text/javascript" src="_js/happy.js"></script>-->
+<!--Anything related to chosen UI-->
+<script type="text/javascript">
+  var config = {
+    '.chosen-select'           : {},
+    '.chosen-select-deselect'  : {allow_single_deselect:true},
+    '.chosen-select-no-single' : {disable_search_threshold:10},
+    '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+    '.chosen-select-width'     : {width:"95%"}
+  };
+  for (var selector in config) {
+    $(selector).chosen(config[selector]);
+  }
+  $(".chosen-select").chosen();
+</script>
+<script>
+  $("#postshow_date").datepicker({ minDate: 0 });
+  $("#postshow_time").timepicker({ minTime: 0, show24Hours: false, timeFormat: "h:mm TT"});
+</script>
+<script src="assets/ckeditor/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace( 'editor');
+  $('#tags').select2({
+    tags: gigantic_genre_array,
+    tokenSeparators: [","],
+    maximumSelectionSize: 2,
+    maximumInputLength: 8
+  });
+</script>

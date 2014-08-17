@@ -1,0 +1,31 @@
+<SCRIPT type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></SCRIPT>
+<SCRIPT type="text/javascript">
+$(function() {
+    if(navigator.geolocation) {
+        var fallback = setTimeout(function() { fail('10 seconds expired'); }, 10000);
+        navigator.geolocation.getCurrentPosition(
+            function (pos) {
+                clearTimeout(fallback);
+                console.log('pos', pos);
+                var point = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+                new google.maps.Geocoder().geocode({'latLng': point}, function (res, status) {
+                    if(status == google.maps.GeocoderStatus.OK && typeof res[0] !== 'undefined') {
+                        var zip = res[0].formatted_address.match(/,\s\w{2}\s(\d{5})/);
+                        var zip = zip[1];
+                        if(zip) {
+                            console.log('Zip code is ' +  zip[1]);
+                        } else fail('Geolocation Failed');
+                    } else {
+                        fail('Geolocation Failed');
+                    }
+                });
+            }, function(err) {
+                fail(err.message);
+            }
+        );
+    } else {
+        $("._res").html('Geolocation unsupported!');
+    }
+});
+</SCRIPT>

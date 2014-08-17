@@ -1,0 +1,48 @@
+/**
+ * @license Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.html or http://ckeditor.com/license
+ */
+
+CKEDITOR.editorConfig = function( config ) {
+	// Define changes to default configuration here.
+	// For complete reference see:
+	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
+	config.fullPage = true;
+	config.skin = 'bootstrapck';
+	config.width = 650;
+	// The toolbar groups arrangement, optimized for two toolbar rows.
+	config.toolbarGroups = [
+		//{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+		//{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+		
+		//{ name: 'insert' },
+		//{ name: 'forms' },
+		//{ name: 'tools' },
+		
+		//{ name: 'others' },
+		'/',
+		{ name: 'basicstyles', groups: [ 'basicstyles'] },
+		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+		{ name: 'links' },
+		//{ name: 'styles' },
+		{ name: 'colors' },
+		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+		//{ name: 'about' }
+		//{ name: 'font'}
+        //{ name: 'colors'}
+	];
+
+	// Remove some buttons provided by the standard plugins, which are
+	// not needed in the Standard(s) toolbar.
+	config.removeButtons = 'Underline,Subscript,Superscript,Anchor,Strike';
+
+	// Set the most common block elements.
+	config.format_tags = 'p;h1;h2;h3;pre';
+
+	// Simplify the dialog windows.
+	config.removeDialogTabs = 'image:advanced;link:advanced';
+
+	config.allowedContent = true;
+	config.extraPlugins='imagepaste'; 
+	
+};

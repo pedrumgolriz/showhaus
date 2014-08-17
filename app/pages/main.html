@@ -1,0 +1,135 @@
+<div id="topnav">
+  <a ng-href="/#about">about showhaus</a>
+
+  <div onclick="location.href='#post';">
+    <a class="postashow">[ POST A SHOW ]</a>
+  </div>
+</div>
+<div id="logo_container">
+  <div class="logo" onclick="window.location = '#main';"></div>
+  <div class="learnmore">
+    the open directory for shows, <a href="#about">learn more</a>.
+  </div>
+  <div id="filter_contain" style="margin: 0 auto;">
+    <div id="filter">
+
+      <!-- city -->
+      <div class="filter_city">
+        <select class="chosen-select" data-placeholder="SELECT CITY"
+                id="filter_city" name="city" ng-model="citySelect" ng-change="resetVenues(); setNewCookie()">
+          <option value="">All Cities</option>
+          <option>Baltimore</option>
+          <option>Brooklyn</option>
+          <option>DC</option>
+        </select>
+      </div>
+
+      <!-- venue -->
+      <div class="filter_venue">
+        <select ng-model="venueSelect" class="chosen-select" data-placeholder="SELECT VENUE"
+                id="filter_venue" name="venue">
+          <option value="">All Venues</option>
+          <option ng-repeat="venue in venues | filter:citySelect" ng-show="citySelect">{{venue[1]}}</option>
+        </select>
+      </div>
+
+      <!-- free -->
+      <div class="filter_free">
+        <input type="checkbox" ng-model="freeBox" data-ng-true-value="0" data-ng-false-value=""> <span class="free">FREE</span> shows
+        only
+      </div>
+
+      <!-- view -->
+      <div class="filter_view">
+        view:
+        <span class="view"><a href="" ng-click="list=true; grid=false">[list]</a></span>
+        <span class="view"><a href="" ng-click="grid=true; list=false">[gallery]</a></span>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-show="loading" ng-include src="'loading/index.html'" style="text-align:center;"></div>
+<div class="listview_contain" style="margin: 0 auto;" ng-show="list" ng-hide="loading">
+  <!-- table -->
+  <table class="gridtable">
+    <tr>
+      <th class="datetime"><a href="#">date/time</a></th>
+      <th class="title"><a href="#">title of show</a></th>
+      <th class="tableprice"><a href="#">$$$</a></th>
+      <th class="tablevenue"><a href="#">venue</a></th>
+    </tr>
+    <tbody class="theEvents">
+      <tbody ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freeBox}">
+        <tr ng-class="event.featured=='today' ? 'list_today':''" ng-click="go('{{event.id}}')">
+          <td class="list_align">
+            <strong>{{event.date}}</strong>
+            <br/>
+            <div class="list_subtext">{{event.time}}</div>
+          </td>
+          <td>
+            <span class="titles">
+              <strong>{{event.title}}</strong>
+              <span class="subtitle" ng-if="event.subtitle">{{event.subtitle}}</span>
+            </span>
+            <div class="list_category">{{event.tag1}}</div>
+            <div class="list_category" ng-if="event.tag2">{{event.tag2}}</div>
+          </td>
+          <td class="list_align">
+            <span class="free" ng-if="event.price==0">free</span>
+            <span ng-if="event.price>0">${{event.price}}</span>
+          </td>
+          <td class="list_align">
+            <strong>{{event.venue}}</strong>
+            <br/>
+            <div class="list_subtext" ng-if="event.address">{{event.address}}</div>
+          </td>
+        </tr>
+        </tbody>
+    </tbody>
+  </table>
+</div>
+<div class="gridview_contain" ng-show="grid">
+  <div class="show" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freeBox}">
+    <div class="venue">
+      <div class="title">{{event.title}}</div>
+    </div>
+    <div class="art">
+      <a href="/#showpage?post={{event.id}}">
+        <div class="poster" ng-switch style="background-image:url('{{event.poster}}')"></div>
+      </a>
+    </div>
+    <div class="description">
+      <div class="divider"></div>
+      <span class="date"><strong>{{event.date}}</strong> @ {{event.time}} </span>
+      <div class="divider"></div>
+      <br>
+      <span class="title"><a href="/#showpage?post={{event.id}}">{{event.title}}</a></span>
+      <br>
+      <span class="act">{{event.subtitle}}</span><br>
+    </div>
+    <div class="showfooter">
+      <span class="categoryone">{{event.tag1}}</span>
+      <span class="categorytwo" ng-if="event.tag2">{{event.tag2}}</span>
+		    <span style="margin: 3px 5px 5px 4px; display:inline-block;">
+		    <span style="color: rgb(201, 201, 201); font-size: 11px;">//</span>
+          <span class="price" ng-if="event.price==0">&nbsp;free</span>
+          <span class="price" ng-if="event.price>0">&nbsp;$ {{event.price}}&nbsp;</span>
+		    </span>
+      <span class="comments">( <a href="http://showhaus.org/Baltimore/?post=349239#disqus_thread" data-disqus-identifier="349239">0 Comments</a> ) </span>
+    </div>
+  </div>
+</div>
+<script>
+  function loadChosen() {
+    $('select').chosen().trigger('chosen:updated');
+    $('#filter_city').change(function () {
+      $('select').trigger('chosen:updated');
+    });
+  }
+  loadChosen();
+  $(window).bind("blur focus focusin focusout load resize scroll unload click " +
+    "dblclick mousedown mouseup mousemove mouseover mouseout mouseenter " +
+    "mouseleave change select submit keydown keypress keyup error",function() {
+    loadChosen();
+  });
+</script>

@@ -1,0 +1,23 @@
+{
+  "name": "showhaus",
+  "version": "2.0.0",
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "angular": "1.2.16",
+    "json3": "~3.3.1",
+    "es5-shim": "~3.1.0",
+    "angular-resource": "1.2.16",
+    "angular-cookies": "1.2.16",
+    "angular-sanitize": "1.2.16",
+    "angular-animate": "1.2.16",
+    "angular-touch": "1.2.16",
+    "angular-route": "1.2.16",
+    "chosen":"1.0.0",
+    "angular-chosen-localytics": "~1.0.6"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.16",
+    "angular-scenario": "1.2.16"
+  },
+  "appPath": "app"
+}
