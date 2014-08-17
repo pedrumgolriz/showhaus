@@ -12,6 +12,15 @@ $today_flag = "0";
       $row['featured'] = "today";
       $row['date'] = "Today";
     }
+    //format the location of the image
+    if($row['poster']!=""){
+      if(substr($row['poster'], 0, 4)=="http"){
+        $row[poster] = html_entity_decode($row['poster']);
+      }
+      else{
+        $row['poster'] = "http://i.showhaus.org/uploads/".$row['poster'];
+      }
+    }
     $return[] = $row;
   }
 	echo $_GET['callback'] . '('.json_encode($return).')';
