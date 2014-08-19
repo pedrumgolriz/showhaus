@@ -75,13 +75,25 @@ angular.module('showhaus')
     venues = venueCityFactory.query();
     events = eventsFactory.query();
   })
-  .controller('MainCtrl', function($scope, $location, loadingService){
+  .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue){
     $scope.venues = venues;
     $scope.events = events;
+    //##FILTERS##//
     $scope.list = true; //sets list as default view
     $scope.resetVenues = function(){
       $scope.venueSelect = '';
     };
+    $scope.$watch(function(){
+      if($scope.freebox==='true'){
+        $scope.freeShows = '0';
+        $scope.strictPrice = true;
+      }
+      else{
+        $scope.freeShows = '';
+        $scope.strictPrice = false;
+      }
+    });
+    //####//
     $scope.setNewCookie = function(){
       document.cookie = 'city=' + $scope.citySelect;
     };
@@ -89,10 +101,17 @@ angular.module('showhaus')
     $scope.citySelect = geolocation(); // jshint ignore:line
     //##go to showpage from list view##//
     $scope.go = function ( path ) {
-      $location.path( '/#showpage?post='+path );
+      $location.path('showpage').search('post',path);
     };
     //####//
     $scope.$watch(function() {
       return loadingService.isLoading();
     }, function(value) { $scope.loading = value; });
+    //##Listen to events from showpage##//
+    if(typeof getSetCity.get() === 'string'){
+      $scope.citySelect = getSetCity.get();
+    }
+    if(typeof getSetVenue.get() === 'string'){
+      $scope.venueSelect = getSetVenue.get();
+    }
   });

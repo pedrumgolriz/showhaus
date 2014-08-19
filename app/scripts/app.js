@@ -65,6 +65,10 @@ angular
         templateUrl: 'pages/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/showpage', {
+        templateUrl: 'pages/showpage.html',
+        controller: 'ShowpageCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -73,4 +77,31 @@ angular
 
     .run(function($http, onStartInterceptor) {
       $http.defaults.transformRequest.push(onStartInterceptor);
-    });
+    })
+
+  .factory('getSetCity', function() {
+    var savedData = {};
+    function set(data) {
+      savedData = data;
+    }
+    function get() {
+      return savedData;
+    }
+    return {
+      set: set,
+      get: get
+    };
+  })
+  .factory('getSetVenue', function() {
+    var savedData = {};
+    function set(data) {
+      savedData = data;
+    }
+    function get() {
+      return savedData;
+    }
+    return {
+      set: set,
+      get: get
+    };
+  });

@@ -1409,12 +1409,16 @@ font-weight: bold;
 .share_fb {
 	color: #4539f8;
 	display: inline-block;
+  cursor: pointer;
 }
 
 .share_twitter {
-	color: #54acdd;
 	padding: 0 5px;
 	display: inline-block;
+}
+.share_twitter > a {
+  text-decoration: none;
+  color: #54acdd;
 }
 
 /* ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░

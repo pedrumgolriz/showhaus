@@ -1,0 +1,51 @@
+<div id="fb-root"></div>
+<div ng-repeat="event in events">
+  <div id="static_topnav">
+    <div class="breadcrumbs">
+      <a href="#/">SHOWHAUS</a> &gt;
+      <a href="#/" ng-click="setCity(event.city)">{{event.city}}</a> &gt;
+      <a href="#/" ng-click="setVenue(event.venue)">{{event.venue}}</a> &gt;
+      {{event.title}}
+    </div>
+    <div class="editshow">[ <a href="#">EDIT SHOW<a/> ]</div>
+  </div>
+  <div id="showpage_wrap">
+    <div class="title"> {{event.title}} </div>
+    <div class="subtitle" ng-if="event.subtitle"> {{event.subtitle}} </div>
+    <div class="tag_wrap">
+      <div class="categoryone">{{event.tag1}}</div>
+      <div class="categorytwo" ng-if="event.tag2">{{event.tag2}}</div>
+    </div>
+    <div class="info">
+      <div class="info_date">
+        <div class="header">date</div>
+        <div class="response">{{event.date}}</div>
+        <div class="subresponse"> {{event.time}} </div>
+      </div>
+      <div class="info_venue">
+        <div class="header">venue</div>
+        <div class="response">{{event.venue}}</div>
+        <div class="subresponse" ng-if="event.address">{{event.address}}</div>
+      </div>
+      <div class="info_price">
+        <div class="header">price</div>
+        <div class="response" style="padding-top: 8px" ng-if="event.price>0">${{event.price}}</div>
+        <div class="response" style="padding-top: 8px" ng-if="event.price==0">free</div>
+      </div>
+    </div>
+    <div class="social_contain">
+      <span class="share_fb">
+        <a ng-click="fbshare({{event.id}})">[ SHARE ON FACEBOOK ]</a>
+      </span>
+      <span class="share_twitter">
+        <a ng-href="https://twitter.com/intent/tweet?url=http://showhaus.org/showpage.html?post={{event.id}}&text={{event.title}}&hashtags=showhaus,{{event.city}},{{event.venue}}">[ RETWEET SHOW ]</a>
+      </span>
+    </div>
+    <div class="eventart">
+      <img ng-src="{{event.poster}}">
+    </div>
+    <div class="showpagedescription" ng-model="description" ng-bind-html="event.description">
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>

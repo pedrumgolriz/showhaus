@@ -35,10 +35,9 @@
 
       <!-- free -->
       <div class="filter_free">
-        <input type="checkbox" ng-model="freeBox" data-ng-true-value="0" data-ng-false-value=""> <span class="free">FREE</span> shows
+        <input type="checkbox" ng-model="freebox" ng-true-value="true" ng-false-value="false"> <span class="free">FREE</span> shows
         only
       </div>
-
       <!-- view -->
       <div class="filter_view">
         view:
@@ -59,7 +58,7 @@
       <th class="tablevenue"><a href="#">venue</a></th>
     </tr>
     <tbody class="theEvents">
-      <tbody ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freeBox}">
+      <tbody ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freeShows}:strictPrice">
         <tr ng-class="event.featured=='today' ? 'list_today':''" ng-click="go('{{event.id}}')">
           <td class="list_align">
             <strong>{{event.date}}</strong>
@@ -89,13 +88,13 @@
   </table>
 </div>
 <div class="gridview_contain" ng-show="grid">
-  <div class="show" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freeBox}">
+  <div class="show" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freeShows}:strictPrice">
     <div class="venue">
       <div class="title">{{event.title}}</div>
     </div>
     <div class="art">
       <a href="/#showpage?post={{event.id}}">
-        <div class="poster" ng-switch style="background-image:url('{{event.poster}}')"></div>
+        <div class="poster" ng-switch ng-style="{'background-image':'url('+event.poster+')'}"></div>
       </a>
     </div>
     <div class="description">
