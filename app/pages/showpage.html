@@ -2,12 +2,12 @@
 <div ng-repeat="event in events">
   <div id="static_topnav">
     <div class="breadcrumbs">
-      <a href="#/">SHOWHAUS</a> &gt;
-      <a href="#/" ng-click="setCity(event.city)">{{event.city}}</a> &gt;
-      <a href="#/" ng-click="setCity(event.city); setVenue(event.venue)">{{event.venue}}</a> &gt;
+      <a href="#!/">SHOWHAUS</a> &gt;
+      <a href="#!/" ng-click="setCity(event.city)">{{event.city}}</a> &gt;
+      <a href="#!/" ng-click="setCity(event.city); setVenue(event.venue)">{{event.venue}}</a> &gt;
       {{event.title}}
     </div>
-    <div class="editshow">[ <a href="#">EDIT SHOW<a/> ]</div>
+    <div class="editshow">[ <a href="#!">EDIT SHOW<a/> ]</div>
   </div>
   <div id="showpage_wrap">
     <div class="title"> {{event.title}} </div>

@@ -55,7 +55,7 @@ angular
       };
     })
 
-  .config(function ($routeProvider, $httpProvider) {
+  .config(function ($routeProvider, $httpProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'pages/main.html',
@@ -73,6 +73,7 @@ angular
         redirectTo: '/'
       });
     $httpProvider.responseInterceptors.push('onCompleteInterceptor');
+    $locationProvider.hashPrefix('!');
   })
 
     .run(function($http, onStartInterceptor) {

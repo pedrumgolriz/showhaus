@@ -1,5 +1,5 @@
 <div id="topnav">
-  <a ng-href="/#about">about showhaus</a>
+  <a ng-href="/#!about">about showhaus</a>
 
   <div onclick="location.href='#post';">
     <a class="postashow">[ POST A SHOW ]</a>
@@ -8,7 +8,7 @@
 <div id="logo_container">
   <div class="logo" onclick="window.location = '#main';"></div>
   <div class="learnmore">
-    the open directory for shows, <a href="#about">learn more</a>.
+    the open directory for shows, <a href="#!about">learn more</a>.
   </div>
   <div id="filter_contain" style="margin: 0 auto;">
     <div id="filter">
@@ -35,7 +35,7 @@
 
       <!-- free -->
       <div class="filter_free">
-        <input type="checkbox" ng-model="freebox" ng-true-value="true" ng-false-value="false"> <span class="free">FREE</span> shows
+        <input type="checkbox" ng-model="freebox" ng-true-value="true"> <span class="free">FREE</span> shows
         only
       </div>
       <!-- view -->
@@ -58,7 +58,7 @@
       <th class="tablevenue"><a href="#">venue</a></th>
     </tr>
     <tbody class="theEvents">
-      <tbody ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freeShows}:strictPrice">
+      <tbody ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freeShows}">
         <tr ng-class="event.featured=='today' ? 'list_today':''" ng-click="go('{{event.id}}')">
           <td class="list_align">
             <strong>{{event.date}}</strong>
@@ -88,12 +88,12 @@
   </table>
 </div>
 <div class="gridview_contain" ng-show="grid">
-  <div class="show" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freeShows}:strictPrice">
+  <div class="show" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freeBox}">
     <div class="venue">
       <div class="title">{{event.title}}</div>
     </div>
     <div class="art">
-      <a href="/#showpage?post={{event.id}}">
+      <a href="/#!showpage?post={{event.id}}">
         <div class="poster" ng-switch ng-style="{'background-image':'url('+event.poster+')'}"></div>
       </a>
     </div>
@@ -102,7 +102,7 @@
       <span class="date"><strong>{{event.date}}</strong> @ {{event.time}} </span>
       <div class="divider"></div>
       <br>
-      <span class="title"><a href="/#showpage?post={{event.id}}">{{event.title}}</a></span>
+      <span class="title"><a href="/#!showpage?post={{event.id}}">{{event.title}}</a></span>
       <br>
       <span class="act">{{event.subtitle}}</span><br>
     </div>
@@ -114,7 +114,7 @@
           <span class="price" ng-if="event.price==0">&nbsp;free</span>
           <span class="price" ng-if="event.price>0">&nbsp;$ {{event.price}}&nbsp;</span>
 		    </span>
-      <span class="comments">( <a href="http://showhaus.org/Baltimore/?post=349239#disqus_thread" data-disqus-identifier="349239">0 Comments</a> ) </span>
+      <span class="comments">( <a href="/#!showpage?post={{event.id}}"></a> ) </span>
     </div>
   </div>
 </div>
