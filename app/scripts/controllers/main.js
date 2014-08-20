@@ -26,7 +26,10 @@ function geolocation() {
   var BROOKLYN_ZIP_ARRAY = [11200, 11240];
   var GEO_CITY = '';
   var getcookies = getCookie('city');
-  if (getcookies) {
+  if (getcookies === 'all'){
+    getcookies = '';
+  }
+  if (getcookies||getcookies==='') {
     return getcookies;
   }
   else if (navigator.geolocation && !getcookies) {
@@ -95,7 +98,12 @@ angular.module('showhaus')
     });
     //####//
     $scope.setNewCookie = function(){
-      document.cookie = 'city=' + $scope.citySelect;
+      if($scope.citySelect!==''){
+        document.cookie = 'city=' + $scope.citySelect;
+      }
+      else{
+        document.cookie = 'city=all';
+      }
     };
     //set the city based on the users location
     $scope.citySelect = geolocation(); // jshint ignore:line
