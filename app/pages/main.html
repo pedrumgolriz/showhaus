@@ -1,6 +1,5 @@
 <div id="topnav">
   <a ng-href="/#!about">about showhaus</a>
-
   <div onclick="location.href='#post';">
     <a class="postashow">[ POST A SHOW ]</a>
   </div>
@@ -12,8 +11,6 @@
   </div>
   <div id="filter_contain" style="margin: 0 auto;">
     <div id="filter">
-
-      <!-- city -->
       <div class="filter_city">
         <select class="chosen-select" data-placeholder="SELECT CITY"
                 id="filter_city" name="city" ng-model="citySelect" ng-change="resetVenues(); setNewCookie()">
@@ -23,8 +20,6 @@
           <option>DC</option>
         </select>
       </div>
-
-      <!-- venue -->
       <div class="filter_venue">
         <select ng-model="venueSelect" class="chosen-select" data-placeholder="SELECT VENUE"
                 id="filter_venue" name="venue">
@@ -32,13 +27,10 @@
           <option ng-repeat="venue in venues | filter:citySelect" ng-show="citySelect">{{venue[1]}}</option>
         </select>
       </div>
-
-      <!-- free -->
       <div class="filter_free">
         <input type="checkbox" ng-model="freebox" ng-true-value="true"> <span class="free">FREE</span> shows
         only
       </div>
-      <!-- view -->
       <div class="filter_view">
         view:
         <span class="view"><a href="" ng-click="list=true; grid=false">[list]</a></span>
@@ -114,7 +106,7 @@
           <span class="price" ng-if="event.price==0">&nbsp;free</span>
           <span class="price" ng-if="event.price>0">&nbsp;$ {{event.price}}&nbsp;</span>
 		    </span>
-      <span class="comments">( <a href="/#!showpage?post={{event.id}}"></a> ) </span>
+      <span class="comments"></span>
     </div>
   </div>
 </div>
