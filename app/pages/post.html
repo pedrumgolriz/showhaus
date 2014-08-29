@@ -54,10 +54,10 @@
             </optgroup>
           </select><a class="required" title="required">*</a>
         </div>
-        <div class="postshow_input_wrap" style="display: none;">
+        <div class="postshow_input_wrap" ng-if="venue=='newvenue'">
           <div class="addvenue">
             <p><strong>Add New Venue</strong></p>
-            <input id="postshow_newvenuename" maxlength="25" name="newvenue" placeholder="name of venue" required type="text" disabled="disabled" style="margin-left: 20px">
+            <input id="postshow_newvenuename" maxlength="25" name="newvenue" placeholder="name of venue" required type="text" style="margin-left: 20px">
             <a class="required" title="required">*</a><br>
             <br>
             <input id="postshow_newvenueaddress" maxlength="75" name="venue_address" placeholder="address" type="text">
