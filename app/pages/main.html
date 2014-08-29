@@ -1,11 +1,11 @@
 <div id="topnav">
   <a ng-href="/#!about">about showhaus</a>
-  <div onclick="location.href='#post';">
-    <a class="postashow">[ POST A SHOW ]</a>
+  <div onclick="location.href='#!post';">
+    <a ng-href="/#!post" class="postashow">[ POST A SHOW ]</a>
   </div>
 </div>
 <div id="logo_container">
-  <div class="logo" onclick="window.location = '#main';"></div>
+  <div class="logo" onclick="window.location = '#!main';"></div>
   <div class="learnmore">
     the open directory for shows, <a href="#!about">learn more</a>.
   </div>
@@ -28,7 +28,7 @@
         </select>
       </div>
       <div class="filter_free">
-        <input type="checkbox" ng-model="freebox" ng-true-value="true"> <span class="free">FREE</span> shows
+        <input type="checkbox" ng-model="freebox" ng-true-value="true" ng-false-value=""> <span class="free">FREE</span> shows
         only
       </div>
       <div class="filter_view">
@@ -50,7 +50,7 @@
       <th class="tablevenue"><a href="#">venue</a></th>
     </tr>
     <tbody class="theEvents">
-      <tbody ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freeShows}">
+      <tbody ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freebox}">
         <tr ng-class="event.featured=='today' ? 'list_today':''" ng-click="go('{{event.id}}')">
           <td class="list_align">
             <strong>{{event.date}}</strong>
@@ -80,7 +80,7 @@
   </table>
 </div>
 <div class="gridview_contain" ng-show="grid">
-  <div class="show" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freeBox}">
+  <div class="show" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freebox}">
     <div class="venue">
       <div class="title">{{event.title}}</div>
     </div>

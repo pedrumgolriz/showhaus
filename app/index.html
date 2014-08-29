@@ -13,6 +13,7 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="_css/main.css">
     <!-- endbuild -->
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/hot-sneaks/jquery-ui.min.css">
   </head>
   <body ng-app="showhaus">
     <!--[if lt IE 7]>
@@ -30,6 +31,7 @@
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -42,10 +44,14 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-chosen-localytics/chosen.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/angular-recaptcha/release/angular-recaptcha.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <script src="bower_components/chosen/chosen.jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="scripts/dependencies/jquery.timepicker.min.js"></script>
+    <script src="scripts/dependencies/select2.min.js"></script>
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
