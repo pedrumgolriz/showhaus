@@ -652,7 +652,6 @@ table.gridtable th {
 }
 
 table.gridtable td {
-	padding: 8px;
 	background-color: #ffffff;
 	border-bottom:  1px solid #eee;
 }
