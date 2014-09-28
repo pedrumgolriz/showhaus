@@ -1,207 +1,245 @@
 <div id="static_topnav">
-  <div class="breadcrumbs">
-    <a href="#!main">SHOWHAUS</a> &gt; POST A SHOW
-  </div>
+	<div class="breadcrumbs">
+		<a href="#!main">SHOWHAUS</a> &gt; POST A SHOW
+	</div>
 </div>
-	<span class="mainbody">
-    <div style="text-align: center;"><img src="assets/postashow.png" style="max-height: 70px; padding: 60px 0 15px 0;"></div>
-    <div class="readtherules" name="rules_anchor" style="background-color: #d62c2c;font-family: sans-serif;" ng-click="expand = !expand">
-      <p>BEFORE POSTING PLEASE <span style="font-weight: bold; text-decoration: underline;">READ THE RULES</span>
-    </div>
+<span class="mainbody">
+    <div style="text-align: center;"><img src="assets/postashow.png" style="max-height: 70px; padding: 60px 0 15px 0;">
+	</div>
+    <div class="readtherules" name="rules_anchor" style="background-color: #d62c2c;font-family: sans-serif;"
+		 ng-click="expand = !expand">
+		<p>BEFORE POSTING PLEASE <span style="font-weight: bold; text-decoration: underline;">READ THE RULES</span>
+	</div>
     <div class="rules" ng-show="expand">
-      <ul>
-        <li><span>Be Descriptive</span></li>
-        <li style="list-style: none">When posting a show, do your best to
-          provide as much information on who is playing, what they sound
-          like, and what they look like. It makes for quality listings, and a
-          better understanding of our local music scene. HTML and CSS on your
-          listings is allowed and encouraged.</li>
-        <li><span>Protect Smaller Venues</span></li>
-        <li style="list-style: none">Please do not post the addresses of
-          venues that are in residential areas or operate without an
-          entertainment/liquor license. Do not ask for the address in the
-          comments. Find these delicate places under your own
-          discretion.</li>
-        <li><span>Show Deletion</span></li>
-        <li style="list-style: none">The admins and moderators reserve the
-          right to delete your posting if it's... a) not a show (or spam) b)
-          not a quality listing c) a duplicate event</li>
-        <li><span>Don’t be a jerk</span></li>
-        <li style="list-style: none">We spent a lot of time making this a
-          nice place for shows. Be nice!</li>
-      </ul>
-    </div>
-    <form novalidate enctype="multipart/form-data">
-      <div class="fb" id="postshow_wrap" style="border-top: 1px solid lightgray; border-radius: 3px; margin-top: 10px;">
-        <input placeholder="eg. https://www.facebook.com/events/1374511886107039/" style="margin-top: 20px;" type="text" id="postshow_fb" ng-change="fbEvent(facebookEvent)" ng-model="facebookEvent">
-        <p>Enter your show's Facebook event URL (if you have one).</p>
-      </div>
-      <div class="input_heading">
-        <strong>EVENT DETAILS</strong>
-      </div>
-      <div id="postshow_wrap">
-        <div class="postshow_input_wrap">
-          <div class="error_return">Please make sure to fill out all required fields!</div>
-          <select id="postshow_city" class="filter_city" name="city" ng-model="citySelect" required data-placeholder="SELECT CITY" ng-change="resetVenues()">
-            <option>Baltimore</option>
-            <option>Brooklyn</option>
-            <option>DC</option>
-          </select>
-          <select class="filter_city" id="postshow_venue" name="venue" ng-model="venue" required data-placeholder="SELECT VENUE">
-            <option ng-repeat="place in venues | filter:citySelect" ng-show="citySelect">{{place[1]}}</option>
-            <optgroup label="Can't find your venue?" ng-if="citySelect!=''">
-              <option name="newvenue" value="newvenue">Add a venue</option>
-            </optgroup>
-          </select><a class="required" title="required">*</a>
-        </div>
-        <div class="postshow_input_wrap" ng-if="venue=='newvenue'">
-          <div class="addvenue">
-            <p><strong>Add New Venue</strong></p>
-            <input id="postshow_newvenuename" maxlength="25" name="newvenue" placeholder="name of venue" required type="text" style="margin-left: 20px">
-            <a class="required" title="required">*</a><br>
-            <br>
-            <input id="postshow_newvenueaddress" maxlength="75" name="venue_address" placeholder="address" type="text">
-          </div>
-        </div>
-        <div class="postshow_input_wrap" style="margin-left: 20px;">
-          <input ng-model="title" id="postshow_showtitle" maxlength="30" name="title" placeholder="title of show" required type="text"><a class="required">*</a>
-          <p>The overall title of your show / headliner.</p>
-          <div>
-            <div id="title_remaining">
-              {{30 - title.length}} characters remaining
-            </div>
-          </div>
-        </div>
-        <div class="postshow_input_wrap">
-          <input ng-model="subtitle" id="postshow_subtitle" maxlength="45" name="subtitle" placeholder="subtitle" type="text">
-          <p>Other bands, acts, etc.</p>
-          <div id="subtitle_remaining">
-            {{45 - subtitle.length}} characters remaining
-          </div>
-        </div>
-        <div class="postshow_input_wrap" style="margin-left: 20px;">
-          <input id="postshow_date" name="date" placeholder="date" readonly required type="text">
-          <input id="postshow_time" name="time" readonly type="text" value="12:00 PM">
-          <input id="postshow_price" name="price" placeholder="price" required style="color: green;" type="text" ng-model="price" numbers-only="numbers-only">
-          <a class="required" title="required">*</a>
-          <p>Enter "0" for the price if your show is <a class="free" style="font-size: 12px;">free</a></p>
-        </div>
-      </div>
-      <div class="input_heading">
-        EVENT DESCRIPTION
-      </div>
-      <div id="postshow_wrap">
-        <div class="input_wrap">
-          <div class="postshow_input_wrap">
-            <p>This is the content that will appear in your listing. Feel
-              free to embed images and videos.</p>
-            <p><a style="background-color: #dd2232; color:#fff; padding: 5px 10px; border-radius: 3px;">
-              Please remember to respect diy venues or private parties. Post
-              addresses at your own risk.</a></p>
-            <p id="slate">
-              <textarea id="editor" name="editor" name="description" rows="15"></textarea></p>
-          </div>
-        </div>
-        <div class="postshow_input_wrap">
-          <p><strong><a style="margin-left: 20px;">How would you describe
-            your show?</a></strong><a class="required" title="required">*</a></p>
-          <input type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;" minlength="1">
-          <p>Enter at least one tag (eg. "Math Rock" , "Metal", "Space
-            Jazz")<br/>Use commas to seperate tags</p>
-        </div>
-      </div>
-      <div class="input_heading">
-        EVENT ART
-      </div>
-      <div id="postart_wrap">
-        <div class="postshow_input_wrap">
+		<ul>
+			<li><span>Be Descriptive</span></li>
+			<li style="list-style: none">When posting a show, do your best to
+				provide as much information on who is playing, what they sound
+				like, and what they look like. It makes for quality listings, and a
+				better understanding of our local music scene. HTML and CSS on your
+				listings is allowed and encouraged.
+			</li>
+			<li><span>Protect Smaller Venues</span></li>
+			<li style="list-style: none">Please do not post the addresses of
+				venues that are in residential areas or operate without an
+				entertainment/liquor license. Do not ask for the address in the
+				comments. Find these delicate places under your own
+				discretion.
+			</li>
+			<li><span>Show Deletion</span></li>
+			<li style="list-style: none">The admins and moderators reserve the
+				right to delete your posting if it's... a) not a show (or spam) b)
+				not a quality listing c) a duplicate event
+			</li>
+			<li><span>Don’t be a jerk</span></li>
+			<li style="list-style: none">We spent a lot of time making this a
+				nice place for shows. Be nice!
+			</li>
+		</ul>
+	</div>
+    <form name="postshow" novalidate ng-submit="postEvent()">
+		<div class="fb" id="postshow_wrap"
+			 style="border-top: 1px solid lightgray; border-radius: 3px; margin-top: 10px;">
+			<input placeholder="eg. https://www.facebook.com/events/1374511886107039/" style="margin-top: 20px;"
+				   type="text" id="postshow_fb" ng-change="fbEvent(facebookEvent)" ng-model="facebookEvent">
 
-          <img id="imgpreview" alt="Image Preview" ng-show="poster" ng-src="{{poster}}" style="max-width:800px; padding-bottom: 15px;"/>
-          <div id="drop">
-            <input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg"/>
-            <input type="hidden" name="fbimage"/>
+			<p>Enter your show's Facebook event URL (if you have one).</p>
+		</div>
+		<div class="input_heading">
+			<strong>EVENT DETAILS</strong>
+		</div>
+		<div id="postshow_wrap">
+			<div class="postshow_input_wrap">
+				<div class="error_return">Please make sure to fill out all required fields!</div>
+				<select id="postshow_city" class="filter_city" name="city" ng-model="citySelect" required
+						data-placeholder="SELECT CITY" ng-change="resetVenues()">
+					<option>Baltimore</option>
+					<option>Brooklyn</option>
+					<option>DC</option>
+				</select>
+				<select class="filter_city" id="postshow_venue" name="venue" ng-model="venue" required
+						data-placeholder="SELECT VENUE">
+					<option ng-repeat="place in venues | filter:citySelect" ng-show="citySelect">{{place[1]}}</option>
+					<optgroup label="Can't find your venue?" ng-if="citySelect!=''">
+						<option name="newvenue" value="newvenue">Add a venue</option>
+					</optgroup>
+				</select><a class="required" title="required">*</a>
+			</div>
+			<div class="postshow_input_wrap" ng-if="venue=='newvenue'">
+				<div class="addvenue">
+					<p><strong>Add New Venue</strong></p>
+					<input id="postshow_newvenuename" maxlength="25" name="newvenue" placeholder="name of venue"
+						   required type="text" style="margin-left: 20px">
+					<a class="required" title="required">*</a><br>
+					<br>
+					<input id="postshow_newvenueaddress" maxlength="75" name="venue_address" placeholder="address"
+						   type="text">
+				</div>
+			</div>
+			<div class="postshow_input_wrap" style="margin-left: 20px;">
+				<input ng-model="title" id="postshow_showtitle" maxlength="30" name="title" placeholder="title of show"
+					   required type="text"><a class="required">*</a>
+
+				<p>The overall title of your show / headliner.</p>
+
+				<div>
+					<div id="title_remaining">
+						{{30 - title.length}} characters remaining
+					</div>
+				</div>
+			</div>
+			<div class="postshow_input_wrap">
+				<input ng-model="subtitle" id="postshow_subtitle" maxlength="45" name="subtitle" placeholder="subtitle"
+					   type="text">
+
+				<p>Other bands, acts, etc.</p>
+
+				<div id="subtitle_remaining">
+					{{45 - subtitle.length}} characters remaining
+				</div>
+			</div>
+			<div class="postshow_input_wrap" style="margin-left: 20px;">
+				<input id="postshow_date" name="date" placeholder="date" readonly required type="text" ng-model="date">
+				<input id="postshow_time" name="time" readonly type="text" value="12:00 PM">
+				<input id="postshow_price" name="price" placeholder="price" required style="color: green;" type="text"
+					   ng-model="price" numbers-only="numbers-only">
+				<a class="required" title="required">*</a>
+
+				<p>Enter "0" for the price if your show is <a class="free" style="font-size: 12px;">free</a></p>
+			</div>
+		</div>
+		<div class="input_heading">
+			EVENT DESCRIPTION
+		</div>
+		<div id="postshow_wrap">
+			<div class="input_wrap">
+				<div class="postshow_input_wrap">
+					<p>This is the content that will appear in your listing. Feel
+						free to embed images and videos.</p>
+
+					<p><a style="background-color: #dd2232; color:#fff; padding: 5px 10px; border-radius: 3px;">
+						Please remember to respect diy venues or private parties. Post
+						addresses at your own risk.</a></p>
+
+					<p id="slate">
+						<textarea id="editor" name="editor" name="description" rows="15"></textarea></p>
+				</div>
+			</div>
+			<div class="postshow_input_wrap">
+				<p><strong><a style="margin-left: 20px;">How would you describe
+					your show?</a></strong><a class="required" title="required">*</a></p>
+				<input type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;">
+
+				<p>Enter at least one tag (eg. "Math Rock" , "Metal", "Space
+					Jazz")<br/>Use commas to seperate tags</p>
+			</div>
+		</div>
+		<div class="input_heading">
+			EVENT ART
+		</div>
+		<div id="postart_wrap">
+			<div class="postshow_input_wrap">
+
+				<img id="imgpreview" alt="Image Preview" ng-show="poster" ng-src="{{poster}}" style="max-width:800px;"/>
+				<br/>
+
+				<div id="drop">
+					<input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg"/>
+					<input type="hidden" name="fbimage"/>
                 <span class="message"><p><strong>Drag and drop your poster here.</strong><br>
-                  (.gif, .jpg, .png formats allowed. 5MB max)</p></span>
-          </div>
-        </div>
-      </div>
-      <div class="input_heading">
-        CONFIRM &amp; PUBLISH
-      </div>
-      <div id="postshow_wrap">
-        <div class="postshow_input_wrap" style="padding-top: 25px;">
-          <p><span style="font-weight: bold;">This is very important!</span> If you do not provide a legitimate email address you will not be able to edit your show.</p>
-          <input id="postshow_email" name="email" placeholder="email" required type="email"/>
-          <a class="required" title="required">*</a>
-          <div vc-recaptcha key="'6Lf-afkSAAAAADf4xBnaQM7VbkHBAYtAonlbirPU'"></div>
-        </div>
-        <p style="font-size: 16px; margin: 0 auto; width: 500px">
-          By clicking 'post show' I have
-          <a href="javascript:void();" style="font-size: 16px;" name="rulesagreement">read the rules</a>
-          and agree to the
-          <a href="http://showhaus.org/rules" style="font-size: 16px;" target="_blank">privacy agreement</a>
-          and confirm that I am not a jerk.</p>
-        <div class="postshow_input_wrap">
-          <div style="text-align: center; margin: 10px auto 30px auto;">
-            <button class="postshow_button" ng-click="submit">post
-              show</button>
-          </div>
-        </div>
-      </div>
-    </form>
+					(.gif, .jpg, .png formats allowed. 5MB max)</p></span>
+				</div>
+			</div>
+		</div>
+		<div class="input_heading">
+			CONFIRM &amp; PUBLISH
+		</div>
+		<div id="postshow_wrap">
+			<div class="postshow_input_wrap" style="padding-top: 25px;">
+				<p><span style="font-weight: bold;">This is very important!</span> If you do not provide a legitimate
+					email address you will not be able to edit your show.</p>
+				<input id="postshow_email" name="email" placeholder="email" required type="email" ng-model="email"/>
+				<a class="required" title="required">*</a>
+				<!--<div vc-recaptcha key="'6Lf-afkSAAAAADf4xBnaQM7VbkHBAYtAonlbirPU'"></div>-->
+			</div>
+			<p style="font-size: 16px; margin: 0 auto; width: 500px">
+				By clicking 'post show' I have
+				<a href="javascript:void();" ng-click="expand = !expand" style="font-size: 16px;" name="rulesagreement">read
+					the rules</a>
+				and agree to the
+				<a href="http://showhaus.org/rules" style="font-size: 16px;" target="_blank">privacy agreement</a>
+				and confirm that I am not a jerk.</p>
+
+			<div class="postshow_input_wrap">
+				<div style="text-align: center; margin: 10px auto 30px auto;">
+					<button class="postshow_button" type="submit">post show</button>
+				</div>
+			</div>
+		</div>
+	</form>
 </span>
 <span class="successbody" style="display:none;">
     <div id="static_wrap">
-      <h1>Great success! Your show has been posted!</h1>
-      <div class="preview_contain">
-        <div class="show" style="margin: 0 auto;">
-          <div class="venue">
-            <div class="title venuetitle"> TITLE OF VENUE </div>
-          </div>
-          <div class="art">
-            <div class="poster"></div>
-          </div>
-          <div class="description">
-            <div class="divider"></div>
-            <span class="date"><strong>Thursday</strong></span>
-            <div class="divider"></div>
-            <br>
-            <span class="title"><a href="#"></a></span>
-            <br>
-            <span class="act"></span><br>
-            <span class="price"> </span>
-          </div>
-          <div class="showfooter">
-            <span class="categoryone"> </span>
-            <span class="categorytwo"> </span>
-            <span class="comments"></span>
-          </div>
-        </div>
-      </div>
-      <p style="text-align: center;"> We will email you instructions soon on how to edit or update your listing.</p>
-    </div>
+		<h1>Great success! Your show has been posted!</h1>
+
+		<div class="preview_contain">
+			<div class="show" style="margin: 0 auto;">
+				<div class="venue">
+					<div class="title venuetitle"> TITLE OF VENUE</div>
+				</div>
+				<div class="art">
+					<div class="poster"></div>
+				</div>
+				<div class="description">
+					<div class="divider"></div>
+					<span class="date"><strong>Thursday</strong></span>
+
+					<div class="divider"></div>
+					<br>
+					<span class="title"><a href="#"></a></span>
+					<br>
+					<span class="act"></span><br>
+					<span class="price"> </span>
+				</div>
+				<div class="showfooter">
+					<span class="categoryone"> </span>
+					<span class="categorytwo"> </span>
+					<span class="comments"></span>
+				</div>
+			</div>
+		</div>
+		<p style="text-align: center;"> We will email you instructions soon on how to edit or update your listing.</p>
+	</div>
 </span>
 <script>
-  $(function() {
-    $("#postshow_date").datepicker({ minDate: 0 });
-    $("#postshow_time").timepicker({ minTime: 0, show24Hours: false, timeFormat: "h:mm TT"});
-  });
-  var giganticGenreArray = ['list','grid'];
-  $('#tags').select2({
-    tags: giganticGenreArray,
-    tokenSeparators: [","],
-    maximumSelectionSize: 2,
-    maximumInputLength: 12
-  });
+	$(function () {
+		$("#postshow_date").datepicker({ minDate: 0 });
+		$("#postshow_time").timepicker({ minTime: 0, show24Hours: false, timeFormat: "h:mm TT"});
+	});
+	var giganticGenreArray = ['list', 'grid'];
+	$('#tags').select2({
+		tags: giganticGenreArray,
+		tokenSeparators: [","],
+		maximumSelectionSize: 2,
+		maximumInputLength: 12,
+		minimumSelectionSize: 1
+	});
 </script>
 <script>
-  $(window).bind("load",function(){
-    $('select').chosen();
-    $('select').on('change',function(){
-      $('#postshow_venue').trigger('chosen:updated');
-    });
-    if (!CKEDITOR.instances['editor'])
-      CKEDITOR.replace('editor');
-  });
+	$(window).bind("blur focus focusin focusout load resize scroll unload click " +
+			"dblclick mousedown mouseup mousemove mouseover mouseout mouseenter " +
+			"mouseleave change select submit keydown keypress keyup error", function () {
+		$('select').chosen().trigger('liszt:updated');
+		$('select').on('change', function () {
+			$('#postshow_venue').trigger('chosen:updated');
+		});
+		if (!CKEDITOR.instances['editor'])
+			CKEDITOR.replace('editor');
+	});
+	$('a[name="rulesagreement"]').on('click', function () {
+		$('html, body').animate({
+			scrollTop: 0
+		}, 'slow');
+	});
 </script>
 <script src="../assets/ckeditor/ckeditor.js"></script>
