@@ -43,14 +43,14 @@ angular.module('showhaus')
 	.run(function ($http, venueCityFactory) {
 		venues = venueCityFactory.query();
 	})
-	.controller('PostCtrl', function ($scope, vcRecaptchaService, $http) {
+	.controller('PostCtrl', function ($scope, $http) {
 		//facebook stuff
 		$scope.citySelect = getCookie('city');
 		$scope.venues = venues;
 		$scope.resetVenues = function () {
 			$scope.venue = '';
 		};
-		$scope.model = {
+		/*$scope.model = {
 			key: '6Lf-afkSAAAAADf4xBnaQM7VbkHBAYtAonlbirPU'
 		};
 		$scope.submit = function () {
@@ -72,12 +72,29 @@ angular.module('showhaus')
 				}
 
 			});
-		};
+		};*/
 		$scope.postEvent = function () {
-			if ($scope.postshow.$valid) {
-				console.log('post');
-			} else {
-				console.log($scope.postshow);
-			}
+			var data = {
+				'city': $scope.citySelect,
+				'venue': $scope.venue,
+				'newvenue': $scope.newvenue,
+				'title': $scope.title,
+				'subtitle': $scope.subtitle,
+				'date': $scope.date,
+				'time': $scope.time,
+				'price': $scope.price,
+				'editor': $scope.editor, //this is the description
+				'tags': $scope.tags,
+				'poster': $scope.poster,
+				'email': $scope.email
+			};
+			$http.post(
+				preUrl+'assets/new.php',
+				data
+			).success(function(data, status){
+				console.log(data);
+			}).error(function(status){
+				//redirect to error page
+			});
 		};
 	});

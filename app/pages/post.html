@@ -73,7 +73,7 @@
 					<a class="required" title="required">*</a><br>
 					<br>
 					<input id="postshow_newvenueaddress" maxlength="75" name="venue_address" placeholder="address"
-						   type="text">
+						   type="text" ng-model="newvenue">
 				</div>
 			</div>
 			<div class="postshow_input_wrap" style="margin-left: 20px;">
@@ -100,7 +100,7 @@
 			</div>
 			<div class="postshow_input_wrap" style="margin-left: 20px;">
 				<input id="postshow_date" name="date" placeholder="date" readonly required type="text" ng-model="date">
-				<input id="postshow_time" name="time" readonly type="text" value="12:00 PM">
+				<input id="postshow_time" name="time" readonly type="text" value="12:00 PM" ng-model="time">
 				<input id="postshow_price" name="price" placeholder="price" required style="color: green;" type="text"
 					   ng-model="price" numbers-only="numbers-only">
 				<a class="required" title="required">*</a>
@@ -122,13 +122,13 @@
 						addresses at your own risk.</a></p>
 
 					<p id="slate">
-						<textarea id="editor" name="editor" name="description" rows="15"></textarea></p>
+						<textarea id="editor" name="editor" name="description" rows="15" ng-model="editor"></textarea></p>
 				</div>
 			</div>
 			<div class="postshow_input_wrap">
 				<p><strong><a style="margin-left: 20px;">How would you describe
 					your show?</a></strong><a class="required" title="required">*</a></p>
-				<input type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;">
+				<input type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;" ng-model="tags">
 
 				<p>Enter at least one tag (eg. "Math Rock" , "Metal", "Space
 					Jazz")<br/>Use commas to seperate tags</p>
@@ -144,8 +144,8 @@
 				<br/>
 
 				<div id="drop">
-					<input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg"/>
-					<input type="hidden" name="fbimage"/>
+					<input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg" ng-model="poster"/>
+					<input type="hidden" name="fbimage" ng-model="fbimage"/>
                 <span class="message"><p><strong>Drag and drop your poster here.</strong><br>
 					(.gif, .jpg, .png formats allowed. 5MB max)</p></span>
 				</div>
