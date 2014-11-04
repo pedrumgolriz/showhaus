@@ -91,10 +91,10 @@ angular.module('showhaus')
 			$http.post(
 				preUrl+'assets/new.php',
 				data
-			).success(function(data, status){
+			).success(function(data){
 				console.log(data);
 			}).error(function(status){
-				//redirect to error page
+				console.log(status);
 			});
 		};
 	});
