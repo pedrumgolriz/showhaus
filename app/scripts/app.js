@@ -15,8 +15,7 @@ angular
 		'ngResource',
 		'ngRoute',
 		'ngSanitize',
-		'ngTouch',
-		'vcRecaptcha'
+		'ngTouch'
 	])
 	.factory('loadingService', function () {
 		var service = {
