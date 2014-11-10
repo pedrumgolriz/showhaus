@@ -37,7 +37,7 @@
 			</li>
 		</ul>
 	</div>
-    <form name="postshow" novalidate ng-submit="postEvent()">
+    <form ng-model="form" name="postshow" novalidate ng-submit="postEvent()">
 		<div class="fb" id="postshow_wrap"
 			 style="border-top: 1px solid lightgray; border-radius: 3px; margin-top: 10px;">
 			<input placeholder="eg. https://www.facebook.com/events/1374511886107039/" style="margin-top: 20px;"
@@ -65,15 +65,15 @@
 					</optgroup>
 				</select><a class="required" title="required">*</a>
 			</div>
-			<div class="postshow_input_wrap" ng-if="venue=='newvenue'">
+			<div class="postshow_input_wrap" ng-show="venue=='newvenue'">
 				<div class="addvenue">
 					<p><strong>Add New Venue</strong></p>
 					<input id="postshow_newvenuename" maxlength="25" name="newvenue" placeholder="name of venue"
-						   required type="text" style="margin-left: 20px">
+						   required type="text" style="margin-left: 20px" ng-model="newvenuename">
 					<a class="required" title="required">*</a><br>
 					<br>
 					<input id="postshow_newvenueaddress" maxlength="75" name="venue_address" placeholder="address"
-						   type="text" ng-model="newvenue">
+						   type="text" ng-model="newvenueaddress">
 				</div>
 			</div>
 			<div class="postshow_input_wrap" style="margin-left: 20px;">
@@ -122,13 +122,14 @@
 						addresses at your own risk.</a></p>
 
 					<p id="slate">
-						<textarea id="editor" name="editor" name="description" rows="15" ng-model="editor"></textarea></p>
+						<textarea id="editor" class="ck-editor" name="editor" name="description" rows="15" ng-model="description"></textarea>
+					</p>
 				</div>
 			</div>
 			<div class="postshow_input_wrap">
 				<p><strong><a style="margin-left: 20px;">How would you describe
 					your show?</a></strong><a class="required" title="required">*</a></p>
-				<input type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;" ng-model="tags">
+				<input ng-model="tags" type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;" ng-model="tags">
 
 				<p>Enter at least one tag (eg. "Math Rock" , "Metal", "Space
 					Jazz")<br/>Use commas to seperate tags</p>
@@ -144,7 +145,7 @@
 				<br/>
 
 				<div id="drop">
-					<input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg" ng-model="poster"/>
+					<input fileread="poster" ng-file-select="onFileSelect()" type="file" name="image" accept="image/x-png, image/gif, image/jpeg" ng-model="poster"/>
 					<input type="hidden" name="fbimage" ng-model="fbimage"/>
                 <span class="message"><p><strong>Drag and drop your poster here.</strong><br>
 					(.gif, .jpg, .png formats allowed. 5MB max)</p></span>
@@ -242,4 +243,3 @@
 		}, 'slow');
 	});
 </script>
-<script src="../assets/ckeditor/ckeditor.js"></script>

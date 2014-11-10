@@ -15,7 +15,7 @@ angular
 		'ngResource',
 		'ngRoute',
 		'ngSanitize',
-		'ngTouch'
+		'ngTouch',
 	])
 	.factory('loadingService', function () {
 		var service = {
@@ -140,6 +140,31 @@ angular
 			}
 		};
 	})
+	.directive('ckEditor', [function () {
+		return {
+			require: '?ngModel',
+			restrict: 'C',
+			link: function(scope, elm, attr, ngModel) {
+				var ck;
+				ck = CKEDITOR.replace(elm[0]);//jshint ignore:line
+
+				if (!ngModel){
+					return;
+				}
+
+				ck.on('pasteState', function() {
+					scope.$apply(function() {
+						ngModel.$setViewValue(ck.getData());
+
+					});
+				});
+
+				ngModel.$render = function() {
+					ck.setData(ngModel.$viewValue);
+				};
+			}
+		};
+	}])
 	.directive('fileread', [function () {
 		return {
 			scope: {
