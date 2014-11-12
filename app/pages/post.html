@@ -77,25 +77,25 @@
 				</div>
 			</div>
 			<div class="postshow_input_wrap" style="margin-left: 20px;">
-				<input ng-model="title" id="postshow_showtitle" maxlength="30" name="title" placeholder="title of show"
+				<input ng-model="title" id="postshow_showtitle" maxlength="80" name="title" placeholder="title of show"
 					   required type="text"><a class="required">*</a>
 
 				<p>The overall title of your show / headliner.</p>
 
 				<div>
 					<div id="title_remaining">
-						{{30 - title.length}} characters remaining
+						{{80 - title.length}} characters remaining
 					</div>
 				</div>
 			</div>
 			<div class="postshow_input_wrap">
-				<input ng-model="subtitle" id="postshow_subtitle" maxlength="45" name="subtitle" placeholder="subtitle"
+				<input ng-model="subtitle" id="postshow_subtitle" maxlength="110" name="subtitle" placeholder="subtitle"
 					   type="text">
 
 				<p>Other bands, acts, etc.</p>
 
 				<div id="subtitle_remaining">
-					{{45 - subtitle.length}} characters remaining
+					{{110 - subtitle.length}} characters remaining
 				</div>
 			</div>
 			<div class="postshow_input_wrap" style="margin-left: 20px;">
