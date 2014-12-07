@@ -81,7 +81,6 @@ angular.module('showhaus')
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue){
     $scope.venues = venues;
     $scope.events = events;
-		console.log(events);
     //##FILTERS##//
     $scope.list = true; //sets list as default view
     $scope.resetVenues = function(){

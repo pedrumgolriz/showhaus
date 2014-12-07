@@ -75,6 +75,10 @@ angular
 				templateUrl: 'pages/post.html',
 				controller: 'PostCtrl'
 			})
+			.when('/success', {
+				templateUrl: 'pages/success.html',
+				controller: 'SuccessCtrl'
+			})
 			.otherwise({
 				redirectTo: '/'
 			});

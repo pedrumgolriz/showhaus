@@ -4,8 +4,6 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
 $_POST = file_get_contents("php://input");
 $_POST = json_decode($_POST, TRUE);
-print_r($_POST);
-print_r($_FILES);
 $mysqli = new mysqli("localhost", "write", "dxV6m6~8", "haus");
 
 $city = htmlspecialchars(stripslashes($_POST['city']));
@@ -60,6 +58,7 @@ else{
     echo "You shouldn't be here.";
 }
 $postnumber = mysqli_insert_id($mysqli);
+echo $postnumber;
 mysqli_close($mysqli);
 
 

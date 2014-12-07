@@ -43,7 +43,7 @@ angular.module('showhaus')
 	.run(function ($http, venueCityFactory) {
 		venues = venueCityFactory.query();
 	})
-	.controller('PostCtrl', function ($scope, $http) {
+	.controller('PostCtrl', function ($scope, $http, $location) {
 		//facebook stuff
 		$scope.citySelect = getCookie('city');
 		$scope.venues = venues;
@@ -79,9 +79,8 @@ angular.module('showhaus')
 			$http.post(
 				preUrl+'assets/new.php',
 				data
-			).success(function(data, status){
-				console.log(data);
-				console.log(status);
+			).success(function(data){
+				$location.path('/success').search('post', data);
 			}).error(function(status){
 				console.log(status);
 			});

@@ -1,0 +1,38 @@
+<div id="static_topnav">
+	<div class="breadcrumbs">
+		<a href="#!main">SHOWHAUS</a> &gt; YOUR SHOW HAS BEEN POSTED
+	</div>
+</div>
+<div id="static_wrap" style="text-align: center">
+	<h1>Great success! Your show has been posted!</h1>
+	<div class="preview_contain show" ng-repeat="event in events">
+		<div class="venue">
+			<div class="title">{{event.title}}</div>
+		</div>
+		<div class="art">
+			<a href="/#!showpage?post={{event.id}}">
+				<div class="poster" ng-switch ng-style="{'background-image':'url('+event.poster+')'}"></div>
+			</a>
+		</div>
+		<div class="description">
+			<div class="divider"></div>
+			<span class="date"><strong>{{event.date}}</strong> @ {{event.time}} </span>
+			<div class="divider"></div>
+			<br>
+			<span class="title"><a href="/#!showpage?post={{event.id}}">{{event.title}}</a></span>
+			<br>
+			<span class="act">{{event.subtitle}}</span><br>
+		</div>
+		<div class="showfooter">
+			<span class="categoryone">{{event.tag1}}</span>
+			<span class="categorytwo" ng-if="event.tag2">{{event.tag2}}</span>
+		    <span style="margin: 3px 5px 5px 4px; display:inline-block;">
+		    <span style="color: rgb(201, 201, 201); font-size: 11px;">//</span>
+          <span class="price" ng-if="event.price==0">&nbsp;free</span>
+          <span class="price" ng-if="event.price>0">&nbsp;$ {{event.price}}&nbsp;</span>
+		    </span>
+			[ <a href="#" >GET TICKETS</a> ]
+		</div>
+	</div>
+	<p style="text-align: center;"><br/>We will email you instructions soon on how to edit or update your listing.</p>
+</div>
