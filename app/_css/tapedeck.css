@@ -16,6 +16,7 @@ textarea {
 html {
     font-size: 1em;
     line-height: 1.4;
+	-webkit-transform: translate3d(0, 0, 0);
 }
 
 /*
