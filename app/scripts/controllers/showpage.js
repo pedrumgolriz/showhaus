@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc function
  * @name showhausAngApp.controller:ShowpageCtrl
@@ -18,7 +17,6 @@ window.fbAsyncInit = function () {
     xfbml: true
   });
 };
-
 (function (d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {
@@ -32,13 +30,16 @@ window.fbAsyncInit = function () {
 var preUrl = 'http://v2.showhaus.org/';//set to blank for release
 angular.module('showhaus')
   .controller('ShowpageCtrl', function ($scope, $resource, $location, getSetCity, getSetVenue) {
+	if($location.$$search.post === ''){
+		$location.path('/main');
+	}
     var postnumber = $location.$$search.post;
     var jsonQuery = preUrl + 'assets/events.php?post=' + postnumber;
     $scope.events = $resource(jsonQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}}).query();
     $scope.fbshare = function(postnumber){
       FB.ui({
         method: 'share',
-        href: 'http://showhaus.org/showpage.html?post='+postnumber,
+        href: 'http://showhaus.org/#!/?post='+postnumber,
       });
     };
     /* jshint ignore:start */

@@ -79,6 +79,9 @@ angular.module('showhaus')
     events = eventsFactory.query();
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue){
+	if($location.$$search.post && $location.$$url.split('=')[1]){
+		$location.path('/showpage').search('post', $location.$$search.post);
+	}
     $scope.venues = venues;
     $scope.events = events;
     //##FILTERS##//

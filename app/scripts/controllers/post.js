@@ -45,8 +45,6 @@ $(window).bind("blur focus focusin focusout load resize scroll unload click " +
 	$('select').on('change', function () {
 		$('#postshow_venue').trigger('chosen:updated');
 	});
-	if (!CKEDITOR.instances['editor'])
-		CKEDITOR.replace('editor');
 });
 $('a[name="rulesagreement"]').on('click', function () {
 	$('html, body').animate({

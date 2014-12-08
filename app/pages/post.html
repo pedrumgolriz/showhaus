@@ -222,4 +222,7 @@
 		$("#postshow_date").datepicker({ minDate: 0 });
 		$("#postshow_time").timepicker({ minTime: 0, show24Hours: false, timeFormat: "h:mm TT"});
 	});
+	if (!CKEDITOR.instances['editor']) {
+		CKEDITOR.replace('editor');
+	}
 </script>
