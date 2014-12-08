@@ -37,7 +37,7 @@
 			</li>
 		</ul>
 	</div>
-    <form ng-model="form" name="postshow" novalidate ng-submit="postEvent()">
+    <form ng-model="form" name="postshow" novalidate ng-submit="postEvent(postshow.$valid)">
 		<div class="fb" id="postshow_wrap"
 			 style="border-top: 1px solid lightgray; border-radius: 3px; margin-top: 10px;">
 			<input placeholder="eg. https://www.facebook.com/events/1374511886107039/" style="margin-top: 20px;"
@@ -52,15 +52,15 @@
 			<div class="postshow_input_wrap">
 				<div class="error_return">Please make sure to fill out all required fields!</div>
 				<select id="postshow_city" class="filter_city" name="city" ng-model="citySelect" required
-						data-placeholder="SELECT CITY" ng-change="resetVenues()">
+						data-placeholder="SELECT CITY" ng-change="resetVenues(); checkvalid()" value="">
 					<option>Baltimore</option>
 					<option>Brooklyn</option>
 					<option>DC</option>
 				</select>
 				<select class="filter_city" id="postshow_venue" name="venue" ng-model="venue" required
-						data-placeholder="SELECT VENUE">
+						data-placeholder="SELECT VENUE" ng-change="checkvalid()" ng-disabled="citySelect=='all'">
 					<option ng-repeat="place in venues | filter:citySelect" ng-show="citySelect">{{place[1]}}</option>
-					<optgroup label="Can't find your venue?" ng-if="citySelect!=''">
+					<optgroup label="Can't find your venue?" ng-if="citySelect!=''"">
 						<option name="newvenue" value="newvenue">Add a venue</option>
 					</optgroup>
 				</select><a class="required" title="required">*</a>
@@ -69,7 +69,7 @@
 				<div class="addvenue">
 					<p><strong>Add New Venue</strong></p>
 					<input id="postshow_newvenuename" maxlength="25" name="newvenue" placeholder="name of venue"
-						   required type="text" style="margin-left: 20px" ng-model="newvenuename">
+						   required type="text" style="margin-left: 20px" ng-model="newvenuename" ng-required="venue==newvenue">
 					<a class="required" title="required">*</a><br>
 					<br>
 					<input id="postshow_newvenueaddress" maxlength="75" name="venue_address" placeholder="address"
@@ -80,7 +80,7 @@
 				<input ng-model="title" id="postshow_showtitle" maxlength="80" name="title" placeholder="title of show"
 					   required type="text"><a class="required">*</a>
 
-				<p>The overall title of your show / headliner.</p>
+				<p ng-attr-class="{{form.title.$error.required && 'required' || ''}}">The overall title of your show / headliner.</p>
 
 				<div>
 					<div id="title_remaining">
@@ -100,7 +100,7 @@
 			</div>
 			<div class="postshow_input_wrap" style="margin-left: 20px;">
 				<input id="postshow_date" name="date" placeholder="date" readonly required type="text" ng-model="date">
-				<input id="postshow_time" name="time" readonly type="text" value="12:00 PM" ng-model="time" placeholder="time">
+				<input id="postshow_time" name="time" readonly required type="text" value="12:00 PM" ng-model="time" placeholder="time">
 				<input id="postshow_price" name="price" placeholder="price" required style="color: green;" type="text"
 					   ng-model="price" numbers-only="numbers-only">
 				<a class="required" title="required">*</a>
@@ -171,7 +171,7 @@
 
 			<div class="postshow_input_wrap">
 				<div style="text-align: center; margin: 10px auto 30px auto;">
-					<button class="postshow_button" type="submit">post show</button>
+					<button class="postshow_button" type="submit" ng-disabled="form.$invalid">post show</button>
 				</div>
 			</div>
 		</div>

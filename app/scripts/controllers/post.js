@@ -95,30 +95,50 @@ angular.module('showhaus')
 				document.getElementsByName('image').value = '';
 			}
 		};
-		$scope.postEvent = function () {
-			var data = {
-				'city': $scope.citySelect,
-				'venue': $scope.venue,
-				'newvenue': $scope.newvenuename,
-				'venue_address': $scope.newvenueaddress,
-				'title': $scope.title,
-				'subtitle': $scope.subtitle,
-				'date': $scope.date,
-				'time': $scope.time,
-				'price': $scope.price,
-				'description': $scope.description,
-				'tags': document.getElementById('tags').value,
-				'email': $scope.email,
-				'fbimage': $scope.fbImage
-			};
-			$http.post(
-				preUrl+'assets/new.php',
-				data
-			).success(function(data){
-				$location.path('/success').search('post', data);
-			}).error(function(status){
-				console.log(status);
-			});
+		$scope.postEvent = function (isValid) {
+			if(isValid&&$scope.citySelect !== 'all') {
+				if($('#tags').val()===''){
+					$('#tags').val('haus');
+				}
+				var data = {
+					'city': $scope.citySelect,
+					'venue': $scope.venue,
+					'newvenue': $scope.newvenuename,
+					'venue_address': $scope.newvenueaddress,
+					'title': $scope.title,
+					'subtitle': $scope.subtitle,
+					'date': $scope.date,
+					'time': $scope.time,
+					'price': $scope.price,
+					'description': $scope.description,
+					'tags': document.getElementById('tags').value,
+					'email': $scope.email,
+					'fbimage': $scope.fbImage
+				};
+				$http.post(
+						preUrl + 'assets/new.php',
+					data
+				).success(function (data) {
+						$location.path('/success').search('post', data);
+					}).error(function (status) {
+						console.log(status);
+					});
+			}
+			else{
+				$('.ng-invalid').addClass('invalid');
+				if(!$scope.venue){
+					$('#postshow_venue_chosen').addClass('invalid');
+				}
+				else{
+					$('#postshow_venue_chosen').removeClass('invalid');
+				}
+				if($scope.citySelect === 'all'){
+					$('#postshow_city_chosen').addClass('invalid');
+				}
+				else{
+					$('#postshow_city_chosen').removeClass('invalid');
+				}
+			}
 		};
 		$scope.fbEvent = function(){
 			var facebookEvent = $scope.facebookEvent.toLowerCase();
@@ -202,13 +222,13 @@ angular.module('showhaus')
 							$scope.time = fbTime;
 							var tag1;
 							for (var i = 0; i < genreArray.length; i++) {
-								var genre = $scope.description.indexOf(genreArray[i]);
+								var genre = response.description.indexOf(genreArray[i]);
 								if (genre !== -1) {
 									tag1 = genreArray[i];
 								}
 							}
 							$('#tags').select2('val',[tag1]);
-							var price = $scope.description.split('$');
+							var price = response.description.split('$');
 							price = price[1];
 
 							if (price) {
@@ -241,4 +261,18 @@ angular.module('showhaus')
 			});
 		};
 		$scope.genreArray = ['grid','list'];
+		$scope.checkvalid = function(){
+			if(!$scope.venue){
+				$('#postshow_venue_chosen').addClass('invalid');
+			}
+			else{
+				$('#postshow_venue_chosen').removeClass('invalid');
+			}
+			if($scope.citySelect === 'all'){
+				$('#postshow_city_chosen').addClass('invalid');
+			}
+			else{
+				$('#postshow_city_chosen').removeClass('invalid');
+			}
+		};
 	});

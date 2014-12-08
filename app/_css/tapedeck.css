@@ -759,7 +759,12 @@ input.error {
 	box-shadow: 0 0 5px #ed1b24;
 	margin: 0 auto;
 }
-
+input.ng-invalid.invalid, select.ng-invalid.invalid, div.invalid{
+	box-shadow: 0 0 5px rgba(255, 0, 0, 1);
+	padding: 3px 0px 3px 3px;
+	margin: 5px 1px 3px 0px;
+	border: 1px solid rgba(255, 0, 0, 1);
+}
 #postshow_date {width: 140px;}
 #postshow_time {width: 110px;}
 #postshow_price {width: 50px; margin-left: 10px; text-align:center;}
