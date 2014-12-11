@@ -808,7 +808,6 @@ input.ng-invalid.invalid, select.ng-invalid.invalid, div.invalid{
 .message{
 	width: 500px;
 	margin: 0 auto;
-	height: 100px;
 	vertical-align: middle;
 	display: table-cell;
 	text-align: center;
@@ -962,6 +961,7 @@ font-weight: bold;
   left: 0;
   right: 0;
   z-index: 100;
+  bottom: 0;
 }
 #drop div {
   position: absolute;
@@ -970,15 +970,24 @@ font-weight: bold;
   bottom: 0;
   left: 0;
 }
-#drop.hover {
+#drop:hover {
   border: 5px dashed #666;
   color: #666;
 }
 
-#drop.dropped {
+#drop:dropped {
   border: 5px dashed green;
 }
 
+#imgDelete{
+	content: 'x';
+	position: absolute;
+	margin-left: 95%;
+	color: red;
+	font-size: 30px;
+	font-weight: bold;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
 
 /* --------------------------- */
 /*  errors

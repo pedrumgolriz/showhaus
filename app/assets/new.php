@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors',1);
+ini_set('display_startup_errors',1);
+error_reporting(E_ALL & ~E_NOTICE);
+
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
@@ -28,14 +32,11 @@ if($_POST["fbimage"]!=""){
     $poster =  htmlspecialchars(stripslashes($_POST["fbimage"]));
 }
 else if($_POST["poster"]){
-    $poster = $_FILES["image"]["name"];
-    $poster_tmp = $_FILES["image"]["tmp_name"];
-    $poster_ext = pathinfo($poster, PATHINFO_EXTENSION);
-    $poster = uniqid(md5($poster)).".".$poster_ext;
-    if(strtoupper($art_ext)=="JPEG"){
-        $art_ext = "jpg";
-    }
-    move_uploaded_file($poster_tmp, "/var/www/vhosts/showhaus.org/i.showhaus.org/uploads/".$poster);
+    $fileExt = explode("image/", $_POST["poster"])[1];
+    $fileExt = explode(";", $fileExt)[0];
+    $filename = uniqid(md5($_POST["poster"])).".".$fileExt;
+    $poster = convert2image($_POST["poster"], $filename);
+    copy($poster, "/var/www/vhosts/showhaus.org/i.showhaus.org/uploads/".$poster);
 }
 
 
@@ -61,7 +62,16 @@ $postnumber = mysqli_insert_id($mysqli);
 echo $postnumber;
 mysqli_close($mysqli);
 
+function convert2image($b64, $output_file){
+    $ifp = fopen($output_file, "wb");
 
+    $data = explode(',', $b64);
+
+    fwrite($ifp, base64_decode($data[1]));
+    fclose($ifp);
+
+    return $output_file;
+}
 
 
 function generate_password() {

@@ -139,13 +139,13 @@
 		</div>
 		<div id="postart_wrap">
 			<div class="postshow_input_wrap">
-
-				<img id="imgpreview" alt="Image Preview" ng-show="poster||fbImage" src="{{poster||fbImage}}" style="max-width:800px;"/>
 				<br/>
-				<div id="drop">
-					<input fileread="poster" ng-file-select="onFileSelect()" type="file" name="image" accept="image/x-png, image/gif, image/jpeg" ng-model="poster"/>
+				<div id="drop" class="message">
+					<div id="imgDelete" alt="Remove Poster" ng-show="poster||fbImage" ng-click="imgDelete()">x</div>
+					<img id="imgpreview" alt="Image Preview" ng-show="poster||fbImage" src="{{poster||fbImage}}" style="max-width:500px;"/>
+					<input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg" ng-model="poster" onchange="angular.element(this).scope().fileCheck()"/>
 					<input type="text" style="display: none" ng-model="fbImage" value="{{fbImage}}"/>
-                <span class="message"><p><strong>Drag and drop your poster here.</strong><br>
+                <span><p><strong>Drag and drop your poster here.</strong><br>
 					(.gif, .jpg, .png formats allowed. 5MB max)</p></span>
 				</div>
 			</div>

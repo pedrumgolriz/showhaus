@@ -84,22 +84,12 @@ angular.module('showhaus')
 		$scope.resetVenues = function () {
 			$scope.venue = '';
 		};
-		$scope.onFileSelect = function() {
-			var file = document.getElementsByName('image')[0].files;
-			console.log('file');
-			if (file.type.indexOf('image') === -1) {
-				$scope.error = 'image extension not allowed, please choose a JPEG or PNG file.';
-			}
-			if (file.size > 5097152){
-				$scope.error ='File size cannot exceed 5 MB';
-				document.getElementsByName('image').value = '';
-			}
-		};
 		$scope.postEvent = function (isValid) {
 			if(isValid&&$scope.citySelect !== 'all') {
 				if($('#tags').val()===''){
 					$('#tags').val('haus');
 				}
+				var file = $('#imgpreview').attr('src');
 				var data = {
 					'city': $scope.citySelect,
 					'venue': $scope.venue,
@@ -113,10 +103,11 @@ angular.module('showhaus')
 					'description': $scope.description,
 					'tags': document.getElementById('tags').value,
 					'email': $scope.email,
-					'fbimage': $scope.fbImage
+					'fbimage': $scope.fbImage,
+					'poster': file
 				};
 				$http.post(
-						preUrl + 'assets/new.php',
+					preUrl + 'assets/new.php',
 					data
 				).success(function (data) {
 						$location.path('/success').search('post', data);
@@ -274,5 +265,22 @@ angular.module('showhaus')
 			else{
 				$('#postshow_city_chosen').removeClass('invalid');
 			}
+		};
+		$scope.fileCheck = function(){
+			var file = $('input[type=file]')[0].files[0];
+			var size = file.size/1048576;
+			if(file.type.indexOf('image')>-1&&size<=5){
+				return true;
+			}
+			else{
+				$('[type=file]').wrap('<form>').parent('form').trigger('reset');
+				$('[type=file]').unwrap();
+				return false;
+			}
+		};
+		$scope.imgDelete = function(){
+			$('[type=file]').wrap('<form>').parent('form').trigger('reset');
+			$('[type=file]').unwrap();
+			$scope.poster = '';
 		};
 	});
