@@ -168,7 +168,6 @@ angular.module('showhaus')
 				FB.api(
 					facebookEvent,
 					function(response){
-						console.log(response);
 						$scope.$apply(function(){
 							$scope.title = response.name;
 							$scope.subtitle = $scope.title.substring(80, 190);
@@ -188,7 +187,7 @@ angular.module('showhaus')
 									$scope.venue = $scope.venues[q][1];
 								}
 							}
-							if(!$scope.venue){
+							if(!$scope.venue&&$('#postshow_city').val().indexOf('?')!==0){
 								$scope.venue = 'newvenue';
 								$scope.newvenuename = response.location;
 								$scope.newvenueaddress = response.venue.street;
@@ -281,6 +280,7 @@ angular.module('showhaus')
 		$scope.imgDelete = function(){
 			$('[type=file]').wrap('<form>').parent('form').trigger('reset');
 			$('[type=file]').unwrap();
+			$scope.fbImage = '';
 			$scope.poster = '';
 		};
 	});
