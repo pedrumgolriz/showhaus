@@ -122,7 +122,7 @@
 						addresses at your own risk.</a></p>
 
 					<p id="slate">
-						<textarea id="editor" class="ck-editor" name="editor" name="description" rows="15" ng-model="description"></textarea>
+						<textarea id="editor" ck-editor class="ck-editor" name="editor" name="description" rows="15" ng-model="description"></textarea>
 					</p>
 				</div>
 			</div>
@@ -222,7 +222,4 @@
 		$("#postshow_date").datepicker({ minDate: 0 });
 		$("#postshow_time").timepicker({ minTime: 0, show24Hours: false, timeFormat: "h:mm TT"});
 	});
-	if (!CKEDITOR.instances['editor']) {
-		CKEDITOR.replace('editor');
-	}
 </script>
