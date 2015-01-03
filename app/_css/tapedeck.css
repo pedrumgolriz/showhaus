@@ -5,6 +5,25 @@
 
    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ */
 
+@font-face {
+   font-family: 'apercu';
+   src: url('/_css/apercu-regular-webfont.ttf'); /* IE9 Compat Modes */
+   src: url('/_css/apercu-regular-webfont.ttf') format('truetype'), /* IE6-IE8 */
+ }
+
+@font-face {
+  font-family: 'apercu bold';
+  src: url('/_css/apercu-bold-webfont.ttf'); /* IE9 Compat Modes */
+  src: url('/_css/apercu-bold-webfont.ttf') format('truetype'), /* IE6-IE8 */
+}
+
+@font-face {
+  font-family: 'apercu mono';
+  src: url('/_css/apercu-mono-webfont.otf'); /* IE9 Compat Modes */
+  src: url('/_css/apercu-mono-webfont.otf') format('opentype'), /* IE6-IE8 */
+}
+
+
 html,
 button,
 input,
@@ -88,7 +107,7 @@ textarea {
  */
 
 .clearfix:before,
-.clearfix:after {
+.clearfix:after
     content: " "; /* 1 */
     display: table; /* 2 */
 }
@@ -119,11 +138,23 @@ strong {
 
 body {
 	margin: 0 auto 0 auto;
-	background-color: #F5EFE6;
+	background-color: #FFFBEE;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
 }
 
+h1 {font-size:2.5em; font-weight: bold;}
+h2 {font-size:1.3em; font-weight: bold;}
+h3 {font-size:.9em; font-weight: bold;}
+h4 {font-size:.5em; font-weight: bold;}
+h5 {font-size:.3em; font-weight: bold;}
+
+a:link {color: #338ea9; text-decoration: none;} /* unvisited link */
+a:visited {color:#338ea9;} /* visited link */
+a:hover {color:red; border-bottom: 1px dotted red; margin-bottom:2px;} /* mouse over link */
+a:active {color:gray;} /* selected link */
+
 #topnav {
-	font-family: Arial, Helvetica, Geneva, sans-serif;
 	width: 100%;
 	min-width: 800px;
 	height: 25px;
@@ -139,7 +170,6 @@ body {
 
 
 #topnav a {
-   	font-family: arial, verdana, sans-serif;
    	font-size: 10px;
    	color: #666666;
    	padding: 5px;
@@ -156,7 +186,6 @@ body {
 #topnav a:active {}
 
 #topnav .postashow {
-	font-family: arial, verdana, sans-serif;
 	font-size: 10px;
 	color: #211eff;
 	padding: 5px;
@@ -196,15 +225,15 @@ body {
 }
 
 #logo_container .logo {
-	width: 600px;
-	height: 70px;
-	margin: 45px auto 0 auto;
+	width: 500px;
+	height: 50px;
+	margin: 15px auto 0 auto;
 	cursor: pointer;
 	padding: 20px 0 0 0;
-	background-size: 600px auto;
-	-webkit-background-size: 600px auto;
-	-moz-background-size: 600px auto;
-	-o-background-size: 600px auto;
+	background-size: 500px auto;
+	-webkit-background-size: 500px auto;
+	-moz-background-size: 500px auto;
+	-o-background-size: 500px auto;
 	background-image: url('/assets/logo.png');
 	background-position: center;
 	background-repeat: no-repeat;
@@ -213,12 +242,12 @@ body {
 #logo_container .learnmore {
 	color: #000;
 	text-align: center;
-	margin: 0 auto 20px auto;
-	font: 13px Georgia, "Times New Roman", Times, serif;
 	font-style: italic;
+	margin: 5px auto 30px auto;
 	text-shadow: rgba(0, 0, 0, 0.05) 0 1px 0;
 }
 
+#logo_container a:link {color:red; font-style: normal; font-weight: bold;}
 
 /* ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -229,17 +258,15 @@ body {
 
 #filter_contain {
 	margin: 0 auto ;
-	min-width: 800px;
 }
 
 #filter {
-	width: 700px;
+    width: 705px;
 	height: 48px;
 	background-color: #F1EFEF;
 	border: 1px solid rgba(0, 0, 0, 0.13);
 	border-radius: 3px;
 	margin: 20px auto 20px auto;
-	font-family: arial, sans-serif;
 	font-size: 12px;
 	background-image: url(../assets/bg_filter.png);
 	background-size: cover;
@@ -269,7 +296,7 @@ input[type="checkbox"] {
 }
 
 .filter_view{
-	width: 130px;
+	width: 140px;
 	display: inline-block;
 	padding: 12px 0 0 0;
 	margin: 0 0 0 8px;
@@ -441,7 +468,7 @@ vertical-align: top;
     border-radius: 3px;
     font-weight: normal;
     text-transform: uppercase;
-    font-family: arial, helvetica, sans-serif;
+    font-family: "apercu-mono";
     margin-bottom: 2px;
 }
 
@@ -538,32 +565,33 @@ vertical-align: top;
 /* --------------------------- */
 
 table.gridtable {
-	font-family: Courier, mono;
-	font-size: 12px;
+	font-family: "Apercu mono", "andale mono", courier, monospace;
+	font-size: 11px;
 	color: #333333;
 	width: 90%;
 	margin: 30px auto 0 auto;
-	max-width: 1200px;
+	max-width: 1000px;
 	min-width: 800px;
 	font-weight: normal;
 	border: 1px solid lightgray;
 }
 
 table.gridtable th {
+	font-family: "Apercu mono", "andale mono", courier, monospace;
 	padding: 6px;
-	border-bottom:  1px solid lightgray;
-	background-color: #F1EFEF;
-	color: #666666;
+	border:  1px solid #888888;
+	background-color: #888888;
+	color: #fff;
 	letter-spacing: 1.2px;
 	font-weight: normal;
 	font-size: 10px;
-	font-family: arial, helvetica, sans-serif;
 	text-transform: uppercase;
 }
 
 table.gridtable td {
 	background-color: #ffffff;
 	border-bottom:  1px solid #eee;
+	padding:10px;
 }
 
 table.gridtable td {
@@ -630,6 +658,7 @@ th a:hover {text-decoration: underline;}
 	border-color: #C5C5C5 #AAAAAA #ABABAB #BCBCBC;
 	border-radius: 3px;
 	border-collapse: separate;
+	font-family: "Apercu mono", "andale mono", courier, monospace;
 }
 
 .list_align {
@@ -637,7 +666,7 @@ th a:hover {text-decoration: underline;}
 }
 
 .list_subtext {
-	font-size: 11px;
+	font-size: 9px;
 	padding: 2px;
 }
 
@@ -999,6 +1028,13 @@ font-weight: bold;
 	display: block;
 }
 
+.failalert {
+    width: 600px;
+    background-color: #f53d3d;
+    color: white;
+    margin: 0 auto
+}
+
 /* ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
                                                   static page
@@ -1006,7 +1042,7 @@ font-weight: bold;
    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ */
 
 #static_topnav {
-    font-family: Arial, Helvetica, Geneva, sans-serif;
+    font-family: "apercu mono", arial, sans-serif;
 	width: 100%;
 	min-width: 800px;
 	height: 25px;
