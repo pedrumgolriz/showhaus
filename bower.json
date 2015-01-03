@@ -19,8 +19,5 @@
     "angular-mocks": "1.2.16",
     "angular-scenario": "1.2.16"
   },
-  "appPath": "app",
-  "resolutions": {
-    "es5-shim": ">=3.4.0"
-  }
+  "appPath": "app"
 }

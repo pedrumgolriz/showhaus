@@ -1,10 +1,10 @@
 <div id="static_topnav">
 	<div class="breadcrumbs">
-		<a href="#!main">SHOWHAUS</a> &gt; POST A SHOW
+		<a href="#!main">SHOWHAUS</a> &gt; EDIT SHOW
 	</div>
 </div>
-<span class="mainbody">
-    <div style="text-align: center;"><img src="assets/postashow.png" style="max-height: 70px; padding: 60px 0 15px 0;">
+<span class="mainbody" ng-repeat="event in events">
+    <div style="text-align: center;"><img src="assets/editshow.png" style="max-height: 70px; padding: 60px 0 15px 0;">
 	</div>
     <div class="readtherules" name="rules_anchor" style="background-color: #d62c2c;font-family: sans-serif;"
 		 ng-click="expand = !expand">
@@ -38,28 +38,21 @@
 		</ul>
 	</div>
     <form ng-model="form" name="postshow" novalidate ng-submit="postEvent(postshow.$valid)">
-		<div class="fb" id="postshow_wrap"
-			 style="border-top: 1px solid lightgray; border-radius: 3px; margin-top: 10px;">
-			<input placeholder="eg. https://www.facebook.com/events/1374511886107039/" style="margin-top: 20px;"
-				   type="text" id="postshow_fb" ng-change="fbEvent()" ng-click="fbLogin()" ng-model="facebookEvent">
-
-			<p>Enter your show's Facebook event URL (if you have one).</p>
-		</div>
 		<div class="input_heading">
 			<strong>EVENT DETAILS</strong>
 		</div>
 		<div id="postshow_wrap">
 			<div class="postshow_input_wrap">
 				<div class="error_return">Please make sure to fill out all required fields!</div>
-				<select id="postshow_city" class="filter_city" name="city" ng-model="citySelect" required
-						data-placeholder="SELECT CITY" ng-change="resetVenues(); checkvalid()" value="">
-					<option>Baltimore</option>
-					<option>Brooklyn</option>
-					<option>DC</option>
+				<select id="postshow_city" class="filter_city" name="city" ng-model="citySelect"
+						data-placeholder="SELECT CITY" ng-change="resetVenues();" value="">
+					<option ng-selected="event.city == 'Baltimore'">Baltimore</option>
+					<option ng-selected="event.city == 'Brooklyn'">Brooklyn</option>
+					<option ng-selected="event.city == 'DC'">DC</option>
 				</select>
-				<select class="filter_city" id="postshow_venue" name="venue" ng-model="venue" required
-						data-placeholder="SELECT VENUE" ng-change="checkvalid()" ng-disabled="citySelect=='all'">
-					<option ng-repeat="place in venues | filter:citySelect" ng-show="citySelect">{{place[1]}}</option>
+				<select class="filter_city" id="postshow_venue" name="venue" ng-model="venue"
+						data-placeholder="SELECT VENUE">
+					<option ng-repeat="place in venues | filter:event.city" ng-selected="event.venue == place[1]">{{place[1]}}</option>
 					<optgroup label="Can't find your venue?" ng-if="citySelect!=''"">
 						<option name="newvenue" value="newvenue">Add a venue</option>
 					</optgroup>
@@ -77,32 +70,32 @@
 				</div>
 			</div>
 			<div class="postshow_input_wrap" style="margin-left: 20px;">
-				<input ng-model="title" id="postshow_showtitle" maxlength="80" name="title" placeholder="title of show"
-					   required type="text"><a class="required">*</a>
+				<input ng-model="event.title" id="postshow_showtitle" maxlength="80" name="title"
+					   required placeholder="title" type="text"><a class="required">*</a>
 
 				<p ng-attr-class="{{form.title.$error.required && 'required' || ''}}">The overall title of your show / headliner.</p>
 
 				<div>
 					<div id="title_remaining">
-						{{80 - title.length}} characters remaining
+						{{80 - event.title.length}} characters remaining
 					</div>
 				</div>
 			</div>
 			<div class="postshow_input_wrap">
-				<input ng-model="subtitle" id="postshow_subtitle" maxlength="110" name="subtitle" placeholder="subtitle"
-					   type="text">
+				<input ng-model="event.subtitle" id="postshow_subtitle" maxlength="110" name="subtitle" placeholder="subtitle"
+					   type="text" value="{{event.subtitle}}">
 
 				<p>Other bands, acts, etc.</p>
 
 				<div id="subtitle_remaining">
-					{{110 - subtitle.length}} characters remaining
+					{{110 - event.subtitle.length}} characters remaining
 				</div>
 			</div>
 			<div class="postshow_input_wrap" style="margin-left: 20px;">
-				<input id="postshow_date" name="date" placeholder="date" readonly required type="text" ng-model="date">
-				<input id="postshow_time" name="time" readonly required type="text" value="12:00 PM" ng-model="time" placeholder="time">
+				<input id="postshow_date" name="date" placeholder="date" readonly required type="text" ng-model="event.date"">
+				<input id="postshow_time" name="time" readonly required type="text" value="12:00 PM" ng-model="event.time" placeholder="time">
 				<input id="postshow_price" name="price" placeholder="price" required style="color: green;" type="text"
-					   ng-model="price" numbers-only="numbers-only">
+					   ng-model="event.price" numbers-only="numbers-only">
 				<a class="required" title="required">*</a>
 
 				<p>Enter "0" for the price if your show is <a class="free" style="font-size: 12px;">free</a></p>
@@ -122,14 +115,13 @@
 						addresses at your own risk.</a></p>
 
 					<p id="slate">
-						<textarea id="editor" class="ck-editor" name="editor" name="description" rows="15" ng-model="description"></textarea>
+						<textarea id="editor" class="ck-editor" name="editor" name="description" rows="15" ng-model="event.description"></textarea>
 					</p>
 				</div>
 			</div>
 			<div class="postshow_input_wrap">
-				<p><strong><a style="margin-left: 20px;">How would you describe
-					your show?</a></strong><a class="required" title="required">*</a></p>
-				<input ng-model="tags" type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;" ng-model="tags">
+				<p><strong><a style="margin-left: 20px;">How would you describe your show?</a></strong><a class="required" title="required">*</a></p>
+				<input ng-model="tags" type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;" data-init-text="{{event.tag1}},{{event.tag2}}" value="{{event.tag1}},{{event.tag2}}">
 				<p>Enter at least one tag (eg. "Math Rock" , "Metal", "Space
 					Jazz")<br/>Use commas to seperate tags</p>
 			</div>
@@ -141,10 +133,9 @@
 			<div class="postshow_input_wrap">
 				<br/>
 				<div id="drop" class="message">
-					<div id="imgDelete" alt="Remove Poster" ng-show="poster||fbImage" ng-click="imgDelete()">x</div>
-					<img id="imgpreview" alt="Image Preview" ng-show="poster||fbImage" src="{{poster||fbImage}}" style="max-width:500px;"/>
-					<input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg" ng-model="poster" onchange="angular.element(this).scope().fileCheck()"/>
-					<input type="text" style="display: none" ng-model="fbImage" value="{{fbImage}}"/>
+					<div id="imgDelete" alt="Remove Poster" ng-show="event.poster" ng-click="imgDelete()">x</div>
+					<img id="imgpreview" alt="Image Preview" ng-show="event.poster" src="{{event.poster}}" style="max-width:500px;"/>
+					<input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg" ng-model="event.poster" onchange="angular.element(this).scope().fileCheck()"/>
                 <span><p><strong>Drag and drop your poster here.</strong><br>
 					(.gif, .jpg, .png formats allowed. 5MB max)</p></span>
 				</div>
@@ -154,13 +145,6 @@
 			CONFIRM &amp; PUBLISH
 		</div>
 		<div id="postshow_wrap">
-			<div class="postshow_input_wrap" style="padding-top: 25px;">
-				<p><span style="font-weight: bold;">This is very important!</span> If you do not provide a legitimate
-					email address you will not be able to edit your show.</p>
-				<input id="postshow_email" name="email" placeholder="email" required type="email" ng-model="email"/>
-				<a class="required" title="required">*</a>
-				<!--<div vc-recaptcha key="'6Lf-afkSAAAAADf4xBnaQM7VbkHBAYtAonlbirPU'"></div>-->
-			</div>
 			<p style="font-size: 16px; margin: 0 auto; width: 500px">
 				By clicking 'post show' I have
 				<a href="javascript:void();" ng-click="expand = !expand" style="font-size: 16px;" name="rulesagreement">read
@@ -171,7 +155,13 @@
 
 			<div class="postshow_input_wrap">
 				<div style="text-align: center; margin: 10px auto 30px auto;">
-					<button class="postshow_button" type="submit" ng-disabled="form.$invalid">post show</button>
+					<input ng-disabled="form.$invalid" type="submit" id="submit" class="smallbtn4" style="cursor:pointer;" name="updateposts" value="update show">
+					<input type="button" id="deleteshow" class="smallbtn4" style="cursor:pointer; background-color: red;  border: 1px solid red;" value="delete show" ng-click='deleteModal()'>
+				</div>
+				<div id="dialog" title="Are you sure?">
+					<p>Think about this decision for a second...<br/>
+					<strong><a style="color:red;">You're about to delete your entire listing</a></strong><br/>
+					Is that something you really want to do? It's permanent, you know!</p>
 				</div>
 			</div>
 		</div>
@@ -183,13 +173,13 @@
 		tokenSeparators: [','],
 		maximumSelectionSize: 2,
 		maximumInputLength: 12,
-		minimumSelectionSize: 1
+		minimumSelectionSize: 1,
+		initSelection : function (element, callback) {
+			var data = [];
+			$(element.val().split(",")).each(function () {
+				data.push({id: this, text: this});
+			});
+			callback(data);
+		}
 	});
-	$(function () {
-		$("#postshow_date").datepicker({ minDate: 0 });
-		$("#postshow_time").timepicker({ minTime: 0, show24Hours: false, timeFormat: "h:mm TT"});
-	});
-	if (!CKEDITOR.instances['editor']) {
-		CKEDITOR.replace('editor');
-	}
 </script>

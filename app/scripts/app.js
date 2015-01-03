@@ -79,6 +79,10 @@ angular
 				templateUrl: 'pages/success.html',
 				controller: 'SuccessCtrl'
 			})
+			.when('/edit',{
+				templateUrl: 'pages/edit.html',
+				controller: 'EditCtrl'
+			})
 			.otherwise({
 				redirectTo: '/'
 			});
