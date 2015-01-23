@@ -8,16 +8,10 @@
  * Controller of the showhausAngApp
  */
 $(function () {
-	$("#postshow_date").datepicker({ minDate: 0 });
-	$("#postshow_time").timepicker({ minTime: 0, show24Hours: false, timeFormat: "h:mm TT"});
+	$('#postshow_date').datepicker({ minDate: 0 });
+	$('#postshow_time').timepicker({ minTime: 0, show24Hours: false, timeFormat: 'h:mm TT'});
 });
-var venues = [];
-var preUrl = 'http://v2.showhaus.org/';//set to blank for release
 angular.module('showhaus')
-	.factory('venueCityFactory', function ($resource) {
-		var jsonQuery = preUrl + 'assets/venuecity.php';
-		return $resource(jsonQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
-	})
 	.animation('.rules', function () {
 		var NgHideClassName = 'ng-hide';
 		return {
@@ -33,25 +27,24 @@ angular.module('showhaus')
 			}
 		};
 	})
-	.run(function ($http, venueCityFactory) {
-		venues = venueCityFactory.query();
-	})
 	.controller('EditCtrl', function ($scope, $http, $location, $resource) {
+		var preUrl = 'http://v2.showhaus.org/';//set to blank for release
 		var postnumber = $location.$$search.post;
-		var jsonQuery = preUrl + 'assets/events.php?post=' + postnumber;
-		$scope.resetVenues = function () {
-			$scope.venue = '';
-		};
-		$scope.venues = venues;
-		$scope.events = $resource(jsonQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}}).query();
+		var eventsQuery = preUrl + 'assets/events.php?post=' + postnumber;
+		var venueQuery = preUrl + 'assets/venuecity.php';
+		var venues = $resource(venueQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
+		var events = $resource(eventsQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
+		$scope.venues = venues.query();
+		$scope.events = events.query();
 		$scope.postEvent = function (isValid) {
 			if(isValid&&$scope.citySelect !== 'all') {
 				if($('#tags').val()===''){
 					$('#tags').val('haus');
 				}
 				var file = $('#imgpreview').attr('src');
-				if(file==$scope.events[0].poster){
-					var data = {
+				var data = {};
+				if(file===$scope.events[0].poster){
+					data = {
 						'city': $scope.events[0].city,
 						'venue': $scope.events[0].venue,
 						'newvenue': $scope.newvenuename,
@@ -67,7 +60,7 @@ angular.module('showhaus')
 					};
 				}
 				else {
-					var data = {
+					data = {
 						'city': $scope.events[0].city,
 						'venue': $scope.events[0].venue,
 						'newvenue': $scope.newvenuename,
@@ -118,6 +111,7 @@ angular.module('showhaus')
 		$scope.imgDelete = function(){
 			$('[type=file]').wrap('<form>').parent('form').trigger('reset');
 			$('[type=file]').unwrap();
+			$scope.file = '';
 			$scope.events[0].poster = ''; //hardcode
 		};
 		$scope.deleteModal = function(){
@@ -133,5 +127,9 @@ angular.module('showhaus')
 					}
 				}
 			});
+		};
+		$scope.resetVenues = function () {
+			$scope.venue = '';
+			$('.filter_city').trigger("chosen:updated");
 		};
 	});

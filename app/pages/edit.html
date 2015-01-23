@@ -3,7 +3,8 @@
 		<a href="#!main">SHOWHAUS</a> &gt; EDIT SHOW
 	</div>
 </div>
-<span class="mainbody" ng-repeat="event in events">
+<span class="mainbody" ng-controller="EditCtrl">
+	<span style="display:none">{{event = events[0]}}</span>
     <div style="text-align: center;"><img src="assets/editshow.png" style="max-height: 70px; padding: 60px 0 15px 0;">
 	</div>
     <div class="readtherules" name="rules_anchor" style="background-color: #d62c2c;font-family: sans-serif;"
@@ -45,14 +46,14 @@
 			<div class="postshow_input_wrap">
 				<div class="error_return">Please make sure to fill out all required fields!</div>
 				<select id="postshow_city" class="filter_city" name="city" ng-model="citySelect"
-						data-placeholder="SELECT CITY" ng-change="resetVenues();" value="">
+						data-placeholder="SELECT CITY" ng-change="resetVenues()">
 					<option ng-selected="event.city == 'Baltimore'">Baltimore</option>
 					<option ng-selected="event.city == 'Brooklyn'">Brooklyn</option>
 					<option ng-selected="event.city == 'DC'">DC</option>
 				</select>
 				<select class="filter_city" id="postshow_venue" name="venue" ng-model="venue"
 						data-placeholder="SELECT VENUE">
-					<option ng-repeat="place in venues | filter:event.city" ng-selected="event.venue == place[1]">{{place[1]}}</option>
+					<option ng-repeat="place in venues | filter: citySelect" ng-selected="event.venue == place[1]">{{place[1]}}</option>
 					<optgroup label="Can't find your venue?" ng-if="citySelect!=''"">
 						<option name="newvenue" value="newvenue">Add a venue</option>
 					</optgroup>
@@ -121,7 +122,8 @@
 			</div>
 			<div class="postshow_input_wrap">
 				<p><strong><a style="margin-left: 20px;">How would you describe your show?</a></strong><a class="required" title="required">*</a></p>
-				<input ng-model="tags" type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;" data-init-text="{{event.tag1}},{{event.tag2}}" value="{{event.tag1}},{{event.tag2}}">
+				<input ng-model="tags" type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;" ng-if="event.tag2 != ''" value="{{event.tag1}},{{event.tag2}}">
+				<input ng-model="tags" type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;" ng-if="event.tag2 == ''" value="{{event.tag1}}">
 				<p>Enter at least one tag (eg. "Math Rock" , "Metal", "Space
 					Jazz")<br/>Use commas to seperate tags</p>
 			</div>
@@ -133,10 +135,10 @@
 			<div class="postshow_input_wrap">
 				<br/>
 				<div id="drop" class="message">
-					<div id="imgDelete" alt="Remove Poster" ng-show="event.poster" ng-click="imgDelete()">x</div>
-					<img id="imgpreview" alt="Image Preview" ng-show="event.poster" src="{{event.poster}}" style="max-width:500px;"/>
-					<input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg" ng-model="event.poster" onchange="angular.element(this).scope().fileCheck()"/>
-                <span><p><strong>Drag and drop your poster here.</strong><br>
+					<div id="imgDelete" alt="Remove Poster" ng-show="event.poster||file" ng-click="imgDelete()">x</div>
+					<img id="imgpreview" alt="Image Preview" ng-show="event.poster||file" src="{{event.poster||file}}" style="max-width:500px;"/>
+					<input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg" ng-model="file" onchange="angular.element(this).scope().fileCheck()" ng-hide="event.poster||file"/>
+                <span ng-hide="event.poster||file"><p><strong>Drag and drop your poster here.</strong><br>
 					(.gif, .jpg, .png formats allowed. 5MB max)</p></span>
 				</div>
 			</div>
