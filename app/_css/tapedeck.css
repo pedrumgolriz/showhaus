@@ -1498,3 +1498,6 @@ padding-bottom: -3px;
         opacity: 1;
     }
 }
+#dialog{
+	display: none;
+}
