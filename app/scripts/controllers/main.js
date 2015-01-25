@@ -91,12 +91,10 @@ angular.module('showhaus')
     };
     $scope.$watch(function(){
       if($scope.freebox==='true'){
-        $scope.freeShows = '0';
-        $scope.strictPrice = true;
+        $scope.freeShows = 0;
       }
       else{
         $scope.freeShows = '';
-        $scope.strictPrice = false;
       }
     });
     //####//

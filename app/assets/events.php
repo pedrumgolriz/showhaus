@@ -1,6 +1,6 @@
 <?php
 header('content-type: application/json; charset=utf-8');
-date_default_timezone_set('America/New_York');
+date_default_timezone_set('America/Los_Angeles');
 $server_date = date("m/d/Y");
 $today_flag = "0";
 	$mysqli = new mysqli("localhost", "read", "jX!57u6a", "haus");
@@ -9,7 +9,7 @@ $today_flag = "0";
     $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS email FROM venue, events WHERE events.date >= '".$server_date."' AND events.venue = venue.venue AND '".$postnumber."' = events.id ORDER BY date ASC");
   }
   else{
-    $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS email FROM venue, events WHERE events.date >= '".$server_date."' AND events.venue = venue.venue ORDER BY date ASC");
+    $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS email FROM venue, events WHERE STR_TO_DATE(events.date, '%m/%d/%Y') >= STR_TO_DATE('".$server_date."', '%m/%d/%Y') AND events.venue = venue.venue ORDER BY date ASC");
   }
   $return = array();
   while($row = mysqli_fetch_assoc($query)){

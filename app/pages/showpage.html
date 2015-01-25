@@ -5,7 +5,7 @@
       <a href="#!/">SHOWHAUS</a> &gt;
       <a href="#!/" ng-click="setCity(event.city)">{{event.city}}</a> &gt;
       <a href="#!/" ng-click="setCity(event.city); setVenue(event.venue)">{{event.venue}}</a> &gt;
-      {{event.title}}
+      <span id="showpage_title_breadcrumbs">{{event.title}}</span>
     </div>
     <div class="editshow">[ <a href="#!/edit?post={{event.id}}">EDIT SHOW<a/> ]</div>
   </div>

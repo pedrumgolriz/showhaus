@@ -107,7 +107,7 @@ textarea {
  */
 
 .clearfix:before,
-.clearfix:after
+.clearfix:after{
     content: " "; /* 1 */
     display: table; /* 2 */
 }
@@ -211,7 +211,6 @@ a:active {color:gray;} /* selected link */
 #logo_container {
 	min-width: 800px;
 	margin: 0px 0px 18px 0px;
-	background-image: ;
 	background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -1065,6 +1064,15 @@ font-weight: bold;
    	text-transform: uppercase;
 }
 
+#showpage_title_breadcrumbs{
+	max-width: 250px;
+	white-space: nowrap;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: bottom;
+	text-overflow: ellipsis;
+}
+
 #static_topnav a:link {}
 #static_topnav a:visited {color:  blue;}
 #static_topnav a:hover {text-decoration: none;}
@@ -1163,6 +1171,10 @@ font-weight: bold;
 }
 
 .preview_contain {
+	text-align: center;
+}
+
+.gridview_contain{
 	text-align: center;
 }
 
