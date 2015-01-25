@@ -111,8 +111,9 @@ angular.module('showhaus')
     //set the city based on the users location
     $scope.citySelect = geolocation(); // jshint ignore:line
     //##go to showpage from list view##//
-    $scope.go = function ( path ) {
-      $location.path('showpage').search('post',path);
+    $scope.go = function ( city, venue, id ) {
+	  venue = venue.replace(/\s/g, '_');
+      $location.path('showpage/'+city+'/'+venue+'/').search('post',id);
     };
     //####//
     $scope.$watch(function() {
