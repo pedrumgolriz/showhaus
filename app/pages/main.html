@@ -1,9 +1,15 @@
-<div id="logo_container">
+<div id="topnav">
+    <a ng-href="/#!about">about showhaus</a>
+    <a ng-href="/#!about">add a feed</a>
+    <div onclick="location.href='#!post';">
+        <a ng-href="/#!post" class="postashow">[ POST A SHOW ]</a>
+    </div>
+</div>
+    <div id="logo_container">
   <div class="logo" onclick="window.location = '#!main';"></div>
-  <div class="learnmore">
-    your friendly neighborhood show aggregator, <a ng-href="/#!post" class="postashow"> POST A SHOW </a>.
+  <div class="home_description">
+    a very friendly and very wise show aggregator
   </div>
-
 
   <div id="filter_contain" style="margin: 0 auto;">
     <div id="filter">
@@ -85,37 +91,61 @@
     </tbody>
   </table>
 </div>
+
+<!-- ░░░░░░░░░░░░░░░░ gallery element ░░░░░░░░░░░░░░░░ -->
+
 <div class="gridview_contain" ng-show="grid">
-  <div class="show" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freebox}">
+    <div class="show" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freebox}">
+
+    <!-- venue -->
     <div class="venue">
-      <div class="title">{{event.title}}</div>
+        <div class="title">{{event.venue}}</div>
     </div>
+
+    <!-- art -->
     <div class="art">
-      <a href="/#!showpage?post={{event.id}}">
+    <a href="/#!showpage?post={{event.id}}">
         <div class="poster" ng-switch ng-style="{'background-image':'url('+event.poster+')'}"></div>
-      </a>
-    </div>
-    <div class="description">
-      <div class="divider"></div>
-      <span class="date"><strong>{{event.date}}</strong> @ {{event.time}} </span>
-      <div class="divider"></div>
-      <br>
-      <span class="title"><a href="/#!showpage?post={{event.id}}">{{event.title}}</a></span>
-      <br>
-      <span class="act">{{event.subtitle}}</span><br>
-    </div>
-    <div class="showfooter">
-      <span class="categoryone">{{event.tag1}}</span>
-      <span class="categorytwo" ng-if="event.tag2">{{event.tag2}}</span>
-		    <span style="margin: 3px 5px 5px 4px; display:inline-block;">
-		    <span style="color: rgb(201, 201, 201); font-size: 11px;">//</span>
-          <span class="price" ng-if="event.price==0">&nbsp;free</span>
-          <span class="price" ng-if="event.price>0">&nbsp;$ {{event.price}}&nbsp;</span>
-		    </span>
-		[ <a href="#" >GET TICKETS</a> ]
-    </div>
-  </div>
+    </a>
 </div>
+
+    <div class="description">
+
+    <!-- date -->
+        <div class="divider"></div>
+        <span class="date"><strong>{{event.date}}</strong> @ {{event.time}} </span>
+        <div class="divider"></div>
+        <br>
+
+    <!-- title -->
+         <span class="title"><a href="/#!showpage?post={{event.id}}">{{event.title}}</a></span>
+         <br>
+
+     <!-- subtitle -->
+         <span class="act">{{event.subtitle}}</span><br>
+
+
+    </div>
+
+    <div class="showfooter">
+
+     <!-- tags -->
+     <span class="categoryone">{{event.tag1}}</span>
+     <span class="categorytwo" ng-if="event.tag2">{{event.tag2}}</span>
+
+
+     <!-- tickets & price -->
+      <span class="tickets">
+		<span class="price" ng-if="event.price==0">&nbsp;free</span>
+        <span class="price" ng-if="event.price>0">&nbsp;$ {{event.price}}&nbsp;</span>
+				[ <a href="#" >GET TICKETS</a> ]
+			</span>
+    </div>
+
+</div>
+
+<!-- ░░░░░░░░░░░░░░░░ end gallery element ░░░░░░░░░░░░░░░░ -->
+
 <script>
   function loadChosen() {
     $('select').chosen().trigger('chosen:updated');
