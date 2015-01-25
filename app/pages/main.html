@@ -92,10 +92,10 @@
 <div class="gridview_contain" ng-show="grid">
   <div class="show" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freebox}">
     <div class="venue">
-      <div class="title">{{event.title}}</div>
+      <div class="title">{{event.venue}}</div>
     </div>
     <div class="art">
-      <a href="/#!showpage?post={{event.id}}">
+      <a href="/#!/showpage/{{event.city}}/{{event.venue}}/?post={{event.id}}">
         <div class="poster" ng-switch ng-style="{'background-image':'url('+event.poster+')'}"></div>
       </a>
     </div>

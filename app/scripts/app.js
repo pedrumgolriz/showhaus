@@ -71,6 +71,10 @@ angular
 				templateUrl: 'pages/showpage.html',
 				controller: 'ShowpageCtrl'
 			})
+			.when('/showpage/:city/:venue/', {
+				templateUrl: 'pages/showpage.html',
+				controller: 'ShowpageCtrl'
+			})
 			.when('/post', {
 				templateUrl: 'pages/post.html',
 				controller: 'PostCtrl'
