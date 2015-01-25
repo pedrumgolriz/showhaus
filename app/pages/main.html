@@ -86,7 +86,7 @@
   </table>
 </div>
 <div class="gridview_contain" ng-show="grid">
-  <div class="show" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:{price:freebox}">
+  <div class="show" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:freeFilter">
     <div class="venue">
       <div class="title">{{event.venue}}</div>
     </div>
