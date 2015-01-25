@@ -71,6 +71,10 @@ angular
 				templateUrl: 'pages/showpage.html',
 				controller: 'ShowpageCtrl'
 			})
+			.when('/showpage/:city/:venue/', {
+				templateUrl: 'pages/showpage.html',
+				controller: 'ShowpageCtrl'
+			})
 			.when('/post', {
 				templateUrl: 'pages/post.html',
 				controller: 'PostCtrl'
@@ -78,6 +82,10 @@ angular
 			.when('/success', {
 				templateUrl: 'pages/success.html',
 				controller: 'SuccessCtrl'
+			})
+			.when('/edit',{
+				templateUrl: 'pages/edit.html',
+				controller: 'EditCtrl'
 			})
 			.otherwise({
 				redirectTo: '/'
