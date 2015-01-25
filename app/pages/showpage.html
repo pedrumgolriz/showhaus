@@ -18,7 +18,7 @@
         <a ng-href="https://twitter.com/intent/tweet?url=http://showha.us/?post={{event.id}}&text={{event.title}}&hashtags=showhaus,{{event.city}},{{event.venue}}">[ TWITTER ]</a>
       </span>
     </div>
-    <div class="showpage_tags"><strong>tags:</strong> "{{event.tag1}}" "{{event.tag2}}"</div>
+    <div class="showpage_tags"><strong>tags:</strong> "{{event.tag1}}" <span ng-if="event.tag2!=''">"{{event.tag2}}"</span></div>
 
 
 
@@ -51,6 +51,6 @@
     <div class="showpagedescription" ng-model="description" ng-bind-html="event.description">
     </div>
   </div>
-   <div class="source">source: <a href="#">https://www.facebook.com/events/667108650072420/?ref_dashboard_filter=upcoming</a></div>
+   <!--<div class="source">source: <a href="#">https://www.facebook.com/events/667108650072420/?ref_dashboard_filter=upcoming</a></div>-->
 </div>
 <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
