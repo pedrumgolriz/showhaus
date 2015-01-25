@@ -57,7 +57,7 @@
     </tr>
     <tbody class="theEvents">
       <tbody ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:freeFilter">
-        <tr ng-class="event.featured=='today' ? 'list_today':''" ng-click="go(event.city, event.venue, event.id)">
+        <tr ng-class="event.featured=='today' ? 'list_today':''" ng-click="go('{{event.city}}','{{event.venue}}','{{event.id}}')">
           <td class="list_align">
             <strong>{{event.date}}</strong>
             <br/>
