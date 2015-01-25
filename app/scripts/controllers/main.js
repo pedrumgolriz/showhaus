@@ -89,14 +89,16 @@ angular.module('showhaus')
     $scope.resetVenues = function(){
       $scope.venueSelect = '';
     };
-    $scope.$watch(function(){
-      if($scope.freebox==='true'){
-        $scope.freeShows = 0;
-      }
-      else{
-        $scope.freeShows = '';
-      }
-    });
+	$scope.freeFilter = function(obj){
+		if($scope.freebox=='true'){
+			if(obj.price == 0){
+				return obj.price;
+			}
+		}
+		else{
+			return obj.price;
+		}
+	}
     //####//
     $scope.setNewCookie = function(){
       if($scope.citySelect!==''){
