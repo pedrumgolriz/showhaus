@@ -93,8 +93,8 @@
 				</div>
 			</div>
 			<div class="postshow_input_wrap" style="margin-left: 20px;">
-				<input id="postshow_date" name="date" placeholder="date" readonly required type="text" ng-model="event.date"">
-				<input id="postshow_time" name="time" readonly required type="text" value="12:00 PM" ng-model="event.time" placeholder="time">
+				<input id="postshow_date" name="date" placeholder="date" readonly required type="text" ng-model="event.date">
+				<input id="postshow_time" name="time" readonly required type="text" ng-model="event.time" placeholder="time">
 				<input id="postshow_price" name="price" placeholder="price" required style="color: green;" type="text"
 					   ng-model="event.price" numbers-only="numbers-only">
 				<a class="required" title="required">*</a>
@@ -116,14 +116,13 @@
 						addresses at your own risk.</a></p>
 
 					<p id="slate">
-						<textarea id="editor" class="ck-editor" name="editor" name="description" rows="15" ng-model="event.description"></textarea>
+						<textarea id="editor" class="ck-editor" name="editor" name="description" rows="15" ng-model="event.description" value="{{event.descriptio}}"></textarea>
 					</p>
 				</div>
 			</div>
 			<div class="postshow_input_wrap">
 				<p><strong><a style="margin-left: 20px;">How would you describe your show?</a></strong><a class="required" title="required">*</a></p>
-				<input ng-model="tags" type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;" ng-if="event.tag2 != ''" value="{{event.tag1}},{{event.tag2}}">
-				<input ng-model="tags" type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;" ng-if="event.tag2 == ''" value="{{event.tag1}}">
+				<input ng-model="tags" type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;" value="{{event.tag1}},{{event.tag2!=''? event.tag2 : null}}">
 				<p>Enter at least one tag (eg. "Math Rock" , "Metal", "Space
 					Jazz")<br/>Use commas to seperate tags</p>
 			</div>
@@ -135,10 +134,10 @@
 			<div class="postshow_input_wrap">
 				<br/>
 				<div id="drop" class="message">
-					<div id="imgDelete" alt="Remove Poster" ng-show="event.poster||file" ng-click="imgDelete()">x</div>
-					<img id="imgpreview" alt="Image Preview" ng-show="event.poster||file" src="{{event.poster||file}}" style="max-width:500px;"/>
-					<input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg" ng-model="file" onchange="angular.element(this).scope().fileCheck()" ng-hide="event.poster||file"/>
-                <span ng-hide="event.poster||file"><p><strong>Drag and drop your poster here.</strong><br>
+					<div id="imgDelete" alt="Remove Poster" ng-show="event.poster||poster" ng-click="imgDelete()">x</div>
+					<img id="imgpreview" alt="Image Preview" ng-show="event.poster||poster" src="{{event.poster||poster}}" style="max-width:500px;"/>
+					<input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg" ng-model="poster" onchange="angular.element(this).scope().fileCheck()" ng-hide="event.poster||poster"/>
+                <span ng-hide="event.poster||poster"><p><strong>Drag and drop your poster here.</strong><br>
 					(.gif, .jpg, .png formats allowed. 5MB max)</p></span>
 				</div>
 			</div>
@@ -164,6 +163,8 @@
 					<p>Think about this decision for a second...<br/>
 					<strong><a style="color:red;">You're about to delete your entire listing</a></strong><br/>
 					Is that something you really want to do? It's permanent, you know!</p>
+					<p id="passwordCheck">Please enter your password below to proceed.</p>
+					<input type="password" ng-model="password"/>
 				</div>
 			</div>
 		</div>

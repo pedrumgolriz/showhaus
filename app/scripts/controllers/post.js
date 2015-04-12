@@ -129,6 +129,7 @@ angular.module('showhaus')
 				else{
 					$('#postshow_city_chosen').removeClass('invalid');
 				}
+				$scope.invalid = true;
 			}
 		};
 		$scope.fbEvent = function(){

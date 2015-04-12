@@ -7,10 +7,6 @@
  * # EditCtrl
  * Controller of the showhausAngApp
  */
-$(function () {
-	$('#postshow_date').datepicker({ minDate: 0 });
-	$('#postshow_time').timepicker({ minTime: 0, show24Hours: false, timeFormat: 'h:mm TT'});
-});
 angular.module('showhaus')
 	.animation('.rules', function () {
 		var NgHideClassName = 'ng-hide';
@@ -36,6 +32,15 @@ angular.module('showhaus')
 		var events = $resource(eventsQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
 		$scope.venues = venues.query();
 		$scope.events = events.query();
+		var f = 0; //f keeps track of when events is finally queried
+		$scope.$watch('events', function() {
+			if(f>0) {
+				$scope.venue = $scope.events[0].venue;
+				$scope.citySelect = $scope.events[0].city;
+			}
+			f+=1;
+		}, true);
+
 		$scope.postEvent = function (isValid) {
 			if(isValid&&$scope.citySelect !== 'all') {
 				if($('#tags').val()===''){
@@ -45,8 +50,8 @@ angular.module('showhaus')
 				var data = {};
 				if(file===$scope.events[0].poster){
 					data = {
-						'city': $scope.events[0].city,
-						'venue': $scope.events[0].venue,
+						'city': $scope.citySelect,
+						'venue': $scope.venue,
 						'newvenue': $scope.newvenuename,
 						'venue_address': $scope.newvenueaddress,
 						'title': $scope.events[0].title,
@@ -54,15 +59,15 @@ angular.module('showhaus')
 						'date': $scope.events[0].date,
 						'time': $scope.events[0].time,
 						'price': $scope.events[0].price,
-						'description': $scope.events[0].description,
-						'tags': document.getElementById('tags').value,
+						'description': $scope.event.description,
+						'tags': $('#tags').val().split(','),
 						'id': $location.$$search.post
 					};
 				}
 				else {
 					data = {
-						'city': $scope.events[0].city,
-						'venue': $scope.events[0].venue,
+						'city': $scope.citySelect,
+						'venue': $scope.venue,
 						'newvenue': $scope.newvenuename,
 						'venue_address': $scope.newvenueaddress,
 						'title': $scope.events[0].title,
@@ -70,17 +75,18 @@ angular.module('showhaus')
 						'date': $scope.events[0].date,
 						'time': $scope.events[0].time,
 						'price': $scope.events[0].price,
-						'description': $scope.events[0].description,
-						'tags': document.getElementById('tags').value,
+						'description': $scope.event.description,
+						'tags': $('#tags').val().split(','),
 						'poster': file,
 						'id': $location.$$search.post
 					};
 				}
 				$http.post(
 						preUrl + 'assets/update.php',
-					data
+						data
 				).success(function (data) {
-						$location.path('/success').search('post', data);
+						$location.path('/success').search('post', $location.$$search.post);
+						console.log(data);
 					}).error(function (status) {
 						console.log(status);
 					});
@@ -128,8 +134,25 @@ angular.module('showhaus')
 				}
 			});
 		};
+		$scope.deletePost = function() {
+			data = {
+				'id': $location.$$search.post,
+				'password': $scope.password
+			};
+			$http.post(
+					preUrl + 'assets/delete.php',
+				data
+			).success(function (data) {
+					$location.path('/delete');
+					console.log(data);
+				}).error(function (status) {
+					$('#passwordCheck').text('Please check your password and try again.');
+				});
+		};
 		$scope.resetVenues = function () {
 			$scope.venue = '';
 			$('.filter_city').trigger("chosen:updated");
 		};
+		$('#postshow_date').datepicker({ minDate: 0 });
+		$('#postshow_time').timepicker({ minTime: 0, show24Hours: false, timeFormat: 'h:mm TT'});
 	});
