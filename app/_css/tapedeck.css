@@ -1285,6 +1285,11 @@ border-radius: 3px;
 	float:left
 }
 
+.share_fb{
+	cursor: pointer;
+	color: blue;
+}
+
 #showpage_util .showpage_tags {
 	width:300px;
 	text-align:right;
