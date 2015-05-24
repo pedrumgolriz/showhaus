@@ -48,7 +48,7 @@
 </div>
 <div class="listview_contain" style="margin: 0 auto;" ng-show="list" ng-hide="loading">
   <!-- table -->
-  <table class="gridtable">
+  <table class="gridtable" ng-if="events.length">
     <tr>
       <th class="datetime">date/time</th>
       <th class="title">title of show</th>
@@ -115,6 +115,9 @@
 		[ <a href="#" >GET TICKETS</a> ]
     </div>
   </div>
+</div>
+<div class="list_align" ng-if="!events.length">
+	<h1>No shows listed</h1>
 </div>
 <script>
   function loadChosen() {

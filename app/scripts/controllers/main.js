@@ -74,9 +74,11 @@ angular.module('showhaus')
     var jsonQuery = preUrl+'assets/events.php';
     return $resource(jsonQuery, {},{query: {method:'JSONP', params:{callback: 'JSON_CALLBACK'}, isArray:true}});
   })
-  .run(function($http, venueCityFactory, eventsFactory) {
-    venues = venueCityFactory.query();
-    events = eventsFactory.query();
+  .run(function($http, venueCityFactory, eventsFactory, $interval) {
+	//$interval(function() {
+		venues = venueCityFactory.query();
+		events = eventsFactory.query();
+	//}, 30000);
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue){
 	if($location.$$search.post && $location.$$url.split('=')[1]){
