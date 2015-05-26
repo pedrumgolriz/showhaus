@@ -119,17 +119,3 @@
 <div class="list_align" ng-if="!events.length&&!loading">
 	<h1>No shows listed</h1>
 </div>
-<script>
-  function loadChosen() {
-    $('select').chosen().trigger('chosen:updated');
-    $('#filter_city').change(function () {
-      $('select').trigger('chosen:updated');
-    });
-  }
-  loadChosen();
-  $(window).bind("blur focus focusin focusout load resize scroll unload click " +
-    "dblclick mousedown mouseup mousemove mouseover mouseout mouseenter " +
-    "mouseleave change select submit keydown keypress keyup error",function() {
-    loadChosen();
-  });
-</script>

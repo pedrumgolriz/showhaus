@@ -129,4 +129,7 @@ angular.module('showhaus')
     if(typeof getSetVenue.get() === 'string'){
       $scope.venueSelect = getSetVenue.get();
     }
+	if($scope.citySelect!=""){
+		$('select').trigger('chosen:updated')
+	}
   });
