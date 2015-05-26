@@ -240,6 +240,13 @@ angular.module('showhaus')
 						});
 						$('.filter_city').trigger('chosen:updated');
 						$('.filter_city').trigger('chosen:updated');
+						if($('#postshow_venue').val() == "? undefined:undefined ?"){
+							$('#postshow_venue').val('newvenue')
+							$('select').trigger('chosen:updated');
+							$scope.venue = 'newvenue';
+							$scope.newvenuename = response.location;
+							$scope.newvenueaddress = response.venue.street;
+						}
 					}
 				);
 			}
