@@ -23,7 +23,16 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
-
+	  bower: {
+		  install: {
+			  //just run 'grunt bower:install' and you'll see files from your Bower packages in lib directory
+		  }
+	  },
+	  bower_concat: {
+		  all: {
+			  dest: '<%= yeoman.dist %>/scripts/vendor.js',
+		  }
+	  },
     // Project settings
     yeoman: appConfig,
 
@@ -234,8 +243,8 @@ module.exports = function (grunt) {
         dest: '<%= yeoman.app %>/_css/main.css'
       },
       js: {
-        src: ['<%= yeoman.app %>/scripts/dependencies/*.js'],
-        dest: '<%= yeoman.app %>/scripts/all.js'
+        src: ['<%= yeoman.app %>/scripts/**/*.js', '<%= yeoman.app %>/scripts/*.js'],
+        dest: '<%= yeoman.dist %>/scripts/scripts.js'
       }
     },
 
@@ -312,23 +321,25 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
-            'views/{,*/}*.html',
-            'images/{,*/}*.{webp}',
-            'fonts/*'
+	        'scripts/*',
+	        'scripts/chosen/*',
+	        'pages/*html',
+	        'assets/*.{png,php,html}',
           ]
-        }, {
-          expand: true,
-          cwd: '.tmp/images',
-          dest: '<%= yeoman.dist %>/images',
-          src: ['generated/*']
         }]
       },
       styles: {
         expand: true,
         cwd: '<%= yeoman.app %>/_css',
-        dest: '.tmp/_css/',
-        src: '{,*/}*.css'
-      }
+        dest: '<%= yeoman.dist %>/styles',
+        src: '{,*/}*'
+      },
+	  assets:{
+		  cwd: '<%= yeoman.app %>/assets',  // set working folder / root to copy
+		  src: '**/*',           // copy all files and subfolders
+		  dest: '<%= yeoman.dist %>/assets',    // destination folder
+		  expand: true           // required when using cwd
+	  }
     },
 
     // Run some tasks in parallel to speed up the build process
@@ -355,6 +366,8 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-bower-concat');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
@@ -379,15 +392,16 @@ module.exports = function (grunt) {
     'clean:server',
     'concurrent:test',
     'connect:test',
-    'karma'
+    //'karma'
   ]);
 
   grunt.registerTask('build', [
     'clean:dist',
+	'bower:install',
+	'bower_concat:all',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
-    'concat',
     'ngmin',
     'copy:dist',
     'cdnify',
@@ -395,7 +409,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+	'concat'
   ]);
 
   grunt.registerTask('default', [
