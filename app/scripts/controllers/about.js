@@ -9,5 +9,5 @@
  */
 angular.module('showhaus')
   .controller('AboutCtrl', function () {
-
+		$(".ui-dialog-content").dialog("destroy");
   });

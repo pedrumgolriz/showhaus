@@ -7,7 +7,7 @@
       <a href="#!/" ng-click="setCity(event.city); setVenue(event.venue)">{{event.venue}}</a> &gt;
       <span id="showpage_title_breadcrumbs">{{event.title}}</span>
     </div>
-    <div class="editshow">[ <a href="#!/edit?post={{event.id}}">EDIT SHOW<a/> ]</div>
+    <div class="editshow">[ <a href="#" ng-click="edit(event.id)">EDIT SHOW<a/> ]</div>
   </div>
   <div id="showpage_util">
     <div class="showpage_share"><strong>share:</strong>
@@ -52,5 +52,9 @@
     </div>
   </div>
    <!--<div class="source">source: <a href="#">https://www.facebook.com/events/667108650072420/?ref_dashboard_filter=upcoming</a></div>-->
+</div>
+<div id="dialog" title="Edit Post">
+	<p id="passwordCheck">Please enter your password below to proceed.</p>
+	<input type="password" ng-model="password"/>
 </div>
 <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>

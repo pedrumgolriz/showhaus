@@ -78,6 +78,7 @@ angular.module('showhaus')
 		venues = venueCityFactory.query();
 	})
 	.controller('PostCtrl', function ($scope, $http, $location) {
+		$(".ui-dialog-content").dialog("destroy");
 		//facebook stuff
 		$scope.citySelect = getCookie('city');
 		$scope.venues = venues;

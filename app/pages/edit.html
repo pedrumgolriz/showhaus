@@ -38,7 +38,7 @@
 			</li>
 		</ul>
 	</div>
-    <form ng-model="form" name="postshow" novalidate ng-submit="postEvent(postshow.$valid)">
+    <form ng-model="form" name="postshow" novalidate ng-submit="postEvent(postshow.$valid)" ng-if="showPage">
 		<div class="input_heading">
 			<strong>EVENT DETAILS</strong>
 		</div>
@@ -159,13 +159,6 @@
 					<input ng-disabled="form.$invalid" type="submit" id="submit" class="smallbtn4" style="cursor:pointer;" name="updateposts" value="update show">
 					<input type="button" id="deleteshow" class="smallbtn4" style="cursor:pointer; background-color: red;  border: 1px solid red;" value="delete show" ng-click='deleteModal()'>
 				</div>
-				<div id="dialog" title="Are you sure?">
-					<p>Think about this decision for a second...<br/>
-					<strong><a style="color:red;">You're about to delete your entire listing</a></strong><br/>
-					Is that something you really want to do? It's permanent, you know!</p>
-					<p id="passwordCheck">Please enter your password below to proceed.</p>
-					<input type="password" ng-model="password"/>
-				</div>
 			</div>
 		</div>
 	</form>
@@ -186,3 +179,10 @@
 		}
 	});
 </script>
+<div id="dialog" title="Are you sure?">
+	<p>Think about this decision for a second...<br/>
+		<strong><a style="color:red;">You're about to delete your entire listing</a></strong><br/>
+		Is that something you really want to do? It's permanent, you know!</p>
+	<p id="passwordCheck">Please enter your password below to proceed.</p>
+	<input type="password" ng-model="password"/>
+</div>

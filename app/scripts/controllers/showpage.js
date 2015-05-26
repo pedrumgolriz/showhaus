@@ -1,4 +1,5 @@
 'use strict';
+/*global $:false*/
 /**
  * @ngdoc function
  * @name showhausAngApp.controller:ShowpageCtrl
@@ -29,7 +30,8 @@ window.fbAsyncInit = function () {
 }(document, 'script', 'facebook-jssdk'));
 var preUrl = 'http://v2.showhaus.org/';//set to blank for release
 angular.module('showhaus')
-  .controller('ShowpageCtrl', function ($scope, $resource, $location, getSetCity, getSetVenue) {
+  .controller('ShowpageCtrl', function ($scope, $resource, $location, getSetCity, getSetVenue, $http) {
+	$(".ui-dialog-content").dialog("destroy");
 	if($location.$$search.post === ''){
 		$location.path('/main');
 	}
@@ -63,4 +65,41 @@ angular.module('showhaus')
     $scope.setVenue = function(venue){
       getSetVenue.set(venue);
     };
+	$scope.edit = function(postnumber){
+		$('#dialog').dialog({
+			width: 400,
+			height: 315,
+			buttons: {
+				'Ok': function() {
+					$scope.editPost();
+				},
+				'Cancel': function() {
+					$(this).dialog('close');
+				}
+			}
+		});
+	};
+	$scope.editPost = function(){
+		$scope.data = {
+			'id': $location.$$search.post,
+			'password': $scope.password
+		};
+		$http.post(
+				preUrl + 'assets/edit.php',
+			$scope.data
+		).success(function (data, status) {
+				if(data=="success"){
+					$('#dialog').dialog('close');
+					localStorage.setItem('temp_p', $scope.data.password);
+					$location.path('/edit').search('post', $scope.data.id);
+				}else {
+					$('#passwordCheck').text('Please check your password and try again.');
+					$('#dialog input').addClass('postshow_error');
+				}
+				//console.log(data);
+			}).error(function (status) {
+				$('#passwordCheck').text('Please check your password and try again.');
+				$('#dialog input').addClass('postshow_error');
+			});
+	};
   });

@@ -24,8 +24,33 @@ angular.module('showhaus')
 		};
 	})
 	.controller('EditCtrl', function ($scope, $http, $location, $resource) {
+		$(".ui-dialog-content").dialog("destroy");
+
 		var preUrl = 'http://v2.showhaus.org/';//set to blank for release
 		var postnumber = $location.$$search.post;
+
+		$scope.editData = {
+			"password": localStorage.getItem('temp_p'),
+			"id": postnumber
+		}
+		$http.post(
+				preUrl + 'assets/edit.php',
+			$scope.editData
+		).success(function (data, status) {
+				if(data=="success"){
+					localStorage.removeItem('temp_p');
+					$scope.showPage = true;
+				}else {
+					$scope.showPage = false;
+					$location.path('showpage/').search('post',postnumber);
+				}
+				//console.log(data);
+			}).error(function (status) {
+				$('#passwordCheck').text('Please check your password and try again.');
+				$('#dialog input').addClass('postshow_error');
+			});
+
+
 		var eventsQuery = preUrl + 'assets/events.php?post=' + postnumber;
 		var venueQuery = preUrl + 'assets/venuecity.php';
 		var venues = $resource(venueQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
@@ -135,19 +160,25 @@ angular.module('showhaus')
 			});
 		};
 		$scope.deletePost = function() {
-			data = {
+			$scope.data = {
 				'id': $location.$$search.post,
 				'password': $scope.password
 			};
 			$http.post(
-					preUrl + 'assets/delete.php',
-				data
-			).success(function (data) {
-					$location.path('/delete');
-					console.log(data);
-				}).error(function (status) {
-					$('#passwordCheck').text('Please check your password and try again.');
-				});
+				preUrl + 'assets/delete.php',
+				$scope.data
+			).success(function (data, status) {
+					if(data == "success") {
+						$location.path('/delete');
+					}
+					else{
+						$('#passwordCheck').text('Please check your password and try again.');
+						$('#dialog input').addClass('postshow_error');
+					}
+			}).error(function (status) {
+				$('#passwordCheck').text('Please check your password and try again.');
+					$('#dialog input').addClass('postshow_error');
+			});
 		};
 		$scope.resetVenues = function () {
 			$scope.venue = '';

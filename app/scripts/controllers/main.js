@@ -81,6 +81,7 @@ angular.module('showhaus')
 	//}, 30000);
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue){
+		$(".ui-dialog-content").dialog("destroy");
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
 	}
