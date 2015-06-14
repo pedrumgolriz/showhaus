@@ -1,0 +1,73 @@
+<div id="static_topnav">
+  <div class="breadcrumbs"><a href="#!main">SHOWHAUS</a> > Admin</div>
+</div>
+<div id="logo_container">
+  <div class="logo" onclick="window.location = '#!main';"></div>
+  <div class="learnmore">
+    admin panel
+  </div>
+</div>
+<article class="rest">
+  <div id="static_wrap">
+	<h1><strong> Click Event to Post</strong></h1>
+  </div>
+	<div id="filter_contain" style="margin: 0 auto;">
+		<div id="filter">
+			<div class="filter_city">
+				<select class="chosen-select" data-placeholder="SELECT CITY"
+						id="filter_city" name="city" ng-model="citySelect" ng-change="resetVenues(); setNewCookie()">
+					<option value="">All Cities</option>
+					<option>Baltimore</option>
+					<option>Brooklyn</option>
+					<option>DC</option>
+				</select>
+			</div>
+			<div class="search">
+				<input type="text" ng-model="search" width="100px" ng-change="executeSearch()"/>
+			</div>
+			<div class="filter_free">
+				<input type="checkbox" ng-model="ticketbox" ng-true-value="true" ng-false-value=""> Ticket shows
+				only
+			</div>
+		</div>
+	</div>
+	<div class="listview_contain" style="margin: 0 auto;" ng-hide="loading">
+		<!-- table -->
+		<table class="gridtable" ng-if="events.length">
+			<tr>
+				<th class="datetime">date/time</th>
+				<th class="title">title of show</th>
+				<th class="tableprice">$$$</th>
+				<th class="tablevenue">venue</th>
+			</tr>
+			<tbody class="theEvents">
+			<tbody ng-repeat="event in events | filter:{location:citySelect}">
+			<tr ng-class="event.featured=='today' ? 'list_today':''" ng-click="postToShowhaus()">
+				<td class="list_align">
+					<strong>{{event.date}}</strong>
+					<br/>
+					<div class="list_subtext">{{event.time}}</div>
+				</td>
+				<td>
+            <span class="titles">
+              <strong>{{event.title}}</strong>
+              <span class="subtitle" ng-if="event.subtitle">{{event.subtitle}}</span>
+            </span>
+					<div class="list_category">{{event.tag1}}</div>
+					<div class="list_category" ng-if="event.tag2">{{event.tag2}}</div>
+				</td>
+				<td class="list_align">
+					<span class="free" ng-if="event.price==0">free</span>
+					<span ng-if="event.price>0">${{event.price}}</span>
+				</td>
+				<td class="list_align">
+					<strong>{{event.venue}}</strong>
+					<br/>
+					<div class="list_subtext" ng-if="event.address">{{event.address}}</div>
+				</td>
+			</tr>
+			</tbody>
+			</tbody>
+		</table>
+	</div>
+</article>

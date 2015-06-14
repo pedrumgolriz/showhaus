@@ -87,6 +87,10 @@ angular
 				templateUrl: 'pages/edit.html',
 				controller: 'EditCtrl'
 			})
+			.when('/admin',{
+				templateUrl: 'pages/admin.html',
+				controller: 'AdminCtrl'
+			})
 			.otherwise({
 				redirectTo: '/'
 			});
