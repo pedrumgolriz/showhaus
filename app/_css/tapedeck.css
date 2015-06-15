@@ -1620,3 +1620,11 @@ th .city {
 .learnmore{
 	text-align: center;
 }
+
+.admin-description{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 500px;
+	display: inline-block;
+	overflow: hidden;
+}

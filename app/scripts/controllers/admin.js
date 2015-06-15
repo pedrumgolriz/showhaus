@@ -43,22 +43,42 @@ angular.module('showhaus')
 				});
 				FB.api({
 						method: 'fql.query',
-						query: 'SELECT eid FROM event WHERE CONTAINS("'+$scope.search+' '+$scope.citySelect+'")',
+						query: 'SELECT eid, pic_big, ticket_uri FROM event WHERE CONTAINS("'+$scope.search+' '+$scope.citySelect+'")',
 						access_token: $scope.authToken
 					},
 					function (response) {
+						if(localStorage.getItem('fb_response')) {
+							localStorage.setItem('fb_response', parseInt(localStorage.getItem('fb_response'))+1);
+						}
+						else{
+							localStorage.setItem('fb_response',1);
+						}
 						$scope.events = [];
 						for (var i = 0; i < response.length; i++) {
 							var eid = response[i]['eid'];
-							FB.api(eid, function (response) {
+							FB.api(eid, function (nested) {
+								for(var q = 0; q < response.length; q++){
+								    if(response[q].eid == nested.id){
+								        if(response[q]['pic_big']) {
+								            nested.image = response[q]['pic_big'];
+								        }
+									    if(response[q]['ticket_uri']) {
+										    nested.image = response[q]['ticket_uri'];
+									    }
+								    }
+								 }
 								$scope.$apply(function () {
-									$scope.events.push(response);
+									$scope.events.push(nested);
 								});
-								console.log(response);
+								console.log($scope.events);
+								localStorage.setItem('fb_response', parseInt(localStorage.getItem('fb_response'))+1);
 							});
 						}
 					}
 				);
 			}
 		};
+		$scope.parseInt = function(string){
+			return parseInt(string);
+		}
   });

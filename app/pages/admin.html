@@ -36,6 +36,7 @@
 		<!-- table -->
 		<table class="gridtable" ng-if="events.length">
 			<tr>
+				<th class="datetime">image</th>
 				<th class="datetime">date/time</th>
 				<th class="title">title of show</th>
 				<th class="tableprice">$$$</th>
@@ -45,22 +46,25 @@
 			<tbody ng-repeat="event in events">
 			<tr ng-class="event.featured=='today' ? 'list_today':''" ng-click="">
 				<td class="list_align">
-					<strong>{{event.start_time}}</strong>
+					<img class="admin_image" ng-if="event.image" src="{{event.image}}"/>
+				</td>
+				<td class="list_align">
+					<strong>{{event.start_time.split('T')[0]}}</strong>
 					<br/>
-					<div class="list_subtext">{{event.start_time}}</div>
+					<div class="list_subtext">{{event.start_time.split('T')[1].split('-')[0]}}</div>
 				</td>
 				<td>
             <span class="titles">
               <strong>{{event.name}}</strong>
-              <span class="subtitle" ng-if="event.description">{{event.description}}</span>
+				<br/>
+              <span class="subtitle admin-description" ng-if="event.description">{{event.description}}</span>
             </span>
 					<div class="list_category">{{event.tag1}}</div>
 					<div class="list_category" ng-if="event.tag2">{{event.tag2}}</div>
 				</td>
 				<td class="list_align">
-					<span class="free" ng-if="event.price==0">free</span>
-					<span ng-if="event.price">${{event.price}}</span>
-					<span ng-if="!event.price">???</span>
+					<span ng-if="event.description.split('$')[1]">${{parseInt(event.description.split('$')[1])}}</span>
+					<span ng-if="!event.description.split('$')[1]">???</span>
 				</td>
 				<td class="list_align">
 					<strong>{{event.location}}</strong>
