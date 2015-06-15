@@ -1628,3 +1628,8 @@ th .city {
 	display: inline-block;
 	overflow: hidden;
 }
+
+tr:hover .admin-description{
+	white-space: normal !important;
+
+}

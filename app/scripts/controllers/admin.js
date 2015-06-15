@@ -30,7 +30,9 @@ window.fbAsyncInit = function () {
 angular.module('showhaus')
   .controller('AdminCtrl', function ($scope, $http) {
 		//
-		FB.login();
+		if(FB) {
+			FB.login();
+		}
 		$scope.events = [];
 		$(".ui-dialog-content").dialog("destroy");
 		$scope.executeSearch = function(){
@@ -43,7 +45,7 @@ angular.module('showhaus')
 				});
 				FB.api({
 						method: 'fql.query',
-						query: 'SELECT eid, pic_big, ticket_uri FROM event WHERE CONTAINS("'+$scope.search+' '+$scope.citySelect+'")',
+						query: 'SELECT eid, pic_big, ticket_uri FROM event WHERE CONTAINS("'+$scope.search+' '+$scope.citySelect+'") ORDER BY start_time ASC',
 						access_token: $scope.authToken
 					},
 					function (response) {
