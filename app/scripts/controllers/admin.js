@@ -12,8 +12,8 @@ window.fbAsyncInit = function () {
 	FB.init({
 		appId: '204851123020578',
 		status: true,
-		xfbml: true,
-		version: 'v2.3'
+		xfbml: true
+		//version: 'v2.'
 	});
 };
 (function (d, s, id) {
@@ -30,31 +30,35 @@ window.fbAsyncInit = function () {
 angular.module('showhaus')
   .controller('AdminCtrl', function ($scope, $http) {
 		//
-		FB.login(function () {}, {
-			scope: ''
-		});
+		FB.login();
 		$scope.events = [];
 		$(".ui-dialog-content").dialog("destroy");
 		$scope.executeSearch = function(){
-			FB.getLoginStatus(function(response){
-				$scope.$apply(function(){
+			if($scope.citySelect == undefined){
+				alert('please select a city first');
+			}
+			else {
+				FB.getLoginStatus(function (response) {
 					$scope.authToken = response.authResponse.accessToken;
 				});
-			});
-			FB.api('/search?q=' + $scope.search + '&type=event', {
-					access_token: $scope.authToken
-				},
-				function (response) {
-					$scope.$apply(function () {
-						for(var i = 0; i< response.data.length; i++){
-							var eid = response.data[i]['id'];
-							FB.api(eid,function(response){
-								$scope.events.push(response);
+				FB.api({
+						method: 'fql.query',
+						query: 'SELECT eid FROM event WHERE CONTAINS("'+$scope.search+' '+$scope.citySelect+'")',
+						access_token: $scope.authToken
+					},
+					function (response) {
+						$scope.events = [];
+						for (var i = 0; i < response.length; i++) {
+							var eid = response[i]['eid'];
+							FB.api(eid, function (response) {
+								$scope.$apply(function () {
+									$scope.events.push(response);
+								});
 								console.log(response);
 							});
 						}
-					});
-				}
-			);
+					}
+				);
+			}
 		};
   });
