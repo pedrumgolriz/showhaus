@@ -11,6 +11,13 @@
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
         <link href='http://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="js/selectize/selectize.js"></script>
+        <link rel="stylesheet" type="text/css" href="js/selectize/selectize.css" />
+        <script>
+            $(function() {
+                $('select').selectize(options);
+            });
+        </script>
     </head>
 
 
@@ -34,70 +41,88 @@
 		
 		<!-- enter url -->
 		<div class="postshow-url">
-			<input placeholder="eg. "></input>
+			<input placeholder="placeholder" type="text"></input>
 			<div class="postshow-helptext">
 				<strong>Enter the Facebook URL of your show, if applicable.</strong>
 				<br>Your listing will redirect to the URL entered above.
 			</div>
 		</div>
-		
-		<!-- enter city -->
-		<div class="postshow-city">
-			<select></select>
-			<div class="postshow-helptext">
-				Showhaus listings are for New York City and Baltimore only.
-			</div>
-		</div>
-		
-		<!-- enter show title -->
-		<div class="postshow-title">
-			<input placeholder="title of show"></input>
-			<div class="postshow-helptext">
-				The overall title of your show, including headliners and supporting acts.
-			</div>
-		</div>
-		
-		<!-- select venue -->
-		<div class="postshow-venue">
-			<select></select>
-			<div class="postshow-helptext">
-				If you can't find your venue, select <strong>Add Venue</strong>
-				<br> If you don't want to give out an address, select <strong>Unlisted</strong>
-			</div>
 
-			<div class="addvenue">
-				<input placeholder="venue name"></input>
-				<input placeholder="address (optional)"></input>
-			</div>
 
-		</div>
+		<div class="postshow-heading">SHOW DETAILS</div>
+        <div class="postshow-wrap">
+            <!-- enter city -->
+            <div class="postshow-city">
+                <select placeholder="placeholder" class="selectize-input items not-full disabled locked"></select>
+                <div class="postshow-helptext">
+                    Showhaus listings are for New York City and Baltimore only.
+                </div>
+            </div>
+
+            <!-- enter show title -->
+            <div class="postshow-title">
+                <input placeholder="title of show" type="text"></input>
+                <div class="postshow-helptext">
+                    The overall title of your show, including headliners and supporting acts.
+                </div>
+            </div>
+
+            <!-- select venue -->
+            <div class="postshow-venue">
+                <select id="select-beast" class="demo-default" placeholder="Select a person...">
+                    <option value="">Select a person...</option>
+                    <option value="4">Thomas Edison</option>
+                    <option value="1">Nikola</option>
+                    <option value="3">Nikola Tesla</option>
+                    <option value="5">Arnold Schwarzenegger</option>
+                </select>
+
+                <div class="postshow-helptext">
+                    If you can't find your venue, select <strong>Add Venue</strong>
+                    <br> If you don't want to give out an address, select <strong>Unlisted</strong>
+                </div>
+
+                <div class="addvenue">
+                    <input placeholder="venue name" type="text"></input>
+                    <input placeholder="address (optional)" type="text"></input>
+                </div>
+
+            </div>
+
+            <!-- enter date & price -->
+            <div class="postshow-dateprice">
+                <input type="text"></input>
+                <input placeholder="price" type="text"></input>
+                <div class="postshow-helptext">
+                    For free shows, enter <strong>0</strong>
+                </div>
+            </div>
+        </div>
+
+
+            <div class="postshow-heading">EVENT DESCRIPTION</div>
+            <div class="postshow-wrap">
+                <!-- description -->
+                <div class="postshow-description">
+                    <div class="postshow-helptext">
+                        The description below will appear on your post.
+                    </div>
+                    <textarea type="text">this is a description</textarea>
+                </div>
+            </div>
+
+        <div class="postshow-heading">EVENT ART</div>
+        <div class="postshow-wrap">
+            <!-- enter art -->
+            <div class="postshow-eventart">
+                drag & drop event art here!
+            </div>
+        </div>
 		
-		<!-- enter date & price -->
-		<div class="postshow-dateprice">
-			<input></input>
-			<input placeholder="price"></input>
-			<div class="postshow-helptext">
-				For free shows, enter <strong>0</strong>
-			</div>
-		</div>
 		
-		<!-- enter art -->
-		<div class="postshow-eventart">
-			drag & drop event art here!
-		</div>
-		
-		<!-- description -->
-		<div class="postshow-description">
-			<div class="postshow-helptext">
-				The description below will appear on your post.
-			</div>
-			<textarea>this is a description</textarea>
-		</div>
-		
-		
-		<!-- enter description -->
+		<!-- email -->
 		<div class="postshow-email">
-			<input></input>
+			<input type="text"></input>
 			<div class="postshow-helptext">
 				Enter an email to reiceve a receipt of your post, along with a link to edit/delete your listing. This field is optional.
 			</div>
@@ -115,6 +140,25 @@
 
         </div>
 
+<script>
+        $(function() {
+        $('#testform').submit(function(e){
+        e.preventDefault();
+        });
+
+        $('#subject').selectize({create: true});
+        $('#tags').selectize({
+        delimiter: ',',
+        persist: true,
+        create: function(input) {
+        return {
+        value: input,
+        text: input
+        }
+        }
+        });
+        });
+        </script>
 
 </body>
 

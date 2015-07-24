@@ -232,23 +232,48 @@ p {
 input {
     margin: 0 auto;
     display:inline-block;
+    max-width: 200px;
 }
 
 .postshow-helptext {
-    color:gray;
+    color: #000;
     font-size: 12px;
     padding:15px 10px;
     text-align: center;
 }
 
 /* input containers */
+
+.postshow-heading {
+    background-color: #aaa;
+    color: #fff;
+    width: 796px;
+    margin: 0 auto;
+    padding: 8px 2px;
+    text-align: center;
+    border-radius: 3px 3px 0 0;
+    border: 1px solid #aaa;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.postshow-wrap {
+    width: 800px;
+    margin: 0 auto 10px auto;
+    text-align: center;
+    border: 1px solid lightgray;
+    border-radius: 0 0 2px 2px;
+    background-color: #fff;
+    border-top: none;
+}
+
 .postshow-url {
     text-align: center;
     min-height:75px;
-    width: 475px;
-    background-color: lightgray;
+    max-width: 800px;
     margin: 25px auto;
-    padding: 25px;
+    padding: 25px 0;
+    border : 1px solid lightgray;
     border-radius: 4px;
 }
 
@@ -306,6 +331,45 @@ input {
     margin-bottom: 30px;
 }
 
+/* input elements */
+
+textarea:focus, input:focus{
+    outline: 0;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+input[type="text"]:hover {
+    border: 1px solid gray;
+}
+
+input[type="text"]:focus,
+input[type="text"].focus {
+    border: solid 1px #969696;
+    -webkit-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26);
+    -moz-box-shadow:    2px 2px 4px 0px rgba(50, 50, 50, 0.26);
+    box-shadow:         2px 2px 4px 0px rgba(50, 50, 50, 0.26);
+}
+
+button {
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 4px;
+    width:200px;
+    padding: 10px 0;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+    background: #e0e1e2;
+    color: rgba(0,0,0,.6);
+}
+
+button:hover {
+    background: gray;
+}
 
 /* special states */
 .postshow-venue .addvenue {border-top: 1px dashed gray; padding-top: 20px}
