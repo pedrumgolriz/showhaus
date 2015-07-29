@@ -81,8 +81,9 @@ p {
 /* ░░░░░░░░░░░░ main nav ░░░░░░░░░░░░ */
 
 .nav {
-    height: 40px;
+    height: 30px;
     background-color: #F9F9F9;
+    border-bottom: 1px solid rgba(165, 165, 165, 0.19);
 }
 
 .selectcity {
@@ -111,7 +112,7 @@ p {
 	color: gray;
 	width: 200px;
 	float: left;
-	padding: 12px 0 0 10px;
+	padding: 8px 0 0 10px;
 }
 
 /* ░░░░░░░░░░░░ hero ░░░░░░░░░░░░ */
@@ -219,7 +220,8 @@ p {
 
 /* ░░░░░░░░░░░░ post a show ░░░░░░░░░░░░ */
 
-/* post a show hero */
+/* hero */
+
 .postshow-hero-contain {
     height: 50px;
     text-align: center;
@@ -229,112 +231,16 @@ p {
 
 
 /* input styles */
-input {
-    margin: 0 auto;
-    display:inline-block;
-    max-width: 200px;
-}
-
-.postshow-helptext {
-    color: #000;
-    font-size: 12px;
-    padding:15px 10px;
-    text-align: center;
-}
-
-/* input containers */
-
-.postshow-heading {
-    background-color: #aaa;
-    color: #fff;
-    width: 796px;
-    margin: 0 auto;
-    padding: 8px 2px;
-    text-align: center;
-    border-radius: 3px 3px 0 0;
-    border: 1px solid #aaa;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.postshow-wrap {
-    width: 800px;
-    margin: 0 auto 10px auto;
-    text-align: center;
-    border: 1px solid lightgray;
-    border-radius: 0 0 2px 2px;
-    background-color: #fff;
-    border-top: none;
-}
-
-.postshow-url {
-    text-align: center;
-    min-height:75px;
-    max-width: 800px;
-    margin: 25px auto;
-    padding: 25px 0;
-    border : 1px solid lightgray;
-    border-radius: 4px;
-}
-
-.postshow-city {
-    text-align: center;
-    margin: 20px auto;
-    width: 475px;
-}
-
-.postshow-title {
-    text-align: center;
-    margin: 20px auto;
-    width: 475px;
-}
-
-.postshow-venue {
-    text-align: center;
-    min-height:75px;
-    width: 475px;
-    background-color: lightgray;
-    margin: 25px auto;
-    padding: 25px;
-    border-radius: 4px;
-}
-
-.postshow-dateprice {
-    text-align: center;
-    margin: 10px auto;
-    width: 475px;
-}
-
-.postshow-eventart {
-    text-align: center;
-    margin: 20px auto;
-    width: 475px;
-    min-height: 275px;
-    background-color:lightgray;
-    padding: 25px;
-}
-
-.postshow-description {
-    text-align: center;
-    margin: 20px auto;
-    width: 475px;
-}
-
-.postshow-email {
-    text-align: center;
-    margin: 20px auto;
-    width: 475px;
-}
-
-.postshow-submit {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-/* input elements */
 
 textarea:focus, input:focus{
     outline: 0;
+}
+
+input {
+    margin: 0 auto;
+    display:inline-block;
+    width:100%;
+    background-color:#fff;
 }
 
 input[type="text"] {
@@ -342,6 +248,7 @@ input[type="text"] {
     border: 1px solid lightgray;
     border-radius: 3px;
 }
+
 input[type="text"]:hover {
     border: 1px solid gray;
 }
@@ -354,25 +261,216 @@ input[type="text"].focus {
     box-shadow:         2px 2px 4px 0px rgba(50, 50, 50, 0.26);
 }
 
+input.full {max-width:375px}
+input.third {width: 280px}
+input.half {max-width:200px}
+input.date {max-width:100px; margin-right:20px}
+input.mini {max-width:50px}
+
+/* input styles */
+
+input.url {
+    background: url(../img/inputbg-1.png) no-repeat scroll 10px 12px;
+    background-size: 15px 15px;
+    padding-left:30px;
+    background-color: white;
+}
+
+input.success,
+input.success:focus,
+input.success:hover {
+    border: 2px solid #4BA93F;
+}
+
+input.error,
+input.error:focus,
+input.error:hover {
+    border: 2px solid #DC0000;
+}
+
+input.date {
+    background: url(../img/inputbg-2.png) no-repeat scroll 10px 12px;
+    background-size: 15px 15px;
+    padding-left:30px;
+}
+
+input.price {
+    background: url(../img/inputbg-3.png) no-repeat scroll 10px 12px;
+    background-size: 15px 15px;
+    padding-left:30px;
+    color: #4BA93F;
+}
+
+/*placeholders & help text */
+
+.postshow-helptext.error {
+    color: #DC0000;
+    font-size: 12px;
+    padding:15px 0 0 0;
+    text-align: center;
+    font-weight: 900;
+}
+
+.postshow-helptext {
+    color: #000;
+    font-size: 12px;
+    padding:15px 10px;
+    text-align: center;
+}
+
+::-webkit-input-placeholder {
+   color: #B9B9B9;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #B9B9B9;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #B9B9B9;
+}
+
+:-ms-input-placeholder {
+   color: #B9B9B9;
+}
+
+
+/* input containers */
+
+.postshow {}
+
+.postshow-heading {
+    background-color: #aaa;
+    color: #fff;
+    max-width: 800px;
+    min-width: 650px;
+    margin: 0 auto;
+    padding: 8px 2px;
+    text-align: center;
+    border-radius: 3px 3px 0 0;
+    border: 1px solid #aaa;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.postshow-wrap {
+    max-width: 800px;
+    min-width: 650px;
+    margin: 0 auto 10px auto;
+    text-align: center;
+    border: 1px solid lightgray;
+    border-radius: 0 0 2px 2px;
+    background-color: #fff;
+    border-top: none;
+    padding: 2px;
+}
+
+.postshow-url {
+    text-align: center;
+    min-height:75px;
+    max-width: 800px;
+    min-width: 650px;
+    margin: 25px auto;
+    padding: 25px 0;
+    border : 1px solid lightgray;
+    border-radius: 4px;
+    /* background-color: rgba(241, 250, 215, 0.42); */
+}
+
+.postshow-city {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px 0;
+    width: 475px;
+}
+
+.postshow-title {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px 0;
+    width: 475px;
+}
+
+.postshow-venue {
+    text-align: center;
+    min-height:75px;
+    width: 475px;
+    background-color: lightgray;
+    margin: 0 auto;
+    padding: 25px 0 10px 0;
+    border-radius: 4px;
+    background: url(../img/addvenuebg.png);
+}
+
+.postshow-dateprice {
+    text-align: center;
+    margin: 0 auto;
+    padding: 30px 0;
+    width: 475px;
+}
+
+.postshow-description {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px 0;
+    width: 375px;
+}
+
+.postshow-eventart {
+    text-align: center;
+    margin: 20px auto;
+    min-height: 30px;
+    padding: 150px 0;
+    border: 5px dashed lightgray;
+    max-width: 500px;
+    color: gray;
+}
+
+.postshow-eventart:hover {
+    background-color: rgba(255, 255, 0, 0.15);
+    cursor: pointer;
+}
+
+.postshow-email {
+    text-align: center;
+    margin: 0 auto;
+    padding: 30px 0;
+    width: 475px;
+}
+
+.postshow-submit {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* button styles */
+
 button {
     cursor: pointer;
     display: inline-block;
     border-radius: 4px;
-    width:200px;
+    width: 200px;
     padding: 10px 0;
     outline: 0;
     border: none;
     vertical-align: baseline;
     background: #e0e1e2;
     color: rgba(0,0,0,.6);
+    font-weight: 700;
+    font-size: 14px;
 }
 
 button:hover {
     background: gray;
 }
 
+
 /* special states */
-.postshow-venue .addvenue {border-top: 1px dashed gray; padding-top: 20px}
+.postshow-venue .addvenue {
+    padding: 0 0 20px 0;
+    width: 350px;
+    margin: 0 auto;
+}
 
 .postshow-url .success {}
 .postshow-url .fail {}
