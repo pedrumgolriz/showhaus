@@ -144,6 +144,12 @@ p {
 .content {
 	padding: 10px 25px;
     margin: 0 auto;
+    max-width: 900px
+}
+
+.contain {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 /* ░░░░░░░░░░░░ show ░░░░░░░░░░░░ */
@@ -380,7 +386,7 @@ input.price {
 .postshow-city {
     text-align: center;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 40px 0 10px 0;
     width: 475px;
 }
 
