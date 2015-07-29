@@ -26,131 +26,45 @@
         <!-- main nav -->
         <div class="nav">
             <div class="breadcrumbs">
-            	<a href="#">SHOWHAUS</a> > POST A SHOW</div>
+            	<a href="#">SHOWHAUS</a> > FEEDS</div>
         </div>
         
         <!-- hero -->
         <div class="postshow-hero-contain">
-        	<h1>POST A SHOW</h1>
+        	<h1>FEEDS</h1>
         </div>
 
 		
 		<div class="content">
 		
 		<!--░░░░░░░░░░░░ begin post show ░░░░░░░░░░░░-->
-		
-		<!-- enter url -->
-		<div class="postshow-url">
-			<input placeholder="eg. https://www.facebook.com/events/462122660631611/" type="text" class="full url"></input>
-			<div class="postshow-helptext">
-				<strong>Enter the Facebook URL of your show, if applicable.</strong>
-				<br>Your listing will redirect to the URL entered above.
-			</div>
-		</div>
+		    <div class="contain">
+                <p> One of the ways that Showhaus aggregates shows is by scraping Facebook pages for relevant events.
+                <p> Use the form below to add a feed.
 
-        <!--░░░░░░░░░░░░ show detais ░░░░░░░░░░░░-->
-		<div class="postshow-heading">SHOW DETAILS</div>
-        <div class="postshow-wrap">
-
-            <!-- enter city -->
-            <div class="postshow-city">
-                <select placeholder="placeholder" class="selectize-input items not-full disabled locked">
-                    <option value="1">   SELECT CITY   </option>
-                    <option value="1">new york city</option>
-                    <option value="1">baltimore</option>
-                </select>
-                <div class="postshow-helptext">
-                    Showhaus listings are currently for New York City and Baltimore only.
-                </div>
-            </div>
-
-            <!-- enter show title -->
-            <div class="postshow-title">
-                <input placeholder="title of show" type="text" class="full error"></input>
-                <div class="postshow-helptext error">
-                    This is an error message.
-                </div>
-                <div class="postshow-helptext">
-                    The overall title of your show, including headliners and supporting acts.
-                </div>
-            </div>
-
-            <!-- select venue -->
-            <div class="postshow-venue">
-                <select id="select-beast" class="demo-default" placeholder="SELECT VENUE">
-                    <option value="1">   SELECT VENUE   </option>
-                    <option value="1">-- add new venue --</option>
-                    <option value="2">-- unlisted --</option>
-                    <option value="3">Venue 3</option>
-                    <option value="4">Venue 4</option>
-                    <option value="5">Venue 5</option>
-                </select>
-
-                <div class="postshow-helptext">
-                    If you can't find your venue, select <strong>Add Venue</strong>
-                    <br> If you don't want to give out an address, select <strong>Unlisted</strong>
-                </div>
-
-                <div class="addvenue">
-                    <h4> ADD VENUE </h4>
-                    <input placeholder="venue name" type="text" class="third"></input><p>
-                    <input placeholder="address (optional)" type="text" class="third"></input>
-                </div>
-
-            </div>
-
-            <!-- enter date & price -->
-            <div class="postshow-dateprice">
-                <input type="text" placeholder="date" class="date"></input>
-                <input placeholder="price" type="text" class="mini price"></input>
-                <div class="postshow-helptext">
-                    For free shows, enter <strong>$0</strong> as the price.
-                </div>
-            </div>
-        </div>
-
-
-            <div class="postshow-heading">EVENT DESCRIPTION</div>
-            <div class="postshow-wrap">
-                <!-- description -->
-                <div class="postshow-description">
+                <!-- enter url -->
+                <div class="postshow-url">
+                    <input placeholder="eg. https://www.facebook.com/silentbarn" type="text" class="full url"></input>
                     <div class="postshow-helptext">
-                        The description below will appear on your post.
+                        <strong>Enter the URL of a Facebook page.</strong>
+                        <br>Showhaus will scrape any events associated with that page.
                     </div>
-                    <textarea type="text">this is a description</textarea>
+                    <button> submit feed </button>
                 </div>
+
+                <h3> How it Works </h3>
+
+                    <p> For instance, if you run a venue and you add that venue’s Facebook page to our feeds, every public event you create will be added to our list of shows.
+
+                    <p> Of course, we have the right to remove any feeds that go against our community guidelines. Learn more about that here.
+
+                   <p>  Below is a comprehensive list of Facebook pages scraped by Showhaus.
             </div>
 
-        <div class="postshow-heading">EVENT ART</div>
-        <div class="postshow-wrap">
-            <!-- enter art -->
-            <div class="postshow-eventart">
-                drag & drop event art here!
-            </div> 
         </div>
 
-        <div class="postshow-heading">CONFIRM & PUBLISH</div>
-        <div class="postshow-wrap">
-            <!-- email -->
-            <div class="postshow-email">
-                <input type="text" placeholder="eg. bigbutts@hotmail.biz" class="full"></input>
-                <div class="postshow-helptext">
-                    <strong>Enter your email</strong> to reiceve a receipt of your post, along with a link to edit/delete your listing. This field is optional.
-                </div>
-            </div>
 
-            <!-- submit -->
-            <div class="postshow-submit">
-                <button>SUBMIT SHOW</button>
-            </div>
-        </div>
-					    
-	    
-	    
-	    
-	     
 
-        </div>
 
 <script>
         $(function() {
