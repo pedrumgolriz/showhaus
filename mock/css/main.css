@@ -374,8 +374,7 @@ input.price {
 .postshow-url {
     text-align: center;
     min-height:75px;
-    max-width: 800px;
-    min-width: 650px;
+    max-width: 650px;
     margin: 25px auto;
     padding: 25px 0;
     border : 1px solid lightgray;
@@ -481,7 +480,12 @@ button:hover {
 .postshow-url .success {}
 .postshow-url .fail {}
 
+/* ░░░░░░░░░░░░ feeds ░░░░░░░░░░░░ */
 
+th {text-align:left; background-color:#eee;}
+tr {line-height: 2.7; border-bottom:1px solid lightgray;}
+
+.feeds-dateadded {width:100px;}
 
 /* ==========================================================================
    Media Queries
