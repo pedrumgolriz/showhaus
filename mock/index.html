@@ -17,23 +17,29 @@
     <body>
         
         <!-- main nav -->
-        <div class="nav">
-            <div class="selectcity"></div>
-            
-            <div class="postshow">post a show</div>
-            
-            <div class="links">
-                <a href="#">about</a>
-                <a href="#">api</a>
-                <a href="#">feeds</a>
-            </div>
-            
-        </div>
+		<div class="selectcity"></div>
+
+		<!--<button class="home">post a show</button>-->
+
+		<div class="home-nav">
+			<div class="links">
+				<a href="#">about</a>
+				<a href="#">api</a>
+				<a href="#">feeds</a>
+			</div>
+		</div>
         
         <!-- hero -->
         <div class="hero-contain">
         	<div class="showhaus">🍍 SHOWHAUS</div>
-        	<div class="venue-select">select venue</div>
+			<select id="select-beast" class="demo-default" placeholder="SELECT VENUE">
+				<option value="1">   SELECT VENUE   </option>
+				<option value="1">-- add new venue --</option>
+				<option value="2">-- unlisted --</option>
+				<option value="3">Venue 3</option>
+				<option value="4">Venue 4</option>
+				<option value="5">Venue 5</option>
+			</select>
         </div>
 
 		<div class="content">
@@ -65,8 +71,8 @@
 	       <div class="show-contain">
 	       	
 	       	<div class="show-date">
-	    			<div class="day">Today</div>
-	    			<div class="date">4-20-15</div>
+	    			<div class="day">4-20-15</div>
+	    			<div class="date">Today</div>
 	    		</div>
 	       
 	       	<div class="show-venue">
