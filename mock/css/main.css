@@ -86,16 +86,22 @@ p {
     border-bottom: 1px solid rgba(165, 165, 165, 0.19);
 }
 
+.home-nav {
+    height: 35px;
+    background-color: #F9F9F9;
+    border-bottom: 1px solid rgba(165, 165, 165, 0.19);
+}
+
 .selectcity {
     float: left;
 }
 
-.postshow {
+.home-nav.postshow {
     float: right;
     padding: 10px;
 }
 
-.links {
+nav.links {
     float: right;
     width: 140px;
     text-align: right;
@@ -103,7 +109,19 @@ p {
     
 }
 
-.links a {
+nav.links a {
+	padding: 0 5px;
+}
+
+.home-nav .links {
+    float: right;
+    width: 240px;
+    text-align: right;
+    padding: 10px 20px 0 0;
+    font-size: 11px;
+}
+
+.home-nav .links a {
 	padding: 0 5px;
 }
 
@@ -156,10 +174,11 @@ p {
 
 .show-contain {
 	border-bottom: 1px solid #B3B3B3;
-	min-height: 75px;
+	min-height: 55px;
 	width: 865px;
 	margin: 0 auto;
 	padding:  10px 10px 15px 10px;
+	display: table;
 }
 
 .show-contain:hover {
@@ -207,7 +226,8 @@ p {
 .show-title {
 	width: 475px;
 	float: right;
-	margin: 0 0 -45px 0;
+	max-height : 200px;
+	text-overflow: ellipsis;
 }
 
 .show-title a:link {text-decoration:none; color: black;}
@@ -216,6 +236,17 @@ p {
 
 .show-title .title {
 	font-size: 20px;
+	font-size: 20px;
+    max-height: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    display: -webkit-box;
+    display: -moz-box;
+    display:box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
 }
 
 .divider {
@@ -223,6 +254,50 @@ p {
 	background-color: #000;
 	opacity: 0.25;
 }
+
+.show-meta {
+    padding: 8px 0 0 0;
+}
+
+.show-price {
+    padding: 3px 5px;
+    background-color: green;
+    border-radius: 3px;
+    color: white;
+    font-size:12px;
+    display:inline-block;
+}
+
+.show-icon {
+    width:23px;
+    height: 23px;
+    background-color:gray;
+    display: inline-block;
+}
+
+/* ░░░░░░░░░░░░ expanded show ░░░░░░░░░░░░ */
+
+.show-contain.expand {
+    background-color:#eee;
+    border-radius: 5px;
+}
+
+.expand-contain {
+    margin:60px 0 10px 0;
+}
+
+.show-img {
+    width: 700px;
+    min-height:400px;
+    background-color: gray;
+    margin:20px auto 0 auto;
+}
+
+.show-description {
+    width:500px;
+    margin: 25px auto 0 auto;
+}
+
 
 /* ░░░░░░░░░░░░ post a show ░░░░░░░░░░░░ */
 
@@ -243,10 +318,12 @@ textarea:focus, input:focus{
 }
 
 input {
-    margin: 0 auto;
+    margin: 0 10px;
     display:inline-block;
-    width:100%;
     background-color:#fff;
+    -webkit-box-sizing : border-box;‌​
+    -moz-box-sizing : border-box;
+    box-sizing : border-box;
 }
 
 input[type="text"] {
@@ -267,7 +344,7 @@ input[type="text"].focus {
     box-shadow:         2px 2px 4px 0px rgba(50, 50, 50, 0.26);
 }
 
-input.full {max-width:375px}
+input.full {width:500px;}
 input.third {width: 280px}
 input.half {max-width:200px}
 input.date {max-width:100px; margin-right:20px}
@@ -450,6 +527,19 @@ input.price {
 
 /* button styles */
 
+button .home {
+    cursor: pointer;
+    display: inline-block;
+
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+    background: #e0e1e2;
+    color: rgba(0,0,0,.6);
+    font-weight: 700;
+    font-size: 14px;
+}
+
 button {
     cursor: pointer;
     display: inline-block;
@@ -467,6 +557,7 @@ button {
 
 button:hover {
     background: gray;
+    color: white;
 }
 
 
@@ -482,10 +573,16 @@ button:hover {
 
 /* ░░░░░░░░░░░░ feeds ░░░░░░░░░░░░ */
 
-th {text-align:left; background-color:#eee;}
-tr {line-height: 2.7; border-bottom:1px solid lightgray;}
+td,th {padding: 0 20px;}
+th {text-align:left; background-color:#eee; padding:0 20px;}
+tr {line-height: 2.7; border-bottom:1px solid lightgray; padding:20px;}
 
-.feeds-dateadded {width:100px;}
+.feeds-dateadded {width:80px; text-align: center;}
+
+
+/* ░░░░░░░░░░░░ mobile ░░░░░░░░░░░░ */
+
+
 
 /* ==========================================================================
    Media Queries
