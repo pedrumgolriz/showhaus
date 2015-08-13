@@ -477,13 +477,14 @@ button:hover {
     margin: 0 auto;
 }
 
-.postshow-url .success {}
-.postshow-url .fail {}
+.postshow-url .success {background-color: rgba(241, 250, 215, 0.42);}
+.postshow-url .fail {background-color: rgba(222, 13, 13, 0.19);}
 
 /* ░░░░░░░░░░░░ feeds ░░░░░░░░░░░░ */
 
 th {text-align:left; background-color:#eee;}
 tr {line-height: 2.7; border-bottom:1px solid lightgray;}
+td,th {padding:0 0 0 20px}
 
 .feeds-dateadded {width:100px;}
 
