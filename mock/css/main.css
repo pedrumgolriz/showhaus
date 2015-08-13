@@ -136,7 +136,7 @@ nav.links a {
 /* ░░░░░░░░░░░░ hero ░░░░░░░░░░░░ */
 
 .hero-contain {
-	height: 150px;
+	height: 100px;
 	text-align: center;
 }
 
@@ -175,16 +175,20 @@ nav.links a {
 .show-contain {
 	border-bottom: 1px solid #B3B3B3;
 	min-height: 55px;
-	width: 865px;
-	margin: 0 auto;
-	padding:  10px 10px 15px 10px;
-	display: table;
+	margin: 0 auto 20px auto;
+    display: table;
 }
 
 .show-contain:hover {
 	background-color: #fefefc;
 	opacity: 1;
 }
+
+.show-detail-contain {
+    padding: 10px 10px 35px 10px;
+    display: inline-block;
+ }
+
 
 .show-date {
 	width: 140px;
@@ -269,33 +273,57 @@ nav.links a {
 }
 
 .show-icon {
-    width:23px;
-    height: 23px;
-    background-color:gray;
+    background: url(../img/outbound.png) no-repeat scroll;
+    background-size: 15px 15px;
+    width: 15px;
+    height: 15px;
     display: inline-block;
 }
 
 /* ░░░░░░░░░░░░ expanded show ░░░░░░░░░░░░ */
 
-.show-contain.expand {
-    background-color:#eee;
-    border-radius: 5px;
-}
+ .show-detail-contain.expand {
+    margin: -20px 0 0 0;
+    background: url(../img/addvenuebg.png);
+    padding-top: 20px;
+ }
 
 .expand-contain {
     margin:60px 0 10px 0;
 }
 
 .show-img {
-    width: 700px;
-    min-height:400px;
-    background-color: gray;
+    max-width: 700px;
     margin:20px auto 0 auto;
 }
 
+.show-img img {
+	width: 100%;
+	text-align: center;
+	display: inline-block;
+}
+
+
 .show-description {
     width:500px;
-    margin: 25px auto 0 auto;
+    margin: 30px auto 0 auto;
+}
+
+.expand-close {
+    text-align: center;
+    padding:10px;
+    background: url(../img/addvenuebg.png);
+    cursor:pointer;
+}
+
+.expand-close:hover {
+    opacity: .8;
+}
+
+.expand-close a {
+    font-size: 12px;
+    color:#222;
+    text-decoration: none;
 }
 
 
@@ -568,14 +596,14 @@ button:hover {
     margin: 0 auto;
 }
 
-.postshow-url .success {}
-.postshow-url .fail {}
+.postshow-url .success {background-color: rgba(241, 250, 215, 0.42);}
+.postshow-url .fail {background-color: rgba(222, 13, 13, 0.19);}
 
 /* ░░░░░░░░░░░░ feeds ░░░░░░░░░░░░ */
 
-td,th {padding: 0 20px;}
-th {text-align:left; background-color:#eee; padding:0 20px;}
-tr {line-height: 2.7; border-bottom:1px solid lightgray; padding:20px;}
+th {text-align:left; background-color:#eee;}
+tr {line-height: 2.7; border-bottom:1px solid lightgray;}
+td,th {padding:0 0 0 20px}
 
 .feeds-dateadded {width:80px; text-align: center;}
 
