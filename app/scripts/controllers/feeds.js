@@ -28,24 +28,21 @@ window.fbAsyncInit = function () {
 }(document, 'script', 'facebook-jssdk'));
 
 angular.module('showhaus')
-  .controller('AdminCtrl', function ($scope, $http) {
+  .controller('FeedsCtrl', function ($scope, $http) {
 		//
-		if(FB) {
-			FB.login();
-		}
 		$scope.events = [];
 		$(".ui-dialog-content").dialog("destroy");
 		$scope.executeSearch = function(){
-			if($scope.citySelect == undefined){
-				alert('please select a city first');
+			if(FB) {
+				FB.login();
 			}
-			else {
 				FB.getLoginStatus(function (response) {
 					$scope.authToken = response.authResponse.accessToken;
 				});
+				var facebookTitle = $scope.search.split('facebook.com/')[1].split(/\W/g)[0];
 				FB.api({
 						method: 'fql.query',
-						query: 'SELECT eid, pic_big, ticket_uri FROM event WHERE CONTAINS("'+$scope.search+' '+$scope.citySelect+'") ORDER BY start_time ASC',
+						query: 'SELECT eid, start_time, name, pic_big FROM event WHERE creator IN (SELECT page_id FROM page WHERE username = "'+facebookTitle+'") AND start_time >= now() ORDER BY start_time DESC',
 						access_token: $scope.authToken
 					},
 					function (response) {
@@ -78,7 +75,6 @@ angular.module('showhaus')
 						}
 					}
 				);
-			}
 		};
 		$scope.parseInt = function(string){
 			return parseInt(string);

@@ -9,25 +9,13 @@
 </div>
 <article class="rest">
   <div id="static_wrap">
-	<h1><strong> Click Event to Post</strong></h1>
+	<h1><strong>feeds</strong></h1>
   </div>
 	<div id="filter_contain" style="margin: 0 auto;">
 		<div id="filter">
-			<div class="filter_city">
-				<select data-placeholder="SELECT CITY"
-						id="filter_city" name="city" ng-model="citySelect"">
-					<option>Baltimore</option>
-					<option>Brooklyn</option>
-					<option>DC</option>
-				</select>
-			</div>
 			<div class="search">
-				<input type="text" ng-model="search" width="100px" />
+				<input type="text" placeholder="facebook link" ng-model="search" width="100px" />
 				<input type="submit" ng-click="executeSearch()"/>
-			</div>
-			<div class="filter_free">
-				<input type="checkbox" ng-model="ticketbox" ng-true-value="true" ng-false-value=""> Ticket shows
-				only
 			</div>
 		</div>
 	</div>

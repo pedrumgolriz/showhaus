@@ -87,9 +87,9 @@ angular
 				templateUrl: 'pages/edit.html',
 				controller: 'EditCtrl'
 			})
-			.when('/admin',{
-				templateUrl: 'pages/admin.html',
-				controller: 'AdminCtrl'
+			.when('/feeds',{
+				templateUrl: 'pages/feeds.html',
+				controller: 'FeedsCtrl'
 			})
 			.otherwise({
 				redirectTo: '/'

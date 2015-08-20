@@ -1,121 +1,94 @@
-<div id="logo_container">
-  <div class="logo" onclick="window.location = '#!main';"></div>
-  <div class="learnmore">
-    your friendly neighborhood show aggregator, <a ng-href="/#!post" class="postashow"> POST A SHOW </a>.
-  </div>
-
-
-  <div id="filter_contain" style="margin: 0 auto;">
-    <div id="filter">
-      <div class="filter_city">
-        <select class="chosen-select" data-placeholder="SELECT CITY"
-                id="filter_city" name="city" ng-model="citySelect" ng-change="resetVenues(); setNewCookie()">
-          <option value="">All Cities</option>
-          <option>Baltimore</option>
-          <option>Brooklyn</option>
-          <option>DC</option>
-        </select>
-      </div>
-      <div class="filter_venue">
-        <select ng-model="venueSelect" class="chosen-select" data-placeholder="SELECT VENUE"
-                id="filter_venue" name="venue">
-          <option value="">All Venues</option>
-          <option ng-repeat="venue in venues | filter:citySelect" ng-show="citySelect">{{venue[1]}}</option>
-        </select>
-      </div>
-      <div class="filter_free">
-        <input type="checkbox" ng-model="freebox" ng-true-value="true" ng-false-value=""> <span class="free">FREE</span> shows
-        only
-      </div>
-      <div class="filter_view">
-        view:
-        <span class="view"><a href="" ng-click="list=true; grid=false">[list]</a></span>
-        <span class="view"><a href="" ng-click="grid=true; list=false">[gallery]</a></span>
-      </div>
-    </div>
-  </div>
-</div>
-<div ng-show="loading" style="text-align:center;">
-	<div class="loading">
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
+<div class="home-nav">
+	<div class="links">
+		<a href="#!about">about</a>
+		<a href="#!api">api</a>
+		<a href="#!feeds">feeds</a>
+		<a href="#!post">[ post a show ]</a>
 	</div>
 </div>
-<div class="listview_contain" style="margin: 0 auto;" ng-show="list" ng-hide="loading">
-  <!-- table -->
-  <table class="gridtable" ng-if="events.length">
-    <tr>
-      <th class="datetime">date/time</th>
-      <th class="title">title of show</th>
-      <th class="tableprice">$$$</th>
-      <th class="tablevenue">venue</th>
-    </tr>
-    <tbody class="theEvents">
-      <tbody ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:freeFilter">
-        <tr ng-class="event.featured=='today' ? 'list_today':''" ng-click="go('{{event.city}}','{{event.venue}}','{{event.id}}')">
-          <td class="list_align">
-            <strong>{{event.date}}</strong>
-            <br/>
-            <div class="list_subtext">{{event.time}}</div>
-          </td>
-          <td>
-            <span class="titles">
-              <strong>{{event.title}}</strong>
-              <span class="subtitle" ng-if="event.subtitle">{{event.subtitle}}</span>
-            </span>
-            <div class="list_category">{{event.tag1}}</div>
-            <div class="list_category" ng-if="event.tag2">{{event.tag2}}</div>
-          </td>
-          <td class="list_align">
-            <span class="free" ng-if="event.price==0">free</span>
-            <span ng-if="event.price>0">${{event.price}}</span>
-          </td>
-          <td class="list_align">
-            <strong>{{event.venue}}</strong>
-            <br/>
-            <div class="list_subtext" ng-if="event.address">{{event.address}}</div>
-          </td>
-        </tr>
-        </tbody>
-    </tbody>
-  </table>
+
+<!-- hero -->
+<div class="hero-contain">
+	<div class="showhaus">SHOWHAUS</div>
+	<select id="select-beast" class="demo-default" placeholder="SELECT CITY" ng-model="citySelect">
+		<option value="">   SELECT CITY   </option>
+		<option value="Baltimore">Baltimore</option>
+		<option value="Brooklyn">Brooklyn</option>
+		<option value="DC">D.C</option>
+	</select>
+	----->
+	<select id="select-beast" class="demo-default" ng-model="venueSelect" data-placeholder="SELECT VENUE"
+			id="filter_venue" name="venue">
+		<option value="">All Venues</option>
+		<option ng-repeat="venue in venues | filter:citySelect">{{venue[1]}}</option>
+	</select>
 </div>
-<div class="gridview_contain" ng-show="grid">
-  <div class="show" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | filter:freeFilter">
-    <div class="venue">
-      <div class="title">{{event.venue}}</div>
-    </div>
-    <div class="art">
-      <a href="#" ng-click="go('{{event.city}}','{{event.venue}}','{{event.id}}')">
-        <div class="poster" ng-switch ng-style="{'background-image':'url('+event.poster+')'}"></div>
-      </a>
-    </div>
-    <div class="description">
-      <div class="divider"></div>
-      <span class="date"><strong>{{event.date}}</strong> @ {{event.time}} </span>
-      <div class="divider"></div>
-      <br>
-      <span class="title"><a href="#" ng-click="go('{{event.city}}','{{event.venue}}','{{event.id}}')">{{event.title}}</a></span>
-      <br>
-      <span class="act">{{event.subtitle}}</span><br>
-    </div>
-    <div class="showfooter">
-      <span class="categoryone">{{event.tag1}}</span>
-      <span class="categorytwo" ng-if="event.tag2">{{event.tag2}}</span>
-		    <span style="margin: 3px 5px 5px 4px; display:inline-block;">
-		    <span style="color: rgb(201, 201, 201); font-size: 11px;">//</span>
-          <span class="price" ng-if="event.price==0">&nbsp;free</span>
-          <span class="price" ng-if="event.price>0">&nbsp;$ {{event.price}}&nbsp;</span>
-		    </span>
-		[ <a href="#" >GET TICKETS</a> ]
-    </div>
-  </div>
+
+<div class="content">
+	<div ng-show="loading" style="text-align:center;">
+		<div class="loading">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
+
+	<!-- show -->
+	<div class="show-contain" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
+		<div class="show-detail-contain">
+			<div class="show-date">
+				<div class="day">Today</div>
+				<div class="date">{{event.date}}</div>
+			</div>
+
+			<div class="show-venue">
+				<div class="venue">{{event.venue}}</div>
+				<div class="address"><a href="#">{{event.address}}</a></div>
+			</div>
+
+			<div class="show-title" ng-click="expand($event)">
+				<div class="title"><a href="#">{{event.title}}</a></div>
+				<div class="show-meta">
+					<div class="show-price">
+						<span ng-if="event.price>0">${{event.price}}</span>
+						<span ng-if="event.price==0">free</span>
+					</div>
+					<img style="width:20px;" src="../assets/outbound.png">
+				</div>
+			</div>
+		</div>
+		<div class="expand-contain">
+			<div class="show-img">
+				<img src="../assets/eventart1.jpg">
+			</div>
+
+			<div class="show-description">Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+
+				Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus.
+
+				Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.
+
+				Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui.</div>
+			<br/>
+			<div class="expand-close" ng-click="collapse($event)"> <a href="#">▲ CLOSE ▲</a></div>
+		</div>
+	</div>
+
+	<!-- end show -->
+
+	<div style="text-align:center;" ng-show="numPages > 1">
+		<
+			<span ng-repeat="i in getNumber(numPages) track by $index">
+				{{$index}}
+			</span>
+		>
+	</div>
+
 </div>
-<div class="list_align" ng-if="!events.length&&!loading">
-	<h1>No shows listed</h1>
+
 </div>

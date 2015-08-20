@@ -141,13 +141,14 @@ angular.module('showhaus')
 				FB.api(
 					{
 						method: 'fql.query',
-						query: 'SELECT pic_cover FROM event WHERE eid = ' + facebookEvent
+						query: 'SELECT pic_cover, ticket_uri FROM event WHERE eid = ' + facebookEvent
 					},
 					function (response) {
 						if (response && !response.error) {
 							$scope.$apply(function() {
 								var fbImage = response[0].pic_cover.source; //jshint ignore:line
 								$scope.fbImage = fbImage;
+								$scope.ticket = response[0].ticket_uri
 							});
 						}
 						else{

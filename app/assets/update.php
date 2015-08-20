@@ -10,29 +10,29 @@ $_POST = file_get_contents("php://input");
 $_POST = json_decode($_POST, TRUE);
 $mysqli = new mysqli("localhost", "overwrite", "Mfve5@09", "haus");
 
-$city = htmlspecialchars(stripslashes($_POST['city']));
+$city = mysqli_real_escape_string($mysqli, $_POST['city']);
 if($_POST['newvenue']!=""){
-    $venue = htmlspecialchars(stripslashes($_POST['newvenue']));
+    $venue = mysqli_real_escape_string($mysqli, $_POST['newvenue']);
 }else{
-    $venue = htmlspecialchars(stripslashes($_POST['venue']));
+    $venue = mysqli_real_escape_string($mysqli, $_POST['venue']);
 }
-$title = htmlspecialchars(stripslashes($_POST['title']));
-$subtitle = htmlspecialchars(stripslashes($_POST['subtitle']));
-$date = htmlspecialchars(stripslashes($_POST['date']));
-$time = htmlspecialchars(stripslashes($_POST['time']));
-$price = htmlspecialchars(stripslashes($_POST['price']));
-$description = htmlspecialchars(stripslashes($_POST['description']));
+$title = mysqli_real_escape_string($mysqli, $_POST['title']);
+$subtitle = mysqli_real_escape_string($mysqli, $_POST['subtitle']);
+$date = mysqli_real_escape_string($mysqli, $_POST['date']);
+$time = mysqli_real_escape_string($mysqli, $_POST['time']);
+$price = mysqli_real_escape_string($mysqli, $_POST['price']);
+$description = mysqli_real_escape_string($mysqli, $_POST['description']);
 $tags = $_POST['tags'];
-$tag1 = htmlspecialchars(stripslashes($tags[0]));
-$tag2 = htmlspecialchars(stripslashes($tags[1]));
+$tag1 = mysqli_real_escape_string($mysqli, $tags[0]);
+$tag2 = mysqli_real_escape_string($mysqli, $tags[1]);
 for ($i = 1; $i<count($tags); $i++){
-    $tag2 = htmlspecialchars(stripslashes($tags[$i]));
+    $tag2 = mysqli_real_escape_string($mysqli, $tags[$i]);
 }
 $id = $_POST['id'];
 
 
 if($_POST["fbimage"]!=""){
-    $poster =  htmlspecialchars(stripslashes($_POST["fbimage"]));
+    $poster = mysqli_real_escape_string($mysqli, $_POST["fbimage"]);
 }
 else if($_POST["poster"]){
     $fileExt = explode("image/", $_POST["poster"])[1];
@@ -43,9 +43,9 @@ else if($_POST["poster"]){
 }
 
 
-$email = htmlspecialchars(stripslashes($_POST['email']));
+$email = mysqli_real_escape_string($mysqli, $_POST['email']);
 $password = generate_password();
-$newvenue = htmlspecialchars(stripslashes($_POST['venue_address']));
+$newvenue = mysqli_real_escape_string($mysqli, $_POST['venue_address']);
 if($_POST['newvenue']!=""){
     $theselect = mysqli_query($mysqli, "SELECT * FROM venue WHERE venue = '".$venue."' && city = '".$city."'");
     if(mysqli_num_rows($theselect)==0){

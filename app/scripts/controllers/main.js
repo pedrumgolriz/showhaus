@@ -29,7 +29,7 @@ function geolocation() {
   if (getcookies === 'all'){
     getcookies = '';
   }
-  if (getcookies||getcookies==='') {
+  if (getcookies.length > 0) {
     return getcookies;
   }
   else if (navigator.geolocation && !getcookies) {
@@ -81,7 +81,7 @@ angular.module('showhaus')
 	//}, 30000);
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue){
-		$(".ui-dialog-content").dialog("destroy");
+	$(".ui-dialog-content").dialog("destroy");
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
 	}
@@ -129,7 +129,36 @@ angular.module('showhaus')
     if(typeof getSetVenue.get() === 'string'){
       $scope.venueSelect = getSetVenue.get();
     }
-	if($scope.citySelect!=""){
-		$('select').trigger('chosen:updated')
+	$scope.openMaps = function(address){
+		address = address.replace(/\s+/g, '+');
+		window.open('https://google.com/maps/place/'+address, '_blank');
 	}
+	$scope.formattedSubtitle = function(sub){
+		sub.replace(/(<([^>]+)>)/ig,"")
+		return sub;
+	}
+	var numPages = events.length / 10;
+		console.log(numPages);
+	if(parseInt(numPages)>1){
+		$scope.numPages = parseInt(numPages);
+	}
+	$scope.getNumber = function(num) {
+		return new Array(num);
+	}
+	$scope.expand = function(e){
+		e.preventDefault();
+		$(e.target).parents('.show-detail-contain').next('.expand-contain').slideToggle('slow');
+	}
+	$scope.collapse = function(e){
+		e.preventDefault();
+		$(e.target).parents('.expand-contain').slideUp('slow');
+	}
+	$scope.$watchCollection('citySelect', function() {
+		if($scope.citySelect==""){
+			$scope.resetVenues();
+		}
+		else{
+			$('select').trigger('chosen:updated');
+		}
+	});
   });
