@@ -43,7 +43,7 @@ function geolocation() {
             /*jshint camelcase: false */
             var zip = res[0].formatted_address.match(/,\s\w{2}\s(\d{5})/)[1];
             if (zip >= DC_ZIP_ARRAY[0] && zip <= DC_ZIP_ARRAY[1]) {
-              GEO_CITY = 'DC';
+              //GEO_CITY = 'DC';
             }
             else if (zip >= BALTIMORE_ZIP_ARRAY[0] && zip <= BALTIMORE_ZIP_ARRAY[1]) {
               GEO_CITY = 'Baltimore';

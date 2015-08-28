@@ -1,41 +1,56 @@
-<div id="static_topnav">
-	<div class="breadcrumbs">
-		<a href="#!main">SHOWHAUS</a> &gt; YOUR SHOW HAS BEEN POSTED
-	</div>
-</div>
-<div id="static_wrap" style="text-align: center">
-	<h1>Great success! Your show has been posted!</h1>
+<style>
 
-    <!-- ░░░░░░░░░░░░░░░░ preview gallery element ░░░░░░░░░░░░░░░░ -->
-    <div class="preview_contain show" ng-repeat="event in events">
-		<div class="venue">
-			<div class="title">{{event.venue}}</div>
-		</div>
-		<div class="art">
-			<a href="/#!showpage?post={{event.id}}">
-				<div class="poster" ng-switch ng-style="{'background-image':'url('+event.poster+')'}"></div>
-			</a>
-		</div>
-		<div class="description">
-			<div class="divider"></div>
-			<span class="date"><strong>{{event.date}}</strong> @ {{event.time}} </span>
-			<div class="divider"></div>
-			<br>
-			<span class="title"><a href="/#!showpage?post={{event.id}}">{{event.title}}</a></span>
-			<br>
-			<span class="act">{{event.subtitle}}</span><br>
-		</div>
-		<div class="showfooter">
-			<span class="categoryone">{{event.tag1}}</span>
-			<span class="categorytwo" ng-if="event.tag2">{{event.tag2}}</span>
+	* {
+		line-height: 1.2;
+		margin: 0;
+	}
 
-            <span class="tickets">
-                <span class="price" ng-if="event.price==0">&nbsp;free</span>
-                <span class="price" ng-if="event.price>0">&nbsp;$ {{event.price}}&nbsp;</span>
-			[ <a href="#" >GET TICKETS</a> ]
-			</span>
-		</div>
-	</div>
-    <!-- ░░░░░░░░░░░░░░░░ end preview gallery element ░░░░░░░░░░░░░░░░ -->
-	<p style="text-align: center;"><br/>We will email you instructions soon on how to edit or update your listing.</p>
+	html {
+		color: #888;
+		display: table;
+		font-family: sans-serif;
+		height: 100%;
+		text-align: center;
+		width: 100%;
+	}
+
+	body {
+		display: table-cell;
+		vertical-align: middle;
+		margin: 2em auto;
+	}
+
+	h1 {
+		color: #555;
+		font-size: 2em;
+		font-weight: 400;
+	}
+
+	p {
+		margin: 0 auto;
+		width: 280px;
+	}
+
+	@media only screen and (max-width: 280px) {
+
+		body, p {
+			width: 95%;
+		}
+
+		h1 {
+			font-size: 1.5em;
+			margin: 0 0 0.3em;
+		}
+
+	}
+
+</style>
+<div ng-repeat="event in events">
+	<h1>Success!</h1>
+	<p>You successfully posted a show to Showhaus!</p>
+	<p> In a moment, you’ll receive an email with a link to edit/delete your show (if you gave us your email).</p>
+	<p> You can also use this link:
+		<br>http://showhaus.org/{{event.id}}/edit</p>
+	<p>Thanks for posting!</p>
+	<p><< back to showhaus.org</p>
 </div>

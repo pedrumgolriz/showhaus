@@ -1,3 +1,8 @@
+<!--
+Bug list:
+Venue list
+Default city should be set on change
+-->
 <div class="home-nav">
 	<div class="links">
 		<a href="#!about">about</a>
@@ -10,14 +15,14 @@
 <!-- hero -->
 <div class="hero-contain">
 	<div class="showhaus">SHOWHAUS</div>
-	<select id="select-beast" class="demo-default" placeholder="SELECT CITY" ng-model="citySelect">
+	<select id="select-beast" class="demo-default venue-select" placeholder="SELECT CITY" ng-model="citySelect" ng-change="setNewCookie()">
 		<option value="">   SELECT CITY   </option>
 		<option value="Baltimore">Baltimore</option>
 		<option value="Brooklyn">Brooklyn</option>
-		<option value="DC">D.C</option>
+		<!--<option value="DC">D.C</option>-->
 	</select>
-	----->
-	<select id="select-beast" class="demo-default" ng-model="venueSelect" data-placeholder="SELECT VENUE"
+	&#x27ff;
+	<select id="select-beast" class="demo-default venue-select" ng-model="venueSelect" data-placeholder="SELECT VENUE"
 			id="filter_venue" name="venue">
 		<option value="">All Venues</option>
 		<option ng-repeat="venue in venues | filter:citySelect">{{venue[1]}}</option>
@@ -40,43 +45,40 @@
 
 	<!-- show -->
 	<div class="show-contain" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
-		<div class="show-detail-contain">
-			<div class="show-date">
-				<div class="day">Today</div>
-				<div class="date">{{event.date}}</div>
-			</div>
+		<span id="{{event.id}}">
+			<div class="show-detail-contain">
+				<div class="show-date">
+					<div class="day">Today</div>
+					<div class="date">{{event.date}}</div>
+				</div>
 
-			<div class="show-venue">
-				<div class="venue">{{event.venue}}</div>
-				<div class="address"><a href="#">{{event.address}}</a></div>
-			</div>
+				<div class="show-venue">
+					<div class="venue">{{event.venue}}</div>
+					<div class="address"><a href="#">{{event.address}}</a></div>
+				</div>
 
-			<div class="show-title" ng-click="expand($event)">
-				<div class="title"><a href="#">{{event.title}}</a></div>
-				<div class="show-meta">
-					<div class="show-price">
-						<span ng-if="event.price>0">${{event.price}}</span>
-						<span ng-if="event.price==0">free</span>
+				<div class="show-title">
+					<div class="title" ng-click="expand($event)" ng-if="event.description"><a href="#">{{event.title}}</a></div>
+					<div class="title" ng-click="extshow(event.external_event)" ng-if="event.external_event"><a href="#">{{event.title}}</a></div>
+					<div class="show-meta">
+						<div class="show-price">
+							<span ng-if="event.price>0">${{event.price}}</span>
+							<span ng-if="event.price==0">free</span>
+						</div>
+						<img style="width:20px;" src="../assets/outbound.png" ng-if="external_event">
 					</div>
-					<img style="width:20px;" src="../assets/outbound.png">
 				</div>
 			</div>
-		</div>
-		<div class="expand-contain">
-			<div class="show-img">
-				<img src="../assets/eventart1.jpg">
+			<div class="expand-contain">
+				<div class="show-img">
+					<img src="../assets/eventart1.jpg">
+				</div>
+
+				<div class="show-description" ng-bind-html="event.description"></div>
+				<br/>
+				<div class="expand-close" ng-click="collapse($event)"> <a href="#">▲ CLOSE ▲</a></div>
 			</div>
-
-			<div class="show-description">Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-
-				Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus.
-
-				Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.
-
-				Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui.</div>
-			<br/>
-			<div class="expand-close" ng-click="collapse($event)"> <a href="#">▲ CLOSE ▲</a></div>
-		</div>
+		</span>
 	</div>
 
 	<!-- end show -->

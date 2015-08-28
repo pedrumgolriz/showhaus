@@ -7,7 +7,7 @@
  * # PostCtrl
  * Controller of the showhausAngApp
  */
-var genreArray = ['list', 'grid', 'limited'];
+//var genreArray = ['list', 'grid', 'limited'];
 function getCookie(cname) {
 	var name = cname + '=';
 	var ca = document.cookie.split(';');
@@ -37,21 +37,6 @@ window.fbAsyncInit = function () {
 	js.src = 'https://connect.facebook.net/en_US/all.js';
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-/* jshint ignore:start */
-$(window).bind("blur focus focusin focusout load resize scroll unload click " +
-	"dblclick mousedown mouseup mousemove mouseover mouseout mouseenter " +
-	"mouseleave change select submit keydown keypress keyup error", function () {
-	$('select').chosen().trigger('liszt:updated');
-	$('select').on('change', function () {
-		$('#postshow_venue').trigger('chosen:updated');
-	});
-});
-$('a[name="rulesagreement"]').on('click', function () {
-	$('html, body').animate({
-		scrollTop: 0
-	}, 'slow');
-});
-/* jshint ignore:end */
 var venues = [];
 var preUrl = 'http://v2.showhaus.org/';//set to blank for release
 angular.module('showhaus')
@@ -86,10 +71,10 @@ angular.module('showhaus')
 			$scope.venue = '';
 		};
 		$scope.postEvent = function (isValid) {
-			if(isValid&&$scope.citySelect !== 'all') {
-				if($('#tags').val()===''){
+			if(isValid) {
+				/*if($('#tags').val()===''){
 					$('#tags').val('haus');
-				}
+				}*/
 				var file = $('#imgpreview').attr('src');
 				var data = {
 					'city': $scope.citySelect,
@@ -102,7 +87,7 @@ angular.module('showhaus')
 					'time': $scope.time,
 					'price': $scope.price,
 					'description': $scope.description,
-					'tags': document.getElementById('tags').value,
+					//'tags': document.getElementById('tags').value,
 					'email': $scope.email,
 					'fbimage': $scope.fbImage,
 					'poster': file
@@ -117,20 +102,9 @@ angular.module('showhaus')
 					});
 			}
 			else{
-				$('.ng-invalid').addClass('invalid');
-				if(!$scope.venue){
-					$('#postshow_venue_chosen').addClass('invalid');
-				}
-				else{
-					$('#postshow_venue_chosen').removeClass('invalid');
-				}
-				if($scope.citySelect === 'all'){
-					$('#postshow_city_chosen').addClass('invalid');
-				}
-				else{
-					$('#postshow_city_chosen').removeClass('invalid');
-				}
-				$scope.invalid = true;
+				$('.ng-invalid').each(function(){
+					$('.ng-invalid .error').show();
+				});
 			}
 		};
 		$scope.fbEvent = function(){
@@ -175,9 +149,9 @@ angular.module('showhaus')
 							$scope.title = response.name;
 							$scope.subtitle = $scope.title.substring(80, 190);
 							/* jshint ignore:start */
-							CKEDITOR.instances.editor.setData('',function(){
+							/*CKEDITOR.instances.editor.setData('',function(){
 								this.insertText(response.description);
-							});
+							});*/
 							/* jshint ignore:end */
 							if(response.venue.state.toLowerCase() === 'dc' || response.venue.state.toLowerCase() === 'd.c' || response.venue.state.toLowerCase() === 'washington dc'){
 								$scope.citySelect = 'DC';
@@ -190,7 +164,7 @@ angular.module('showhaus')
 									$scope.venue = $scope.venues[q][1];
 								}
 							}
-							if(!$scope.venue&&$('#postshow_city').val().indexOf('?')!==0){
+							if($scope.venue != response.location){
 								$scope.venue = 'newvenue';
 								$scope.newvenuename = response.location;
 								$scope.newvenueaddress = response.venue.street;
@@ -213,14 +187,14 @@ angular.module('showhaus')
 							fbTime = timeHour + timeMins + ' ' + ampm;
 							$scope.date = fbDate;
 							$scope.time = fbTime;
-							var tag1;
+							/*var tag1;
 							for (var i = 0; i < genreArray.length; i++) {
 								var genre = response.description.indexOf(genreArray[i]);
 								if (genre !== -1) {
 									tag1 = genreArray[i];
 								}
 							}
-							$('#tags').select2('val',[tag1]);
+							$('#tags').select2('val',[tag1]);*/
 							var price = response.description.split('$');
 							price = price[1];
 
@@ -238,21 +212,13 @@ angular.module('showhaus')
 								price = 0;
 							}
 							$scope.price = price;
+							$scope.external = true;
 						});
-						$('.filter_city').trigger('chosen:updated');
-						$('.filter_city').trigger('chosen:updated');
-						if($('#postshow_venue').val() == "? undefined:undefined ?"){
-							$('#postshow_venue').val('newvenue')
-							$('select').trigger('chosen:updated');
-							$scope.venue = 'newvenue';
-							$scope.newvenuename = response.location;
-							$scope.newvenueaddress = response.venue.street;
-						}
 					}
 				);
 			}
 			else{
-				console.log('facebook event parse failed');
+				$scope.external = false;
 			}
 		};
 		$scope.fbLogin = function(){
@@ -260,21 +226,7 @@ angular.module('showhaus')
 				scope: ''
 			});
 		};
-		$scope.genreArray = ['grid','list'];
-		$scope.checkvalid = function(){
-			if(!$scope.venue){
-				$('#postshow_venue_chosen').addClass('invalid');
-			}
-			else{
-				$('#postshow_venue_chosen').removeClass('invalid');
-			}
-			if($scope.citySelect === 'all'){
-				$('#postshow_city_chosen').addClass('invalid');
-			}
-			else{
-				$('#postshow_city_chosen').removeClass('invalid');
-			}
-		};
+		//$scope.genreArray = ['grid','list'];
 		$scope.fileCheck = function(){
 			var file = $('input[type=file]')[0].files[0];
 			var size = file.size/1048576;
