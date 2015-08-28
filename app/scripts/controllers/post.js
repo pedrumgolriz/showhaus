@@ -70,8 +70,8 @@ angular.module('showhaus')
 		$scope.resetVenues = function () {
 			$scope.venue = '';
 		};
-		$scope.postEvent = function (isValid) {
-			if(isValid) {
+		$scope.postEvent = function () {
+			if($scope.form.$valid) {
 				/*if($('#tags').val()===''){
 					$('#tags').val('haus');
 				}*/
