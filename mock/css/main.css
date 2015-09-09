@@ -192,7 +192,7 @@ border-bottom: dotted 1px;
 }
 
 .show-detail-contain {
-    padding: 10px 10px 35px 10px;
+    padding: 10px 10px 25px 10px;
     display: inline-block;
  }
 
@@ -265,14 +265,13 @@ border-bottom: dotted 1px;
 }
 
 .show-price {
-    padding: 3px 3px;
+    padding: 1px 3px;
     border-radius: 3px;
     color: white;
     background-color: green;
-    font-size:10px;
-    display:inline-block;
-    margin: 0 0 0 7px;
-    line-height:10px;
+    font-size: 10px;
+    display: inline-block;
+    margin: 0 0 2px 8px;
     vertical-align: middle;
 }
 
