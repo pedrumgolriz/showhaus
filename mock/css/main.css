@@ -78,56 +78,48 @@ p {
   font-size: 12px/1.5em;
 }
 
+a:visited {color: black;}
+
 /* ░░░░░░░░░░░░ main nav ░░░░░░░░░░░░ */
 
 .nav {
     height: 30px;
-    background-color: #F9F9F9;
-    border-bottom: 1px solid rgba(165, 165, 165, 0.19);
+    width: 500px;
+    text-align: center;
+    padding: 5px 0 20px 0;
+    margin: 0 auto;
 }
 
-.home-nav {
-    height: 35px;
-    background-color: #F9F9F9;
-    border-bottom: 1px solid rgba(165, 165, 165, 0.19);
+.nav a {
+margin: 0 5px;
+text-decoration: none;
 }
 
-.home-nav.postshow {
-    float: right;
-    padding: 10px;
+.nav a:hover {
+border-bottom: dotted 1px;
 }
 
-nav.links {
-    float: right;
-    width: 140px;
-    text-align: right;
-    padding: 10px 20px 0 0;
-    
+.nav a.postshow {
+    color: red;
+    padding:3px 4px;
+
 }
 
-nav.links a {
-	padding: 0 5px;
+.nav a.postshow:hover {
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+    border-bottom: none;
 }
 
-.home-nav .links {
-    float: right;
-    width: 240px;
-    text-align: right;
-    padding: 10px 20px 0 0;
-    font-size: 11px;
+.nav a {
+    color: gray;
 }
 
-.home-nav .links a {
-	padding: 0 5px;
+.nav .divider {
+    color:#eee;
 }
 
-.breadcrumbs {
-	font-size: 12px;
-	color: gray;
-	width: 200px;
-	float: left;
-	padding: 8px 0 0 10px;
-}
 
 /* ░░░░░░░░░░░░ hero ░░░░░░░░░░░░ */
 
@@ -152,12 +144,31 @@ nav.links a {
 	background-color: #d8d8d8;
 }
 
+.filter {
+    width: 500px;
+    background-color: #eee;
+    margin: 0 auto;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.filter-drop {
+    margin-top: 8px;
+
+}
+
+.filter .checkbox-text {
+    font-size: 12px;
+}
+
+
 
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░░ */
 
 .content {
 	padding: 10px 25px;
-    margin: 0 auto;
+    margin: 70px auto 0 auto;
     max-width: 900px
 }
 
@@ -235,8 +246,6 @@ nav.links a {
 .show-title a:visited {color: black;}
 
 .show-title .title {
-	font-size: 20px;
-	font-size: 20px;
     max-height: 200px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -255,17 +264,16 @@ nav.links a {
 	opacity: 0.25;
 }
 
-.show-meta {
-    padding: 8px 0 0 0;
-}
-
 .show-price {
-    padding: 3px 5px;
-    background-color: green;
+    padding: 3px 3px;
     border-radius: 3px;
     color: white;
-    font-size:12px;
+    background-color: green;
+    font-size:10px;
     display:inline-block;
+    margin: 0 0 0 7px;
+    line-height:10px;
+    vertical-align: middle;
 }
 
 .show-icon {
