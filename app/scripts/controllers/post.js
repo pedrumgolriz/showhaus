@@ -64,6 +64,8 @@ angular.module('showhaus')
 	})
 	.controller('PostCtrl', function ($scope, $http, $location) {
 		$(".ui-dialog-content").dialog("destroy");
+		$(".date").datepicker({ minDate: 0 });
+		$(".time").timepicker({ minTime: 0, show24Hours: false, timeFormat: "h:mm TT"});
 		//facebook stuff
 		$scope.citySelect = getCookie('city');
 		$scope.venues = venues;

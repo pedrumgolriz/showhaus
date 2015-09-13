@@ -112,8 +112,8 @@
 
 		<!-- enter date & price -->
 		<div class="postshow-dateprice">
-			<input type="text" name="date" placeholder="date" readonly required type="text" ng-model="date" class="date"></input>
-			<input type="text" name="date" placeholder="time" readonly required type="text" ng-model="time" class="time"></input>
+			<input class="date" type="text" name="date" placeholder="date" readonly required type="text" ng-model="date" class="date"></input>
+			<input class="time" type="text" name="date" placeholder="time" readonly required type="text" ng-model="time" class="time"></input>
 			<input placeholder="price" name="price" required ng-model="price" numbers-only="numbers-only" type="text" class="mini price"></input>
 			<div class="postshow-helptext">
 				For free shows, enter <strong>$0</strong> as the price.
@@ -166,9 +166,3 @@
 		</div>
 	</div>
 </form>
-<script>
-	$(function () {
-		$(".date").datepicker({ minDate: 0 });
-		$(".time").timepicker({ minTime: 0, show24Hours: false, timeFormat: "h:mm TT"});
-	});
-</script>

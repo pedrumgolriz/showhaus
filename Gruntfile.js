@@ -324,7 +324,8 @@ module.exports = function (grunt) {
 	        'scripts/*',
 	        'scripts/chosen/*',
 	        'pages/*html',
-	        'assets/*.{png,php,html}',
+	        'assets/*.{png,php,html,jpg}',
+
           ]
         }]
       },
