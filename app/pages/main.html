@@ -3,30 +3,31 @@ Bug list:
 Venue list
 Default city should be set on change
 -->
-<div class="home-nav">
-	<div class="links">
-		<a href="#!about">about</a>
-		<a href="#!api">api</a>
-		<a href="#!feeds">feeds</a>
-		<a href="#!post">[ post a show ]</a>
-	</div>
-</div>
-
 <!-- hero -->
 <div class="hero-contain">
 	<div class="showhaus">SHOWHAUS</div>
-	<select id="select-beast" class="demo-default venue-select" placeholder="SELECT CITY" ng-model="citySelect" ng-change="setNewCookie()">
-		<option value="">   SELECT CITY   </option>
-		<option value="Baltimore">Baltimore</option>
-		<option value="Brooklyn">Brooklyn</option>
-		<!--<option value="DC">D.C</option>-->
-	</select>
-	&#x27ff;
-	<select id="select-beast" class="demo-default venue-select" ng-model="venueSelect" data-placeholder="SELECT VENUE"
-			id="filter_venue" name="venue">
-		<option value="">All Venues</option>
-		<option ng-repeat="venue in venues | filter:citySelect">{{venue[1]}}</option>
-	</select>
+	<div class="nav">
+		<a href="#!about">about</a>
+		:: <a href="#!api">api</a>
+		:: <a href="#!feeds">feeds</a>
+		:: <a href="#!post" class="postshow">post a show</a>
+	</div>
+
+	<!-- filter -->
+	<div class="filter">
+		<select id="select-beast" class="filter-drop" placeholder="SELECT CITY" ng-model="citySelect" ng-change="setNewCookie()">
+			<option value="">   SELECT CITY   </option>
+			<option value="Baltimore">Baltimore</option>
+			<option value="Brooklyn">Brooklyn</option>
+		</select>
+		|
+		<select id="select-beast" class="filter-drop" placeholder="SELECT VENUE" ng-model="venueSelect" name="venue">
+			<option value="">All Venues</option>
+			<option ng-repeat="venue in venues | filter:citySelect">{{venue[1]}}</option>
+		</select>
+		|
+		<input type="checkbox" name="free" value="fre"><span class="checkbox-text">Free Shows Only</span><br>
+	</div>
 </div>
 
 <div class="content">
