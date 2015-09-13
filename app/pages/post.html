@@ -119,7 +119,7 @@
 				For free shows, enter <strong>$0</strong> as the price.
 			</div>
 			<div class="postshow-helptext error">
-				please correct the items above
+				please enter the items above
 			</div>
 		</div>
 	</div>
@@ -140,10 +140,10 @@
 	<div class="postshow-wrap" ng-if="!facebookEvent">
 		<!-- enter art -->
 		<div class="postshow-eventart">
-			<div id="imgDelete" alt="Remove Poster" ng-show="poster||fbImage" ng-click="imgDelete()">x</div>
-			<img id="imgpreview" alt="Image Preview" ng-show="poster||fbImage" src="{{poster||fbImage}}" style="max-width:500px;"/>
+			<div id="imgDelete" alt="Remove Poster" ng-if="poster" ng-click="imgDelete()">x</div>
+			<img id="imgpreview" alt="Image Preview" ng-if="poster" src="{{poster}}" style="max-width:500px;"/>
 			<input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg" ng-model="poster" onchange="angular.element(this).scope().fileCheck()"/>
-			<input type="text" style="display: none" ng-model="fbImage" value="{{fbImage}}"/>
+			<!--<input type="text" style="display: none" ng-model="fbImage" value="{{fbImage}}" ng-if="fbImage"/>-->
 		</div>
 	</div>
 

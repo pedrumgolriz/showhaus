@@ -276,7 +276,7 @@ a:visited {color: black;}
 }
 
 .show-icon {
-	background: url(../img/outbound.png) no-repeat scroll;
+	background: url(../assets/outbound.png) no-repeat scroll;
 	background-size: 15px 15px;
 	width: 15px;
 	height: 15px;
@@ -287,7 +287,7 @@ a:visited {color: black;}
 
 .show-detail-contain.expand {
 	margin: -20px 0 0 0;
-	background: url(../img/addvenuebg.png);
+	background: url(../assets/addvenuebg.png);
 	padding-top: 20px;
 }
 
@@ -315,7 +315,7 @@ a:visited {color: black;}
 .expand-close {
 	text-align: center;
 	padding:10px;
-	background: url(../img/addvenuebg.png);
+	background: url(../assets/addvenuebg.png);
 	cursor:pointer;
 }
 
@@ -384,7 +384,7 @@ input.mini {max-width:50px}
 /* input styles */
 
 input.url {
-	background: url(../img/inputbg-1.png) no-repeat scroll 10px 12px;
+	background: url(../assets/inputbg-1.png) no-repeat scroll 10px 12px;
 	background-size: 15px 15px;
 	padding-left:30px;
 	background-color: white;
@@ -403,13 +403,13 @@ input.error:hover {
 }
 
 input.date {
-	background: url(../img/inputbg-2.png) no-repeat scroll 10px 12px;
+	background: url(../assets/inputbg-2.png) no-repeat scroll 10px 12px;
 	background-size: 15px 15px;
 	padding-left:30px;
 }
 
 input.price {
-	background: url(../img/inputbg-3.png) no-repeat scroll 10px 12px;
+	background: url(../assets/inputbg-3.png) no-repeat scroll 10px 12px;
 	background-size: 15px 15px;
 	padding-left:30px;
 	color: #4BA93F;
@@ -512,7 +512,7 @@ input.price {
 	margin: 0 auto;
 	padding: 25px 0 10px 0;
 	border-radius: 4px;
-	background: url(../img/addvenuebg.png);
+	background: url(../assets/addvenuebg.png);
 }
 
 .postshow-dateprice {

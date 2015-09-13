@@ -179,8 +179,10 @@ angular.module('showhaus')
 							fbDate = fbDate.split('-');
 							fbDate = fbDate[1] + '/' + fbDate[2] + '/' + fbDate[0];
 							var fbTime = fbDate[1];
-							var timeHour = dateTime[1].substr(0, 2);
-							var timeMins = dateTime[1].substr(2, 3);
+							if(dateTime[1]) {
+								var timeHour = dateTime[1].substr(0, 2);
+								var timeMins = dateTime[1].substr(2, 3);
+							}
 							var ampm = 'AM';
 							if (timeHour > 12) {
 								timeHour -= 12;

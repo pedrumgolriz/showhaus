@@ -32,8 +32,8 @@
 			<tbody class="theEvents">
 			<tbody ng-repeat="event in events">
 			<tr ng-class="event.featured=='today' ? 'list_today':''" ng-click="">
-				<td class="list_align">
-					<img class="admin_image" ng-if="event.image" src="{{event.image}}"/>
+				<td class="list_align" ng-if="event.image">
+					<img class="admin_image" ng-src="event.image"/>
 				</td>
 				<td class="list_align">
 					<strong>{{event.start_time.split('T')[0]}}</strong>

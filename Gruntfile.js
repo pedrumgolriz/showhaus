@@ -239,7 +239,7 @@ module.exports = function (grunt) {
     // },
     concat: {
       css: {
-        src: ['<%= yeoman.app %>/_css/*.css'],
+        src: ['<%= yeoman.app %>/_css/{,*/*}*.css'],
         dest: '<%= yeoman.app %>/_css/main.css'
       },
       js: {
@@ -324,8 +324,7 @@ module.exports = function (grunt) {
 	        'scripts/*',
 	        'scripts/chosen/*',
 	        'pages/*html',
-	        'assets/*.{png,php,html,jpg}',
-
+	        'assets/*.{png,php,html,jpg}'
           ]
         }]
       },
@@ -340,6 +339,12 @@ module.exports = function (grunt) {
 		  src: '**/*',           // copy all files and subfolders
 		  dest: '<%= yeoman.dist %>/assets',    // destination folder
 		  expand: true           // required when using cwd
+	  },
+	  jqimages:{
+		  cwd: '<%= yeoman.app %>/_css/jqtheme/images',
+		  dest: '<%= yeoman.dist %>/styles/images',
+		  src: '{,*/*}*',
+		  expand: true
 	  }
     },
 
@@ -405,6 +410,7 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'ngmin',
     'copy:dist',
+	'copy:jqimages',
     'cdnify',
     'cssmin',
     'uglify',

@@ -138,7 +138,6 @@ angular.module('showhaus')
 		return sub;
 	}
 	var numPages = events.length / 10;
-		console.log(numPages);
 	if(parseInt(numPages)>1){
 		$scope.numPages = parseInt(numPages);
 	}
