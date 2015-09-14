@@ -63,15 +63,15 @@ function geolocation() {
 //##End Geolocation##//
 var venues = [];
 var events = [];
-var preUrl = 'http://v2.showhaus.org/';//set to blank for release
+var preUrl = 'http://v3.showhaus.org/assets/';//set to blank for release
 //####Main####//
 angular.module('showhaus')
   .factory('venueCityFactory', function($resource) {
-    var jsonQuery = preUrl+'assets/venuecity.php';
+    var jsonQuery = preUrl+'venuecity.php';
     return $resource(jsonQuery, {},{query: {method:'JSONP', params:{callback: 'JSON_CALLBACK'}, isArray:true}});
   })
   .factory('eventsFactory', function($resource) {
-    var jsonQuery = preUrl+'assets/events.php';
+    var jsonQuery = preUrl+'events.php';
     return $resource(jsonQuery, {},{query: {method:'JSONP', params:{callback: 'JSON_CALLBACK'}, isArray:true}});
   })
   .run(function($http, venueCityFactory, eventsFactory, $interval) {

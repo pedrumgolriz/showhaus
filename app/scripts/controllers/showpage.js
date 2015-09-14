@@ -28,7 +28,7 @@ window.fbAsyncInit = function () {
   js.src = 'https://connect.facebook.net/en_US/all.js';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-var preUrl = 'http://v2.showhaus.org/';//set to blank for release
+var preUrl = 'http://v3.showhaus.org/assets/';//set to blank for release
 angular.module('showhaus')
   .controller('ShowpageCtrl', function ($scope, $resource, $location, getSetCity, getSetVenue, $http) {
 	$(".ui-dialog-content").dialog("destroy");
@@ -36,7 +36,7 @@ angular.module('showhaus')
 		$location.path('/main');
 	}
     var postnumber = $location.$$search.post;
-    var jsonQuery = preUrl + 'assets/events.php?post=' + postnumber;
+    var jsonQuery = preUrl + 'events.php?post=' + postnumber;
     $scope.events = $resource(jsonQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}}).query();
     $scope.fbshare = function(postnumber){
       FB.ui({
@@ -85,7 +85,7 @@ angular.module('showhaus')
 			'password': $scope.password
 		};
 		$http.post(
-				preUrl + 'assets/edit.php',
+				preUrl + 'edit.php',
 			$scope.data
 		).success(function (data, status) {
 				if(data=="success"){

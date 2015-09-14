@@ -38,10 +38,10 @@ window.fbAsyncInit = function () {
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 var venues = [];
-var preUrl = 'http://v2.showhaus.org/';//set to blank for release
+var preUrl = 'http://v3.showhaus.org/assets/';//set to blank for release
 angular.module('showhaus')
 	.factory('venueCityFactory', function ($resource) {
-		var jsonQuery = preUrl + 'assets/venuecity.php';
+		var jsonQuery = preUrl + 'venuecity.php';
 		return $resource(jsonQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
 	})
 	.animation('.rules', function () {
@@ -95,7 +95,7 @@ angular.module('showhaus')
 					'poster': file
 				};
 				$http.post(
-					preUrl + 'assets/new.php',
+					preUrl + 'new.php',
 					data
 				).success(function (data) {
 						$location.path('/success').search('post', data);
@@ -105,7 +105,7 @@ angular.module('showhaus')
 			}
 			else{
 				$('.ng-invalid').each(function(){
-					$('.ng-invalid .error').show();
+					$(this).addClass('error');
 				});
 			}
 		};
@@ -182,15 +182,16 @@ angular.module('showhaus')
 							if(dateTime[1]) {
 								var timeHour = dateTime[1].substr(0, 2);
 								var timeMins = dateTime[1].substr(2, 3);
+								var ampm = 'AM';
+								if (timeHour > 12) {
+									timeHour -= 12;
+									ampm = 'PM';
+								}
+								fbTime = timeHour + timeMins + ' ' + ampm;
+
+								$scope.time = fbTime;
 							}
-							var ampm = 'AM';
-							if (timeHour > 12) {
-								timeHour -= 12;
-								ampm = 'PM';
-							}
-							fbTime = timeHour + timeMins + ' ' + ampm;
 							$scope.date = fbDate;
-							$scope.time = fbTime;
 							/*var tag1;
 							for (var i = 0; i < genreArray.length; i++) {
 								var genre = response.description.indexOf(genreArray[i]);

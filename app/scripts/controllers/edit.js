@@ -26,7 +26,7 @@ angular.module('showhaus')
 	.controller('EditCtrl', function ($scope, $http, $location, $resource) {
 		$(".ui-dialog-content").dialog("destroy");
 
-		var preUrl = 'http://v2.showhaus.org/';//set to blank for release
+		var preUrl = 'http://v3.showhaus.org/assets/';//set to blank for release
 		var postnumber = $location.$$search.post;
 
 		$scope.editData = {
@@ -34,7 +34,7 @@ angular.module('showhaus')
 			"id": postnumber
 		}
 		$http.post(
-				preUrl + 'assets/edit.php',
+				preUrl + 'edit.php',
 			$scope.editData
 		).success(function (data, status) {
 				if(data=="success"){
@@ -51,8 +51,8 @@ angular.module('showhaus')
 			});
 
 
-		var eventsQuery = preUrl + 'assets/events.php?post=' + postnumber;
-		var venueQuery = preUrl + 'assets/venuecity.php';
+		var eventsQuery = preUrl + 'events.php?post=' + postnumber;
+		var venueQuery = preUrl + 'venuecity.php';
 		var venues = $resource(venueQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
 		var events = $resource(eventsQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
 		$scope.venues = venues.query();
@@ -107,7 +107,7 @@ angular.module('showhaus')
 					};
 				}
 				$http.post(
-						preUrl + 'assets/update.php',
+						preUrl + 'update.php',
 						data
 				).success(function (data) {
 						$location.path('/success').search('post', $location.$$search.post);
@@ -165,7 +165,7 @@ angular.module('showhaus')
 				'password': $scope.password
 			};
 			$http.post(
-				preUrl + 'assets/delete.php',
+				preUrl + 'delete.php',
 				$scope.data
 			).success(function (data, status) {
 					if(data == "success") {

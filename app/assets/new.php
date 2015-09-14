@@ -3,7 +3,6 @@ ini_set('display_errors',1);
 ini_set('display_startup_errors',1);
 error_reporting(E_ALL & ~E_NOTICE);
 
-header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 $_POST = file_get_contents("php://input");
@@ -94,7 +93,7 @@ $from = "noreply@showhaus.org";
 $headers = "From: $from". "\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$message = file_get_contents("../email.html");
+$message = file_get_contents("email.html");
 $variables = array();
 $variables['postnumber'] = $postnumber;
 $variables['password'] = $password;
