@@ -388,6 +388,7 @@ input.url {
     background-size: 15px 15px;
     padding-left:30px;
     background-color: white;
+    margin: 25px 0 0 0;
 }
 
 input.success,
