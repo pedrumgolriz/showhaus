@@ -49,7 +49,7 @@ function geolocation() {
               GEO_CITY = 'Baltimore';
             }
             else if (zip >= BROOKLYN_ZIP_ARRAY[0] && zip <= BROOKLYN_ZIP_ARRAY[1]) {
-              GEO_CITY = 'Brooklyn';
+              GEO_CITY = 'NYC';
             }
             document.cookie = 'zip=' + zip;
             document.cookie = 'city=' + GEO_CITY;

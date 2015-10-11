@@ -18,12 +18,12 @@ Default city should be set on change
 		<select id="select-beast" class="filter-drop" placeholder="SELECT CITY" ng-model="citySelect" ng-change="setNewCookie()">
 			<option value="">   SELECT CITY   </option>
 			<option value="Baltimore">Baltimore</option>
-			<option value="Brooklyn">Brooklyn</option>
+			<option value="NYC">NYC</option>
 		</select>
 		|
 		<select id="select-beast" class="filter-drop" placeholder="SELECT VENUE" ng-model="venueSelect" name="venue">
 			<option value="">All Venues</option>
-			<option ng-repeat="venue in venues | filter:citySelect | orderBy: -venue[1]">{{venue[1]}}</option>
+			<option ng-repeat="venue in venues | filter:citySelect">{{venue[1]}}</option>
 		</select>
 		|
 		<input type="checkbox" name="free" value="fre"><span class="checkbox-text">Free Shows Only</span><br>
