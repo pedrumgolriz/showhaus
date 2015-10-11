@@ -87,6 +87,7 @@ angular.module('showhaus')
 	}
     $scope.venues = venues;
     $scope.events = events;
+	console.log(events);
     //##FILTERS##//
     $scope.list = true; //sets list as default view
     $scope.resetVenues = function(){
@@ -151,6 +152,9 @@ angular.module('showhaus')
 	$scope.collapse = function(e){
 		e.preventDefault();
 		$(e.target).parents('.expand-contain').slideUp('slow');
+	}
+	$scope.extshow = function(url){
+		window.open(url,'_blank');
 	}
 	$scope.$watchCollection('citySelect', function() {
 		if($scope.citySelect==""){

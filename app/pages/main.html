@@ -60,17 +60,17 @@ Default city should be set on change
 
 				<div class="show-title">
 					<div class="title" ng-click="expand($event)" ng-if="event.description"><a href="#">{{event.title}}</a></div>
-					<div class="title" ng-click="extshow(event.external_event)" ng-if="event.external_event"><a href="#">{{event.title}}</a></div>
+					<div class="title" ng-click="extshow(event.fb_event)" ng-if="event.fb_event"><a href="#">{{event.title}}</a></div>
 					<div class="show-meta">
 						<div class="show-price">
 							<span ng-if="event.price>0">${{event.price}}</span>
 							<span ng-if="event.price==0">free</span>
 						</div>
-						<img style="width:20px;" src="../assets/outbound.png" ng-if="external_event">
+						<img style="width:20px;" src="../assets/outbound.png" ng-if="event.fb_event">
 					</div>
 				</div>
 			</div>
-			<div class="expand-contain">
+			<div class="expand-contain" ng-hide="event.fb_event">
 				<div class="show-img">
 					<img src="../assets/eventart1.jpg">
 				</div>
