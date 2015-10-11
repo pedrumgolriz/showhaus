@@ -93,16 +93,6 @@ angular.module('showhaus')
     $scope.resetVenues = function(){
       $scope.venueSelect = '';
     };
-	$scope.freeFilter = function(obj){
-		if($scope.freebox=='true'){
-			if(obj.price == 0){
-				return obj.price;
-			}
-		}
-		else{
-			return obj.price;
-		}
-	}
     //####//
     $scope.setNewCookie = function(){
       if($scope.citySelect!==''){
@@ -112,6 +102,9 @@ angular.module('showhaus')
         document.cookie = 'city=all';
       }
     };
+	if($scope.freebox){
+		console.log($scope.freebox);
+	}
     //set the city based on the users location
     $scope.citySelect = geolocation(); // jshint ignore:line
     //##go to showpage from list view##//

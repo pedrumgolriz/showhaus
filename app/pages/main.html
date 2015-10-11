@@ -26,7 +26,7 @@ Default city should be set on change
 			<option ng-repeat="venue in venues | filter:citySelect">{{venue[1]}}</option>
 		</select>
 		|
-		<input type="checkbox" name="free" value="fre"><span class="checkbox-text">Free Shows Only</span><br>
+		<input type="checkbox" name="free" value="free" ng-model="freebox"><span class="checkbox-text">Free Shows Only</span><br>
 	</div>
 </div>
 
@@ -46,12 +46,12 @@ Default city should be set on change
 
 	<!-- show -->
 	<div class="show-contain" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
-		<span id="{{event.id}}">
+		<span id="{{event.id}}" ng-hide="event.price>0&&freebox">
 			<div class="show-detail-contain">
 				<div class="show-date">
 					<div class="day" ng-if="event.date==today">Today</div>
                     <div class="day" ng-if="event.date==tomorrow">Tomorrow</div>
-                    <div ng-class="event.date==today||event.date==tomorrow ? date : day" >{{event.date}}</div>
+                    <div ng-class="(event.date==today || event.date==tomorrow) ? day : date" >{{event.date}}</div>
 				</div>
 
 				<div class="show-venue">
