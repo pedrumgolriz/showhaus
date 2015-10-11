@@ -164,4 +164,18 @@ angular.module('showhaus')
 			$('select').trigger('chosen:updated');
 		}
 	});
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+
+		var yyyy = today.getFullYear();
+		if(dd<10){
+			dd='0'+dd
+		}
+		if(mm<10){
+			mm='0'+mm
+		}
+		var tomorrow_dd = parseInt(dd)+1;
+		$scope.today = mm+'/'+dd+'/'+yyyy;
+		$scope.tomorrow = mm+'/'+tomorrow_dd+'/'+yyyy;
   });

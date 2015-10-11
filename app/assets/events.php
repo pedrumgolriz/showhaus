@@ -16,12 +16,6 @@ $today_flag = "0";
   $return = array();
   while($row = mysqli_fetch_assoc($query)){
     //formatting of dates
-    if($server_date == $row['date']){
-      $row['featured'] = "today";
-      if($edit == 0){
-        $row['date'] = "Today";
-      }
-    }
     //format the location of the image
     if($row['poster']!=""){
       if(substr($row['poster'], 0, 4)=="http"){

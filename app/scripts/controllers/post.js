@@ -92,7 +92,8 @@ angular.module('showhaus')
 					//'tags': document.getElementById('tags').value,
 					'email': $scope.email,
 					'fbimage': $scope.fbImage,
-					'poster': file
+					'poster': file,
+					'fb_event': $scope.fb_event
 				};
 				$http.post(
 					preUrl + 'new.php',
@@ -113,6 +114,7 @@ angular.module('showhaus')
 			var facebookEvent = $scope.facebookEvent.toLowerCase();
 			facebookEvent = facebookEvent.split('events/').pop().split('/')[0];
 			var eventNum = parseInt(facebookEvent.split('events/').pop().split('/')[0]);
+			$scope.fb_event = "http://facebook.com/events/"+eventNum;
 			if(!isNaN(eventNum)){
 				FB.api(
 					{

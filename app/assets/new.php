@@ -25,6 +25,7 @@ $tags = htmlspecialchars(stripslashes($_POST['tags']));
 $tags = explode(",", $tags);
 $tag1 = $tags[0];
 $tag2 = $tags[1];
+$fb_event = htmlspecialchars(stripslashes($_POST['fb_event']));
 
 
 if($_POST["fbimage"]!=""){
@@ -50,8 +51,8 @@ if($_POST['newvenue']!=""){
     //eventually, update the address if mysqli_num_rows($theselect) > 0. It'll act like a kind of wiki
 }
 if($title){
-    mysqli_query($mysqli, "INSERT INTO events (title, subtitle, description, tag1, tag2, venue, city, date, time, price, poster, email, password)
-		VALUES ('$title', '$subtitle','$description','$tag1','$tag2','$venue','$city','$date','$time','$price','$poster','$email','$password')");
+    mysqli_query($mysqli, "INSERT INTO events (title, subtitle, description, tag1, tag2, venue, city, date, time, price, poster, email, password, fb_event)
+		VALUES ('$title', '$subtitle','$description','$tag1','$tag2','$venue','$city','$date','$time','$price','$poster','$email','$password', '$fb_event')");
     /* close connection */
 }
 else{
@@ -82,7 +83,7 @@ function generate_password() {
         $doubleCon = substr( str_shuffle( $consonants ), 0, 1);
     }
     $doubleNum = rand(1,9)*11;
-    $password = $singleCon.substr( str_shuffle( $vowels ), 0, 1).$doubleCon.$doubleCon.$doubleNum.rand (100, 900 );
+    $password = $singleCon.substr( str_shuffle( $vowels ), 0, 1).$doubleCon.$doubleCon.$doubleNum.rand (100, 90000 );
     return $password;
 }
 

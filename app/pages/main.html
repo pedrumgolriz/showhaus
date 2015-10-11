@@ -49,8 +49,9 @@ Default city should be set on change
 		<span id="{{event.id}}">
 			<div class="show-detail-contain">
 				<div class="show-date">
-					<div class="day">Today</div>
-					<div class="date">{{event.date}}</div>
+					<div class="day" ng-if="event.date==today">Today</div>
+                    <div class="day" ng-if="event.date==tomorrow">Tomorrow</div>
+                    <div ng-class="event.date==today||event.date==tomorrow ? date : day" >{{event.date}}</div>
 				</div>
 
 				<div class="show-venue">
@@ -66,13 +67,13 @@ Default city should be set on change
 							<span ng-if="event.price>0">${{event.price}}</span>
 							<span ng-if="event.price==0">free</span>
 						</div>
-						<img style="width:20px;" src="../assets/outbound.png" ng-if="event.fb_event">
+						<img style="width:20px;cursor:pointer;" src="../assets/outbound.png" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)">
 					</div>
 				</div>
 			</div>
 			<div class="expand-contain" ng-hide="event.fb_event">
 				<div class="show-img">
-					<img src="../assets/eventart1.jpg">
+					<img src="#">
 				</div>
 
 				<div class="show-description" ng-bind-html="event.description"></div>
