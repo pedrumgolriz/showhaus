@@ -93,7 +93,8 @@ angular.module('showhaus')
 					'email': $scope.email,
 					'fbimage': $scope.fbImage,
 					'poster': file,
-					'fb_event': $scope.fb_event
+					'fb_event': $scope.fb_event,
+					'ticket_uri': $scope.ticket
 				};
 				$http.post(
 					preUrl + 'new.php',

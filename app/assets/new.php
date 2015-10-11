@@ -26,6 +26,7 @@ $tags = explode(",", $tags);
 $tag1 = $tags[0];
 $tag2 = $tags[1];
 $fb_event = htmlspecialchars(stripslashes($_POST['fb_event']));
+$tickets = htmlspecialchars(stripslashes($_POST['ticket_uri']));
 
 
 if($_POST["fbimage"]!=""){
@@ -51,8 +52,8 @@ if($_POST['newvenue']!=""){
     //eventually, update the address if mysqli_num_rows($theselect) > 0. It'll act like a kind of wiki
 }
 if($title){
-    mysqli_query($mysqli, "INSERT INTO events (title, subtitle, description, tag1, tag2, venue, city, date, time, price, poster, email, password, fb_event)
-		VALUES ('$title', '$subtitle','$description','$tag1','$tag2','$venue','$city','$date','$time','$price','$poster','$email','$password', '$fb_event')");
+    mysqli_query($mysqli, "INSERT INTO events (title, subtitle, description, tag1, tag2, venue, city, date, time, price, poster, email, password, fb_event, ticket_uri)
+		VALUES ('$title', '$subtitle','$description','$tag1','$tag2','$venue','$city','$date','$time','$price','$poster','$email','$password', '$fb_event', '$tickets')");
     /* close connection */
 }
 else{

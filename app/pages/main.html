@@ -68,6 +68,9 @@ Default city should be set on change
 							<span ng-if="event.price==0">free</span>
 						</div>
 						<img style="width:20px;cursor:pointer;" src="../assets/outbound.png" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)">
+                        <span class="tickets" ng-if="event.ticket_uri">
+                            <a href="{{event.ticket_uri}}" target="_blank">tickets</a>
+                        </span>
 					</div>
 				</div>
 			</div>
