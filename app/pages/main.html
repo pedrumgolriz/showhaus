@@ -15,7 +15,7 @@ Default city should be set on change
 
 	<!-- filter -->
 	<div class="filter">
-		<select id="select-beast" class="filter-drop" placeholder="SELECT CITY" ng-model="citySelect" ng-change="setNewCookie()">
+		<select id="select-beast" class="filter-drop" placeholder="SELECT CITY" ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
 			<option value="">   SELECT CITY   </option>
 			<option value="Baltimore">Baltimore</option>
 			<option value="NYC">NYC</option>
