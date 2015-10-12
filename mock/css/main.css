@@ -69,7 +69,7 @@ body {
 	font-size: 15px;
 }
 
-h1 {}
+h1 {text-align: center;}
 h2 {}
 h3 {}
 h4 {}
@@ -118,6 +118,26 @@ border-bottom: dotted 1px;
 
 .nav .divider {
     color:#eee;
+}
+
+/* ░░░░░░░░░░░░ standard page ░░░░░░░░░░░░ */
+
+.breadcrumb {
+    font-size: 13px;
+    background-color: #eee;
+    padding: 5px;
+}
+
+.breadcrumb-nav {
+text-align: left;
+max-width: 750px;
+margin: 0 auto;
+
+}
+
+.page {
+max-width: 650px !important;
+
 }
 
 
@@ -370,6 +390,7 @@ input[type="text"]:hover {
 input[type="text"]:focus,
 input[type="text"].focus {
     border: solid 1px #969696;
+    background-color: #fff;
     -webkit-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26);
     -moz-box-shadow:    2px 2px 4px 0px rgba(50, 50, 50, 0.26);
     box-shadow:         2px 2px 4px 0px rgba(50, 50, 50, 0.26);
@@ -600,8 +621,8 @@ button:hover {
     margin: 0 auto;
 }
 
-.postshow-url .success {background-color: rgba(241, 250, 215, 0.42);}
-.postshow-url .fail {background-color: rgba(222, 13, 13, 0.19);}
+.postshow-wrap.success {background-color: rgba(241, 250, 215, 0.42);}
+.postshow-wrap.fail {background-color: rgba(222, 13, 13, 0.19);}
 
 /* ░░░░░░░░░░░░ feeds ░░░░░░░░░░░░ */
 
