@@ -227,6 +227,7 @@ a:visited {color: black;}
 .show-venue .address {
 	color: gray;
 	font-size: 13px;
+	cursor: pointer;
 }
 
 .show-venue .address a:visted {

@@ -60,7 +60,7 @@ angular.module('showhaus')
 		};
 	})
 	.run(function ($http, venueCityFactory) {
-		venues = venueCityFactory.query();
+		venues = new venueCityFactory.query();
 	})
 	.controller('PostCtrl', function ($scope, $http, $location) {
 		$(".ui-dialog-content").dialog("destroy");
@@ -88,7 +88,7 @@ angular.module('showhaus')
 					'date': $scope.date,
 					'time': $scope.time,
 					'price': $scope.price,
-					'description': $scope.description,
+					'description': CKEDITOR.instances.editor.getData(),
 					//'tags': document.getElementById('tags').value,
 					'email': $scope.email,
 					'fbimage': $scope.fbImage,

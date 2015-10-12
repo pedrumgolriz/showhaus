@@ -308,7 +308,16 @@ module.exports = function (grunt) {
         html: ['<%= yeoman.dist %>/*.html']
       }
     },
-
+	compress: {
+		main: {
+			options: {
+				archive: 'build/showhaus.zip'
+			},
+			files: [
+				{src: ['**/*'], cwd: 'dist/', expand: true} // includes files in path and its subdirs
+			]
+		}
+	},
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -374,6 +383,7 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-bower-concat');
+  grunt.loadNpmTasks('grunt-contrib-compress');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
@@ -417,7 +427,8 @@ module.exports = function (grunt) {
     'filerev',
     'usemin',
     'htmlmin',
-	'concat'
+	'concat',
+	'compress'
   ]);
 
   grunt.registerTask('default', [
