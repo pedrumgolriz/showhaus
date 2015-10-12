@@ -56,7 +56,7 @@ Default city should be set on change
 
 				<div class="show-venue">
 					<div class="venue">{{event.venue}}</div>
-					<div class="address"><a href="#">{{event.address}}</a></div>
+					<div class="address"><a rel="nofollow" ng-click="popupMap($event, event.address, event.city);" target="_blank">{{event.address}}</a></div>
 				</div>
 
 				<div class="show-title">

@@ -168,18 +168,29 @@ angular.module('showhaus')
 			$('select').trigger('chosen:updated');
 		}
 	});
-		var today = new Date();
-		var dd = today.getDate();
-		var mm = today.getMonth()+1; //January is 0!
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
 
-		var yyyy = today.getFullYear();
-		if(dd<10){
-			dd='0'+dd
-		}
-		if(mm<10){
-			mm='0'+mm
-		}
-		var tomorrow_dd = parseInt(dd)+1;
-		$scope.today = mm+'/'+dd+'/'+yyyy;
-		$scope.tomorrow = mm+'/'+tomorrow_dd+'/'+yyyy;
+	var yyyy = today.getFullYear();
+	if(dd<10){
+		dd='0'+dd
+	}
+	if(mm<10){
+		mm='0'+mm
+	}
+	var tomorrow_dd = parseInt(dd)+1;
+	$scope.today = mm+'/'+dd+'/'+yyyy;
+	$scope.tomorrow = mm+'/'+tomorrow_dd+'/'+yyyy;
+
+	$scope.popupMap = function(e, address, city){
+		var thisPopup = $(e.target);
+		thisPopup.colorbox({
+			iframe: true,
+			innerWidth: 400,
+			innerHeight: 300,
+			opacity: 0.7,
+			href: 'https://maps.google.com/maps?q='+address+'%2C'+city+'&ie=UTF8&t=h&output=embed'
+		});
+	};
   });
