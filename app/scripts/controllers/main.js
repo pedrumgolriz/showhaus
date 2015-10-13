@@ -187,7 +187,7 @@ angular.module('showhaus')
 		var thisPopup = $(e.target);
 		thisPopup.colorbox({
 			iframe: true,
-			innerWidth: 400,
+			innerWidth: 500,
 			innerHeight: 300,
 			opacity: 0.7,
 			href: 'https://maps.google.com/maps?q='+address+'%2C'+city+'&ie=UTF8&t=m&output=embed'
