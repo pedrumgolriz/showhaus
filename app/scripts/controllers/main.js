@@ -190,7 +190,7 @@ angular.module('showhaus')
 			innerWidth: 400,
 			innerHeight: 300,
 			opacity: 0.7,
-			href: 'https://maps.google.com/maps?q='+address+'%2C'+city+'&ie=UTF8&t=h&output=embed'
+			href: 'https://maps.google.com/maps?q='+address+'%2C'+city+'&ie=UTF8&t=m&output=embed'
 		});
 	};
   });
