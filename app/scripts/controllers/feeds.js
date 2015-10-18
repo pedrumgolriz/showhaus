@@ -26,11 +26,22 @@ window.fbAsyncInit = function () {
 	js.src = 'https://connect.facebook.net/en_US/all.js';
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-
+var preUrl = 'http://v3.showhaus.org/assets/';//set to blank for release
+var feeds = [];
 angular.module('showhaus')
-  .controller('FeedsCtrl', function ($scope, $http) {
+	.factory('feedsFactory', function($resource) {
+		var jsonQuery = preUrl+'feeds.php';
+		return $resource(jsonQuery, {},{query: {method:'JSONP', params:{callback: 'JSON_CALLBACK'}, isArray:true}});
+	})
+	.run(function($http, feedsFactory) {
+		//$interval(function() {
+		feeds = feedsFactory.query();
+		//}, 30000);
+	})
+	.controller('FeedsCtrl', function ($scope, $http) {
 		//
 		$scope.events = [];
+		$scope.feeds = feeds;
 		$(".ui-dialog-content").dialog("destroy");
 		$scope.executeSearch = function(){
 			if(FB) {
@@ -69,7 +80,8 @@ angular.module('showhaus')
 								$scope.$apply(function () {
 									$scope.events.push(nested);
 								});
-								console.log($scope.events);
+								$scope.owner = $scope.events[0].owner.name;
+								console.log($scope.owner);
 								localStorage.setItem('fb_response', parseInt(localStorage.getItem('fb_response'))+1);
 							});
 						}
@@ -78,5 +90,21 @@ angular.module('showhaus')
 		};
 		$scope.parseInt = function(string){
 			return parseInt(string);
+		}
+		$scope.check = function(){
+			$scope.executeSearch();
+			var pageNames = [];
+			for(var i = 0; i < feeds.length; i++){
+				pageNames.push(feeds[i][0]);
+			}
+			if(pageNames.indexOf($scope.owner)){
+				$('.feedserror').show();
+			}
+			else{
+				//submit
+				$('feedserror').hide();
+				//show success
+				alert('Successfuly added');
+			}
 		}
   });

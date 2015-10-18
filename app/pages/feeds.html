@@ -84,12 +84,13 @@
 
 			<!-- enter url -->
 		<div class="postshow-url">
-			<input placeholder="eg. https://www.facebook.com/silentbarn" type="text" class="full url"></input>
+            <span class="postshow-helptext error feedserror">This page has already been added</span>
+			<input placeholder="eg. https://www.facebook.com/silentbarn" ng-model="search" type="text" class="full url"></input>
 			<div class="postshow-helptext">
 				<strong>Enter the URL of a Facebook page.</strong>
 				<br>Showhaus will scrape any events associated with that page.
 			</div>
-			<button> submit feed </button>
+			<button ng-click="check()"> submit feed </button>
 		</div>
 
 		<p> To learn more about how Showhaus aggregates content, <a href="#">click here</a>.
@@ -102,29 +103,9 @@
 				<th>title of feed</th>
 				<th class="feeds-dateadded">date added</th>
 			</tr>
-			<tr>
-				<td><a href="#">The Crown</a></td>
-				<td><a href="#">10-29-2015</a></td>
-			</tr>
-			<tr>
-				<td><a href="#">The Crown</a></td>
-				<td><a href="#">10-29-2015</a></td>
-			</tr>
-			<tr>
-				<td><a href="#">The Crown</a></td>
-				<td><a href="#">10-29-2015</a></td>
-			</tr>
-			<tr>
-				<td><a href="#">The Crown</a></td>
-				<td><a href="#">10-29-2015</a></td>
-			</tr>
-			<tr>
-				<td><a href="#">The Crown</a></td>
-				<td><a href="#">10-29-2015</a></td>
-			</tr>
-			<tr>
-				<td><a href="#">The Crown</a></td>
-				<td><a href="#">10-29-2015</a></td>
+			<tr ng-repeat="feed in feeds">
+				<td><a href="{{feed[2]}}" target="_blank">{{feed[0]}}</a></td>
+				<td>{{feed[1]}}</td>
 			</tr>
 		</table>
 

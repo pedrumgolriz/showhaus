@@ -613,6 +613,9 @@ td,th {padding:0 0 0 20px}
 
 .feeds-dateadded {width:80px; text-align: center;}
 
+.feedserror{
+	display: none;
+}
 
 /* ░░░░░░░░░░░░ mobile ░░░░░░░░░░░░ */
 
