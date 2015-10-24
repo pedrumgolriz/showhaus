@@ -200,7 +200,7 @@ max-width: 650px !important;
 /* ░░░░░░░░░░░░ show ░░░░░░░░░░░░ */
 
 .show-contain {
-	border-bottom: 1px solid #B3B3B3;
+	border-bottom: 1px solid rgba(179, 179, 179, 0.31);
 	min-height: 55px;
 	margin: 0 auto 20px auto;
     display: table;
@@ -238,7 +238,8 @@ max-width: 650px !important;
 }
 
 .show-venue a:link {text-decoration:none;color: gray;}
-.show-venue a:hover {border-bottom: 1px dotted red; color: red;}
+.show-venue a:hover {border-bottom: 1px dotted gray; color: gray;}
+.show-venue a:visited {color: gray;}
 
 .show-venue .venue {
 	font-weight: 700;
@@ -291,7 +292,7 @@ max-width: 650px !important;
     background-color: green;
     font-size: 10px;
     display: inline-block;
-    margin: 0 0 2px 8px;
+    margin: 2px 8px;
     vertical-align: middle;
 }
 
