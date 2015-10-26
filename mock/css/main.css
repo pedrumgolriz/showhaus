@@ -57,7 +57,7 @@ textarea {
 
 
 /* ==========================================================================
-   showhaus
+   showhaus styles
    ========================================================================== */
 
 
@@ -70,7 +70,7 @@ body {
 }
 
 h1 {text-align: center;}
-h2 {}
+h2 {text-align: center;}
 h3 {}
 h4 {}
 
@@ -91,13 +91,13 @@ a:visited {color: black;}
 }
 
 .nav a {
-margin: 0 5px;
-text-decoration: none;
+    margin: 0 5px;
+    text-decoration: none;
+    color:gray
 }
 
-.nav a:hover {
-border-bottom: dotted 1px;
-}
+.nav a:hover {border-bottom: dotted 1px;}
+.nav a:visited {color: gray;}
 
 .nav a.postshow {
     color: red;
@@ -112,13 +112,20 @@ border-bottom: dotted 1px;
     border-bottom: none;
 }
 
-.nav a {
-    color: gray;
+
+/* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░░ */
+
+.content {
+	padding: 10px 25px;
+    margin: 70px auto 0 auto;
+    max-width: 900px
 }
 
-.nav .divider {
-    color:#eee;
+.contain {
+    max-width: 600px;
+    margin: 0 auto;
 }
+
 
 /* ░░░░░░░░░░░░ standard page ░░░░░░░░░░░░ */
 
@@ -129,14 +136,18 @@ border-bottom: dotted 1px;
 }
 
 .breadcrumb-nav {
-text-align: left;
-max-width: 750px;
-margin: 0 auto;
-
+    text-align: left;
+    max-width: 750px;
+    margin: 0 auto;
 }
 
+.breadcrumb-nav a {text-decoration: none;}
+
+.breadcrumb-nav a:hover {color: gray; border-bottom: 1px dotted gray;}
+
 .page {
-max-width: 650px !important;
+    max-width: 650px !important;
+    margin: 40px auto 0 auto;
 
 }
 
@@ -182,21 +193,6 @@ max-width: 650px !important;
     font-size: 12px;
 }
 
-
-
-/* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░░ */
-
-.content {
-	padding: 10px 25px;
-    margin: 70px auto 0 auto;
-    max-width: 900px
-}
-
-.contain {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
 /* ░░░░░░░░░░░░ show ░░░░░░░░░░░░ */
 
 .show-contain {
@@ -209,6 +205,11 @@ max-width: 650px !important;
 
 #expand {
     background-color: #D8D8D8;
+}
+
+/* if a show is happening today */
+.show-contain.today {
+    background: rgba(255, 255, 0, 0.18) !important;
 }
 
 .show-contain:hover {
