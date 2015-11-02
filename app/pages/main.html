@@ -3,9 +3,13 @@ Bug list:
 Venue list
 Default city should be set on change
 -->
-<!-- hero -->
+
+<!--░░░░░░░░░░░░ hero ░░░░░░░░░░░░-->
 <div class="hero-contain">
-	<div class="showhaus">SHOWHAUS</div>
+	<!-- title -->
+	<div class="showhaus"><img src="./assets/logo.png" style="width:25px; vertical-align: inherit;"> SHOWHAUS</div>
+
+	<!-- main nav -->
 	<div class="nav">
 		<a href="#!about">about</a>
 		:: <a href="#!api">api</a>
@@ -15,14 +19,14 @@ Default city should be set on change
 
 	<!-- filter -->
 	<div class="filter">
-		<select id="select-beast" class="filter-drop" placeholder="SELECT CITY" ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
-			<option value="">   SELECT CITY   </option>
+		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select city --" ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
+			<option value="">-- select city --</option>
 			<option value="Baltimore">Baltimore</option>
 			<option value="NYC">NYC</option>
 		</select>
 		|
-		<select id="select-beast" class="filter-drop" placeholder="SELECT VENUE" ng-model="venueSelect" name="venue">
-			<option value="">All Venues</option>
+		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
+			<option value="">-- all venues --</option>
 			<option ng-repeat="venue in venues | filter:citySelect">{{venue[1]}}</option>
 		</select>
 		|
@@ -30,6 +34,7 @@ Default city should be set on change
 	</div>
 </div>
 
+<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 <div class="content">
 	<div ng-show="loading" style="text-align:center;">
 		<div class="loading">
@@ -48,37 +53,37 @@ Default city should be set on change
 	<div class="show-contain" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
 		<span id="{{event.id}}" ng-hide="event.price>0&&freebox">
 			<div class="show-detail-contain">
-				<div class="show-date">
+
+                <!-- date / time -->
+                <div class="show-date">
+                    <div class="day"> {Day of Week} </div>
 					<div class="day" ng-if="event.date==today">Today</div>
                     <div class="day" ng-if="event.date==tomorrow">Tomorrow</div>
-                    <div ng-class="(event.date==today || event.date==tomorrow) ? day : date" >{{event.date}}</div>
+                    <div class="date" ng-class="(event.date==today || event.date==tomorrow) ? day : date" >{{event.date}}</div>
 				</div>
 
+                <!-- venue -->
 				<div class="show-venue">
 					<div class="venue">{{event.venue}}</div>
 					<div class="address"><a rel="nofollow" ng-click="popupMap($event, event.address, event.city);" target="_blank">{{event.address}}</a></div>
 				</div>
 
+                <!-- title -->
 				<div class="show-title">
 					<div class="title" ng-if="!event.fb_event" ng-click="expand($event)"><a href="#">{{event.title}}</a></div>
-					<div class="title" ng-click="extshow(event.fb_event)" ng-if="event.fb_event"><a href="#">{{event.title}}</a></div>
-					<div class="show-meta">
-						<div class="show-price">
-							<span ng-if="event.price>0">${{event.price}}</span>
-							<span ng-if="event.price==0">free</span>
-						</div>
-						<img style="width:20px;cursor:pointer;" src="../assets/outbound.png" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)">
-                        <span class="tickets" ng-if="event.ticket_uri">
-                            <a href="{{event.ticket_uri}}" target="_blank">tickets</a>
-                        </span>
-					</div>
-				</div>
-			</div>
+					<div class="title" ng-click="extshow(event.fb_event)" ng-if="event.fb_event"><a href="#">{{event.title}}</a><i style="vertical-align: middle; margin: 0 0 0 4px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)"></i><span class="show-price" ng-if="event.price>0">${{event.price}}</span><span class="show-price" ng-if="event.price==0">free</span></div>
+                    <span class="show-tickets" ng-if="event.ticket_uri">
+                        <a href="{{event.ticket_uri}}" target="_blank">get tickets</a>
+                    </span>
+                </div>
+
+            <!-- show page -->
 			<div class="expand-contain" ng-hide="event.fb_event">
 				<div class="show-img">
 					<img src="{{event.poster}}">
 				</div>
 
+                <!-- description -->
 				<div class="show-description" ng-bind-html="event.description"></div>
 				<br/>
 				<div class="expand-close" ng-click="collapse($event)"> <a href="#">&#9650; CLOSE &#9650;</a></div>
