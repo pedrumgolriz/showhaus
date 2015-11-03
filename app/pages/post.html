@@ -1,20 +1,17 @@
-<div class="nav">
-	<div class="breadcrumbs">
-		<a href="#!main">SHOWHAUS</a> > POST A SHOW</div>
+<div class="breadcrumb">
+	<div class="breadcrumb-nav">
+		<a href="#!">SHOWHAUS</a> > POST A SHOW</div>
 </div>
 
-<!-- hero -->
-<div class="postshow-hero-contain">
-	<h1>POST A SHOW</h1>
-</div>
-
-
-<form ng-model="form" class="content" novalidate ng-submit="postEvent()" name="form">
-
+<form ng-model="form" class="content page" novalidate ng-submit="postEvent()" name="form">
+	<h2>POST A SHOW</h2>
 	<!--░░░░░░░░░░░░ begin post show ░░░░░░░░░░░░-->
 	<div class="readtherules" name="rules_anchor" style="background-color: #d62c2c;font-family: sans-serif;"
 		 ng-click="expand = !expand">
+
+		<!-- STYLE THIS -->
 		<p>BEFORE POSTING PLEASE <span style="font-weight: bold; text-decoration: underline;">READ THE RULES</span>
+
 	</div>
 	<div class="rules" ng-show="expand">
 		<ul>
@@ -66,10 +63,7 @@
 				<!--<option>DC</option>-->
 			</select>
 			<div class="postshow-helptext">
-				select a city
-			</div>
-			<div class="postshow-helptext">
-				Showhaus listings are currently for New York City and Baltimore only.
+				The city where your show is happening.
 			</div>
 		</div>
 
@@ -77,15 +71,12 @@
 		<div class="postshow-title">
 			<input placeholder="title of show" type="text" class="full" ng-model="title"></input>
 			<div class="postshow-helptext">
-				a title is needed
-			</div>
-			<div class="postshow-helptext">
 				The overall title of your show, including headliners and supporting acts.
 			</div>
 		</div>
 		<!-- select venue -->
 		<div class="postshow-venue">
-			<select id="select-beast" class="demo-default venue-select" placeholder="SELECT VENUE" name="venue" ng-model="venue" required
+			<select placeholder="SELECT VENUE" id="select-beast" class="demo-default venue-select" name="venue" ng-model="venue" required
 					data-placeholder="SELECT VENUE"  ng-disabled="citySelect=='all'">
 				<option ng-repeat="place in venues | filter:citySelect" ng-show="citySelect">{{place[1]}}</option>
 				<optgroup label="Can't find your venue?" ng-if="citySelect!=''"">
@@ -97,15 +88,11 @@
 				If you can't find your venue, select <strong>Add Venue</strong>
 				<br> If you don't want to give out an address, select <strong>Unlisted</strong>
 			</div>
-			<div class="postshow-helptext">
-				select a venue
-			</div>
+
 			<div class="addvenue" ng-show="venue=='newvenue'">
 				<h4> ADD VENUE </h4>
 				<input placeholder="venue name" type="text" class="third" maxlength="25" name="newvenue" ng-model="newvenuename" ng-required="venue==newvenue"></input><p>
-				<div class="postshow-helptext">
-					enter a venue name
-				</div>
+
 				<input placeholder="address (optional)" type="text" class="third" name="venue_address" maxlength="75" ng-model="newvenueaddress"></input>
 			</div>
 

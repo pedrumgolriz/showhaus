@@ -134,6 +134,7 @@ a:visited {color: black;}
     font-size: 13px;
     background-color: #eee;
     padding: 5px;
+    color: #929292;
 }
 
 .breadcrumb-nav {
@@ -463,19 +464,23 @@ input.price {
 
 /*placeholders & help text */
 
-.postshow-helptext.error {
-    color: #DC0000;
-    font-size: 12px;
-    padding:15px 0 0 0;
-    text-align: center;
-    font-weight: 900;
-}
-
 .postshow-helptext {
     color: #000;
     font-size: 12px;
     padding:15px 10px;
     text-align: center;
+}
+
+.postshow-helptext.error {
+    color: #DC0000;
+    padding:15px 0 0 0;
+    font-weight: 900;
+}
+
+.postshow-helptext.success {
+    color: #4BA93F;
+    padding:15px 0 0 0;
+    font-weight: 900;
 }
 
 ::-webkit-input-placeholder {
@@ -547,7 +552,6 @@ input.price {
     text-align: center;
     margin: 0 auto;
     padding: 20px 0;
-    width: 475px;
 }
 
 .postshow-venue {
@@ -558,7 +562,7 @@ input.price {
     margin: 0 auto;
     padding: 25px 0 10px 0;
     border-radius: 4px;
-    background: url(../img/addvenuebg.png);
+    background: url(/assets/addvenuebg.png);
 }
 
 .postshow-dateprice {
