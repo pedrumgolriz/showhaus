@@ -50,45 +50,48 @@ Default city should be set on change
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
-	<div class="show-contain" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
-		<span id="{{event.id}}" ng-hide="event.price>0&&freebox">
-			<div class="show-detail-contain">
+	<div class="show-contain" ng-hide="event.price>0&&freebox" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
+		<div class="show-detail-contain">
 
-                <!-- date / time -->
-                <div class="show-date">
-                    <div class="day"> {Day of Week} </div>
-					<div class="day" ng-if="event.date==today">Today</div>
-                    <div class="day" ng-if="event.date==tomorrow">Tomorrow</div>
-                    <div class="date" ng-class="(event.date==today || event.date==tomorrow) ? day : date" >{{event.date}}</div>
-				</div>
-
-                <!-- venue -->
-				<div class="show-venue">
-					<div class="venue">{{event.venue}}</div>
-					<div class="address"><a rel="nofollow" ng-click="popupMap($event, event.address, event.city);" target="_blank">{{event.address}}</a></div>
-				</div>
-
-                <!-- title -->
-				<div class="show-title">
-					<div class="title" ng-if="!event.fb_event" ng-click="expand($event)"><a href="#">{{event.title}}</a></div>
-					<div class="title" ng-click="extshow(event.fb_event)" ng-if="event.fb_event"><a href="#">{{event.title}}</a><i style="vertical-align: middle; margin: 0 0 0 4px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)"></i><span class="show-price" ng-if="event.price>0">${{event.price}}</span><span class="show-price" ng-if="event.price==0">free</span></div>
-                    <span class="show-tickets" ng-if="event.ticket_uri">
-                        <a href="{{event.ticket_uri}}" target="_blank">get tickets</a>
-                    </span>
-                </div>
-
-            <!-- show page -->
-			<div class="expand-contain" ng-hide="event.fb_event">
-				<div class="show-img">
-					<img src="{{event.poster}}">
-				</div>
-
-                <!-- description -->
-				<div class="show-description" ng-bind-html="event.description"></div>
-				<br/>
-				<div class="expand-close" ng-click="collapse($event)"> <a href="#">&#9650; CLOSE &#9650;</a></div>
+			<!-- date / time -->
+			<div class="show-date">
+				<div class="day" ng-if="event.date!=today && event.date!=tomorrow">{{getDay(event.date)}}</div>
+				<div class="day" ng-if="event.date==today">Today</div>
+				<div class="day" ng-if="event.date==tomorrow">Tomorrow</div>
+				<div class="date" ng-class="(event.date==today || event.date==tomorrow) ? day : date" >{{event.date}}</div>
 			</div>
-		</span>
+
+			<!-- venue -->
+			<div class="show-venue">
+				<div class="venue">{{event.venue}}</div>
+				<div class="address"><a rel="nofollow" ng-click="popupMap($event, event.address, event.city);" target="_blank">{{event.address}}</a></div>
+			</div>
+
+			<!-- title -->
+			<div class="show-title">
+				<div class="title" ng-if="!event.fb_event" ng-click="expand($event)"><a href="#">{{event.title}}</a></div>
+				<div class="title" ng-click="extshow(event.fb_event)" ng-if="event.fb_event"><a href="#">{{event.title}}</a></div>
+					<i style="vertical-align: middle; margin: 0 0 0 4px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)"></i>
+					<span class="show-price" ng-if="event.price>0">${{event.price}}</span>
+					<span class="show-price" ng-if="event.price==0">free</span>
+			</div>
+			<span class="show-tickets" ng-if="event.ticket_uri">
+				<a href="{{event.ticket_uri}}" target="_blank">get tickets</a>
+			</span>
+		</div>
+		<!-- show page -->
+		<div class="expand-contain" ng-hide="event.fb_event">
+			<div class="show-img">
+				<img src="{{event.poster}}">
+			</div>
+
+			<!-- description -->
+			<div class="show-description" ng-bind-html="event.description"></div>
+			<br/>
+			<div class="expand-close" ng-click="collapse($event)">
+				<a href="#">&#9650; CLOSE &#9650;</a>
+			</div>
+		</div>
 	</div>
 
 	<!-- end show -->
@@ -100,7 +103,5 @@ Default city should be set on change
 			</span>
 		>
 	</div>
-
-</div>
 
 </div>

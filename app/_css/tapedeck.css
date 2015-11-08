@@ -332,7 +332,7 @@ a:visited {text-decoration: none;}
 
  .show-detail-contain.expand {
     margin: -20px 0 0 0;
-    background: url(../img/addvenuebg.png);
+    background: url(addvenuebg.png);
     padding-top: 20px;
  }
 
@@ -360,7 +360,7 @@ a:visited {text-decoration: none;}
 .expand-close {
     text-align: center;
     padding:10px;
-    background: url(../img/addvenuebg.png);
+    background: url(addvenuebg.png);
     cursor:pointer;
 }
 
@@ -562,7 +562,7 @@ input.price {
     margin: 0 auto;
     padding: 25px 0 10px 0;
     border-radius: 4px;
-    background: url(/assets/addvenuebg.png);
+    background: url(addvenuebg.png);
 }
 
 .postshow-dateprice {
