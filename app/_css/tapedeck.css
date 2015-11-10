@@ -338,6 +338,7 @@ a:visited {text-decoration: none;}
 
 .expand-contain {
     margin:30px 0 10px 0;
+    display: none;
 }
 
 .show-img {
