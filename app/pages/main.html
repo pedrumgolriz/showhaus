@@ -70,14 +70,14 @@ Default city should be set on change
 			<!-- title -->
 			<div class="show-title">
 				<div class="title" ng-if="!event.fb_event" ng-click="expand($event)"><a href="#">{{event.title}}</a></div>
-				<div class="title" ng-click="extshow(event.fb_event)" ng-if="event.fb_event"><a href="#">{{event.title}}</a></div>
-					<i style="vertical-align: middle; margin: 0 0 0 4px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)"></i>
+				<div class="title" ng-click="extshow(event.fb_event)" ng-if="event.fb_event"><a href="#">{{event.title}}</a><i style="vertical-align: middle; margin: 0 0 0 4px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)"></i>
 					<span class="show-price" ng-if="event.price>0">${{event.price}}</span>
-					<span class="show-price" ng-if="event.price==0">free</span>
+					<span class="show-price" ng-if="event.price==0">free</span></div>
+
+					<span class="show-tickets" ng-if="event.ticket_uri">
+						<a href="{{event.ticket_uri}}" target="_blank">get tickets</a>
+					</span>
 			</div>
-			<span class="show-tickets" ng-if="event.ticket_uri">
-				<a href="{{event.ticket_uri}}" target="_blank">get tickets</a>
-			</span>
 		</div>
 		<!-- show page -->
 		<div class="expand-contain" ng-hide="event.fb_event">
