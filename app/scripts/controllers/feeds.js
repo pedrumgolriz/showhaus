@@ -38,7 +38,7 @@ angular.module('showhaus')
 		feeds = feedsFactory.query();
 		//}, 30000);
 	})
-	.controller('FeedsCtrl', function ($scope, $http) {
+	.controller('FeedsCtrl', function ($scope, $http, $route) {
 		//
 		$scope.events = [];
 		$scope.feeds = feeds;
@@ -51,9 +51,10 @@ angular.module('showhaus')
 					$scope.authToken = response.authResponse.accessToken;
 				});
 				var facebookTitle = $scope.search.split('facebook.com/')[1].split(/\W/g)[0];
+				$scope.search = "http://www.facebook.com/"+facebookTitle;
 				FB.api({
 						method: 'fql.query',
-						query: 'SELECT eid, start_time, name, pic_big FROM event WHERE creator IN (SELECT page_id FROM page WHERE username = "'+facebookTitle+'") AND start_time >= now() ORDER BY start_time DESC',
+						query: 'SELECT name, page_url FROM page WHERE page_id IN (SELECT page_id FROM page WHERE username = "'+facebookTitle+'")',
 						access_token: $scope.authToken
 					},
 					function (response) {
@@ -65,7 +66,9 @@ angular.module('showhaus')
 						}
 						$scope.events = [];
 						for (var i = 0; i < response.length; i++) {
-							var eid = response[i]['eid'];
+							$scope.owner = response[i].name;
+							$scope.url = response[i].page_url;
+							/*var eid = response[i]['eid'];
 							FB.api(eid, function (nested) {
 								for(var q = 0; q < response.length; q++){
 								    if(response[q].eid == nested.id){
@@ -80,11 +83,12 @@ angular.module('showhaus')
 								$scope.$apply(function () {
 									$scope.events.push(nested);
 								});
-								$scope.owner = $scope.events[0].owner.name;
+								$scope.owner = $scope.events[0].name;
 								console.log($scope.owner);
 								localStorage.setItem('fb_response', parseInt(localStorage.getItem('fb_response'))+1);
-							});
+							});*/
 						}
+						$scope.check();
 					}
 				);
 		};
@@ -92,19 +96,43 @@ angular.module('showhaus')
 			return parseInt(string);
 		}
 		$scope.check = function(){
-			$scope.executeSearch();
 			var pageNames = [];
 			for(var i = 0; i < feeds.length; i++){
 				pageNames.push(feeds[i][0]);
 			}
-			if(pageNames.indexOf($scope.owner)){
+			if(pageNames.indexOf($scope.owner) > -1){
 				$('.feedserror').show();
 			}
 			else{
-				//submit
-				$('feedserror').hide();
-				//show success
-				alert('Successfuly added');
+				var today = new Date();
+	            var dd = today.getDate();
+	            var mm = today.getMonth()+1; //January is 0!
+	            var yyyy = today.getFullYear();
+
+	            if(dd<10) {
+	                dd='0'+dd
+	            }
+
+	            if(mm<10) {
+	                mm='0'+mm
+	            }
+
+	            today = mm+'/'+dd+'/'+yyyy;
+				var data = {
+	                'page': $scope.owner,
+	                'date': today,
+	                'url': $scope.url
+	            };
+				$http.post(
+	                preUrl + 'newfeed.php',
+	                data
+	            ).success(function (data) {
+	                    alert('Successfuly added');
+	                    $('feedserror').hide();
+	                    $route.reload();
+	                }).error(function (status) {
+	                    $('feedserror').show();
+	                });
 			}
 		}
   });

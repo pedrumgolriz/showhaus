@@ -62,6 +62,7 @@ function geolocation() {
 /* jshint ignore:end */
 //##End Geolocation##//
 var venues = [];
+var INITIAL_EVENT_LENGTH = 0;
 var events = [];
 var preUrl = 'http://v3.showhaus.org/assets/';//set to blank for release
 //####Main####//
@@ -75,10 +76,12 @@ angular.module('showhaus')
     return $resource(jsonQuery, {},{query: {method:'JSONP', params:{callback: 'JSON_CALLBACK'}, isArray:true}});
   })
   .run(function($http, venueCityFactory, eventsFactory, $interval) {
-	//$interval(function() {
+    venues = venueCityFactory.query();
+  	events = eventsFactory.query();
+	$interval(function() {
 		venues = venueCityFactory.query();
 		events = eventsFactory.query();
-	//}, 30000);
+	}, 50000);
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue){
 	$(".ui-dialog-content").dialog("destroy");
@@ -87,6 +90,9 @@ angular.module('showhaus')
 	}
     $scope.venues = venues;
     $scope.events = events;
+    if(INITIAL_EVENT_LENGTH==0){
+        INITIAL_EVENT_LENGTH = events.length;
+    }
 	$scope.eventVenues = [];
     //##FILTERS##//
     $scope.list = true; //sets list as default view
@@ -126,6 +132,9 @@ angular.module('showhaus')
 					}
 				}
 			}
+			if(INITIAL_EVENT_LENGTH > $scope.events.length){
+                console.log($scope.events.length-INITIAL_EVENT_LENGTH+" new events added");
+            }
 		});
     //##Listen to events from showpage##//
     if(typeof getSetCity.get() === 'string'){
