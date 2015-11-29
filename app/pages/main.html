@@ -36,6 +36,7 @@ Default city should be set on change
 
 <!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 <div class="content">
+	<span class="index-update">(x) new shows have been added. <a href="#"> Click here to Refresh.</a></span>
 	<div ng-show="loading" style="text-align:center;">
 		<div class="loading">
 			<span></span>
@@ -70,7 +71,7 @@ Default city should be set on change
 			<!-- title -->
 			<div class="show-title">
 				<div class="title" ng-if="!event.fb_event" ng-click="expand($event)"><a href="#">{{event.title}}</a></div>
-				<div class="title" ng-click="extshow(event.fb_event)" ng-if="event.fb_event"><a href="#">{{event.title}}</a><i style="vertical-align: middle; margin: 0 0 0 4px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)"></i>
+				<div class="title" ng-click="extshow(event.fb_event)" ng-if="event.fb_event"><a href="#">{{event.title}}</a><i style="vertical-align: middle; margin: 0 0 0 8px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)"></i>
 					<span class="show-price" ng-if="event.price>0">${{event.price}}</span>
 					<span class="show-price" ng-if="event.price==0">free</span></div>
 
