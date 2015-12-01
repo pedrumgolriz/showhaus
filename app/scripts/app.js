@@ -67,14 +67,14 @@ angular
 				templateUrl: 'pages/about.html',
 				controller: 'AboutCtrl'
 			})
-			.when('/showpage', {
+			/*.when('/showpage', {
 				templateUrl: 'pages/showpage.html',
 				controller: 'ShowpageCtrl'
 			})
 			.when('/showpage/:city/:venue/', {
 				templateUrl: 'pages/showpage.html',
 				controller: 'ShowpageCtrl'
-			})
+			})*/
 			.when('/post', {
 				templateUrl: 'pages/post.html',
 				controller: 'PostCtrl'
@@ -90,6 +90,10 @@ angular
 			.when('/feeds',{
 				templateUrl: 'pages/feeds.html',
 				controller: 'FeedsCtrl'
+			})
+			.when('/autofeed',{
+				templateUrl: 'pages/autoparser.html',
+				controller: 'AutoParser'
 			})
 			.otherwise({
 				redirectTo: '/'

@@ -1,0 +1,45 @@
+<article class="rest">
+    <div class="listview_contain" style="margin: 0 auto;">
+        <table class="gridtable" ng-if="events.length">
+            <tr>
+                <th class="datetime">image</th>
+                <th class="datetime">date/time</th>
+                <th class="title">title of show</th>
+                <th class="tableprice">$$$</th>
+                <th class="tablevenue">venue</th>
+            </tr>
+            <tbody class="theEvents">
+                <tbody ng-repeat="event in events">
+                    <tr ng-class="event.featured=='today' ? 'list_today':''" ng-click="">
+                        <td class="list_align" ng-if="event.image">
+                            <img class="admin_image" ng-src="event.image"/>
+                        </td>
+                        <td class="list_align">
+                            <strong>{{event.start_time.split('T')[0]}}</strong>
+                            <br/>
+                            <div class="list_subtext">{{event.start_time.split('T')[1].split('-')[0]}}</div>
+                        </td>
+                        <td>
+                    <span class="titles">
+                      <strong>{{event.name}}</strong>
+                        <br/>
+                      <span class="subtitle admin-description" ng-if="event.description">{{event.description}}</span>
+                    </span>
+                            <div class="list_category">{{event.tag1}}</div>
+                            <div class="list_category" ng-if="event.tag2">{{event.tag2}}</div>
+                        </td>
+                        <td class="list_align">
+                            <span ng-if="event.description.split('$')[1]">${{parseInt(event.description.split('$')[1])}}</span>
+                            <span ng-if="!event.description.split('$')[1]">???</span>
+                        </td>
+                        <td class="list_align">
+                            <strong>{{event.location}}</strong>
+                            <br/>
+                            <div class="list_subtext" ng-if="event.venue">{{event.street}}</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </tbody>
+        </table>
+    </div>
+</article>
