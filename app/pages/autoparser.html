@@ -1,3 +1,4 @@
+<div class="timer"></div>
 <article class="rest">
     <div class="listview_contain" style="margin: 0 auto;">
         <table class="gridtable" ng-if="events.length">
@@ -11,8 +12,8 @@
             <tbody class="theEvents">
                 <tbody ng-repeat="event in events">
                     <tr ng-class="event.featured=='today' ? 'list_today':''" ng-click="">
-                        <td class="list_align" ng-if="event.image">
-                            <img class="admin_image" ng-src="event.image"/>
+                        <td class="list_align" ng-if="event.pic_big">
+                            <img class="admin_image" src="{{event.pic_big}}" width="150"/>
                         </td>
                         <td class="list_align">
                             <strong>{{event.start_time.split('T')[0]}}</strong>

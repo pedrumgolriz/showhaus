@@ -38,7 +38,7 @@ angular.module('showhaus')
 		feeds = feedsFactory.query();
 		$interval(function() {
             feeds = feedsFactory.query();
-        }, 900000);
+        }, 80000);
 	})
 	.controller('AutoParser', function ($scope, $http, $interval) {
 		$scope.events = [];
@@ -61,7 +61,6 @@ angular.module('showhaus')
 					else{
 						localStorage.setItem('fb_response',1);
 					}
-					$scope.events = [];
 					for (var i = 0; i < response.length; i++) {
 						var responseDate = new Date(response[i].start_time.split('t')[0]);
                         responseDate = responseDate.getMonth()+1+'/'+responseDate.getDate()+'/'+responseDate.getFullYear();
@@ -107,9 +106,17 @@ angular.module('showhaus')
 		$scope.execute = function(up){
             $scope.executeSearch($scope.feeds[up][2]);
 		}
+		$scope.time = 90000;
 		$interval(function() {
 			if($scope.moveUp!=$scope.feeds.length){
 				$scope.execute($scope.moveUp);
 	        }
-        }, 5000);
+	        else{
+	            $scope.time = 90000;
+	        }
+        }, 90000);
+        $interval(function(){
+            $scope.time -=1;
+            $('.timer').html($scope.time+"ms to next refresh");
+        }, 1);
   });

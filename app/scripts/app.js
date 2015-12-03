@@ -91,10 +91,6 @@ angular
 				templateUrl: 'pages/feeds.html',
 				controller: 'FeedsCtrl'
 			})
-			.when('/autofeed',{
-				templateUrl: 'pages/autoparser.html',
-				controller: 'AutoParser'
-			})
 			.otherwise({
 				redirectTo: '/'
 			});
