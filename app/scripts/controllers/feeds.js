@@ -128,6 +128,7 @@ angular.module('showhaus')
 	                data
 	            ).success(function (data) {
 	                    alert('Successfuly added');
+	                    window.location.reload();
 	                    $('feedserror').hide();
 	                    $route.reload();
 	                }).error(function (status) {

@@ -60,9 +60,7 @@
             $facebookId = $response->getGraphObject()->getProperty('id');
             if(!ctype_digit($facebookId)){
                 $facebookId = explode('.com/', $facebookId)[1];
-                echo $facebookId;
                 $feedsEvents = $fb->get('/'.$facebookId.'events?start_time,ticket_uri')->getGraphEdge('GraphEvent');
-                var_dump($feedsEvents);
             }
             else{
                 $feedsEvents = $fb->get('/'.$facebookId.'/events?start_time,ticket_uri')->getGraphEdge('GraphEvent');
@@ -76,7 +74,6 @@
             //mysqli_close($mysqli);
         } catch(Facebook\Exceptions\FacebookResponseException $e) {
             echo 'Graph returned an error: ' . $e->getMessage();
-            exit;
         } catch(Facebook\Exceptions\FacebookSDKException $e) {
             echo 'Facebook SDK returned an error: ' . $e->getMessage();
             exit;
@@ -165,8 +162,12 @@
         if(array_key_exists(1, $match)){
             $price = $match[1];
         }
-        else{
+        preg_match('/free/', $description, $match);
+        if(array_key_exists(1, $match)){
             $price = 0;
+        }
+        else{
+            $price = -1;
         }
         $ticket_uri = $event->getProperty('ticket_uri');
         $fb_event = "http://facebook.com/events/".$event->getProperty('id');
