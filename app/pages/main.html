@@ -51,7 +51,7 @@ Default city should be set on change
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
-	<div class="show-contain" ng-hide="event.price>0&&freebox" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
+	<div class="show-contain" ng-hide="event.price>0&&freebox" ng-repeat="event in events | startFrom:currentPage*pageSize | limitTo:pageSize | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
 		<div class="show-detail-contain">
 
 			<!-- date / time -->
@@ -94,7 +94,13 @@ Default city should be set on change
 			</div>
 		</div>
 	</div>
-
+	<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+		Previous
+	</button>
+	{{currentPage+1}}/{{events.length/pageSize | number:0}}
+	<button ng-disabled="currentPage >= events.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+		Next
+	</button>
 	<!-- end show -->
 
 	<div style="text-align:center;" ng-show="numPages > 1">

@@ -88,6 +88,8 @@ angular.module('showhaus')
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
 	}
+	$scope.pageSize = 10;
+    $scope.currentPage = 0;
     $scope.venues = venues;
     $scope.events = events;
     if(INITIAL_EVENT_LENGTH==0){
@@ -230,4 +232,10 @@ angular.module('showhaus')
         }
         return day;
 	}
+  })
+  .filter('startFrom', function() {
+      return function(input, start) {
+          start = +start; //parse to int
+          return input.slice(start);
+      }
   });
