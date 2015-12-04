@@ -107,8 +107,13 @@
         $venue = $event->getProperty('place')->getProperty('name');
         if(isset($venue)){
             $property = $event->getProperty('place');
-            if(isset($property["city"])){
-                $city = $property["city"];
+            if(isset($property->getProperty('location')["name"])){
+                $venue = $property->getProperty('location')["name"];
+            }
+            var_dump($event->getProperty('place'));
+            if(isset($property->getProperty('location')["city"])){
+                $city = $property->getProperty('location')["city"];
+                echo $city;
             }
             else{
                 $temp = strtolower(str_replace(' ', '', $venue));
@@ -116,22 +121,22 @@
                 $matches = implode(',',preg_grep("/".$temp."/", $venues));
                 $city = substr($matches, strpos($matches, "*")+1);
             }
-            if(isset($property["street"])){
-                $address = $property["street"];
+            if(isset($property->getProperty('location')["street"])){
+                $address = $property->getProperty('location')["street"];
                 echo $address;
             }
             else{
                 $address = "";
             }
-            if(isset($property["state"])){
-                $state = $property["state"];
+            if(isset($property->getProperty('location')["state"])){
+                $state = $property->getProperty('location')["state"];
                 echo $state;
             }
             else{
                 $state = "";
             }
-            if(isset($property["zip"])){
-                $zip = $property["zip"];
+            if(isset($property->getProperty('location')["zip"])){
+                $zip = $property->getProperty('location')["zip"];
                 echo $zip;
             }
             else{
@@ -143,9 +148,6 @@
                 }
                 else{
                     mysqli_query($mysqli, "INSERT INTO venue (venue, address, city, state, zip) VALUES ('$venue','$address','$city','$state','$zip')");
-                    if (!$mysqli->error) {
-                        printf("Errormessage: %s\n", $mysqli->error);
-                    }
                 }
             }
         }
@@ -165,9 +167,6 @@
         //post to events
         if(isset($city)){
             mysqli_query($mysqli, "INSERT INTO events (title, venue, city, date, time, price, email, password, fb_event, ticket_uri) VALUES ('$title','$venue','$city','$date','$time','$price','$email','$password','$fb_event','$ticket_uri')");
-            if (!$mysqli->error) {
-                printf("Errormessage2: %s\n", $mysqli->error);
-            }
         }
     }
     
