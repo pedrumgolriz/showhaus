@@ -58,7 +58,15 @@
         try {
             $response = $fb->get('/'.$page);
             $facebookId = $response->getGraphObject()->getProperty('id');
-            $feedsEvents = $fb->get('/'.$facebookId.'/events?start_time,ticket_uri')->getGraphEdge('GraphEvent');
+            if(!ctype_digit($facebookId)){
+                $facebookId = explode('.com/', $facebookId)[1];
+                echo $facebookId;
+                $feedsEvents = $fb->get('/'.$facebookId.'events?start_time,ticket_uri')->getGraphEdge('GraphEvent');
+                var_dump($feedsEvents);
+            }
+            else{
+                $feedsEvents = $fb->get('/'.$facebookId.'/events?start_time,ticket_uri')->getGraphEdge('GraphEvent');
+            }
             $today = date("Y-m-d");
             for($i = 0; $i<sizeof($feedsEvents); $i++){
                 if(date_format($feedsEvents[$i]->getProperty('start_time'), 'Y-m-d') > $today){
