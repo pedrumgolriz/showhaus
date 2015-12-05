@@ -88,8 +88,6 @@ angular.module('showhaus')
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
 	}
-	$scope.pageSize = 10;
-    $scope.currentPage = 0;
     $scope.venues = venues;
     $scope.events = events;
     if(INITIAL_EVENT_LENGTH==0){
@@ -137,6 +135,7 @@ angular.module('showhaus')
 			if(INITIAL_EVENT_LENGTH > $scope.events.length){
                 console.log($scope.events.length-INITIAL_EVENT_LENGTH+" new events added");
             }
+            $scope.groupToPages();
 		});
     //##Listen to events from showpage##//
     if(typeof getSetCity.get() === 'string'){
@@ -236,6 +235,59 @@ angular.module('showhaus')
         var date = new Date(item.date);
         return date;
     };
+    /*
+        Pagination
+    */
+    $scope.reset = function(){
+        $scope.reverse = false;
+        $scope.filteredItems = [];
+        $scope.groupedItems = [];
+        $scope.itemsPerPage = 10;
+        $scope.pagedItems = [];
+        $scope.currentPage = 0;
+    }();
+    $scope.groupToPages = function () {
+        $scope.pagedItems = [];
+
+        for (var i = 0; i < $scope.events.length; i++) {
+            if (i % $scope.itemsPerPage === 0) {
+                $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [ $scope.events[i] ];
+            } else {
+                $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.events[i]);
+            }
+        }
+    };
+
+    $scope.range = function (start, end) {
+        var ret = [];
+        if (!end) {
+            end = start;
+            start = 0;
+        }
+        for (var i = start; i < end; i++) {
+            ret.push(i);
+        }
+        return ret;
+    };
+
+    $scope.prevPage = function () {
+        if ($scope.currentPage > 0) {
+            $scope.currentPage--;
+        }
+    };
+
+    $scope.nextPage = function () {
+        if ($scope.currentPage < $scope.pagedItems.length - 1) {
+            $scope.currentPage++;
+        }
+    };
+
+    $scope.setPage = function () {
+        $scope.currentPage = this.n;
+    };
+    /*
+        End Pagination
+    */
   })
   .filter('startFrom', function() {
       return function(input, start) {
