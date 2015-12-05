@@ -114,7 +114,6 @@
             if(isset($property->getProperty('location')["name"])){
                 $venue = $property->getProperty('location')["name"];
             }
-            var_dump($event->getProperty('place'));
             if(isset($property->getProperty('location')["city"])){
                 $city = $property->getProperty('location')["city"];
                 echo $city;

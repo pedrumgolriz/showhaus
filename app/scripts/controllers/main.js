@@ -231,7 +231,11 @@ angular.module('showhaus')
                 break;
         }
         return day;
-	}
+	};
+	$scope.orderByDate = function(item) {
+        var date = new Date(item.date);
+        return date;
+    };
   })
   .filter('startFrom', function() {
       return function(input, start) {

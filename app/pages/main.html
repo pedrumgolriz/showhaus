@@ -19,13 +19,13 @@ Default city should be set on change
 
 	<!-- filter -->
 	<div class="filter">
-		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select city --" ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
+		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select city --" ng-model="citySelect" ng-change="setNewCookie();resetVenues();currentPage=0">
 			<option value="">-- select city --</option>
 			<option value="Baltimore">Baltimore</option>
 			<option value="NYC">NYC</option>
 		</select>
 		|
-		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
+		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select venue --" ng-model="venueSelect" name="venue" ng-click="currentPage=0">
 			<option value="">-- all venues --</option>
 			<option ng-repeat="venue in venues | filter:citySelect">{{venue[1]}}</option>
 		</select>
@@ -51,7 +51,7 @@ Default city should be set on change
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
-	<div class="show-contain" ng-hide="event.price>0&&freebox" ng-repeat="event in events | startFrom:currentPage*pageSize | limitTo:pageSize | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
+	<div class="show-contain" ng-hide="event.price>0&&freebox" ng-repeat="event in events | orderBy: orderByDate | startFrom:currentPage*pageSize | limitTo:pageSize | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
 		<div class="show-detail-contain">
 
 			<!-- date / time -->
@@ -101,14 +101,4 @@ Default city should be set on change
 	<button ng-disabled="currentPage >= events.length/pageSize - 1" ng-click="currentPage=currentPage+1">
 		Next
 	</button>
-	<!-- end show -->
-
-	<div style="text-align:center;" ng-show="numPages > 1">
-		<
-			<span ng-repeat="i in getNumber(numPages) track by $index">
-				{{$index}}
-			</span>
-		>
-	</div>
-
 </div>
