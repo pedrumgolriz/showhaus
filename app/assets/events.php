@@ -10,7 +10,7 @@ $today_flag = "0";
     $edit = 1;
   }
   else{
-    $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS email FROM venue, events WHERE STR_TO_DATE(events.date, '%m/%d/%Y') >= STR_TO_DATE('".$server_date."', '%m/%d/%Y') AND events.venue = venue.venue ORDER BY date ASC");
+    $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS email FROM venue, events WHERE STR_TO_DATE(events.date, '%m/%d/%Y') >= STR_TO_DATE('".$server_date."', '%m/%d/%Y') AND events.venue = venue.venue GROUP BY events.id");
     $edit = 0;
   }
   $return = array();
@@ -19,12 +19,16 @@ $today_flag = "0";
     //format the location of the image
     if($row['poster']!=""){
       if(substr($row['poster'], 0, 4)=="http"){
-        $row[poster] = html_entity_decode($row['poster']);
+        $row['poster'] = html_entity_decode($row['poster']);
       }
       else{
         $row['poster'] = "http://i.showhaus.org/uploads/".$row['poster'];
       }
     }
+    if( strtolower($row['city']) == "brooklyn" || strtolower($row['city']) == "new york" ){
+      $row['city'] = "NYC";
+    }
+    //echo $row['city'];
     $row['description'] = html_entity_decode($row['description']);
     $return[] = $row;
   }
