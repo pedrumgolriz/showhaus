@@ -156,10 +156,7 @@
         }
         $date = date_format($event->getProperty('start_time'), 'm/d/Y');
         $time = date_format($event->getProperty('start_time'), 'g:i A');
-        preg_match('/\$([0-9]+[\.]*[0-9]*)/', $description, $match);
-        if(array_key_exists(1, $match)){
-            $price = $match[1];
-        }
+        $ticket_uri = $event->getProperty('ticket_uri');
         preg_match('/free/', $description, $match);
         if(array_key_exists(1, $match)){
             $price = 0;
@@ -167,7 +164,10 @@
         else{
             $price = -1;
         }
-        $ticket_uri = $event->getProperty('ticket_uri');
+        preg_match('/\$([0-9]+[\.]*[0-9]*)/', $description, $match);
+        if(array_key_exists(1, $match)){
+            $price = $match[1];
+        }
         $fb_event = "http://facebook.com/events/".$event->getProperty('id');
         $email = "feeder@showhaus.org";
         $password = "tapedeck";

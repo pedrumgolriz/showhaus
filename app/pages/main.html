@@ -51,7 +51,7 @@ Default city should be set on change
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
-	<div class="show-contain" ng-hide="event.price>0&&freebox" ng-repeat="event in events | orderBy: orderByDate | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
+	<div class="show-contain" ng-hide="event.price!=0&&freebox" ng-repeat="event in events | orderBy: orderByDate | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
 		<div class="show-detail-contain">
 
 			<!-- date / time -->
@@ -73,7 +73,9 @@ Default city should be set on change
 				<div class="title" ng-if="!event.fb_event" ng-click="expand($event)"><a href="#">{{event.title}}</a></div>
 				<div class="title" ng-click="extshow(event.fb_event)" ng-if="event.fb_event"><a href="#">{{event.title}}</a><i style="vertical-align: middle; margin: 0 0 0 8px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)"></i>
 					<span class="show-price" ng-if="event.price>0">${{event.price}}</span>
-					<span class="show-price" ng-if="event.price==0">free</span></div>
+					<span class="show-price" ng-if="event.price==0 || (event.price==-1&&!event.ticket_uri)">
+						<span style="display:none">{{event.price=0}}</span>free
+					</span></div>
 
 					<span class="show-tickets" ng-if="event.ticket_uri">
 						<a href="{{event.ticket_uri}}" target="_blank">get tickets</a>
