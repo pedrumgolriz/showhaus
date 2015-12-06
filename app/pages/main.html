@@ -19,13 +19,13 @@ Default city should be set on change
 
 	<!-- filter -->
 	<div class="filter">
-		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select city --" ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
+		<select ng-init="events" id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select city --" ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
 			<option value="">-- select city --</option>
 			<option value="Baltimore">Baltimore</option>
 			<option value="NYC">NYC</option>
 		</select>
 		|
-		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
+		<select ng-init="venues" id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
 			<option value="">-- all venues --</option>
 			<option ng-repeat="venue in venues | filter:citySelect">{{venue[1]}}</option>
 		</select>
@@ -51,7 +51,7 @@ Default city should be set on change
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
-	<div class="show-contain" ng-hide="event.price!=0&&freebox" ng-repeat="event in events | orderBy: orderByDate | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
+	<div ng-if="!loading" class="show-contain" ng-hide="event.price!=0&&freebox" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | orderBy: orderByDate" ng-hide="loading">
 		<div class="show-detail-contain">
 
 			<!-- date / time -->

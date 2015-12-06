@@ -78,10 +78,10 @@ angular.module('showhaus')
   .run(function($http, venueCityFactory, eventsFactory, $interval) {
     venues = venueCityFactory.query();
   	events = eventsFactory.query();
-	$interval(function() {
+	//$interval(function() {
 		venues = venueCityFactory.query();
 		events = eventsFactory.query();
-	}, 50000);
+	//}, 50000);
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue){
 	$(".ui-dialog-content").dialog("destroy");
