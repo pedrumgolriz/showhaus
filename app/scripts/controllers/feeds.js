@@ -50,47 +50,53 @@ angular.module('showhaus')
 				FB.getLoginStatus(function (response) {
 					$scope.authToken = response.authResponse.accessToken;
 				});
-				var facebookTitle = $scope.search.split('facebook.com/')[1].split(/\W/g)[0];
-				$scope.search = "http://www.facebook.com/"+facebookTitle;
-				FB.api({
-						method: 'fql.query',
-						query: 'SELECT name, page_url FROM page WHERE page_id IN (SELECT page_id FROM page WHERE username = "'+facebookTitle+'")',
-						access_token: $scope.authToken
-					},
-					function (response) {
-						if(localStorage.getItem('fb_response')) {
-							localStorage.setItem('fb_response', parseInt(localStorage.getItem('fb_response'))+1);
-						}
-						else{
-							localStorage.setItem('fb_response',1);
-						}
-						$scope.events = [];
-						for (var i = 0; i < response.length; i++) {
-							$scope.owner = response[i].name;
-							$scope.url = response[i].page_url;
-							/*var eid = response[i]['eid'];
-							FB.api(eid, function (nested) {
-								for(var q = 0; q < response.length; q++){
-								    if(response[q].eid == nested.id){
-								        if(response[q]['pic_big']) {
-								            nested.image = response[q]['pic_big'];
-								        }
-									    if(response[q]['ticket_uri']) {
-										    nested.image = response[q]['ticket_uri'];
-									    }
-								    }
-								 }
-								$scope.$apply(function () {
-									$scope.events.push(nested);
-								});
-								$scope.owner = $scope.events[0].name;
-								console.log($scope.owner);
-								localStorage.setItem('fb_response', parseInt(localStorage.getItem('fb_response'))+1);
-							});*/
-						}
-						$scope.check();
-					}
-				);
+				var facebookTitle = $scope.search.split('facebook.com/')[1];
+				if(typeof(facebookTitle) != "undefined"){
+					facebookTitle = facebookTitle.split(/\W/g)[0];
+					$scope.search = "http://www.facebook.com/"+facebookTitle;
+                    FB.api({
+                            method: 'fql.query',
+                            query: 'SELECT name, page_url FROM page WHERE page_id IN (SELECT page_id FROM page WHERE username = "'+facebookTitle+'")',
+                            access_token: $scope.authToken
+                        },
+                        function (response) {
+                            if(localStorage.getItem('fb_response')) {
+                                localStorage.setItem('fb_response', parseInt(localStorage.getItem('fb_response'))+1);
+                            }
+                            else{
+                                localStorage.setItem('fb_response',1);
+                            }
+                            $scope.events = [];
+                            for (var i = 0; i < response.length; i++) {
+                                $scope.owner = response[i].name;
+                                $scope.url = response[i].page_url;
+                                /*var eid = response[i]['eid'];
+                                FB.api(eid, function (nested) {
+                                    for(var q = 0; q < response.length; q++){
+                                        if(response[q].eid == nested.id){
+                                            if(response[q]['pic_big']) {
+                                                nested.image = response[q]['pic_big'];
+                                            }
+                                            if(response[q]['ticket_uri']) {
+                                                nested.image = response[q]['ticket_uri'];
+                                            }
+                                        }
+                                     }
+                                    $scope.$apply(function () {
+                                        $scope.events.push(nested);
+                                    });
+                                    $scope.owner = $scope.events[0].name;
+                                    console.log($scope.owner);
+                                    localStorage.setItem('fb_response', parseInt(localStorage.getItem('fb_response'))+1);
+                                });*/
+                            }
+                            $scope.check();
+                        }
+                    );
+				}
+				else{
+					$scope.feedError = true;
+				}
 		};
 		$scope.parseInt = function(string){
 			return parseInt(string);
@@ -101,7 +107,7 @@ angular.module('showhaus')
 				pageNames.push(feeds[i][0]);
 			}
 			if(pageNames.indexOf($scope.owner) > -1){
-				$('.feedserror').show();
+				$scope.feedError = true;
 			}
 			else{
 				var today = new Date();
@@ -129,10 +135,9 @@ angular.module('showhaus')
 	            ).success(function (data) {
 	                    alert('Successfuly added');
 	                    window.location.reload();
-	                    $('feedserror').hide();
 	                    $route.reload();
 	                }).error(function (status) {
-	                    $('feedserror').show();
+	                    $scope.feedError = true;
 	                });
 			}
 		}

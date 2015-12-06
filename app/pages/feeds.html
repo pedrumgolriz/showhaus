@@ -79,7 +79,7 @@
 
 		<!-- contribute feed -->
 		<div class="postshow-url">
-            <span class="postshow-helptext error feedserror">Invalid feed url! This page may have already been added. Please check below</span>
+            <span class="postshow-helptext error" ng-show="feedError"">Invalid feed url! This page may have already been added. Please check below</span>
 			<input placeholder="eg. https://www.facebook.com/silentbarn" ng-model="search" type="text" class="full url"></input>
 			<div class="postshow-helptext">
 				<strong>Enter the URL of a Facebook page.</strong>
