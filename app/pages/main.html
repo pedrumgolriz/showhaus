@@ -19,13 +19,13 @@ Default city should be set on change
 
 	<!-- filter -->
 	<div class="filter">
-		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select city --" ng-model="citySelect" ng-change="setNewCookie();resetVenues();reset()">
+		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select city --" ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
 			<option value="">-- select city --</option>
 			<option value="Baltimore">Baltimore</option>
 			<option value="NYC">NYC</option>
 		</select>
 		|
-		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select venue --" ng-model="venueSelect" name="venue" ng-change="reset()">
+		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
 			<option value="">-- all venues --</option>
 			<option ng-repeat="venue in venues | filter:citySelect">{{venue[1]}}</option>
 		</select>
@@ -51,7 +51,7 @@ Default city should be set on change
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
-	<div class="show-contain" ng-hide="event.price>0&&freebox" ng-repeat="event in pagedItems[currentPage] | orderBy: orderByDate | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
+	<div class="show-contain" ng-hide="event.price>0&&freebox" ng-repeat="event in events | orderBy: orderByDate | filter:{city:citySelect} | filter:{venue:venueSelect}" ng-hide="loading">
 		<div class="show-detail-contain">
 
 			<!-- date / time -->
@@ -94,17 +94,15 @@ Default city should be set on change
 			</div>
 		</div>
 	</div>
-	<ul>
-		<li ng-class="{disabled: currentPage == 0}">
-			<a href ng-click="prevPage()">« Prev</a>
-		</li>
-		<li ng-repeat="n in range(pagedItems.length)"
-			ng-class="{active: n == currentPage}"
-			ng-click="setPage()">
-			<a href ng-bind="n + 1">1</a>
-		</li>
-		<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
-			<a href ng-click="nextPage()">Next »</a>
-		</li>
-	</ul>
+
+	<!-- end show -->
+
+	<div style="text-align:center;" ng-show="numPages > 1">
+		<
+			<span ng-repeat="i in getNumber(numPages) track by $index">
+				{{$index}}
+			</span>
+		>
+	</div>
+
 </div>
