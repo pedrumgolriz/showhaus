@@ -27,7 +27,7 @@ Default city should be set on change
 		|
 		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
 			<option value="">-- all venues --</option>
-			<option ng-repeat="venue in venues | filter:citySelect">{{venue[1]}}</option>
+			<option ng-repeat="venue in events | filter:citySelect | unique:'venue'">{{venue.venue}}</option>
 		</select>
 		|
 		<input type="checkbox" name="free" value="free" ng-model="freebox"><span class="checkbox-text">Free Shows Only</span><br>

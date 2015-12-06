@@ -76,7 +76,7 @@ angular.module('showhaus')
     return $resource(jsonQuery, {},{query: {method:'JSONP', params:{callback: 'JSON_CALLBACK'}, isArray:true}});
   })
   .run(function($http, venueCityFactory, eventsFactory, $interval) {
-    venues = venueCityFactory.query();
+    //venues = venueCityFactory.query();
   	events = eventsFactory.query();
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue){
@@ -119,25 +119,19 @@ angular.module('showhaus')
       return loadingService.isLoading();
     }, function(value) { $scope.loading = value; });
 	$scope.$watch(function(events){
-			for(var i = 0; i < $scope.events.length; i++){
-				$scope.eventVenues.push($scope.events[i].venue);
-				for(var q = 0; q < $scope.venues.length; q++){
-					var index = $scope.eventVenues.indexOf($scope.venues[q][1]);
-					if(index == -1){
-						$scope.venues.splice(q,1);
-					}
-				}
-			}
-			if(INITIAL_EVENT_LENGTH > $scope.events.length){
-                console.log($scope.events.length-INITIAL_EVENT_LENGTH+" new events added");
+        for(var i = 0; i < $scope.events.length; i++){
+            $scope.eventVenues.push($scope.events[i].venue);
+            for(var q = 0; q < $scope.venues.length; q++){
+                var index = $scope.eventVenues.indexOf($scope.venues[q][1]);
+                if(index == -1){
+                    $scope.venues.splice(q,1);
+                }
             }
-            $scope.groupToPages();
-		});
-    var unregister = $scope.$watch(function(venues){
-        if($scope.venues.length){
-            $scope.venueSelect = angular.copy($scope.venues);
         }
-        unregister();
+        if(INITIAL_EVENT_LENGTH > $scope.events.length){
+            console.log($scope.events.length-INITIAL_EVENT_LENGTH+" new events added");
+        }
+        $scope.groupToPages();
     });
     //##Listen to events from showpage##//
     if(typeof getSetCity.get() === 'string'){
@@ -296,4 +290,20 @@ angular.module('showhaus')
           start = +start; //parse to int
           return input.slice(start);
       }
+  })
+  .filter('unique', function() {
+     return function(collection, keyname) {
+        var output = [],
+            keys = [];
+
+        angular.forEach(collection, function(item) {
+            var key = item[keyname];
+            if(keys.indexOf(key) === -1) {
+                keys.push(key);
+                output.push(item);
+            }
+        });
+
+        return output;
+     };
   });
