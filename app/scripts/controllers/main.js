@@ -78,10 +78,6 @@ angular.module('showhaus')
   .run(function($http, venueCityFactory, eventsFactory, $interval) {
     venues = venueCityFactory.query();
   	events = eventsFactory.query();
-	//$interval(function() {
-		venues = venueCityFactory.query();
-		events = eventsFactory.query();
-	//}, 50000);
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue){
 	$(".ui-dialog-content").dialog("destroy");
@@ -137,6 +133,12 @@ angular.module('showhaus')
             }
             $scope.groupToPages();
 		});
+    var unregister = $scope.$watch(function(venues){
+        if($scope.venues.length){
+            $scope.venueSelect = angular.copy($scope.venues);
+        }
+        unregister();
+    });
     //##Listen to events from showpage##//
     if(typeof getSetCity.get() === 'string'){
       $scope.citySelect = getSetCity.get();

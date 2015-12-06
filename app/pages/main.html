@@ -19,13 +19,13 @@ Default city should be set on change
 
 	<!-- filter -->
 	<div class="filter">
-		<select ng-init="events" id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select city --" ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
+		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select city --" ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
 			<option value="">-- select city --</option>
 			<option value="Baltimore">Baltimore</option>
 			<option value="NYC">NYC</option>
 		</select>
 		|
-		<select ng-init="venues" id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
+		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
 			<option value="">-- all venues --</option>
 			<option ng-repeat="venue in venues | filter:citySelect">{{venue[1]}}</option>
 		</select>
