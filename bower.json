@@ -14,7 +14,8 @@
     "angular-route": "1.2.16",
     "jquery-ui": "~1.11.2",
     "ckeditor": "~4.4.5",
-    "jquery-colorbox": "~1.6.3"
+    "jquery-colorbox": "~1.6.3",
+    "chosen": "~1.4.2"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",
