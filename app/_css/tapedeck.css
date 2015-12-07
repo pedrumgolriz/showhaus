@@ -191,6 +191,15 @@ a:visited {color: black;}
 
 }
 
+.filter > *{
+    vertical-align: bottom;
+    margin-top: 5px;
+}
+
+.filter > input{
+    vertical-align: baseline;
+}
+
 .filter .checkbox-text {
     font-size: 12px;
 }

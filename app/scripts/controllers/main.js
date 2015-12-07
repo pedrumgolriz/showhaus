@@ -79,7 +79,7 @@ angular.module('showhaus')
     //venues = venueCityFactory.query();
   	events = eventsFactory.query();
   })
-  .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue){
+  .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout){
 	$(".ui-dialog-content").dialog("destroy");
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
@@ -94,6 +94,9 @@ angular.module('showhaus')
     $scope.list = true; //sets list as default view
     $scope.resetVenues = function(){
       $scope.venueSelect = "";
+      $timeout(function () {
+        $('select').trigger('chosen:updated');
+      }, 0, false);
     };
     //####//
     $scope.setNewCookie = function(){
@@ -132,6 +135,9 @@ angular.module('showhaus')
             console.log($scope.events.length-INITIAL_EVENT_LENGTH+" new events added");
         }
         $scope.groupToPages();
+        $timeout(function () {
+            $('select').trigger('chosen:updated');
+        }, 0, false);
     });
     //##Listen to events from showpage##//
     if(typeof getSetCity.get() === 'string'){
@@ -169,9 +175,6 @@ angular.module('showhaus')
 	$scope.$watchCollection('citySelect', function() {
 		if($scope.citySelect==""){
 			$scope.resetVenues();
-		}
-		else{
-			$('select').trigger('chosen:updated');
 		}
 	});
 	var today = new Date();
