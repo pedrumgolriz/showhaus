@@ -34,9 +34,7 @@ angular.module('showhaus')
 		return $resource(jsonQuery, {},{query: {method:'JSONP', params:{callback: 'JSON_CALLBACK'}, isArray:true}});
 	})
 	.run(function($http, feedsFactory) {
-		//$interval(function() {
 		feeds = feedsFactory.query();
-		//}, 30000);
 	})
 	.controller('FeedsCtrl', function ($scope, $http, $route) {
 		//

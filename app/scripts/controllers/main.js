@@ -75,7 +75,7 @@ angular.module('showhaus')
     var jsonQuery = preUrl+'events.php';
     return $resource(jsonQuery, {},{query: {method:'JSONP', params:{callback: 'JSON_CALLBACK'}, isArray:true}});
   })
-  .run(function($http, venueCityFactory, eventsFactory, $interval) {
+  .run(function($http, venueCityFactory, eventsFactory) {
     //venues = venueCityFactory.query();
   	events = eventsFactory.query();
   })
@@ -309,4 +309,20 @@ angular.module('showhaus')
 
         return output;
      };
+  })
+  .directive('chosen', function($timeout) {
+
+    var linker = function(scope, element, attr) {
+
+      $timeout(function () {
+        element.chosen({
+          placeholder_text_single: "-- select venue --"
+        });
+      }, 0, false);
+    };
+
+    return {
+      restrict: 'A',
+      link: linker
+    };
   });
