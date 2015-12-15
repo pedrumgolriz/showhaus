@@ -1,0 +1,94 @@
+/* ░░░░░░░░░░░░ main nav ░░░░░░░░░░░░ */
+
+.nav {
+height: 30px;
+width: 500px;
+text-align: center;
+padding: 5px 0 20px 0;
+margin: 0 auto;
+}
+
+.nav a {
+margin: 0 5px;
+text-decoration: none;
+color:gray
+}
+
+.nav a:hover {border-bottom: dotted 1px;}
+.nav a:visited {color: gray;}
+
+.nav a.postshow {
+color: red;
+padding:3px 4px;
+
+}
+
+.nav a.postshow:hover {
+color: white;
+background-color: red;
+border-radius: 5px;
+border-bottom: none;
+}
+
+/* ░░░░░░░░░░░░ hero ░░░░░░░░░░░░ */
+
+.hero-contain {
+height: 100px;
+text-align: center;
+}
+
+.showhaus {
+text-align: center;
+width: 300px;
+font-size: 25px;
+font-weight: 700;
+margin: 30px auto 0 auto;
+}
+
+.venue-select {
+width: 300px;
+text-align: center;
+padding: 10px;
+margin: 10px auto 0 auto;
+background-color: #d8d8d8;
+}
+
+.filter {
+width: 500px;
+background-color: #eee;
+margin: 0 auto;
+height: 35px;
+border-radius: 5px;
+border: 1px solid #ddd;
+}
+
+.filter-drop {
+margin-top: 8px;
+
+}
+
+.filter > *{
+vertical-align: bottom;
+margin-top: 5px;
+}
+
+.filter > input, .checkbox-text{
+vertical-align: baseline;
+}
+
+.filter .checkbox-text {
+font-size: 12px;
+}
+
+/* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░░ */
+
+.content {
+padding: 10px 25px;
+margin: 70px auto 0 auto;
+max-width: 900px
+}
+
+.contain {
+max-width: 600px;
+margin: 0 auto;
+}
