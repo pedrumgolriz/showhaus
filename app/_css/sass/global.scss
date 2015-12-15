@@ -1,0 +1,52 @@
+/* ==========================================================================
+showhaus styles
+========================================================================== */
+
+/* ░░░░░░░░░░░░ typography ░░░░░░░░░░░░ */
+
+body {
+    font-family: 'Karla', Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+h1 {font-size: 2em;}
+h2 {font-size: 1.5em;}
+h3 {font-size: 1.2em;}
+h4 {font-size: 1.0em;}
+h5 {font-size: 0.9em;}
+h6 {font-size: 0.8em;}
+
+p {font-size: 15px/1.5em;}
+
+
+/* ░░░░░░░░░░░░ links ░░░░░░░░░░░░ */
+
+a:hover {cursor: pointer;}
+a:visited {color: black;}
+
+
+/* ░░░░░░░░░░░░ standard page ░░░░░░░░░░░░ */
+
+.breadcrumb {
+font-size: 13px;
+background-color: #eee;
+padding: 5px;
+color: #929292;
+}
+
+.breadcrumb-nav {
+text-align: left;
+max-width: 750px;
+margin: 0 auto;
+}
+
+.breadcrumb-nav a {text-decoration: none;}
+
+.breadcrumb-nav a:hover {color: gray; border-bottom: 1px dotted gray;}
+
+.page {
+max-width: 650px !important;
+margin: 40px auto 0 auto;
+
+}
