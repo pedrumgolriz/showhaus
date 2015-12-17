@@ -60,12 +60,13 @@ background-color: #d8d8d8;
 }
 
 .filter {
-width: 500px;
+max-width: 510px;
 background-color: #eee;
 margin: 0 auto;
-height: 35px;
+height: 40px;
 border-radius: 5px;
 border: 1px solid #ddd;
+padding: 5px 0 0 0;
 }
 
 .filter-drop {
@@ -84,6 +85,20 @@ vertical-align: baseline;
 
 .filter .checkbox-text {
 font-size: 12px;
+display: inline-block;
+padding: 0 15px 5px 0;
+
+}
+
+.filter .checkbox-text:hover {
+    cursor:pointer;
+}
+
+
+.filter-border {
+    border-right: 1px solid #ddd;
+    padding: 0 15px;
+    display: inline-block;
 }
 
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░░ */
