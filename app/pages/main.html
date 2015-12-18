@@ -19,18 +19,21 @@ Default city should be set on change
 
 	<!-- filter -->
 	<div class="filter">
-		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select city --" chosen ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
-			<option value="">-- select city --</option>
-			<option value="Baltimore">Baltimore</option>
-			<option value="NYC">NYC</option>
-		</select>
-		|
-		<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select venue --" ng-model="venueSelect" chosen name="venue">
-			<option value="">-- all venues --</option>
-			<option ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
-		</select>
-		|
-		<input type="checkbox" name="free" value="free" ng-model="freebox"><span class="checkbox-text">Free Shows Only</span><br>
+		<div class="filter-border">
+			<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select city --" chosen ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
+				<option value="">-- select city --</option>
+				<option value="Baltimore">Baltimore</option>
+				<option value="NYC">NYC</option>
+			</select>
+		</div>
+
+		<div class="filter-border">
+			<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select venue --" ng-model="venueSelect" chosen name="venue">
+				<option value="">-- all venues --</option>
+				<option ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
+			</select>
+		</div>
+		<label class="checkbox-text"><input type="checkbox" name="free" value="free" ng-model="freebox">Free Shows Only</label><br>
 	</div>
 </div>
 

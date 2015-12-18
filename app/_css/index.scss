@@ -41,6 +41,7 @@
 .hero-contain {
 height: 100px;
 text-align: center;
+min-width: 850px;
 }
 
 .showhaus {
@@ -104,9 +105,9 @@ padding: 0 15px 5px 0;
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░░ */
 
 .content {
-padding: 10px 25px;
+padding: 10px;
 margin: 70px auto 0 auto;
-max-width: 900px
+min-width: 850px;
 }
 
 .contain {
@@ -187,7 +188,7 @@ color: gray;
 }
 
 .show-title {
-width: 475px;
+min-width: 375px;
 float: right;
 max-height : 200px;
 text-overflow: ellipsis;
