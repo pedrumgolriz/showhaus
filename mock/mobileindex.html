@@ -17,12 +17,16 @@
 
     <style>
             .mobile-show-contain {padding: 20px 15px; border-bottom: 1px solid lightgray; font-size: 18px;}
-            .mobile-date {background-color: gray; color: white; text-align: center;font-size:10px; padding: 5px;}
-            .mobile-show-title {}
+            .mobile-date {background-color: gray; color: white; text-align: center;font-size:10px; padding: 5px; margin: 15px 0 0 0;}
+            .mobile-show-title {text-align: left;}
             .mobile-show-venue {padding: 10px 0 0 0; font-size: 14px;}
             .mobile-show-address {font-size: 12px;}
-            .mobile-show-tickets {float:right; font-size: 12px; margin-top: 8px;}
+            .mobile-show-tickets {float:right; font-size: 12px; margin-top: 8px; color: #ccc;}
+            .mobile-city {padding: 5px; color: #bbb; font-size: 13px; margin: 0 auto 20px auto; width: 150px;}
 
+            .mobile-city label {margin: 10px 0 0 -30px;}
+            .mobile-filter {}
+            .mobile-show-details {text-align: left;}
     </style>
 
 
@@ -32,11 +36,34 @@
 <div class="hero-contain">
     <!-- title -->
     <div class="showhaus"><img src="./assets/logo.png" style="width:25px; vertical-align: inherit;"> SHOWHAUS</div>
-    <div> VIEW FILTERS +</div>
+
+    <!-- city title -->
+    <div class="mobile-city">
+
+        <!--city filter-->
+        <select id="select-beast" class="filter-drop" style="width: 150px; margin: 0 0 10px 0;" placeholder="-- select city --" chosen ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
+            <option value="">-- select city --</option>
+            <option value="Baltimore">Baltimore</option>
+            <option value="NYC">NYC</option>
+        </select>
+
+        <!-- venue filter -->
+        <select id="select-beast" class="filter-drop" style="width: 150px;margin: 0 0 10px 0; " placeholder="-- select venue --" ng-model="venueSelect" chosen name="venue">
+            <option value="">-- all venues --</option>
+            <option ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
+        </select>
+
+        <!-- free filter -->
+        <label class="checkbox-text"><input type="checkbox" name="free" value="free" ng-model="freebox">Free Shows Only</la
+
+
+    </div>
+
 </div>
 
 
-        <!-- date -->
+
+        <!-- mobile date -->
         <div class="mobile-date">
             <strong>TODAY</strong> (4-20-15)
         </div>
@@ -49,60 +76,7 @@
             <div class="mobile-show-details">
                 <span class="mobile-show-venue">@ <strong>Output</strong></span>
                 <span class="mobile-show-address">(<a href="#">74 Wythe Ave.</a>)</span>
-                <span class="mobile-show-tickets">GET TICKETS</span>
-            </div>
-        </div>
-
-        <!-- show -->
-        <div class="mobile-show-contain">
-            <div class="mobile-show-title">
-                <a href="#">Leland Sundries // Spirit Plate // Breanna Barbara // The Nowadays</a>
-            </div>
-            <div class="mobile-show-details">
-                <span class="mobile-show-venue">@ <strong>Output</strong></span>
-                <span class="mobile-show-address">(<a href="#">74 Wythe Ave.</a>)</span>
-                <span class="mobile-show-tickets">GET TICKETS</span>
-            </div>
-        </div>
-
-        <!-- show -->
-        <div class="mobile-show-contain">
-            <div class="mobile-show-title">
-                <a href="#">Leland Sundries // Spirit Plate // Breanna Barbara // The Nowadays</a>
-            </div>
-            <div class="mobile-show-details">
-                <span class="mobile-show-venue">@ <strong>Output</strong></span>
-                <span class="mobile-show-address">(<a href="#">74 Wythe Ave.</a>)</span>
-                <span class="mobile-show-tickets">GET TICKETS</span>
-            </div>
-        </div>
-
-        <!-- show -->
-        <div class="mobile-show-contain">
-            <div class="mobile-show-title">
-                <a href="#">Leland Sundries // Spirit Plate // Breanna Barbara // The Nowadays</a>
-            </div>
-            <div class="mobile-show-details">
-                <span class="mobile-show-venue">@ <strong>Output</strong></span>
-                <span class="mobile-show-address">(<a href="#">74 Wythe Ave.</a>)</span>
-                <span class="mobile-show-tickets">GET TICKETS</span>
-            </div>
-        </div>
-
-        <!-- date -->
-        <div class="mobile-date">
-            <strong>TOMORROW</strong> (4-21-15)
-        </div>
-
-        <!-- show -->
-        <div class="mobile-show-contain">
-            <div class="mobile-show-title">
-                <a href="#">Leland Sundries // Spirit Plate // Breanna Barbara // The Nowadays</a>
-            </div>
-            <div class="mobile-show-details">
-                <span class="mobile-show-venue">@ <strong>Output</strong></span>
-                <span class="mobile-show-address">(<a href="#">74 Wythe Ave.</a>)</span>
-                <span class="mobile-show-tickets">GET TICKETS</span>
+                <span class="mobile-show-tickets"><a href="#">GET TICKETS</a></span>
             </div>
         </div>
 
