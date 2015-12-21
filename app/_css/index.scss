@@ -39,73 +39,72 @@
 /* ░░░░░░░░░░░░ hero ░░░░░░░░░░░░ */
 
 .hero-contain {
-height: 100px;
-text-align: center;
-min-width: 850px;
+    height: 100px;
+    text-align: center;
+    min-width: 850px;
 }
 
 .showhaus {
-text-align: center;
-width: 300px;
-font-size: 25px;
-font-weight: 700;
-margin: 30px auto 0 auto;
+    text-align: center;
+    width: 300px;
+    font-size: 25px;
+    font-weight: 700;
+    margin: 30px auto 0 auto;
 }
 
-.venue-select {
-width: 300px;
-text-align: center;
-padding: 10px;
-margin: 10px auto 0 auto;
-background-color: #d8d8d8;
-}
+/* filter bar */
 
 .filter {
-max-width: 510px;
-background-color: #eee;
-margin: 0 auto;
-height: 40px;
-border-radius: 5px;
-border: 1px solid #ddd;
-padding: 5px 0 0 0;
+    max-width: 510px;
+    background-color: #eee;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 13px;
+    height: 25px;
+
+    .venue-select {
+        width: 300px;
+        text-align: center;
+        padding: 10px;
+        margin: 10px auto 0 auto;
+    }
+
+    .filter > * {
+        vertical-align: bottom;
+        margin-top: 5px;
+    }
+
+    .filter > input, .checkbox-text{
+        vertical-align: baseline;
+    }
+
+    .filter .checkbox-text {
+        font-size: 12px;
+        display: inline-block;
+        padding: 0 15px 5px 0;
+    }
+
+    .filter .checkbox-text:hover {
+        cursor:pointer;
+    }
+
+    .filter-border {
+        border-right: 1px solid #ddd;
+        display: inline-block;
+    }
+
+    .filter-drop {
+        margin-top: 8px;
+    }
 }
 
-.filter-drop {
-margin-top: 8px;
 
-}
-
-.filter > *{
-vertical-align: bottom;
-margin-top: 5px;
-}
-
-.filter > input, .checkbox-text{
-vertical-align: baseline;
-}
-
-.filter .checkbox-text {
-font-size: 12px;
-display: inline-block;
-padding: 0 15px 5px 0;
-
-}
-
-.filter .checkbox-text:hover {
-    cursor:pointer;
-}
-
-
-.filter-border {
-    border-right: 1px solid #ddd;
-    padding: 0 15px;
-    display: inline-block;
-}
-
-/* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░░ */
+/* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░ */
 
 .content {
-padding: 10px;
+padding: 10px 0;
 margin: 70px auto 0 auto;
 min-width: 850px;
 }
@@ -161,7 +160,8 @@ font-size: 13px;
 }
 
 .show-venue {
-width: 200px;
+width: 150px;
+padding: 0 30px 0 0;
 display: inline-block;
 }
 
@@ -188,7 +188,7 @@ color: gray;
 }
 
 .show-title {
-min-width: 375px;
+width: 455px;
 float: right;
 max-height : 200px;
 text-overflow: ellipsis;
