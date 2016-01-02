@@ -1,5 +1,6 @@
 <?php
     ini_set('display_errors', '1');
+    ini_set('max_execution_time', 0);
     error_reporting(E_ALL);
     
     date_default_timezone_set('US/Eastern');
@@ -12,9 +13,7 @@
                                 'default_access_token' => '204851123020578|0joKWgaSJfM197SAhfZCMAzILhY', // optional
                                 ]);
     
-    
-    $_POST = file_get_contents("php://input");
-    $_POST = json_decode($_POST, TRUE);
+
     $mysqli = new mysqli("localhost", "write", "dxV6m6~8", "haus");
     
     //Array that holds each event object
@@ -73,7 +72,7 @@
             }
             //mysqli_close($mysqli);
         } catch(Facebook\Exceptions\FacebookResponseException $e) {
-            echo 'Graph returned an error: ' . $e->getMessage();
+            echo ' CFE ';
         } catch(Facebook\Exceptions\FacebookSDKException $e) {
             echo 'Facebook SDK returned an error: ' . $e->getMessage();
             exit;
@@ -84,11 +83,13 @@
         try {
             if(checkAgainstDB($eventId, $events)){
                 $eventId = $fb->get('/'.$eventId.'?fields=ticket_uri,start_time,name,place,description,picture')->getGraphObject();
-                postToDB($eventId, $venues, $mysqli);
+                if(is_object($eventId)){
+                    postToDB($eventId, $venues, $mysqli);
+                }
             }
         } catch(Facebook\Exceptions\FacebookResponseException $e) {
             // When Graph returns an error
-            echo 'Graph returned an error: ' . $e->getMessage();
+            echo ' N.E ';
         } catch(Facebook\Exceptions\FacebookSDKException $e) {
             // When validation fails or other local issues
             echo 'Facebook SDK returned an error: ' . $e->getMessage();
@@ -106,93 +107,86 @@
     }
     
     function postToDB($event, $venues, $mysqli){
-        $title = $event->getProperty('name');
-        $description = $event->getProperty('description');
-        $venue = $event->getProperty('place')->getProperty('name');
-        if(isset($venue)){
-            $property = $event->getProperty('place');
-            if(isset($property->getProperty('location')["name"])){
-                $venue = $property->getProperty('location')["name"];
+        try{
+            $title = $event->getProperty('name');
+            $description = $event->getProperty('description');
+            $testPlace = $event->getProperty('place');
+            if(is_object($testPlace)){
+                $venue = $event->getProperty('place')->getProperty('name');
             }
-            if(isset($property->getProperty('location')["city"])){
-                $city = $property->getProperty('location')["city"];
-                echo $city;
-            }
-            else{
-                $temp = strtolower(str_replace(' ', '', $venue));
-                //check if partial match in $venues
-                $matches = implode(',',preg_grep("/".$temp."/", $venues));
-                $city = substr($matches, strpos($matches, "*")+1);
-            }
-            if(isset($property->getProperty('location')["street"])){
-                $address = $property->getProperty('location')["street"];
-                echo $address;
-            }
-            else{
-                $address = "";
-            }
-            if(isset($property->getProperty('location')["state"])){
-                $state = $property->getProperty('location')["state"];
-                echo $state;
-            }
-            else{
-                $state = "";
-            }
-            if(isset($property->getProperty('location')["zip"])){
-                $zip = $property->getProperty('location')["zip"];
-                echo $zip;
-            }
-            else{
-                $zip = "";
-            }
-            if(isset($city)&&isset($venue)){
-                if(in_array(strtolower(str_replace(' ', '', $venue."*".$city)), $venues)){
-                    echo "match and ignore";
+            if(isset($venue)){
+                $property = $event->getProperty('place');
+                if(isset($property->getProperty('location')["name"])){
+                    $venue = $property->getProperty('location')["name"];
+                }
+                if(isset($property->getProperty('location')["city"])){
+                    $city = $property->getProperty('location')["city"];
+                    echo $city;
                 }
                 else{
-                    mysqli_query($mysqli, "INSERT INTO venue (venue, address, city, state, zip) VALUES ('$venue','$address','$city','$state','$zip')");
+                    $temp = strtolower(str_replace(' ', '', $venue));
+                    //check if partial match in $venues
+                    $matches = implode(',',preg_grep("/".$temp."/", $venues));
+                    $city = substr($matches, strpos($matches, "*")+1);
+                }
+                if(isset($property->getProperty('location')["street"])){
+                    $address = $property->getProperty('location')["street"];
+                }
+                else{
+                    $address = "";
+                }
+                if(isset($property->getProperty('location')["state"])){
+                    $state = $property->getProperty('location')["state"];
+                }
+                else{
+                    $state = "";
+                }
+                if(isset($property->getProperty('location')["zip"])){
+                    $zip = $property->getProperty('location')["zip"];
+                }
+                else{
+                    $zip = "";
+                }
+                if(isset($city)&&isset($venue)){
+                    if(in_array(strtolower(str_replace(' ', '', $venue."*".$city)), $venues)){
+                        echo " M&I ";
+                    }
+                    else{
+                        echo "#####NEW VENUE#####";
+                        mysqli_query($mysqli, "INSERT INTO `venue` (`venue`, `address`, `city`, `state`, `zip`) VALUES ('$venue','$address','$city','$state','$zip')");
+                    }
+                }
+                if($city!=""){
+                    $date = date_format($event->getProperty('start_time'), 'm/d/Y');
+                    $time = date_format($event->getProperty('start_time'), 'g:i A');
+                    $ticket_uri = $event->getProperty('ticket_uri');
+                    preg_match('/free/', $description, $match);
+                    if(array_key_exists(1, $match)){
+                        $price = 0;
+                    }
+                    else{
+                        $price = -1;
+                    }
+                    preg_match('/\$([0-9]+[\.]*[0-9]*)/', $description, $match);
+                    if(array_key_exists(1, $match)){
+                        $price = $match[1];
+                    }
+                    $fb_event = "http://facebook.com/events/".$event->getProperty('id');
+                    $email = "feeder@showhaus.org";
+                    $password = "tapedeck";
+                    //post to events
+                    echo $fb_event;
+                    mysqli_query($mysqli, "INSERT INTO events (`title`, `venue`, `city`, `date`, `time`, `price`, `email`, `password`, `fb_event`, `ticket_uri`) VALUES ('$title','$venue','$city','$date','$time','$price','$email','$password','$fb_event','$ticket_uri')");
                 }
             }
         }
-        $date = date_format($event->getProperty('start_time'), 'm/d/Y');
-        $time = date_format($event->getProperty('start_time'), 'g:i A');
-        $ticket_uri = $event->getProperty('ticket_uri');
-        preg_match('/free/', $description, $match);
-        if(array_key_exists(1, $match)){
-            $price = 0;
-        }
-        else{
-            $price = -1;
-        }
-        preg_match('/\$([0-9]+[\.]*[0-9]*)/', $description, $match);
-        if(array_key_exists(1, $match)){
-            $price = $match[1];
-        }
-        $fb_event = "http://facebook.com/events/".$event->getProperty('id');
-        $email = "feeder@showhaus.org";
-        $password = "tapedeck";
-        //post to events
-        if(isset($city)){
-            mysqli_query($mysqli, "INSERT INTO events (title, venue, city, date, time, price, email, password, fb_event, ticket_uri) VALUES ('$title','$venue','$city','$date','$time','$price','$email','$password','$fb_event','$ticket_uri')");
-        }
-    }
-    
-    class stdObject {
-        public function __construct(array $arguments = array()) {
-            if (!empty($arguments)) {
-                foreach ($arguments as $property => $argument) {
-                    $this->{$property} = $argument;
-                }
+        catch(Facebook\Exceptions\FacebookResponseException $e) {
+                // When Graph returns an error
+                echo 'ERROR ON SOMETHING CONTINUE';
+            } catch(Facebook\Exceptions\FacebookSDKException $e) {
+                // When validation fails or other local issues
+                echo 'Facebook SDK returned an error: ' . $e->getMessage();
+                exit;
             }
-        }
-        
-        public function __call($method, $arguments) {
-            $arguments = array_merge(array("stdObject" => $this), $arguments); // Note: method argument 0 will always referred to the main class ($this).
-            if (isset($this->{$method}) && is_callable($this->{$method})) {
-                return call_user_func_array($this->{$method}, $arguments);
-            } else {
-                throw new Exception("Fatal error: Call to undefined method stdObject::{$method}()");
-            }
-        }
     }
 ?>
