@@ -189,8 +189,26 @@ angular.module('showhaus')
 		mm='0'+mm
 	}
 	var tomorrow_dd = parseInt(dd)+1;
+	$scope.today = today;
+	//the day names
 	$scope.today = mm+'/'+dd+'/'+yyyy;
 	$scope.tomorrow = mm+'/'+tomorrow_dd+'/'+yyyy;
+	//"next week" events
+    $scope.nextWeek = function(date){
+        var mdy = date.split('/')
+        var formattedParam = new Date(mdy[2], mdy[0]-1, mdy[1]);
+        var ddy = $scope.today.split('/');
+        var formattedToday = new Date(ddy[2], ddy[0]-1, ddy[1]);
+        var diff = Math.round((formattedParam-formattedToday)/(1000*60*60*24));
+
+        if(diff > 14 || diff < 0){
+            return "true";
+        }
+        else if (diff > 7){
+            $scope.futureEvent = false;
+            return "Next";
+        }
+    }
 
 	$scope.popupMap = function(e, address, city){
 		var thisPopup = $(e.target);

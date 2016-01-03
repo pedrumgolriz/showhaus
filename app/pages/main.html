@@ -59,10 +59,18 @@ Default city should be set on change
 
 			<!-- date / time -->
 			<div class="show-date">
-				<div class="day" ng-if="event.date!=today && event.date!=tomorrow">{{getDay(event.date)}}</div>
+				<div class="day" ng-if="event.date!=today && event.date!=tomorrow">
+					<span ng-if="nextWeek(event.date) != 'true'">{{nextWeek(event.date)}}</span>
+					<span ng-if="nextWeek(event.date) == 'true'">{{event.date}}</span>
+					<span ng-if="nextWeek(event.date) != 'true'">{{getDay(event.date)}}</span>
+				</div>
 				<div class="day" ng-if="event.date==today">Today</div>
 				<div class="day" ng-if="event.date==tomorrow">Tomorrow</div>
-				<div class="date" ng-class="(event.date==today || event.date==tomorrow) ? day : date" >{{event.date}}</div>
+				<div class="date" ng-class="(event.date==today || event.date==tomorrow) ? day : date" >
+					<span ng-if="nextWeek(event.date) == 'true'">{{getDay(event.date)}}</span>
+					<span ng-if="nextWeek(event.date) != 'true'">{{event.date}}</span>
+				</div>
+				<div class="date">{{event.time}}</div>
 			</div>
 
 			<!-- venue -->
