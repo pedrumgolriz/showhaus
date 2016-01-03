@@ -1,3 +1,21 @@
+/* ░░░░░░░░░░░░ Mobility ░░░░░░░░░░░░ */
+
+#desktop {
+        display: block;
+    }
+    #mobile {
+        display: none;
+    }
+
+@media screen and (max-width: 700px) {
+    #desktop {
+        display: none;
+    }
+    #mobile {
+        display: block;
+    }
+}
+
 /* ░░░░░░░░░░░░ typography ░░░░░░░░░░░░ */
 
 body {

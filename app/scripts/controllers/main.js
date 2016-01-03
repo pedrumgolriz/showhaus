@@ -79,7 +79,7 @@ angular.module('showhaus')
     //venues = venueCityFactory.query();
   	events = eventsFactory.query();
   })
-  .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout){
+  .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window){
 	$(".ui-dialog-content").dialog("destroy");
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);

@@ -495,6 +495,19 @@ Print styles
   h2,
   h3 {
     page-break-after: avoid; } }
+/* ░░░░░░░░░░░░ Mobility ░░░░░░░░░░░░ */
+#desktop {
+  display: block; }
+
+#mobile {
+  display: none; }
+
+@media screen and (max-width: 700px) {
+  #desktop {
+    display: none; }
+
+  #mobile {
+    display: block; } }
 /* ░░░░░░░░░░░░ typography ░░░░░░░░░░░░ */
 body {
   font-family: 'Karla', Helvetica, sans-serif;
@@ -581,7 +594,8 @@ a:visited {
 /* ░░░░░░░░░░░░ hero ░░░░░░░░░░░░ */
 .hero-contain {
   height: 100px;
-  text-align: center; }
+  text-align: center;
+  min-width: 850px; }
 
 .showhaus {
   text-align: center;
@@ -590,39 +604,43 @@ a:visited {
   font-weight: 700;
   margin: 30px auto 0 auto; }
 
-.venue-select {
-  width: 300px;
-  text-align: center;
-  padding: 10px;
-  margin: 10px auto 0 auto;
-  background-color: #d8d8d8; }
-
+/* filter bar */
 .filter {
-  width: 500px;
+  max-width: 510px;
   background-color: #eee;
   margin: 0 auto;
-  height: 35px;
   border-radius: 5px;
-  border: 1px solid #ddd; }
+  border: 1px solid #ddd;
+  padding: 10px;
+  font-size: 13px;
+  height: 25px; }
+  .filter .venue-select {
+    width: 300px;
+    text-align: center;
+    padding: 10px;
+    margin: 10px auto 0 auto; }
+  .filter .filter > * {
+    vertical-align: bottom;
+    margin-top: 5px; }
+  .filter .filter > input, .filter .checkbox-text {
+    vertical-align: baseline; }
+  .filter .filter .checkbox-text {
+    font-size: 12px;
+    display: inline-block;
+    padding: 0 15px 5px 0; }
+  .filter .filter .checkbox-text:hover {
+    cursor: pointer; }
+  .filter .filter-border {
+    border-right: 1px solid #ddd;
+    display: inline-block; }
+  .filter .filter-drop {
+    margin-top: 8px; }
 
-.filter-drop {
-  margin-top: 8px; }
-
-.filter > * {
-  vertical-align: bottom;
-  margin-top: 5px; }
-
-.filter > input, .checkbox-text {
-  vertical-align: baseline; }
-
-.filter .checkbox-text {
-  font-size: 12px; }
-
-/* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░░ */
+/* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░ */
 .content {
-  padding: 10px 25px;
+  padding: 10px 0;
   margin: 70px auto 0 auto;
-  max-width: 900px; }
+  min-width: 850px; }
 
 .contain {
   max-width: 600px;
@@ -664,7 +682,8 @@ a:visited {
   font-size: 13px; }
 
 .show-venue {
-  width: 200px;
+  width: 150px;
+  padding: 0 30px 0 0;
   display: inline-block; }
 
 .show-venue a:link {
@@ -693,7 +712,7 @@ a:visited {
   color: gray; }
 
 .show-title {
-  width: 475px;
+  width: 455px;
   float: right;
   max-height: 200px;
   text-overflow: ellipsis; }
@@ -1092,5 +1111,53 @@ td, th {
 .feeds-dateadded {
   width: 80px;
   text-align: center; }
+
+/* ░░░░░░░░░░░░ index mobile ░░░░░░░░░░░░ */
+/* header */
+.mobile-filter {
+  padding: 5px;
+  color: #bbb;
+  font-size: 13px;
+  margin: 15px auto 20px auto;
+  width: 150px;
+  /* shift label left */ }
+  .mobile-filter > label {
+    margin: 10px 0 0 -30px; }
+
+/* show */
+.mobile-date {
+  background-color: gray;
+  color: white;
+  text-align: center;
+  font-size: 10px;
+  padding: 5px;
+  margin: 15px 0 0 0; }
+
+.mobile-show-contain {
+  padding: 20px 15px;
+  border-bottom: 1px solid lightgray;
+  font-size: 18px;
+  /* show content */ }
+  .mobile-show-contain .mobile-show-title {
+    text-align: left; }
+  .mobile-show-contain .mobile-show-venue {
+    padding: 10px 0 0 0;
+    font-size: 14px; }
+  .mobile-show-contain .mobile-show-address {
+    font-size: 12px; }
+  .mobile-show-contain .mobile-show-tickets {
+    float: right;
+    font-size: 12px;
+    margin-top: 8px;
+    color: #ccc; }
+  .mobile-show-contain .mobile-show-details {
+    text-align: left; }
+
+.mobile-nav {
+  margin-top: 20px; }
+
+.mobile-nav a:link {
+  color: #aaa;
+  padding: 0 5px; }
 
 /*# sourceMappingURL=tapedeck.css.map */
