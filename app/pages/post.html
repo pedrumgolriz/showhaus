@@ -5,41 +5,12 @@
 
 <form ng-model="form" class="content page" novalidate ng-submit="postEvent()" name="form">
 	<h2>POST A SHOW</h2>
-	<!--░░░░░░░░░░░░ begin post show ░░░░░░░░░░░░-->
-	<div class="readtherules" name="rules_anchor" style="background-color: #d62c2c;font-family: sans-serif;"
-		 ng-click="expand = !expand">
 
-		<!-- STYLE THIS -->
-		<p>BEFORE POSTING PLEASE <span style="font-weight: bold; text-decoration: underline;">READ THE RULES</span>
+	<!-- rules and guidelines -->
+	<div class="postshow-wrap rules">
+		<p>Hey there, thanks for posting a show on Showhaus. Before you post there are a few things you should know.</p>
+	</div>
 
-	</div>
-	<div class="rules" ng-show="expand">
-		<ul>
-			<li><span>Be Descriptive</span></li>
-			<li style="list-style: none">When posting a show, do your best to
-				provide as much information on who is playing, what they sound
-				like, and what they look like. It makes for quality listings, and a
-				better understanding of our local music scene. HTML and CSS on your
-				listings is allowed and encouraged.
-			</li>
-			<li><span>Protect Smaller Venues</span></li>
-			<li style="list-style: none">Please do not post the addresses of
-				venues that are in residential areas or operate without an
-				entertainment/liquor license. Do not ask for the address in the
-				comments. Find these delicate places under your own
-				discretion.
-			</li>
-			<li><span>Show Deletion</span></li>
-			<li style="list-style: none">The admins and moderators reserve the
-				right to delete your posting if it's... a) not a show (or spam) b)
-				not a quality listing c) a duplicate event
-			</li>
-			<li><span>Don’t be a jerk</span></li>
-			<li style="list-style: none">We spent a lot of time making this a
-				nice place for shows. Be nice!
-			</li>
-		</ul>
-	</div>
 	<!-- enter url -->
 	<div class="postshow-heading">SHOW URL (optional)</div>
 	<div class="postshow-wrap">
@@ -50,7 +21,7 @@
 		</div>
 	</div>
 
-	<!--░░░░░░░░░░░░ show detais ░░░░░░░░░░░░-->
+	<!--░░░░░░░░░░░░ show details ░░░░░░░░░░░░-->
 	<div class="postshow-heading">SHOW DETAILS</div>
 	<div class="postshow-wrap">
 

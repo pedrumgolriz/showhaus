@@ -518,7 +518,8 @@ h1 {
   font-size: 2em; }
 
 h2 {
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  text-align: center; }
 
 h3 {
   font-size: 1.2em; }
@@ -987,6 +988,15 @@ input.price {
   background-color: #fff;
   border-top: none;
   padding: 2px; }
+  .postshow-wrap.rules {
+    border-radius: 2px;
+    border-top: 1px solid lightgray;
+    background-color: #fcf8e3;
+    color: #000;
+    font-size: 12px;
+    max-width: 600px;
+    min-width: 500px;
+    margin: 15px auto; }
 
 .postshow-url {
   text-align: center;
@@ -1017,7 +1027,7 @@ input.price {
   margin: 0 auto;
   padding: 25px 0 10px 0;
   border-radius: 4px;
-  background: url(addvenuebg.png); }
+  background: url(images/addvenuebg.png); }
 
 .postshow-dateprice {
   text-align: center;
