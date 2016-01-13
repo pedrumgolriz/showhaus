@@ -117,52 +117,52 @@ margin: 0 auto;
 /* ░░░░░░░░░░░░ show ░░░░░░░░░░░░ */
 
 .show-contain {
-border-bottom: 1px solid rgba(179, 179, 179, 0.31);
-min-height: 55px;
-padding: 5px 0 0 0;
-margin: 0 auto;
-display: table;
+    border-bottom: 1px solid rgba(179, 179, 179, 0.31);
+    min-height: 55px;
+    padding: 5px 0 0 0;
+    margin: 0 auto;
+    display: table;
 }
 
 #expand {
-background-color: #D8D8D8;
+    background-color: #D8D8D8;
 }
 
 /* if a show is happening today */
 .show-contain.today {
-background: rgba(255, 255, 0, 0.18) !important;
+    background: rgba(255, 255, 0, 0.18) !important;
 }
 
 .show-contain:hover {
-background-color: #fefefc;
-opacity: 1;
+    background-color: #fefefc;
+    opacity: 1;
 }
 
 .show-detail-contain {
-padding: 10px 10px 25px 10px;
-display: inline-block;
+    padding: 10px 10px 25px 10px;
+    display: inline-block;
 }
 
 
 .show-date {
-width: 140px;
-float: left;
-display: inline-block;
+    width: 140px;
+    float: left;
+    display: inline-block;
 }
 
 .show-date .day {
-font-weight: 400;
+    font-weight: 400;
 }
 
 .show-date .date {
-color: gray;
-font-size: 13px;
+    color: gray;
+    font-size: 13px;
 }
 
 .show-venue {
-width: 150px;
-padding: 0 30px 0 0;
-display: inline-block;
+    width: 150px;
+    padding: 0 30px 0 0;
+    display: inline-block;
 }
 
 .show-venue a:link {text-decoration:none;color: gray;}
