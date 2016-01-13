@@ -495,19 +495,6 @@ Print styles
   h2,
   h3 {
     page-break-after: avoid; } }
-/* ░░░░░░░░░░░░ Mobility ░░░░░░░░░░░░ */
-#desktop {
-  display: block; }
-
-#mobile {
-  display: none; }
-
-@media screen and (max-width: 700px) {
-  #desktop {
-    display: none; }
-
-  #mobile {
-    display: block; } }
 /* ░░░░░░░░░░░░ typography ░░░░░░░░░░░░ */
 body {
   font-family: 'Karla', Helvetica, sans-serif;
@@ -545,7 +532,7 @@ a:visited {
 
 /* ░░░░░░░░░░░░ standard page ░░░░░░░░░░░░ */
 .breadcrumb {
-  font-size: 13px;
+  font-size: 12px;
   background-color: #eee;
   padding: 5px;
   color: #929292; }
@@ -553,7 +540,8 @@ a:visited {
 .breadcrumb-nav {
   text-align: left;
   max-width: 750px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  color: #1b1b1b; }
 
 .breadcrumb-nav a {
   text-decoration: none; }
@@ -561,10 +549,6 @@ a:visited {
 .breadcrumb-nav a:hover {
   color: gray;
   border-bottom: 1px dotted gray; }
-
-.page {
-  max-width: 650px !important;
-  margin: 40px auto 0 auto; }
 
 /* ░░░░░░░░░░░░ main nav ░░░░░░░░░░░░ */
 .nav {
@@ -581,7 +565,7 @@ a:visited {
     color: gray; }
   .nav a:hover {
     margin: 0 5px;
-    text-decoration: none;
+    border-bottom: 1px dotted;
     color: gray; }
   .nav a.postshow {
     color: red;
@@ -604,6 +588,8 @@ a:visited {
   font-size: 25px;
   font-weight: 700;
   margin: 30px auto 0 auto; }
+  .showhaus span {
+    margin: 0 30px 0 0; }
 
 /* filter bar */
 .filter {
@@ -625,15 +611,17 @@ a:visited {
     margin-top: 5px; }
   .filter .filter > input, .filter .checkbox-text {
     vertical-align: baseline; }
-  .filter .filter .checkbox-text {
-    font-size: 12px;
+  .filter .checkbox-text {
+    font-size: 13px;
     display: inline-block;
     padding: 0 15px 5px 0; }
   .filter .filter .checkbox-text:hover {
-    cursor: pointer; }
+    cursor: pointer;
+    text-decoration: underline 1px dotted; }
   .filter .filter-border {
     border-right: 1px solid #ddd;
-    display: inline-block; }
+    display: inline-block;
+    padding: 0 10px 0 0; }
   .filter .filter-drop {
     margin-top: 8px; }
 
@@ -641,7 +629,11 @@ a:visited {
 .content {
   padding: 10px 0;
   margin: 70px auto 0 auto;
-  min-width: 850px; }
+  max-width: 850px;
+  /* basic page style overrides */ }
+  .content.page {
+    max-width: 650px !important;
+    margin: 40px auto !important; }
 
 .contain {
   max-width: 600px;
@@ -767,7 +759,7 @@ a:visited {
   padding: 5px 10px;
   display: inline-block; }
 
-.show-tickets a:hover {
+.show-tickets:hover {
   background-color: #F0F196; }
 
 .show-tickets a:hover {
@@ -996,7 +988,9 @@ input.price {
     font-size: 12px;
     max-width: 600px;
     min-width: 500px;
-    margin: 15px auto; }
+    margin: 15px auto;
+    text-align: left;
+    padding: 0 10px; }
 
 .postshow-url {
   text-align: center;
@@ -1107,9 +1101,13 @@ button:hover {
   background-color: rgba(222, 13, 13, 0.19); }
 
 /* ░░░░░░░░░░░░ feeds ░░░░░░░░░░░░ */
+.addfeed {
+  background: url(images/addvenuebg.png); }
+
 th {
   text-align: left;
-  background-color: #eee; }
+  background-color: #eee;
+  font-family: karla, sans-serif; }
 
 tr {
   line-height: 2.7;
@@ -1121,8 +1119,8 @@ td, th {
   padding: 0 0 0 20px; }
 
 .feeds-dateadded {
-  width: 80px;
-  text-align: center; }
+  width: 90px;
+  text-align: left; }
 
 /* ░░░░░░░░░░░░ index mobile ░░░░░░░░░░░░ */
 /* header */
