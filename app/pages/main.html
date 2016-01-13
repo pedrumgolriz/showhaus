@@ -7,7 +7,7 @@ Default city should be set on change
 <!--░░░░░░░░░░░░ hero ░░░░░░░░░░░░-->
 <div class="hero-contain">
 	<!-- title -->
-	<div class="showhaus"><img src="./assets/logo.png" style="width:25px; vertical-align: inherit;"> SHOWHAUS</div>
+	<div class="showhaus"><img src="./assets/logo.png" style="width:25px; vertical-align: inherit;"> <span>SHOWHAUS</span></div>
 
 	<!-- main nav -->
 	<div class="nav">
@@ -20,15 +20,15 @@ Default city should be set on change
 	<!-- filter -->
 	<div class="filter">
 		<div class="filter-border">
-			<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select city --" chosen ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
+			<select id="select-beast" class="filter-drop" style="width: 100px;" placeholder="-- select city --" chosen ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
 				<option value="">-- select city --</option>
 				<option value="Baltimore">Baltimore</option>
 				<option value="NYC">NYC</option>
 			</select>
 		</div>
 
-		<div class="filter-border">
-			<select id="select-beast" class="filter-drop" style="width: 150px;" placeholder="-- select venue --" ng-model="venueSelect" chosen name="venue">
+		<div class="filter-border" style="padding: 0 10px;">
+			<select id="select-beast" class="filter-drop" style="width: 210px;" placeholder="-- select venue --" ng-model="venueSelect" chosen name="venue">
 				<option value="">-- all venues --</option>
 				<option ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
 			</select>
@@ -36,6 +36,13 @@ Default city should be set on change
 		<label class="checkbox-text"><input type="checkbox" name="free" value="free" ng-model="freebox">Free Shows Only</label><br>
 	</div>
 </div>
+
+<!--
+<div style="display: block; margin: 80px 0 20px 0; text-align: center; color: lightgray;">
+	<h3>UPCOMING NYC SHOWS</h3>
+	<i>* please double check listings for accuracy</i>
+</div>
+-->
 
 <!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 <div class="content">
@@ -93,7 +100,6 @@ Default city should be set on change
 					</span>
 			</div>
 		</div>
-
 		<!-- show page -->
 		<div class="expand-contain" ng-hide="event.fb_event">
 			<div class="show-img">
@@ -120,3 +126,38 @@ Default city should be set on change
 	</div>
 
 </div>
+
+<!--
+<div class="contain" id="mobile">
+	<div ng-show="loading" style="text-align:center;">
+		<div class="loading">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+	<div class="mobile-date">
+		<strong>TODAY</strong> (4-20-15)
+	</div>
+
+	<div class="mobile-show-contain">
+		<div class="mobile-show-title">
+			<a href="#">Leland Sundries // Spirit Plate // Breanna Barbara // The Nowadays</a>
+		</div>
+
+		<div class="mobile-show-details">
+			<span class="mobile-show-venue">@ <strong>Output</strong></span>
+			<span class="mobile-show-address">(<a href="#">74 Wythe Ave.</a>)</span>
+			<span class="mobile-show-tickets">GET TICKETS</span>
+
+		</div>
+
+	</div>
+
+
+</div>
+-->
