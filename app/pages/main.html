@@ -33,7 +33,10 @@ Default city should be set on change
 				<option ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
 			</select>
 		</div>
-		<label class="checkbox-text"><input type="checkbox" name="free" value="free" ng-model="freebox">Free Shows Only</label><br>
+		<div class="checkbox">
+			<input type="checkbox" name="free" value="free" ng-model="freebox">
+			<label>Free Shows Only</label>
+		</div>
 	</div>
 </div>
 

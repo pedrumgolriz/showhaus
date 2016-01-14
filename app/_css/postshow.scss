@@ -29,6 +29,10 @@ input[type="text"] {
     border-radius: 3px;
 }
 
+input[type="checkbox"] {
+    display: inline;
+}
+
 input[type="text"]:hover {
 border: 1px solid gray;
 }
