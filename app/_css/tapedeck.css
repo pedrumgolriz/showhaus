@@ -550,6 +550,17 @@ a:visited {
   color: gray;
   border-bottom: 1px dotted gray; }
 
+.note {
+  border-radius: 2px;
+  border: 1px solid lightgray;
+  background-color: #FFFC9E;
+  color: #000;
+  font-size: 12px;
+  max-width: 600px;
+  margin: 15px auto;
+  text-align: left;
+  padding: 0 10px; }
+
 /* ░░░░░░░░░░░░ main nav ░░░░░░░░░░░░ */
 .nav {
   height: 30px;
@@ -625,9 +636,13 @@ a:visited {
   .filter .filter-drop {
     margin-top: 8px; }
 
+/* chosen override */
+.chosen-container-single .chosen-single {
+  background: white !important; }
+
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░ */
 .content {
-  padding: 10px 0;
+  padding: 10px 20px;
   margin: 70px auto 0 auto;
   max-width: 850px;
   /* basic page style overrides */ }
@@ -760,7 +775,8 @@ a:visited {
   display: inline-block; }
 
 .show-tickets:hover {
-  background-color: #F0F196; }
+  background-color: #F0F196;
+  cursor: pointer; }
 
 .show-tickets a:hover {
   border-bottom: none; }
@@ -859,10 +875,10 @@ textarea:focus, input:focus {
   outline: 0; }
 
 input {
-  margin: 0 10px;
   display: inline-block;
   background-color: #fff;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  width: 90% !important; }
 
 input[type="text"] {
   padding: 10px;
@@ -881,10 +897,10 @@ input[type="text"].focus {
   box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26); }
 
 input.full {
-  width: 500px; }
+  max-width: 500px; }
 
 input.third {
-  width: 280px; }
+  max-width: 280px; }
 
 input.half {
   max-width: 200px; }
@@ -960,8 +976,8 @@ input.price {
 .postshow-heading {
   background-color: #aaa;
   color: #fff;
-  max-width: 800px;
-  min-width: 650px;
+  max-width: 650px;
+  width: 100%;
   margin: 0 auto;
   padding: 8px 2px;
   text-align: center;
@@ -971,8 +987,8 @@ input.price {
   font-weight: 700; }
 
 .postshow-wrap {
-  max-width: 800px;
-  min-width: 650px;
+  max-width: 650px;
+  width: 100%;
   margin: 0 auto 10px auto;
   text-align: center;
   border: 1px solid lightgray;
@@ -983,7 +999,7 @@ input.price {
   .postshow-wrap.rules {
     border-radius: 2px;
     border-top: 1px solid lightgray;
-    background-color: #fcf8e3;
+    background-color: #FFFC9E;
     color: #000;
     font-size: 12px;
     max-width: 600px;
@@ -997,7 +1013,7 @@ input.price {
   min-height: 75px;
   max-width: 650px;
   margin: 25px auto;
-  padding: 25px 0;
+  padding: 25px 20px;
   border: 1px solid lightgray;
   border-radius: 4px;
   /* background-color: rgba(241, 250, 215, 0.42); */ }
@@ -1006,7 +1022,7 @@ input.price {
   text-align: center;
   margin: 0 auto;
   padding: 40px 0 10px 0;
-  width: 475px; }
+  width: 100%; }
 
 .postshow-title {
   text-align: center;
@@ -1016,24 +1032,23 @@ input.price {
 .postshow-venue {
   text-align: center;
   min-height: 75px;
-  width: 475px;
   background-color: lightgray;
   margin: 0 auto;
   padding: 25px 0 10px 0;
   border-radius: 4px;
-  background: url(images/addvenuebg.png); }
+  background: url(images/addvenuebg.png);
+  width: 80%;
+  max-width: 475px; }
 
 .postshow-dateprice {
   text-align: center;
   margin: 0 auto;
-  padding: 30px 0;
-  width: 475px; }
+  padding: 30px 0; }
 
 .postshow-description {
   text-align: center;
   margin: 0 auto;
-  padding: 20px 0;
-  width: 375px; }
+  padding: 20px 0; }
 
 .postshow-eventart {
   text-align: center;
@@ -1052,7 +1067,8 @@ input.price {
   text-align: center;
   margin: 0 auto;
   padding: 30px 0;
-  width: 475px; }
+  max-width: 475px;
+  width: 100%; }
 
 .postshow-submit {
   text-align: center;

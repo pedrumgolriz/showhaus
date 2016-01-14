@@ -105,11 +105,14 @@
     }
 }
 
+/* chosen override */
+.chosen-container-single .chosen-single {background: white !important;}
+
 
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░ */
 
 .content {
-    padding: 10px 0;
+    padding: 10px 20px;
     margin: 70px auto 0 auto;
     max-width: 850px;
 
@@ -233,28 +236,29 @@ opacity: 0.25;
 }
 
 .show-price {
-padding: 1px 3px;
-border-radius: 3px;
-color: white;
-background-color: green;
-font-size: 10px;
-display: inline-block;
-margin: 2px 5px;
-vertical-align: middle;
+    padding: 1px 3px;
+    border-radius: 3px;
+    color: white;
+    background-color: green;
+    font-size: 10px;
+    display: inline-block;
+    margin: 2px 5px;
+    vertical-align: middle;
 }
 
 .show-tickets{
-background-color: #FAFBA1;
-color: 000;
-margin: 12px -5px 0 0;
-text-transform: uppercase;
-font-size: .8em;
-padding: 5px 10px;
-display: inline-block;
+    background-color: #FAFBA1;
+    color: 000;
+    margin: 12px -5px 0 0;
+    text-transform: uppercase;
+    font-size: .8em;
+    padding: 5px 10px;
+    display: inline-block;
 }
 
 .show-tickets:hover{
     background-color: #F0F196;
+    cursor: pointer;
 }
 
 .show-tickets a:hover{
