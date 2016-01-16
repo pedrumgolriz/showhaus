@@ -915,14 +915,21 @@ input.third {
   max-width: 280px; }
 
 input.half {
+  width: 40% !important;
   max-width: 200px; }
 
 input.date {
+  width: 30% !important;
   max-width: 100px;
   margin-right: 20px; }
 
+input.time {
+  width: 25% !important;
+  max-width: 100px; }
+
 input.mini {
-  max-width: 50px; }
+  width: 20% !important;
+  max-width: 80px; }
 
 /* input styles */
 input.url {

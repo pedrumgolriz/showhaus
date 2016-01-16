@@ -76,14 +76,12 @@
 		<!-- enter date & price -->
 		<div class="postshow-dateprice">
 			<input class="date" type="text" name="date" placeholder="date" readonly required type="text" ng-model="date" class="date"></input>
-			<input class="time" type="text" name="time" placeholder="time" readonly type="text" ng-model="time" class="time"></input>
+			<input class="time" type="text" name="time" placeholder="time" readonly type="text" ng-model="time"></input>
 			<input placeholder="price" name="price" required ng-model="price" numbers-only="numbers-only" type="text" class="mini price"></input>
 			<div class="postshow-helptext">
 				For free shows, enter <strong>$0</strong> as the price.
 			</div>
-			<div class="postshow-helptext">
-				please enter the items above
-			</div>
+
 		</div>
 	</div>
 
@@ -118,9 +116,11 @@
 			<div class="postshow-helptext">
 				<strong>Enter your email</strong> to reiceve a receipt of your post, along with a link to edit/delete your listing. This field is optional.
 			</div>
-			<div class="postshow-helptext">
+			<!--
+			<div class="postshow-helptext error">
 				a valid email is needed
 			</div>
+			-->
 		</div>
 
 		<!-- submit -->
