@@ -669,70 +669,61 @@ input[type="checkbox"] {
   min-height: 55px;
   padding: 5px 0 0 0;
   margin: 0 auto;
-  display: table; }
-
-#expand {
-  background-color: #D8D8D8; }
-
-/* if a show is happening today */
-.show-contain.today {
-  background: rgba(255, 255, 0, 0.18) !important; }
-
-.show-contain:hover {
-  background-color: #fefefc;
-  opacity: 1; }
+  display: table;
+  width: 100%;
+  /* if a show is happening today */
+  /* if a show is expanded */
+  /* -------- SHOW CONTENT -------- */
+  /* 1. time and date */
+  /* 2. show venue */
+  /* 3. show title */ }
+  .show-contain .today {
+    background: rgba(255, 255, 0, 0.18) !important; }
+  .show-contain #expand {
+    background-color: #D8D8D8; }
+  .show-contain .show-date {
+    width: 16%;
+    max-width: 140px;
+    float: left;
+    display: inline-block;
+    /* show details (title, outbound icon, price) */ }
+    .show-contain .show-date .day {
+      font-weight: 400; }
+    .show-contain .show-date .date {
+      color: gray;
+      font-size: 13px; }
+  .show-contain .show-venue {
+    width: 18%;
+    max-width: 150px;
+    padding: 0 30px 0 0;
+    display: inline-block;
+    /* links */ }
+    .show-contain .show-venue .venue {
+      font-weight: 700; }
+    .show-contain .show-venue .address {
+      color: gray;
+      font-size: 13px; }
+    .show-contain .show-venue .unlisted {
+      opacity: .4; }
+    .show-contain .show-venue a:link {
+      text-decoration: none;
+      color: gray; }
+    .show-contain .show-venue a:hover {
+      border-bottom: 1px dotted gray;
+      color: gray; }
+    .show-contain .show-venue a:visited {
+      color: gray;
+      text-decoration: none; }
+  .show-contain .show-title {
+    width: 66%;
+    max-width: 455px;
+    float: right;
+    max-height: 200px;
+    text-overflow: ellipsis; }
 
 .show-detail-contain {
   padding: 10px 10px 25px 10px;
   display: inline-block; }
-
-.show-date {
-  width: 140px;
-  float: left;
-  display: inline-block; }
-
-.show-date .day {
-  font-weight: 400; }
-
-.show-date .date {
-  color: gray;
-  font-size: 13px; }
-
-.show-venue {
-  width: 150px;
-  padding: 0 30px 0 0;
-  display: inline-block; }
-
-.show-venue a:link {
-  text-decoration: none;
-  color: gray; }
-
-.show-venue a:hover {
-  border-bottom: 1px dotted gray;
-  color: gray; }
-
-.show-venue a:visited {
-  color: gray; }
-
-.show-venue .venue {
-  font-weight: 700; }
-
-.show-venue .unlisted {
-  opacity: .4; }
-
-.show-venue .address {
-  color: gray;
-  font-size: 13px; }
-
-.show-venue .address a:visted {
-  text-decoration: none;
-  color: gray; }
-
-.show-title {
-  width: 455px;
-  float: right;
-  max-height: 200px;
-  text-overflow: ellipsis; }
 
 .show-title #expand {
   max-width: 350px; }
@@ -870,6 +861,20 @@ a:visited {
     opacity: 0; }
   100% {
     opacity: 1; } }
+/* ░░░░░░░░░░░░ mobile show ░░░░░░░░░░░░
+
+@media (max-width:500px) {
+
+section.intro {font-size: 25px; line-height: 1.6;}
+    .featured-project {
+        width: 100%;
+
+        .featured-project-details {width: 50%; padding: 0 0 0 20px; float: right;}
+        .project-description {display: block; padding: 0 -10px 0 0;}
+        img {width: 50%;}
+    }
+}
+*/
 /* ░░░░░░░░░░░░ post a show ░░░░░░░░░░░░ */
 /* hero */
 .postshow-hero-contain {

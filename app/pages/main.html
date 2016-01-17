@@ -61,19 +61,22 @@ Default city should be set on change
 			<span></span>
 		</div>
 	</div>
+
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
 	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="event.price!=0&&freebox" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | orderBy: orderByDate" ng-hide="loading">
-		<div class="show-detail-contain">
+		<li class="show-detail-contain">
 
 			<!-- date / time -->
 			<div class="show-date">
+
 				<div class="day" ng-if="event.date!=today && event.date!=tomorrow">
 					<span ng-if="nextWeek(event.date) != 'true'">{{nextWeek(event.date)}}</span>
 					<span ng-if="nextWeek(event.date) == 'true'">{{event.date}}</span>
 					<span ng-if="nextWeek(event.date) != 'true'">{{getDay(event.date)}}</span>
 				</div>
+
 				<div class="day" ng-if="event.date==today">Today</div>
 				<div class="day" ng-if="event.date==tomorrow">Tomorrow</div>
 				<div class="date" ng-class="(event.date==today || event.date==tomorrow) ? day : date" >
@@ -81,12 +84,6 @@ Default city should be set on change
 					<span ng-if="nextWeek(event.date) != 'true'">{{event.date}}</span>
 				</div>
 				<div class="date">{{event.time}}</div>
-			</div>
-
-			<!-- venue -->
-			<div class="show-venue">
-				<div class="venue">{{event.venue}}</div>
-				<div class="address"><a rel="nofollow" ng-click="popupMap($event, event.address, event.city);" target="_blank">{{event.address}}</a></div>
 			</div>
 
 			<!-- title -->
@@ -102,7 +99,15 @@ Default city should be set on change
 						<a href="{{event.ticket_uri}}" target="_blank">get tickets</a>
 					</span>
 			</div>
-		</div>
+
+			<!-- venue -->
+			<div class="show-venue">
+				<div class="venue">{{event.venue}}</div>
+				<div class="address"><a rel="nofollow" ng-click="popupMap($event, event.address, event.city);" target="_blank">{{event.address}}</a></div>
+			</div>
+
+		</li>
+
 		<!-- show page -->
 		<div class="expand-contain" ng-hide="event.fb_event">
 			<div class="show-img">

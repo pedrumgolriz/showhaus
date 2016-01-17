@@ -131,6 +131,7 @@ input[type="checkbox"] {
         max-width: 650px !important;
         margin: 40px auto !important;
     }
+
 }
 
 .contain {
@@ -146,77 +147,67 @@ margin: 0 auto;
     padding: 5px 0 0 0;
     margin: 0 auto;
     display: table;
-}
+    width: 100%;
 
-#expand {
-    background-color: #D8D8D8;
-}
+    /* if a show is happening today */
+    .today {
+        background: rgba(255, 255, 0, 0.18) !important;
+    }
 
-/* if a show is happening today */
-.show-contain.today {
-    background: rgba(255, 255, 0, 0.18) !important;
-}
+    /* if a show is expanded */
+    #expand {
+        background-color: #D8D8D8;
+    }
 
-.show-contain:hover {
-    background-color: #fefefc;
-    opacity: 1;
+    /* -------- SHOW CONTENT -------- */
+
+    /* 1. time and date */
+    .show-date {
+        width: 16%;
+        max-width: 140px;
+        float: left;
+        display: inline-block;
+
+        /* show details (title, outbound icon, price) */
+        .day {font-weight: 400;}
+        .date {color: gray;font-size: 13px;}
+
+    }
+
+    /* 2. show venue */
+    .show-venue {
+        width: 18%;
+        max-width: 150px;
+        padding: 0 30px 0 0;
+        display: inline-block;
+
+        & .venue {font-weight: 700;}
+        & .address {color: gray; font-size: 13px;}
+
+        .unlisted {opacity: .4;}
+
+        /* links */
+        & a:link {text-decoration:none;color: gray;}
+        & a:hover {border-bottom: 1px dotted gray; color: gray;}
+        & a:visited {color: gray; text-decoration: none;}
+    }
+
+    /* 3. show title */
+    .show-title {
+      width: 66%;
+      max-width: 455px;
+      float: right;
+      max-height : 200px;
+      text-overflow: ellipsis;
+    }
+
 }
 
 .show-detail-contain {
+
     padding: 10px 10px 25px 10px;
-    display: inline-block;
-}
+    display: inline-block;}
 
-
-.show-date {
-    width: 140px;
-    float: left;
-    display: inline-block;
-}
-
-.show-date .day {
-    font-weight: 400;
-}
-
-.show-date .date {
-    color: gray;
-    font-size: 13px;
-}
-
-.show-venue {
-    width: 150px;
-    padding: 0 30px 0 0;
-    display: inline-block;
-}
-
-.show-venue a:link {text-decoration:none;color: gray;}
-.show-venue a:hover {border-bottom: 1px dotted gray; color: gray;}
-.show-venue a:visited {color: gray;}
-
-.show-venue .venue {
-font-weight: 700;
-}
-
-.show-venue .unlisted{
-opacity: .4;
-}
-
-.show-venue .address {
-color: gray;
-font-size: 13px;
-}
-
-.show-venue .address a:visted {
-text-decoration: none;
-color: gray;
-}
-
-.show-title {
-width: 455px;
-float: right;
-max-height : 200px;
-text-overflow: ellipsis;
-}
 
 .show-title #expand {
 max-width: 350px;
@@ -227,16 +218,16 @@ max-width: 350px;
 .show-title a:visited {color: black;}
 
 .show-title .title {
-max-height: 200px;
-text-overflow: ellipsis;
-overflow: hidden;
-position: relative;
-display: -webkit-box;
-display: -moz-box;
-display:box;
--webkit-line-clamp: 3;
--webkit-box-orient: vertical;
--moz-box-orient: vertical;
+    max-height: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    display: -webkit-box;
+    display: -moz-box;
+    display:box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
 }
 
 .divider {
@@ -368,3 +359,18 @@ opacity: 0;
 opacity: 1;
 }
 }
+
+/* ░░░░░░░░░░░░ mobile show ░░░░░░░░░░░░
+
+@media (max-width:500px) {
+
+section.intro {font-size: 25px; line-height: 1.6;}
+    .featured-project {
+        width: 100%;
+
+        .featured-project-details {width: 50%; padding: 0 0 0 20px; float: right;}
+        .project-description {display: block; padding: 0 -10px 0 0;}
+        img {width: 50%;}
+    }
+}
+*/
