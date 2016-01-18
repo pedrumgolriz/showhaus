@@ -564,7 +564,7 @@ a:visited {
 /* ░░░░░░░░░░░░ main nav ░░░░░░░░░░░░ */
 .nav {
   height: 30px;
-  width: 500px;
+  max-width: 300px;
   text-align: center;
   padding: 5px 0 20px 0;
   margin: 0 auto;
@@ -587,11 +587,15 @@ a:visited {
     border-radius: 5px;
     border-bottom: none; }
 
+/* ░░░░░░░░░░░░ mobile nav ░░░░░░░░░░░░ */
+@media (max-width: 520px) {
+  .nav {
+    padding: 5px 0 0 0; } }
 /* ░░░░░░░░░░░░ hero ░░░░░░░░░░░░ */
 .hero-contain {
-  height: 100px;
   text-align: center;
-  min-width: 850px; }
+  max-width: 850px;
+  margin: 0 auto; }
 
 .showhaus {
   text-align: center;
@@ -602,6 +606,10 @@ a:visited {
   .showhaus span {
     margin: 0 30px 0 0; }
 
+/*  mobile hero */
+@media (max-width: 520px) {
+  .hero-contain {
+    padding: 5px 0 0 0; } }
 /* filter bar */
 .filter {
   max-width: 510px;
@@ -611,12 +619,14 @@ a:visited {
   border: 1px solid #ddd;
   padding: 10px;
   font-size: 13px;
-  height: 25px; }
-  .filter .venue-select {
-    width: 300px;
-    text-align: center;
-    padding: 10px;
-    margin: 10px auto 0 auto; }
+  height: 25px;
+  /* filter styles */
+  /* chosen override */
+  /* checkbox */ }
+  .filter .filter-contain {
+    border-right: 1px solid #ddd;
+    display: inline-block;
+    padding: 0 10px 0 0; }
   .filter .filter > * {
     vertical-align: bottom;
     margin-top: 5px; }
@@ -629,26 +639,41 @@ a:visited {
   .filter .filter .checkbox-text:hover {
     cursor: pointer;
     text-decoration: underline 1px dotted; }
-  .filter .filter-border {
-    border-right: 1px solid #ddd;
-    display: inline-block;
-    padding: 0 10px 0 0; }
   .filter .filter-drop {
     margin-top: 8px; }
+  .filter .city-filter {
+    width: 100px; }
+  .filter .venue-filter {
+    width: 210px;
+    padding: 0 10px; }
+  .filter .chosen-container-single .chosen-single {
+    background: white !important; }
+  .filter .checkbox {
+    display: inline;
+    margin: 0 0 0 5px; }
+  .filter input[type="checkbox"] {
+    display: inline;
+    width: 20px !important; }
 
-/* checkbox */
-.checkbox {
-  display: inline;
-  margin: 0 0 0 5px; }
-
-input[type="checkbox"] {
-  display: inline;
-  width: 20px !important; }
-
-/* chosen override */
-.chosen-container-single .chosen-single {
-  background: white !important; }
-
+/* ░░░░░░░░░░░░ mobile filter bar ░░░░░░░░░░░░ */
+@media (max-width: 520px) {
+  .filter {
+    margin: 10px 20px 0 20px;
+    background-color: #eee;
+    border: none;
+    height: auto;
+    /* filter styles */ }
+    .filter .filter-contain {
+      display: block;
+      margin: 15px auto;
+      border: none; }
+    .filter .checkbox {
+      display: block;
+      margin: 10px; }
+    .filter .city-filter {
+      width: 260px; }
+    .filter .venue-filter {
+      width: 260px; } }
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░ */
 .content {
   padding: 10px 20px;
@@ -663,29 +688,37 @@ input[type="checkbox"] {
   max-width: 600px;
   margin: 0 auto; }
 
+/* ░░░░░░░░░░░░ mobile content ░░░░░░░░░░░░ */
+@media (max-width: 520px) {
+  .content {
+    margin: 20px 0 0 0; } }
 /* ░░░░░░░░░░░░ show ░░░░░░░░░░░░ */
 .show-contain {
   border-bottom: 1px solid rgba(179, 179, 179, 0.31);
   min-height: 55px;
   padding: 5px 0 0 0;
   margin: 0 auto;
-  display: table;
+  display: flex;
   width: 100%;
+  /* content container */
   /* if a show is happening today */
   /* if a show is expanded */
   /* -------- SHOW CONTENT -------- */
   /* 1. time and date */
   /* 2. show venue */
   /* 3. show title */ }
+  .show-contain .show-detail-contain {
+    padding: 10px 10px 25px 10px;
+    display: block; }
   .show-contain .today {
     background: rgba(255, 255, 0, 0.18) !important; }
   .show-contain #expand {
     background-color: #D8D8D8; }
   .show-contain .show-date {
-    width: 16%;
-    max-width: 140px;
+    width: 100px;
+    padding: 0 20px 0 0;
     float: left;
-    display: inline-block;
+    display: table-cell;
     /* show details (title, outbound icon, price) */ }
     .show-contain .show-date .day {
       font-weight: 400; }
@@ -693,10 +726,9 @@ input[type="checkbox"] {
       color: gray;
       font-size: 13px; }
   .show-contain .show-venue {
-    width: 18%;
-    max-width: 150px;
-    padding: 0 30px 0 0;
-    display: inline-block;
+    width: 145px;
+    padding: 0 20px 0 0;
+    display: table-cell;
     /* links */ }
     .show-contain .show-venue .venue {
       font-weight: 700; }
@@ -715,15 +747,10 @@ input[type="checkbox"] {
       color: gray;
       text-decoration: none; }
   .show-contain .show-title {
-    width: 66%;
-    max-width: 455px;
-    float: right;
-    max-height: 200px;
-    text-overflow: ellipsis; }
-
-.show-detail-contain {
-  padding: 10px 10px 25px 10px;
-  display: inline-block; }
+    max-width: 570px;
+    /* max-height : 250px; */
+    text-overflow: ellipsis;
+    display: table-cell; }
 
 .show-title #expand {
   max-width: 350px; }
@@ -861,20 +888,23 @@ a:visited {
     opacity: 0; }
   100% {
     opacity: 1; } }
-/* ░░░░░░░░░░░░ mobile show ░░░░░░░░░░░░
+/* ░░░░░░░░░░░░ mobile show ░░░░░░░░░░░░ */
+@media (max-width: 500px) {
+  section.intro {
+    font-size: 25px;
+    line-height: 1.6; }
 
-@media (max-width:500px) {
-
-section.intro {font-size: 25px; line-height: 1.6;}
-    .featured-project {
-        width: 100%;
-
-        .featured-project-details {width: 50%; padding: 0 0 0 20px; float: right;}
-        .project-description {display: block; padding: 0 -10px 0 0;}
-        img {width: 50%;}
-    }
-}
-*/
+  .featured-project {
+    width: 100%; }
+    .featured-project .featured-project-details {
+      width: 50%;
+      padding: 0 0 0 20px;
+      float: right; }
+    .featured-project .project-description {
+      display: block;
+      padding: 0 -10px 0 0; }
+    .featured-project img {
+      width: 50%; } }
 /* ░░░░░░░░░░░░ post a show ░░░░░░░░░░░░ */
 /* hero */
 .postshow-hero-contain {
@@ -1161,53 +1191,5 @@ td, th {
 .feeds-dateadded {
   width: 90px;
   text-align: left; }
-
-/* ░░░░░░░░░░░░ index mobile ░░░░░░░░░░░░ */
-/* header */
-.mobile-filter {
-  padding: 5px;
-  color: #bbb;
-  font-size: 13px;
-  margin: 15px auto 20px auto;
-  width: 150px;
-  /* shift label left */ }
-  .mobile-filter > label {
-    margin: 10px 0 0 -30px; }
-
-/* show */
-.mobile-date {
-  background-color: gray;
-  color: white;
-  text-align: center;
-  font-size: 10px;
-  padding: 5px;
-  margin: 15px 0 0 0; }
-
-.mobile-show-contain {
-  padding: 20px 15px;
-  border-bottom: 1px solid lightgray;
-  font-size: 18px;
-  /* show content */ }
-  .mobile-show-contain .mobile-show-title {
-    text-align: left; }
-  .mobile-show-contain .mobile-show-venue {
-    padding: 10px 0 0 0;
-    font-size: 14px; }
-  .mobile-show-contain .mobile-show-address {
-    font-size: 12px; }
-  .mobile-show-contain .mobile-show-tickets {
-    float: right;
-    font-size: 12px;
-    margin-top: 8px;
-    color: #ccc; }
-  .mobile-show-contain .mobile-show-details {
-    text-align: left; }
-
-.mobile-nav {
-  margin-top: 20px; }
-
-.mobile-nav a:link {
-  color: #aaa;
-  padding: 0 5px; }
 
 /*# sourceMappingURL=tapedeck.css.map */
