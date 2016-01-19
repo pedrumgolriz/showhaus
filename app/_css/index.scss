@@ -115,11 +115,17 @@
     }
 
     /* filter styles */
-    .city-filter {width: 100px}
+    .city-filter {width: 100px;}
     .venue-filter {width: 210px; padding: 0 10px;}
 
     /* chosen override */
-    .chosen-container-single .chosen-single {background: white !important;}
+
+    .chosen-container {
+      width: 100% !important;
+
+      .chosen-single {background: white !important;}
+
+    }
 
     /* checkbox */
     .checkbox {display:inline; margin: 0 0 0 5px;}
@@ -152,7 +158,7 @@
     }
 
     /* filter styles */
-    .city-filter {width: 260px;}
+    .city-filter {width: 260px; padding: 0 10px;}
     .venue-filter {width: 260px;}
 
   }
@@ -222,10 +228,11 @@ margin: 0 auto;
         padding: 0 20px 0 0;
         float: left;
         display: table-cell;
+        font-size: 13px;
 
         /* show details (title, outbound icon, price) */
         .day {font-weight: 400;}
-        .time {color: gray;font-size: 13px;}
+        .time {color: gray;}
 
     }
 
@@ -235,9 +242,10 @@ margin: 0 auto;
         padding: 0 20px 0 0;
         vertical-align: top;
         display: table-cell;
+        font-size: 13px;
 
         & .venue {font-weight: 700;}
-        & .address {color: gray; font-size: 13px;}
+        & .address {color: gray;}
 
         .unlisted {opacity: .4;}
 
@@ -295,7 +303,8 @@ opacity: 0.25;
     text-transform: uppercase;
     font-size: .8em;
     padding: 5px 10px;
-    display: inline-block;
+    display: block;
+    width: 70px;
 }
 
 .show-tickets:hover{

@@ -646,8 +646,10 @@ a:visited {
   .filter .venue-filter {
     width: 210px;
     padding: 0 10px; }
-  .filter .chosen-container-single .chosen-single {
-    background: white !important; }
+  .filter .chosen-container {
+    width: 100% !important; }
+    .filter .chosen-container .chosen-single {
+      background: white !important; }
   .filter .checkbox {
     display: inline;
     margin: 0 0 0 5px; }
@@ -673,7 +675,8 @@ a:visited {
       border-top: 1px solid #ddd;
       padding: 15px 0 0 0; }
     .filter .city-filter {
-      width: 260px; }
+      width: 260px;
+      padding: 0 10px; }
     .filter .venue-filter {
       width: 260px; } }
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░ */
@@ -722,23 +725,23 @@ a:visited {
     padding: 0 20px 0 0;
     float: left;
     display: table-cell;
+    font-size: 13px;
     /* show details (title, outbound icon, price) */ }
     .show-contain .show-date .day {
       font-weight: 400; }
     .show-contain .show-date .time {
-      color: gray;
-      font-size: 13px; }
+      color: gray; }
   .show-contain .show-venue {
     width: 145px;
     padding: 0 20px 0 0;
     vertical-align: top;
     display: table-cell;
+    font-size: 13px;
     /* links */ }
     .show-contain .show-venue .venue {
       font-weight: 700; }
     .show-contain .show-venue .address {
-      color: gray;
-      font-size: 13px; }
+      color: gray; }
     .show-contain .show-venue .unlisted {
       opacity: .4; }
     .show-contain .show-venue a:link {
@@ -796,7 +799,8 @@ a:visited {
   text-transform: uppercase;
   font-size: .8em;
   padding: 5px 10px;
-  display: inline-block; }
+  display: block;
+  width: 70px; }
 
 .show-tickets:hover {
   background-color: #F0F196;

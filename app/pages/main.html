@@ -13,16 +13,16 @@
 
 	<!-- filter -->
 	<div class="filter">
-		<div class="filter-contain">
-			<select id="select-beast" class="filter-drop city-filter" placeholder="-- select city --" chosen ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
+		<div class="filter-contain city-filter">
+			<select id="select-beast" class="filter-drop" placeholder="-- select city --" chosen ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
 				<option value="">-- select city --</option>
 				<option value="Baltimore">Baltimore</option>
 				<option value="NYC">NYC</option>
 			</select>
 		</div>
 
-		<div class="filter-contain">
-			<select id="select-beast" class="filter-drop venue-filter" placeholder="-- select venue --" ng-model="venueSelect" chosen name="venue">
+		<div class="filter-contain venue-filter">
+			<select id="select-beast" class="filter-drop" placeholder="-- select venue --" ng-model="venueSelect" chosen name="venue">
 				<option value="">-- all venues --</option>
 				<option ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
 			</select>
