@@ -95,10 +95,11 @@
 						<span style="display:none">{{event.price=0}}</span>free
 					</span>
 				</div>
+			</div>
 
-					<span class="show-tickets desktop" ng-if="event.ticket_uri">
-						<a href="{{event.ticket_uri}}" target="_blank">get tickets</a>
-					</span>
+			<!-- tickets, if applicable -->
+			<div class="show-tickets" ng-if="event.ticket_uri">
+				<a href="{{event.ticket_uri}}" target="_blank">get tickets</a>
 			</div>
 
 		</li>

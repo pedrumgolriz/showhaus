@@ -714,8 +714,9 @@ a:visited {
   /* 2. show venue */
   /* 3. show title */ }
   .show-contain .show-detail-contain {
-    padding: 10px 10px 35px 10px;
-    display: block; }
+    padding: 10px 10px 20px 10px;
+    display: block;
+    width: 100%; }
   .show-contain.today {
     background: rgba(255, 255, 0, 0.18) !important; }
   .show-contain #expand {
@@ -800,17 +801,17 @@ a:visited {
   font-size: .8em;
   padding: 5px 10px;
   display: block;
-  width: 70px; }
-
-.show-tickets:hover {
-  background-color: #F0F196;
-  cursor: pointer; }
-
-.show-tickets a:hover {
-  border-bottom: none; }
-
-a:visited {
-  text-decoration: none; }
+  width: 70px;
+  float: right;
+  /* show tickets link */ }
+  .show-tickets a {
+    color: black;
+    text-decoration: none; }
+  .show-tickets:hover {
+    background-color: #F0F196;
+    cursor: pointer; }
+  .show-tickets a:visited {
+    text-decoration: none; }
 
 /* ░░░░░░░░░░░░ expanded show ░░░░░░░░░░░░ */
 .show-detail-contain.expand {
@@ -850,7 +851,7 @@ a:visited {
   text-decoration: none; }
 
 /* ░░░░░░░░░░░░ mobile show ░░░░░░░░░░░░ */
-@media (max-width: 500px) {
+@media (max-width: 520px) {
   .show-contain .show-detail-contain {
     padding: 10px 10px 25px 10px;
     display: block;
