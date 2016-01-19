@@ -732,7 +732,7 @@ a:visited {
     width: 145px;
     padding: 0 20px 0 0;
     vertical-align: top;
-    display: inline-block;
+    display: table-cell;
     /* links */ }
     .show-contain .show-venue .venue {
       font-weight: 700; }
@@ -751,10 +751,10 @@ a:visited {
       color: gray;
       text-decoration: none; }
   .show-contain .show-title {
-    max-width: 570px;
+    max-width: 540px;
     /* max-height : 250px; */
     position: relative;
-    display: inline-block; }
+    display: table-cell; }
 
 .show-title #expand {
   max-width: 350px; }

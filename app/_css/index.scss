@@ -221,7 +221,7 @@ margin: 0 auto;
         width: 100px;
         padding: 0 20px 0 0;
         float: left;
-        display: table-cell;;
+        display: table-cell;
 
         /* show details (title, outbound icon, price) */
         .day {font-weight: 400;}
@@ -234,7 +234,7 @@ margin: 0 auto;
         width: 145px;
         padding: 0 20px 0 0;
         vertical-align: top;
-        display: inline-block;
+        display: table-cell;
 
         & .venue {font-weight: 700;}
         & .address {color: gray; font-size: 13px;}
@@ -249,10 +249,10 @@ margin: 0 auto;
 
     /* 3. show title */
     .show-title {
-      max-width: 570px;
+      max-width: 540px;
       /* max-height : 250px; */
       position: relative;
-      display: inline-block;
+      display: table-cell;
     }
 
 }
