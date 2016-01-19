@@ -144,7 +144,12 @@
       border: none;
     }
 
-    .checkbox {display: block; margin: 10px;}
+    .checkbox {
+      display: block;
+      margin: 10px;
+      border-top: 1px solid #ddd;
+      padding: 15px 0 0 0;
+    }
 
     /* filter styles */
     .city-filter {width: 260px;}
@@ -187,6 +192,7 @@ margin: 0 auto;
 .show-contain {
     border-bottom: 1px solid rgba(179, 179, 179, 0.31);
     min-height: 55px;
+    max-height: 200px;
     padding: 5px 0 0 0;
     margin: 0 auto;
     display: flex;
@@ -194,12 +200,12 @@ margin: 0 auto;
 
     /* content container */
     .show-detail-contain {
-        padding: 10px 10px 25px 10px;
+        padding: 10px 10px 35px 10px;
         display: block;
     }
 
     /* if a show is happening today */
-    & .today {
+    &.today {
         background: rgba(255, 255, 0, 0.18) !important;
     }
 
@@ -219,7 +225,7 @@ margin: 0 auto;
 
         /* show details (title, outbound icon, price) */
         .day {font-weight: 400;}
-        .date {color: gray;font-size: 13px;}
+        .time {color: gray;font-size: 13px;}
 
     }
 
@@ -227,7 +233,8 @@ margin: 0 auto;
     .show-venue {
         width: 145px;
         padding: 0 20px 0 0;
-        display: table-cell;
+        vertical-align: top;
+        display: inline-block;
 
         & .venue {font-weight: 700;}
         & .address {color: gray; font-size: 13px;}
@@ -244,8 +251,8 @@ margin: 0 auto;
     .show-title {
       max-width: 570px;
       /* max-height : 250px; */
-      text-overflow: ellipsis;
-      display: table-cell;
+      position: relative;
+      display: inline-block;
     }
 
 }
@@ -259,16 +266,9 @@ max-width: 350px;
 .show-title a:visited {color: black;}
 
 .show-title .title {
-    max-height: 200px;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    max-width: 540px;
     position: relative;
-    display: -webkit-box;
-    display: -moz-box;
-    display:box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
+    display:inline-block;
 }
 
 .divider {
@@ -291,7 +291,7 @@ opacity: 0.25;
 .show-tickets{
     background-color: #FAFBA1;
     color: 000;
-    margin: 12px -5px 0 0;
+    margin: 15px -5px 0 0;
     text-transform: uppercase;
     font-size: .8em;
     padding: 5px 10px;
@@ -356,6 +356,46 @@ color:#222;
 text-decoration: none;
 }
 
+/* ░░░░░░░░░░░░ mobile show ░░░░░░░░░░░░ */
+
+@media (max-width:500px) {
+
+  .show-contain .show-detail-contain {
+    padding: 10px 10px 25px 10px;
+    display: block;
+
+    /* show title */
+    .show-title {
+      width: 100%;
+      padding: 15px 0 0 0;
+    }
+
+    /* venue */
+    .show-venue {
+      display: inline-block;
+
+      & .venue {font-size: 11px;}
+      & .address {font-size: 11px;}
+    }
+
+
+    /* date/time */
+    .show-date {
+      display: inline-block;
+
+      & .day {font-size: 11px;}
+      & .time {font-size: 11px; color: gray;}
+    }
+    .show-tickets {
+      margin: 15px 0 0 0;
+      font-size: .8em;
+      padding: 5px 10px;
+      float: right;
+      display: block;
+    }
+  }
+}
+
 /* ░░░░░░░░░░░░ load state ░░░░░░░░░░░░ */
 
 .loading span {
@@ -394,23 +434,8 @@ background: #A0B61E;
 }
 @-webkit-keyframes loading {
 0% {
-opacity: 0;
-}
+opacity: 0;}
 100% {
 opacity: 1;
 }
-}
-
-/* ░░░░░░░░░░░░ mobile show ░░░░░░░░░░░░ */
-
-@media (max-width:500px) {
-
-section.intro {font-size: 25px; line-height: 1.6;}
-    .featured-project {
-        width: 100%;
-
-        .featured-project-details {width: 50%; padding: 0 0 0 20px; float: right;}
-        .project-description {display: block; padding: 0 -10px 0 0;}
-        img {width: 50%;}
-    }
 }
