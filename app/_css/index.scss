@@ -169,7 +169,7 @@
 
 .content {
     padding: 10px 20px;
-    margin: 70px auto 0 auto;
+    margin: 30px auto 0 auto;
     max-width: 850px;
 
     /* basic page style overrides */
@@ -197,7 +197,7 @@ margin: 0 auto;
 
 .show-contain {
     border-bottom: 1px solid rgba(179, 179, 179, 0.31);
-    min-height: 55px;
+    min-height: 100px;
     max-height: 200px;
     padding: 5px 0 0 0;
     margin: 0 auto;
@@ -213,7 +213,7 @@ margin: 0 auto;
 
     /* if a show is happening today */
     &.today {
-        background: rgba(255, 255, 0, 0.18) !important;
+        background: rgba(248, 177, 177, 0.18) !important;
     }
 
     /* if a show is expanded */
@@ -228,7 +228,7 @@ margin: 0 auto;
         width: 100px;
         padding: 0 20px 0 0;
         float: left;
-        display: table-cell;
+        display: inline-block;
         font-size: 13px;
 
         /* show details (title, outbound icon, price) */
@@ -242,7 +242,7 @@ margin: 0 auto;
         width: 145px;
         padding: 0 20px 0 0;
         vertical-align: top;
-        display: table-cell;
+        display: inline-block;
         font-size: 13px;
 
         & .venue {font-weight: 700;}
@@ -258,27 +258,26 @@ margin: 0 auto;
 
     /* 3. show title */
     .show-title {
-      max-width: 540px;
-      /* max-height : 250px; */
-      position: relative;
-      display: table-cell;
+        max-width: 540px;
+        position: relative;
+        display: inline-block;
+
+        & .title {
+            width: 100%;
+            position: relative;
+        }
+
+        .show-title #expand {max-width: 350px;}
+
+        /* links */
+        & a:link {text-decoration:none; color: black;}
+        & a:hover {border-bottom: 2px solid;}
+        & a:visited {color: black;}
+
     }
 
 }
 
-.show-title #expand {
-max-width: 350px;
-}
-
-.show-title a:link {text-decoration:none; color: black;}
-.show-title a:hover {border-bottom: 2px solid;}
-.show-title a:visited {color: black;}
-
-.show-title .title {
-    max-width: 540px;
-    position: relative;
-    display:inline-block;
-}
 
 .divider {
 height: 1px;
@@ -298,7 +297,7 @@ opacity: 0.25;
 }
 
 .show-tickets{
-    background-color: #FAFBA1;
+    background-color: rgba(0, 0, 0, 0.06);
     color: 000;
     margin: 15px -5px 0 0;
     text-transform: uppercase;
@@ -306,11 +305,12 @@ opacity: 0.25;
     padding: 5px 10px;
     display: block;
     width: 70px;
-    float: right;
+    float: left;
 
     /* show tickets link */
     a {color:black; text-decoration: none;}
-    &:hover {background-color: #F0F196; cursor: pointer;}
+    a:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none;}
+    &:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none;}
     a:visited {text-decoration: none;}
 }
 
@@ -397,7 +397,7 @@ text-decoration: none;
       margin: 15px 0 0 0;
       font-size: .8em;
       padding: 5px 10px;
-      float: right;
+      float: left;
       display: block;
     }
   }
@@ -414,35 +414,39 @@ margin: .2em;
 background: #007DB6;
 border-radius: .6em;
 -webkit-animation: loading 1s infinite alternate;
-}
-.loading span:nth-of-type(2) {
-background: #008FB2;
--webkit-animation-delay: 0.2s;
-}
-.loading span:nth-of-type(3) {
-background: #009B9E;
--webkit-animation-delay: 0.4s;
-}
-.loading span:nth-of-type(4) {
-background: #00A77D;
--webkit-animation-delay: 0.6s;
-}
-.loading span:nth-of-type(5) {
-background: #00B247;
--webkit-animation-delay: 0.8s;
-}
-.loading span:nth-of-type(6) {
-background: #5AB027;
--webkit-animation-delay: 1.0s;
-}
-.loading span:nth-of-type(7) {
-background: #A0B61E;
--webkit-animation-delay: 1.2s;
-}
-@-webkit-keyframes loading {
-0% {
-opacity: 0;}
-100% {
-opacity: 1;
-}
+
+  &:nth-of-type(2) {
+    background: #008FB2;
+    -webkit-animation-delay: 0.2s;
+  }
+
+  &:nth-of-type(3) {
+    background: #009B9E;
+    -webkit-animation-delay: 0.4s;
+  }
+
+  &:nth-of-type(4) {
+    background: #00A77D;
+    -webkit-animation-delay: 0.6s;
+  }
+
+  &:nth-of-type(5) {
+    background: #00B247;
+    -webkit-animation-delay: 0.8s;
+  }
+
+  &:nth-of-type(6) {
+    background: #5AB027;
+    -webkit-animation-delay: 1.0s;
+  }
+
+  &:nth-of-type(7) {
+    background: #A0B61E;
+    -webkit-animation-delay: 1.2s;
+  }
+  @-webkit-keyframes loading {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+
 }

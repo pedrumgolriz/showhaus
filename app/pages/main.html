@@ -41,9 +41,13 @@
 </div>
 -->
 
-<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
+<!--░░░░░░░░░░░░ loading ░░░░░░░░░░░░-->
 <div class="content">
-	<!--<span class="index-update">(x) new shows have been added. <a href="#"> Click here to Refresh.</a></span>-->
+	<div class="note">
+		<p> Displaying all upcoming shows in <strong>New York City</strong>
+		<br><em>Please double check show details!</em> Many of the shows <a href="#!feeds">are scraped</a> and times/bands/venues may have changed.</p>
+	</div>
+
 	<div ng-show="loading" style="text-align:center;">
 		<div class="loading">
 			<span></span>
@@ -57,6 +61,7 @@
 	</div>
 
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
+	<!-- intro -->
 
 	<!-- show -->
 	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="event.price!=0&&freebox" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | orderBy: orderByDate" ng-hide="loading">
@@ -95,11 +100,12 @@
 						<span style="display:none">{{event.price=0}}</span>free
 					</span>
 				</div>
-			</div>
 
-			<!-- tickets, if applicable -->
-			<div class="show-tickets" ng-if="event.ticket_uri">
-				<a href="{{event.ticket_uri}}" target="_blank">get tickets</a>
+				<!-- tickets, if applicable -->
+				<span class="show-tickets" ng-if="event.ticket_uri">
+					<a href="{{event.ticket_uri}}" target="_blank">get tickets</a>
+				</span>
+
 			</div>
 
 		</li>
