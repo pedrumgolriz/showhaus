@@ -43,6 +43,8 @@ color: #1b1b1b;
 .breadcrumb-nav a:hover {color: gray; border-bottom: 1px dotted gray;}
 
 
+/* ░░░░░░░░░░░░ misc formatting ░░░░░░░░░░░░ */
+
 .note {
   border-radius: 2px;
   border: 1px solid lightgray;;
@@ -53,4 +55,10 @@ color: #1b1b1b;
   margin: 15px auto;
   text-align: left;
   padding: 0 10px;
+}
+
+.divider {
+  height: 1px;
+  background-color: #000;
+  opacity: 0.25;
 }

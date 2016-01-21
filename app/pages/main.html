@@ -43,6 +43,8 @@
 
 <!--░░░░░░░░░░░░ loading ░░░░░░░░░░░░-->
 <div class="content">
+
+	<!-- intro note -->
 	<div class="note">
 		<p> Displaying all upcoming shows in <strong>New York City</strong>
 		<br><em>Please double check show details!</em> Many of the shows <a href="#!feeds">are scraped</a> and times/bands/venues may have changed.</p>
@@ -102,9 +104,9 @@
 				</div>
 
 				<!-- tickets, if applicable -->
-				<span class="show-tickets" ng-if="event.ticket_uri">
-					<a href="{{event.ticket_uri}}" target="_blank">get tickets</a>
-				</span>
+				<a href="{{event.ticket_uri}}" target="_blank">
+					<div class="show-tickets" ng-if="event.ticket_uri">get tickets</div>
+				</a>
 
 			</div>
 

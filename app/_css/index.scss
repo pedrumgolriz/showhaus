@@ -169,7 +169,7 @@
 
 .content {
     padding: 10px 20px;
-    margin: 30px auto 0 auto;
+    margin: 0 auto 0 auto;
     max-width: 850px;
 
     /* basic page style overrides */
@@ -189,7 +189,7 @@ margin: 0 auto;
 
 @media (max-width:520px) {
 
-  .content {margin: 20px 0 0 0;}
+  .content {margin: 10px 0 0 0;}
 
 }
 
@@ -278,13 +278,6 @@ margin: 0 auto;
 
 }
 
-
-.divider {
-height: 1px;
-background-color: #000;
-opacity: 0.25;
-}
-
 .show-price {
     padding: 1px 3px;
     border-radius: 3px;
@@ -309,9 +302,10 @@ opacity: 0.25;
 
     /* show tickets link */
     a {color:black; text-decoration: none;}
-    a:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none;}
-    &:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none;}
-    a:visited {text-decoration: none;}
+    & a:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none;}
+    & a:visited {text-decoration: none;}
+
+    .show-tickets:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none;}
 }
 
 
