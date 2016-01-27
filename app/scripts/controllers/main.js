@@ -20,7 +20,7 @@ function getCookie(cname) {
   }
   return '';
 }
-function geolocation() {
+/*function geolocation() {
   var DC_ZIP_ARRAY = [20001, 20900];
   var BALTIMORE_ZIP_ARRAY = [21000, 22000];
   var BROOKLYN_ZIP_ARRAY = [11200, 11240];
@@ -40,7 +40,7 @@ function geolocation() {
           'latLng': point
         }, function (res, status) {
           if (status === google.maps.GeocoderStatus.OK && typeof res[0] !== 'undefined') {
-            /*jshint camelcase: false */
+            *//*jshint camelcase: false *//*
             var zip = res[0].formatted_address.match(/,\s\w{2}\s(\d{5})/)[1];
             if (zip >= DC_ZIP_ARRAY[0] && zip <= DC_ZIP_ARRAY[1]) {
               //GEO_CITY = 'DC';
@@ -58,7 +58,7 @@ function geolocation() {
         });
       });
   }
-}
+}*/
 /* jshint ignore:end */
 //##End Geolocation##//
 var venues = [];
@@ -104,14 +104,15 @@ angular.module('showhaus')
         document.cookie = 'city=' + $scope.citySelect;
       }
       else{
-        document.cookie = 'city=all';
+        document.cookie = 'city=NYC';
+        $scope.citySelect = 'NYC';
       }
     };
 	if($scope.freebox){
 		console.log($scope.freebox);
 	}
     //set the city based on the users location
-    $scope.citySelect = geolocation(); // jshint ignore:line
+    //$scope.citySelect = geolocation(); // jshint ignore:line
     //##go to showpage from list view##//
     $scope.go = function ( city, venue, id ) {
 	  venue = venue.replace(/\s/g, '_');
@@ -334,7 +335,8 @@ angular.module('showhaus')
 
       $timeout(function () {
         element.chosen({
-          placeholder_text_single: "-- select venue --"
+          placeholder_text_single: "-- select venue --",
+          "disable_search_threshold": 5
         });
       }, 0, false);
     };
