@@ -22,7 +22,7 @@
 		</div>
 
 		<div class="filter-contain venue-filter">
-			<select id="select-beast" class="filter-drop" placeholder="-- select venue --" ng-model="venueSelect" chosen name="venue">
+			<select id="select-beast venueSelect" class="filter-drop" placeholder="-- select venue --" ng-model="venueSelect" chosen name="venue">
 				<option value="">-- all venues --</option>
 				<option ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
 			</select>
@@ -46,7 +46,7 @@
 
 	<!-- intro note -->
 	<div class="note">
-		<p> Displaying all upcoming shows in <strong>{{citySelect.length>1 ? citySelect : 'all cities'}}</strong>
+		<p> Displaying all <strong ng-if="freebox">free</strong> upcoming shows in <strong>{{venueSelect}}{{venueSelect.length>1 ? ',' : ''}} {{citySelect.length>1 ? citySelect : 'all cities'}}</strong>
 		<br><em>Please double check show details!</em> Many of the shows <a href="#!feeds">are scraped</a> and times/bands/venues may have changed.</p>
 	</div>
 
