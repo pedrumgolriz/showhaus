@@ -1,56 +1,14 @@
-<style>
-
-	* {
-		line-height: 1.2;
-		margin: 0;
-	}
-
-	html {
-		color: #888;
-		display: table;
-		font-family: sans-serif;
-		height: 100%;
-		text-align: center;
-		width: 100%;
-	}
-
-	body {
-		display: table-cell;
-		vertical-align: middle;
-		margin: 2em auto;
-	}
-
-	h1 {
-		color: #555;
-		font-size: 2em;
-		font-weight: 400;
-	}
-
-	p {
-		margin: 0 auto;
-		width: 280px;
-	}
-
-	@media only screen and (max-width: 280px) {
-
-		body, p {
-			width: 95%;
-		}
-
-		h1 {
-			font-size: 1.5em;
-			margin: 0 0 0.3em;
-		}
-
-	}
-
-</style>
-<div ng-repeat="event in events">
-	<h1>Success!</h1>
-	<p>You successfully posted a show to Showhaus!</p>
-	<p> In a moment, you’ll receive an email with a link to edit/delete your show (if you gave us your email).</p>
-	<p> You can also use this link:
-		<br>http://showhaus.org/{{event.id}}/edit</p>
-	<p>Thanks for posting!</p>
-	<p><< back to showhaus.org</p>
+<div class="breadcrumb">
+  <div class="breadcrumb-nav">
+    <a href="#!">showhaus</a> > about</div>
+</div>
+<div class="content page" onload="timer=setTimeout(function(){ window.location='http://stackoverflow.com';}, 3000)">
+  <h2>👌 Success!</h2>
+	<p>You should see your show within the next 15 minutes.</p>
+  <h3>Editing shows</h3>
+  <p> In a moment, you’ll receive an email with a link to edit/delete your show (if you gave us your email).</p>
+	<p> You can also use this link: <a href="#">http://showhaus.org/{{event.id}}/edit</a>
+		<br><span style="font-weight:bold;color:red; font-size: 12px;"> Please bookmark this link if you did not enter your email!</span>
+  <p>If you have any questions feel free to reach out at hello@showhaus.org</p>
+	<p style="text-align:center;"><a href="showhaus.org"><< back to showhaus.org</a></p>
 </div>
