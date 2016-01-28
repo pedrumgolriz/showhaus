@@ -28,7 +28,7 @@ window.fbAsyncInit = function () {
   js.src = 'https://connect.facebook.net/en_US/all.js';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-var preUrl = 'http://v3.showhaus.org/assets/';//set to blank for release
+var preUrl = 'http://showhaus.org/assets/';//set to blank for release
 angular.module('showhaus')
   .controller('ShowpageCtrl', function ($scope, $resource, $location, getSetCity, getSetVenue, $http) {
 	$(".ui-dialog-content").dialog("destroy");

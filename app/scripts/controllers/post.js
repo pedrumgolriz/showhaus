@@ -38,7 +38,7 @@ window.fbAsyncInit = function () {
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 var venues = [];
-var preUrl = 'http://v3.showhaus.org/assets/';//set to blank for release
+var preUrl = 'http://showhaus.org/assets/';//set to blank for release
 angular.module('showhaus')
 	.factory('venueCityFactory', function ($resource) {
 		var jsonQuery = preUrl + 'venuecity.php';

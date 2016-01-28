@@ -66,7 +66,7 @@
 	<!-- intro -->
 
 	<!-- show -->
-	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="event.price!=0&&freebox" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | orderBy: orderByDate" ng-hide="loading">
+	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="event.price!=0&&freebox" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | orderBy: orderByDate | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" ng-hide="loading">
 		<li class="show-detail-contain">
 
 			<!-- date / time -->
@@ -129,13 +129,8 @@
 
 	<!-- end show -->
 
-	<div style="text-align:center;" ng-show="numPages > 1">
-		<
-			<span ng-repeat="i in getNumber(numPages) track by $index">
-				{{$index}}
-			</span>
-		>
-	</div>
+	<pagination data-boundary-links="true" data-num-pages="noOfPages" data-current-page="currentPage" max-size="maxSize"></pagination>
+
 
 </div>
 

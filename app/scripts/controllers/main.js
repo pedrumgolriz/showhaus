@@ -64,7 +64,7 @@ function getCookie(cname) {
 var venues = [];
 var INITIAL_EVENT_LENGTH = 0;
 var events = [];
-var preUrl = 'http://v3.showhaus.org/assets/';//set to blank for release
+var preUrl = 'http://showhaus.org/assets/';//set to blank for release
 //####Main####//
 angular.module('showhaus')
   .factory('venueCityFactory', function($resource) {
@@ -135,7 +135,6 @@ angular.module('showhaus')
         if(INITIAL_EVENT_LENGTH > $scope.events.length){
             console.log($scope.events.length-INITIAL_EVENT_LENGTH+" new events added");
         }
-        $scope.groupToPages();
         $timeout(function () {
             $('select').trigger('chosen:updated');
         }, 0, false);
@@ -256,52 +255,26 @@ angular.module('showhaus')
     /*
         Pagination
     */
-    $scope.reset = function(){
-        $scope.reverse = false;
-        $scope.filteredItems = [];
-        $scope.groupedItems = [];
-        $scope.itemsPerPage = 10;
-        $scope.pagedItems = [];
-        $scope.currentPage = 0;
-    }();
-    $scope.groupToPages = function () {
-        $scope.pagedItems = [];
+    $scope.reverse = false;
+    $scope.filteredItems = [];
+    $scope.groupedItems = [];
+    $scope.entryLimit = 25;
+    $scope.pagedItems = [];
+    $scope.currentPage = 1;
+    $scope.maxSize = 5; //pagination max size
 
-        for (var i = 0; i < $scope.events.length; i++) {
-            if (i % $scope.itemsPerPage === 0) {
-                $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [ $scope.events[i] ];
-            } else {
-                $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.events[i]);
-            }
-        }
+    $scope.noOfPages = Math.ceil($scope.list.length/$scope.entryLimit);
+    $scope.setPage = function(pageNo) {
+        $scope.currentPage = pageNo;
     };
 
-    $scope.range = function (start, end) {
-        var ret = [];
-        if (!end) {
-            end = start;
-            start = 0;
-        }
-        for (var i = start; i < end; i++) {
-            ret.push(i);
-        }
-        return ret;
-    };
-
-    $scope.prevPage = function () {
-        if ($scope.currentPage > 0) {
-            $scope.currentPage--;
-        }
-    };
-
-    $scope.nextPage = function () {
-        if ($scope.currentPage < $scope.pagedItems.length - 1) {
-            $scope.currentPage++;
-        }
-    };
-
-    $scope.setPage = function () {
-        $scope.currentPage = this.n;
+    $scope.filter = function() {
+        window.setTimeout(function() { //wait for 'filtered' to be changed
+            $scope.noOfPages = Math.ceil($scope.events.length/$scope.entryLimit);
+            $scope.setPage = function(pageNo) {
+                $scope.currentPage = pageNo;
+            };
+        }, 10);
     };
     /*
         End Pagination

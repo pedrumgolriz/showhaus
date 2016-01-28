@@ -26,7 +26,7 @@ angular.module('showhaus')
 	.controller('EditCtrl', function ($scope, $http, $location, $resource) {
 		$(".ui-dialog-content").dialog("destroy");
 
-		var preUrl = 'http://v3.showhaus.org/assets/';//set to blank for release
+		var preUrl = 'http://showhaus.org/assets/';//set to blank for release
 		var postnumber = $location.$$search.post;
 
 		$scope.editData = {

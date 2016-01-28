@@ -7,7 +7,7 @@
  * # SuccessCtrl
  * Controller of the showhausAngApp
  */
-var preUrl = 'http://v3.showhaus.org/assets/';
+var preUrl = 'http://showhaus.org/assets/';
 angular.module('showhaus')
   .controller('SuccessCtrl', function ($scope, $resource, $location) {
 	$(".ui-dialog-content").dialog("destroy");
