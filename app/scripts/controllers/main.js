@@ -263,19 +263,11 @@ angular.module('showhaus')
     $scope.currentPage = 1;
     $scope.maxSize = 5; //pagination max size
 
-    $scope.noOfPages = Math.ceil($scope.list.length/$scope.entryLimit);
+    $scope.noOfPages = 5;
     $scope.setPage = function(pageNo) {
         $scope.currentPage = pageNo;
     };
 
-    $scope.filter = function() {
-        window.setTimeout(function() { //wait for 'filtered' to be changed
-            $scope.noOfPages = Math.ceil($scope.events.length/$scope.entryLimit);
-            $scope.setPage = function(pageNo) {
-                $scope.currentPage = pageNo;
-            };
-        }, 10);
-    };
     /*
         End Pagination
     */
@@ -318,4 +310,13 @@ angular.module('showhaus')
       restrict: 'A',
       link: linker
     };
+  })
+  .filter('startFrom', function () {
+  	return function (input, start) {
+  		if (input) {
+  			start = +start;
+  			return input.slice(start);
+  		}
+  		return [];
+  	};
   });

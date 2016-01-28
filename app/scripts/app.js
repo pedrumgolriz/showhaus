@@ -16,6 +16,7 @@ angular
 		'ngRoute',
 		'ngSanitize',
 		'ngTouch',
+		'angularUtils.directives.dirPagination'
 	])
 	.factory('loadingService', function () {
 		var service = {

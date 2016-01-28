@@ -66,7 +66,7 @@
 	<!-- intro -->
 
 	<!-- show -->
-	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="event.price!=0&&freebox" ng-repeat="event in events | filter:{city:citySelect} | filter:{venue:venueSelect} | orderBy: orderByDate | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" ng-hide="loading">
+	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="event.price!=0&&freebox" dir-paginate="event in events | itemsPerPage: 25 | filter:{city:citySelect} | filter:{venue:venueSelect} | orderBy: orderByDate" ng-hide="loading">
 		<li class="show-detail-contain">
 
 			<!-- date / time -->
@@ -129,42 +129,10 @@
 
 	<!-- end show -->
 
-	<pagination data-boundary-links="true" data-num-pages="noOfPages" data-current-page="currentPage" max-size="maxSize"></pagination>
-
-
-</div>
-
-<!--
-<div class="contain" id="mobile">
-	<div ng-show="loading" style="text-align:center;">
-		<div class="loading">
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
-	</div>
-	<div class="mobile-date">
-		<strong>TODAY</strong> (4-20-15)
-	</div>
-
-	<div class="mobile-show-contain">
-		<div class="mobile-show-title">
-			<a href="#">Leland Sundries // Spirit Plate // Breanna Barbara // The Nowadays</a>
-		</div>
-
-		<div class="mobile-show-details">
-			<span class="mobile-show-venue">@ <strong>Output</strong></span>
-			<span class="mobile-show-address">(<a href="#">74 Wythe Ave.</a>)</span>
-			<span class="mobile-show-tickets">GET TICKETS</span>
-
-		</div>
-
-	</div>
-
+	<dir-pagination-controls
+			max-size="5"
+			direction-links="true"
+			boundary-links="true" >
+	</dir-pagination-controls>
 
 </div>
--->
