@@ -294,23 +294,6 @@ angular.module('showhaus')
         return output;
      };
   })
-  .directive('chosen', function($timeout) {
-
-    var linker = function(scope, element, attr) {
-
-      $timeout(function () {
-        element.chosen({
-          placeholder_text_single: "-- select venue --",
-          "disable_search_threshold": 5
-        });
-      }, 0, false);
-    };
-
-    return {
-      restrict: 'A',
-      link: linker
-    };
-  })
   .filter('startFrom', function () {
   	return function (input, start) {
   		if (input) {
