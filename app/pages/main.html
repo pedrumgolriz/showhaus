@@ -6,7 +6,7 @@
 	<!-- main nav -->
 	<div class="nav">
 		<a href="#!about">about</a>
-		:: <a href="#!api">api</a>
+		<!-- :: <a href="#!api">api</a> -->
 		:: <a href="#!feeds">feeds</a>
 		:: <a href="#!post" class="postshow">post a show</a>
 	</div>
@@ -14,8 +14,7 @@
 	<!-- filter -->
 	<div class="filter">
 		<div class="filter-contain city-filter">
-			<select id="select-beast" class="filter-drop" placeholder="-- select city --" chosen ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
-				<option value="">-- select city --</option>
+			<select id="select-beast" class="filter-drop"  chosen ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
 				<option value="Baltimore">Baltimore</option>
 				<option selected="selected" value="NYC">NYC</option>
 			</select>
@@ -66,7 +65,7 @@
 	<!-- intro -->
 
 	<!-- show -->
-	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="event.price!=0&&freebox" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect}) | orderBy: orderByDate | itemsPerPage: 25" ng-hide="loading">
+	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="event.price!=0&&freebox" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect}) | orderBy: orderByDate | itemsPerPage: 200" ng-hide="loading">
 		<li class="show-detail-contain">
 
 			<!-- date / time -->
@@ -129,10 +128,17 @@
 
 	<!-- end show -->
 
-	<dir-pagination-controls
-			max-size="5"
+	<!-- <dir-pagination-controls
+			max-size="10"
 			direction-links="true"
 			boundary-links="true" >
 	</dir-pagination-controls>
+-->
+
+	<div class="pagination-alt">
+		<div class="last"><a href="#">previous</a></div>
+		<div class="total-pages"> 1/5 </div>
+		<div class="next"><a href="#">next</a></div>
+	</div>
 
 </div>

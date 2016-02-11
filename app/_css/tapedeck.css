@@ -687,7 +687,7 @@ a:visited {
       width: 260px; } }
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░ */
 .content {
-  padding: 10px 20px;
+  padding: 10px 20px 0 20px;
   margin: 0 auto 0 auto;
   max-width: 850px;
   /* basic page style overrides */ }
@@ -862,13 +862,15 @@ a:visited {
       width: 100%;
       padding: 15px 0 0 0; }
     .show-contain .show-detail-contain .show-venue {
-      display: inline-block; }
+      display: inline-block;
+      width: 60%; }
       .show-contain .show-detail-contain .show-venue .venue {
         font-size: 11px; }
       .show-contain .show-detail-contain .show-venue .address {
         font-size: 11px; }
     .show-contain .show-detail-contain .show-date {
-      display: inline-block; }
+      display: inline-block;
+      width: 30%; }
       .show-contain .show-detail-contain .show-date .day {
         font-size: 11px; }
       .show-contain .show-detail-contain .show-date .time {
@@ -880,6 +882,25 @@ a:visited {
       padding: 5px 10px;
       float: left;
       display: block; } }
+/* ░░░░░░░░░░░░ index pagination ░░░░░░░░░░░░ */
+.pagination-alt {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px; }
+  .pagination-alt .last {
+    display: inline-block;
+    width: 25%;
+    float: left;
+    text-align: right; }
+  .pagination-alt .total-pages {
+    display: inline-block;
+    width: 50%;
+    text-align: center; }
+  .pagination-alt .next {
+    display: inline-block;
+    width: 25%;
+    float: right; }
+
 /* ░░░░░░░░░░░░ load state ░░░░░░░░░░░░ */
 .loading span {
   display: inline-block;
