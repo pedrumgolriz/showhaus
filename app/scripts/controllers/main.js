@@ -20,7 +20,7 @@ function getCookie(cname) {
   }
   return '';
 }
-/*function geolocation() {
+function geolocation() {
   var DC_ZIP_ARRAY = [20001, 20900];
   var BALTIMORE_ZIP_ARRAY = [21000, 22000];
   var BROOKLYN_ZIP_ARRAY = [11200, 11240];
@@ -29,10 +29,13 @@ function getCookie(cname) {
   if (getcookies === 'all'){
     getcookies = '';
   }
+  if(getcookies === ''){
+    getcookies = 'NYC';
+  }
   if (getcookies.length > 0) {
     return getcookies;
   }
-  else if (navigator.geolocation && !getcookies) {
+  /*else if (navigator.geolocation && !getcookies) {
     navigator.geolocation.getCurrentPosition(
       function (pos) {
         var point = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
@@ -40,7 +43,6 @@ function getCookie(cname) {
           'latLng': point
         }, function (res, status) {
           if (status === google.maps.GeocoderStatus.OK && typeof res[0] !== 'undefined') {
-            *//*jshint camelcase: false *//*
             var zip = res[0].formatted_address.match(/,\s\w{2}\s(\d{5})/)[1];
             if (zip >= DC_ZIP_ARRAY[0] && zip <= DC_ZIP_ARRAY[1]) {
               //GEO_CITY = 'DC';
@@ -57,8 +59,8 @@ function getCookie(cname) {
           }
         });
       });
-  }
-}*/
+  }*/
+}
 /* jshint ignore:end */
 //##End Geolocation##//
 var venues = [];
@@ -112,7 +114,7 @@ angular.module('showhaus')
 		console.log($scope.freebox);
 	}
     //set the city based on the users location
-    //$scope.citySelect = geolocation(); // jshint ignore:line
+    $scope.citySelect = geolocation(); // jshint ignore:line
     //##go to showpage from list view##//
     $scope.go = function ( city, venue, id ) {
 	  venue = venue.replace(/\s/g, '_');
