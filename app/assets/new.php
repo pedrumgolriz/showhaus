@@ -76,15 +76,13 @@ function convert2image($b64, $output_file){
 
 
 function generate_password() {
-    $consonants = "bcdfghjklmnpqrstvwxyz";
-    $vowels = "aeiou";
-    $singleCon = substr( str_shuffle( $consonants ), 0, 1);
-    $doubleCon = substr( str_shuffle( $consonants ), 0, 1);
-    while($singleCon==$doubleCon){
-        $doubleCon = substr( str_shuffle( $consonants ), 0, 1);
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $password = '';
+    //32 character string
+    for ($i = 0; $i < 32; $i++) {
+        $password .= $characters[rand(0, $charactersLength - 1)];
     }
-    $doubleNum = rand(1,9)*11;
-    $password = $singleCon.substr( str_shuffle( $vowels ), 0, 1).$doubleCon.$doubleCon.$doubleNum.rand (100, 90000 );
     return $password;
 }
 
