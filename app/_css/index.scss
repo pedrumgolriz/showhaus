@@ -168,7 +168,7 @@
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░ */
 
 .content {
-    padding: 10px 20px;
+    padding: 10px 20px 0 20px;
     margin: 0 auto 0 auto;
     max-width: 850px;
 
@@ -374,6 +374,7 @@ text-decoration: none;
     /* venue */
     .show-venue {
       display: inline-block;
+      width: 60%;
 
       & .venue {font-size: 11px;}
       & .address {font-size: 11px;}
@@ -383,6 +384,7 @@ text-decoration: none;
     /* date/time */
     .show-date {
       display: inline-block;
+      width: 30%;
 
       & .day {font-size: 11px;}
       & .time {font-size: 11px; color: gray;}
@@ -395,6 +397,35 @@ text-decoration: none;
       display: block;
     }
   }
+}
+
+/* ░░░░░░░░░░░░ index pagination ░░░░░░░░░░░░ */
+
+.pagination-alt {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+
+  .last {
+    display: inline-block;
+    width: 25%;
+    float: left;
+    text-align: right;
+  }
+
+  .total-pages {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+  }
+
+  .next {
+    display: inline-block;
+    width: 25%;
+    float: right;
+  }
+
+
 }
 
 /* ░░░░░░░░░░░░ load state ░░░░░░░░░░░░ */
