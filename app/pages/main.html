@@ -14,7 +14,7 @@
 	<!-- filter -->
 	<div class="filter">
 		<div class="filter-contain city-filter">
-			<select id="select-beast" class="filter-drop" placeholder="-- select city --" chosen ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
+			<select id="select-beast" class="filter-drop" placeholder="-- select city --" ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
 				<option value="">-- select city --</option>
 				<option value="Baltimore">Baltimore</option>
 				<option selected="selected" value="NYC">NYC</option>
@@ -22,7 +22,7 @@
 		</div>
 
 		<div class="filter-contain venue-filter">
-			<select id="select-beast venueSelect" class="filter-drop" placeholder="-- select venue --" ng-model="venueSelect" chosen name="venue">
+			<select id="select-beast venueSelect" class="filter-drop" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
 				<option value="">-- all venues --</option>
 				<option ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
 			</select>
