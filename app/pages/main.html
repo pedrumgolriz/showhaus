@@ -16,7 +16,7 @@
 		<div class="filter-contain city-filter">
 			<select id="select-beast" class="filter-drop" ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
 				<option value="Baltimore">Baltimore</option>
-				<option selected="selected" value="NYC">NYC</option>
+				<option ng-selected="selected" value="NYC">NYC</option>
 			</select>
 		</div>
 
@@ -127,18 +127,12 @@
 	</div>
 
 	<!-- end show -->
-
-	<dir-pagination-controls
-			max-size="10"
-			class="pagination-alt"
-			direction-links="true"
-			boundary-links="true" >
-	</dir-pagination-controls>
-
-<!--	<div class="pagination-alt">
-		<div class="last"><a href="#">previous</a></div>
-		<div class="total-pages"> 1/5 </div>
-		<div class="next"><a href="#">next</a></div>
-	</div>-->
+	<div class="pagination-container">
+		<dir-pagination-controls
+				max-size="10"
+				direction-links="true"
+				boundary-links="true" >
+		</dir-pagination-controls>
+	</div>
 
 </div>
