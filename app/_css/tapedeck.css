@@ -1141,6 +1141,12 @@ input.price {
   border: 5px dashed lightgray;
   max-width: 500px;
   color: gray; }
+  .postshow-eventart input {
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 38% !important;
+    background-color: transparent; }
 
 .postshow-eventart:hover {
   background-color: rgba(255, 255, 0, 0.15);
