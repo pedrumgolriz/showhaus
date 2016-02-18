@@ -1146,7 +1146,7 @@ input.price {
     box-sizing: border-box;
     margin: 0 auto;
     width: 38% !important;
-    background-color: transparent; }
+    background-color: transparent !important; }
 
 .postshow-eventart:hover {
   background-color: rgba(255, 255, 0, 0.15);
