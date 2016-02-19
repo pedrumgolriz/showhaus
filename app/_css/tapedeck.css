@@ -646,7 +646,8 @@ a:visited {
     cursor: pointer;
     text-decoration: underline 1px dotted; }
   .filter .filter-drop {
-    margin-top: 8px; }
+    margin-top: 4px;
+    width: 100%; }
   .filter .city-filter {
     width: 100px; }
   .filter .venue-filter {
