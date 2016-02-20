@@ -682,10 +682,10 @@ a:visited {
       border-top: 1px solid #ddd;
       padding: 15px 0 0 0; }
     .filter .city-filter {
-      width: 260px;
+      width: 240px;
       padding: 0 10px; }
     .filter .venue-filter {
-      width: 260px; } }
+      width: 240px; } }
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░ */
 .content {
   padding: 10px 20px 0 20px;
@@ -871,7 +871,7 @@ a:visited {
         font-size: 11px; }
     .show-contain .show-detail-contain .show-date {
       display: inline-block;
-      width: 30%; }
+      width: 20%; }
       .show-contain .show-detail-contain .show-date .day {
         font-size: 11px; }
       .show-contain .show-detail-contain .show-date .time {

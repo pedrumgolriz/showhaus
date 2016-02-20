@@ -159,8 +159,8 @@
     }
 
     /* filter styles */
-    .city-filter {width: 260px; padding: 0 10px;}
-    .venue-filter {width: 260px;}
+    .city-filter {width: 240px; padding: 0 10px;}
+    .venue-filter {width: 240px;}
 
   }
 
@@ -385,7 +385,7 @@ text-decoration: none;
     /* date/time */
     .show-date {
       display: inline-block;
-      width: 30%;
+      width: 20%;
 
       & .day {font-size: 11px;}
       & .time {font-size: 11px; color: gray;}
