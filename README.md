@@ -8,7 +8,7 @@ This is the source for [Showhaus](http://www.showhaus.org), a local concert aggr
 
 ### Getting Started
 
-To set up your own  instance of Showhaus, you can use [this install script](#). This shoud automatically install and configure most of the stack.
+To set up your own  instance of Showhaus, you can use [this install script](#). This should automatically install and configure most of the stack.
 
 ### APIs
 
