@@ -1,6 +1,6 @@
 [ showhaus logo ]
 
-->👋 Hey you!<-
+<div style="text-align: center;">👋 Hey you!</div>
 
 This is the source for [Showhaus](http://www.showhaus.org), a local concert aggregator.
 
