@@ -6,7 +6,7 @@
 
 To set up your own  instance of Showhaus, you can use [this install script](#). This should automatically install and configure most of the stack.
 
-Once you do that, there's a script called ```bash.sh``` in the home directory that initiates a local server and runs a SASS compiler.
+Once you do that, there's a nifty bash script called ```bash.sh``` that initiates a local server and runs a SASS compiler. You can find it in the home directory.
 
 ### APIs
 
