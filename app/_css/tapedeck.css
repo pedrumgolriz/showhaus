@@ -809,7 +809,7 @@ a:visited {
     text-decoration: none; }
   .show-tickets a:visited {
     text-decoration: none; }
-  .show-tickets .show-tickets:hover {
+  .show-tickets:hover {
     background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
     text-decoration: none; }

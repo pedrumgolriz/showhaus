@@ -306,7 +306,7 @@ margin: 0 auto;
     & a:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none;}
     & a:visited {text-decoration: none;}
 
-    .show-tickets:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none;}
+    &:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none;}
 }
 
 
