@@ -234,7 +234,7 @@ margin: 0 auto;
 
         /* show details (title, outbound icon, price) */
         .day {font-weight: 400;}
-        .time {color: gray;}
+        .time {color: gray; font-size: 11px;}
 
     }
 
@@ -247,7 +247,7 @@ margin: 0 auto;
         font-size: 13px;
 
         & .venue {font-weight: 700;}
-        & .address {color: gray;}
+        & .address {color: gray; font-size: 11px;}
 
         .unlisted {opacity: .4;}
 
