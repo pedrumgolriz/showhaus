@@ -31,12 +31,14 @@
 
 		<!-- enter city -->
 		<div class="postshow-city">
-			<select placeholder="placeholder" class="selectize-input items not-full disabled locked demo-default venue-select" name="city" ng-model="citySelect" required
-					data-placeholder="SELECT CITY" ng-change="resetVenues();" value="">
+
+			<div class="filter-contain">
+				<select placeholder="placeholder" class="selectize-input items not-full disabled locked demo-default venue-select" name="city" ng-model="citySelect" required ng-change="resetVenues();" value="">
 				<option value="baltimore">Baltimore</option>
 				<option value="new york">NYC</option>
 				<!--<option>DC</option>-->
-			</select>
+				</select>
+			</div>
 			<div class="postshow-helptext">
 				The city where your show is happening.
 			</div>
@@ -51,13 +53,15 @@
 		</div>
 		<!-- select venue -->
 		<div class="postshow-venue">
-			<select placeholder="SELECT VENUE" id="select-beast" class="demo-default venue-select" name="venue" ng-model="venue" required
-					data-placeholder="SELECT VENUE"  ng-disabled="citySelect=='all'">
-				<option ng-repeat="place in venues | filter:citySelect" ng-show="citySelect">{{place[1]}}</option>
-				<optgroup label="Can't find your venue?" ng-if="citySelect!=''"">
-				<option name="newvenue" value="newvenue">Add a venue</option>
-				</optgroup>
-			</select>
+			<div class="filter-contain">
+				<select placeholder="SELECT VENUE" id="select-beast" class="demo-default venue-select" name="venue" ng-model="venue" required
+						data-placeholder="SELECT VENUE"  ng-disabled="citySelect=='all'">
+					<option ng-repeat="place in venues | filter:citySelect" ng-show="citySelect">{{place[1]}}</option>
+					<optgroup label="Can't find your venue?" ng-if="citySelect!=''">
+					<option name="newvenue" value="newvenue">Add a venue</option>
+					</optgroup>
+				</select>
+			</div>
 
 			<div class="postshow-helptext">
 				If you can't find your venue, select <strong>Add Venue</strong>

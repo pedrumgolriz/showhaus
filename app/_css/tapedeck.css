@@ -1059,6 +1059,12 @@ input.price {
   color: #B9B9B9; }
 
 /* input containers */
+.postshow-wrap select {
+  width: 100%; }
+.postshow-wrap .filter-contain {
+  max-width: 170px;
+  margin: 0 auto; }
+
 .postshow-heading {
   background-color: #aaa;
   color: #fff;
