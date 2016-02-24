@@ -976,7 +976,7 @@ input[type="text"].focus {
   box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26); }
 
 input.full {
-  max-width: 500px; }
+  max-width: 420px; }
 
 input.third {
   max-width: 280px; }

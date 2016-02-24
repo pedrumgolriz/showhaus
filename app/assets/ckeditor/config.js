@@ -14,15 +14,15 @@ CKEDITOR.editorConfig = function( config ) {
 	config.toolbarGroups = [
 		//{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
 		//{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
-		
+
 		//{ name: 'insert' },
 		//{ name: 'forms' },
 		//{ name: 'tools' },
-		
+
 		//{ name: 'others' },
 		'/',
 		{ name: 'basicstyles', groups: [ 'basicstyles'] },
-		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+		//{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
 		{ name: 'links' },
 		//{ name: 'styles' },
 		{ name: 'colors' },
@@ -43,6 +43,6 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
 	config.allowedContent = true;
-	config.extraPlugins='imagepaste'; 
-	
+	config.extraPlugins='imagepaste';
+
 };
