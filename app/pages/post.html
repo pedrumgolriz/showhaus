@@ -33,7 +33,8 @@
 		<div class="postshow-city">
 
 			<div class="filter-contain">
-				<select placeholder="placeholder" class="selectize-input items not-full disabled locked demo-default venue-select" name="city" ng-model="citySelect" required ng-change="resetVenues();" value="">
+				<select class="selectize-input items not-full disabled locked demo-default venue-select" name="city" ng-model="citySelect" required ng-change="resetVenues();" value="">
+				<option value="" disabled selected>-- select a city --</option>
 				<option value="baltimore">Baltimore</option>
 				<option value="new york">NYC</option>
 				<!--<option>DC</option>-->
@@ -56,6 +57,8 @@
 			<div class="filter-contain">
 				<select placeholder="SELECT VENUE" id="select-beast" class="demo-default venue-select" name="venue" ng-model="venue" required
 						data-placeholder="SELECT VENUE"  ng-disabled="citySelect=='all'">
+					<option value="" disabled selected>-- select a venue --</option>
+					<option>[ unlisted ]</option>
 					<option ng-repeat="place in venues | filter:citySelect" ng-show="citySelect">{{place[1]}}</option>
 					<optgroup label="Can't find your venue?" ng-if="citySelect!=''">
 					<option name="newvenue" value="newvenue">Add a venue</option>
@@ -81,7 +84,7 @@
 		<div class="postshow-dateprice">
 			<input class="date" type="text" name="date" placeholder="date" readonly required type="text" ng-model="date" class="date"></input>
 			<input class="time" type="text" name="time" placeholder="time" readonly type="text" ng-model="time"></input>
-			<input placeholder="price" name="price" required ng-model="price" numbers-only="numbers-only" type="text" class="mini price"></input>
+			<input placeholder="price" name="price" ng-model="price" numbers-only="numbers-only" type="text" class="mini price"></input>
 			<div class="postshow-helptext">
 				For free shows, enter <strong>$0</strong> as the price.
 			</div>

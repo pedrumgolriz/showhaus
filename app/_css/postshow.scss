@@ -22,22 +22,22 @@ input {
     box-sizing : border-box;
     width: 90% !important;
 
-    & [type="text"] {
+    &[type="text"] {
         padding: 10px;
         border: 1px solid lightgray;
         border-radius: 3px;
     }
 
-    & [type="checkbox"] {
+    &[type="checkbox"] {
         display: inline;
     }
 
-    & [type="text"]:hover {
+    [type="text"]:hover {
     border: 1px solid gray;
     }
 
-    & [type="text"]:focus,
-    & [type="text"].focus {
+    &[type="text"]:focus,
+    &[type="text"].focus {
     border: solid 1px #969696;
     background-color: #fff;
     -webkit-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26);
@@ -90,9 +90,6 @@ input {
     }
 
 }
-
-
-
 
 
 /*placeholders & help text */
