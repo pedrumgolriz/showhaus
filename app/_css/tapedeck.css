@@ -572,7 +572,7 @@ a:visited {
   height: 30px;
   max-width: 300px;
   text-align: center;
-  padding: 5px 0 20px 0;
+  padding: 5px 0 10px 0;
   margin: 0 auto;
   /* page links */
   /* post show link */ }
@@ -606,9 +606,13 @@ a:visited {
 .showhaus {
   text-align: center;
   width: 300px;
+  height: 50px;
   font-size: 25px;
   font-weight: 700;
-  margin: 30px auto 0 auto; }
+  margin: 30px auto 0 auto;
+  background-image: url("../assets/header.png");
+  background-repeat: no-repeat;
+  background-size: cover; }
   .showhaus span {
     margin: 0 30px 0 0; }
 
@@ -682,10 +686,10 @@ a:visited {
       border-top: 1px solid #ddd;
       padding: 15px 0 0 0; }
     .filter .city-filter {
-      width: 240px;
+      width: 70%;
       padding: 0 10px; }
     .filter .venue-filter {
-      width: 240px; } }
+      width: 70%; } }
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░ */
 .content {
   padding: 10px 20px 0 20px;
@@ -729,7 +733,7 @@ a:visited {
   .show-contain #expand {
     background-color: #D8D8D8; }
   .show-contain .show-date {
-    width: 100px;
+    width: 12%;
     padding: 0 20px 0 0;
     float: left;
     display: inline-block;
@@ -741,7 +745,7 @@ a:visited {
       color: gray;
       font-size: 11px; }
   .show-contain .show-venue {
-    width: 145px;
+    width: 20%;
     padding: 0 20px 0 0;
     vertical-align: top;
     display: inline-block;
@@ -764,12 +768,11 @@ a:visited {
       color: gray;
       text-decoration: none; }
   .show-contain .show-title {
-    max-width: 540px;
+    width: 55%;
     position: relative;
     display: inline-block;
     /* links */ }
     .show-contain .show-title .title {
-      width: 100%;
       position: relative; }
     .show-contain .show-title .show-title #expand {
       max-width: 350px; }
@@ -864,6 +867,8 @@ a:visited {
     .show-contain .show-detail-contain .show-title {
       width: 100%;
       padding: 15px 0 0 0; }
+      .show-contain .show-detail-contain .show-title .title {
+        max-width: 90%; }
     .show-contain .show-detail-contain .show-venue {
       display: inline-block;
       width: 60%; }
@@ -954,95 +959,77 @@ input {
   display: inline-block;
   background-color: #fff;
   box-sizing: border-box;
-  width: 90% !important; }
-
-input[type="text"] {
-  padding: 10px;
-  border: 1px solid lightgray;
-  border-radius: 3px; }
-
-input[type="checkbox"] {
-  display: inline; }
-
-input[type="text"]:hover {
-  border: 1px solid gray; }
-
-input[type="text"]:focus,
-input[type="text"].focus {
-  border: solid 1px #969696;
-  background-color: #fff;
-  -webkit-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26);
-  -moz-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26);
-  box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26); }
-
-input.full {
-  max-width: 420px; }
-
-input.third {
-  max-width: 280px; }
-
-input.half {
-  width: 40% !important;
-  max-width: 200px; }
-
-input.date {
-  width: 30% !important;
-  max-width: 100px;
-  margin-right: 20px; }
-
-input.time {
-  width: 25% !important;
-  max-width: 100px; }
-
-input.mini {
-  width: 20% !important;
-  max-width: 80px; }
-
-/* input styles */
-input.url {
-  background: url(images/inputbg-1.png) no-repeat scroll 10px 12px;
-  background-size: 15px 15px;
-  padding-left: 30px;
-  background-color: white;
-  margin: 25px 0 0 0; }
-
-input.success,
-input.success:focus,
-input.success:hover {
-  border: 2px solid #4BA93F; }
-
-input.error,
-input.error:focus,
-input.error:hover {
-  border: 2px solid #DC0000; }
-
-input.date {
-  background: url(images/inputbg-2.png) no-repeat scroll 10px 12px;
-  background-size: 15px 15px;
-  padding-left: 30px; }
-
-input.price {
-  background: url(images/inputbg-3.png) no-repeat scroll 10px 12px;
-  background-size: 15px 15px;
-  padding-left: 30px;
-  color: #4BA93F; }
+  width: 90% !important;
+  /* input size */
+  /* input styles */
+  /* error input styles */ }
+  input [type="text"] {
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 3px; }
+  input [type="checkbox"] {
+    display: inline; }
+  input [type="text"]:hover {
+    border: 1px solid gray; }
+  input [type="text"]:focus, input [type="text"].focus {
+    border: solid 1px #969696;
+    background-color: #fff;
+    -webkit-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26);
+    -moz-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26);
+    box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26); }
+  input.full {
+    max-width: 420px; }
+  input.third {
+    max-width: 280px; }
+  input.half {
+    width: 40% !important;
+    max-width: 200px; }
+  input.date {
+    width: 30% !important;
+    max-width: 100px;
+    margin-right: 20px; }
+  input.time {
+    width: 25% !important;
+    max-width: 100px; }
+  input.mini {
+    width: 20% !important;
+    max-width: 80px; }
+  input.url {
+    background: url(images/inputbg-1.png) no-repeat scroll 10px 12px;
+    background-size: 15px 15px;
+    padding-left: 30px;
+    background-color: white;
+    margin: 25px 0 0 0; }
+  input.success, input.success:focus, input.success:hover {
+    border: 2px solid #4BA93F; }
+  input.date {
+    background: url(images/inputbg-2.png) no-repeat scroll 10px 12px;
+    background-size: 15px 15px;
+    padding-left: 30px; }
+  input.price {
+    background: url(images/inputbg-3.png) no-repeat scroll 10px 12px;
+    background-size: 15px 15px;
+    padding-left: 30px;
+    color: #4BA93F; }
+  input.error, input.error:focus, input.error:hover {
+    border: 2px solid #DC0000; }
 
 /*placeholders & help text */
 .postshow-helptext {
   color: #000;
   font-size: 12px;
   padding: 15px 10px;
-  text-align: center; }
-
-.postshow-helptext.error {
-  color: #DC0000;
-  padding: 15px 0 0 0;
-  font-weight: 900; }
-
-.postshow-helptext.success {
-  color: #4BA93F;
-  padding: 15px 0 0 0;
-  font-weight: 900; }
+  text-align: center;
+  /* error helptext */
+  /* success helptext */ }
+  .postshow-helptext.error {
+    color: #DC0000;
+    padding: 15px 0 0 0;
+    font-weight: 900; }
+  .postshow-helptext.success {
+    color: #4BA93F;
+    padding: 15px 0 0 0;
+    font-weight: 900; }
 
 ::-webkit-input-placeholder {
   color: #B9B9B9; }
@@ -1064,6 +1051,10 @@ input.price {
 .postshow-wrap .filter-contain {
   max-width: 170px;
   margin: 0 auto; }
+.postshow-wrap .success {
+  background-color: rgba(241, 250, 215, 0.42); }
+.postshow-wrap .fail {
+  background-color: rgba(222, 13, 13, 0.19); }
 
 .postshow-heading {
   background-color: #aaa;
@@ -1207,12 +1198,6 @@ button:hover {
   padding: 0 0 20px 0;
   width: 350px;
   margin: 0 auto; }
-
-.postshow-wrap.success {
-  background-color: rgba(241, 250, 215, 0.42); }
-
-.postshow-wrap.fail {
-  background-color: rgba(222, 13, 13, 0.19); }
 
 /* ░░░░░░░░░░░░ feeds ░░░░░░░░░░░░ */
 .addfeed {

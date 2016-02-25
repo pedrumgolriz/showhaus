@@ -4,7 +4,7 @@
     height: 30px;
     max-width: 300px;
     text-align: center;
-    padding: 5px 0 20px 0;
+    padding: 5px 0 10px 0;
     margin: 0 auto;
 
     /* page links */
@@ -56,9 +56,13 @@
 .showhaus {
     text-align: center;
     width: 300px;
+    height:50px;
     font-size: 25px;
     font-weight: 700;
     margin: 30px auto 0 auto;
+    background-image: url("../assets/header.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 
     span {margin: 0 30px 0 0;}
 
@@ -159,8 +163,8 @@
     }
 
     /* filter styles */
-    .city-filter {width: 240px; padding: 0 10px;}
-    .venue-filter {width: 240px;}
+    .city-filter {width: 70%; padding: 0 10px;}
+    .venue-filter {width: 70%;}
 
   }
 
@@ -226,7 +230,7 @@ margin: 0 auto;
 
     /* 1. time and date */
     .show-date {
-        width: 100px;
+        width: 12%;
         padding: 0 20px 0 0;
         float: left;
         display: inline-block;
@@ -240,7 +244,7 @@ margin: 0 auto;
 
     /* 2. show venue */
     .show-venue {
-        width: 145px;
+        width: 20%;
         padding: 0 20px 0 0;
         vertical-align: top;
         display: inline-block;
@@ -259,12 +263,11 @@ margin: 0 auto;
 
     /* 3. show title */
     .show-title {
-        max-width: 540px;
+        width: 55%;
         position: relative;
         display: inline-block;
 
         & .title {
-            width: 100%;
             position: relative;
         }
 
@@ -370,6 +373,8 @@ text-decoration: none;
     .show-title {
       width: 100%;
       padding: 15px 0 0 0;
+
+      & .title {max-width: 90%;}
     }
 
     /* venue */

@@ -3,8 +3,8 @@
 /* hero */
 
 .postshow-hero-contain {
-height: 50px;
-text-align: center;
+  height: 50px;
+  text-align: center;
 }
 
 .postshow-hero-contain h1 {color:gray;}
@@ -13,7 +13,7 @@ text-align: center;
 /* input styles */
 
 textarea:focus, input:focus{
-outline: 0
+  outline: 0
 }
 
 input {
@@ -21,72 +21,79 @@ input {
     background-color:#fff;
     box-sizing : border-box;
     width: 90% !important;
+
+    & [type="text"] {
+        padding: 10px;
+        border: 1px solid lightgray;
+        border-radius: 3px;
+    }
+
+    & [type="checkbox"] {
+        display: inline;
+    }
+
+    & [type="text"]:hover {
+    border: 1px solid gray;
+    }
+
+    & [type="text"]:focus,
+    & [type="text"].focus {
+    border: solid 1px #969696;
+    background-color: #fff;
+    -webkit-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26);
+    -moz-box-shadow:    2px 2px 4px 0px rgba(50, 50, 50, 0.26);
+    box-shadow:         2px 2px 4px 0px rgba(50, 50, 50, 0.26);
+    }
+
+    /* input size */
+    &.full {max-width:420px;}
+    &.third {max-width: 280px;}
+    &.half {width: 40% !important; max-width:200px;}
+    &.date {width: 30% !important; max-width:100px; margin-right:20px;}
+    &.time {width: 25% !important; max-width:100px;}
+    &.mini {width: 20% !important; max-width: 80px;}
+
+
+    /* input styles */
+    &.url {
+    background: url(images/inputbg-1.png) no-repeat scroll 10px 12px;
+    background-size: 15px 15px;
+    padding-left:30px;
+    background-color: white;
+    margin: 25px 0 0 0;
+    }
+
+    &.success,
+    &.success:focus,
+    &.success:hover {
+    border: 2px solid #4BA93F;
+    }
+
+    &.date {
+    background: url(images/inputbg-2.png) no-repeat scroll 10px 12px;
+    background-size: 15px 15px;
+    padding-left:30px;
+    }
+
+    &.price {
+    background: url(images/inputbg-3.png) no-repeat scroll 10px 12px;
+    background-size: 15px 15px;
+    padding-left:30px;
+    color: #4BA93F;
+    }
+
+    /* error input styles */
+    &.error,
+    &.error:focus,
+    &.error:hover {
+    border: 2px solid #DC0000;
+    }
+
 }
 
-input[type="text"] {
-    padding: 10px;
-    border: 1px solid lightgray;
-    border-radius: 3px;
-}
 
-input[type="checkbox"] {
-    display: inline;
-}
 
-input[type="text"]:hover {
-border: 1px solid gray;
-}
 
-input[type="text"]:focus,
-input[type="text"].focus {
-border: solid 1px #969696;
-background-color: #fff;
--webkit-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26);
--moz-box-shadow:    2px 2px 4px 0px rgba(50, 50, 50, 0.26);
-box-shadow:         2px 2px 4px 0px rgba(50, 50, 50, 0.26);
-}
-
-input.full {max-width:420px;}
-input.third {max-width: 280px;}
-input.half {width: 40% !important; max-width:200px;}
-input.date {width: 30% !important; max-width:100px; margin-right:20px;}
-input.time {width: 25% !important; max-width:100px;}
-input.mini {width: 20% !important; max-width: 80px;}
-
-/* input styles */
-
-input.url {
-background: url(images/inputbg-1.png) no-repeat scroll 10px 12px;
-background-size: 15px 15px;
-padding-left:30px;
-background-color: white;
-margin: 25px 0 0 0;
-}
-
-input.success,
-input.success:focus,
-input.success:hover {
-border: 2px solid #4BA93F;
-}
-
-input.error,
-input.error:focus,
-input.error:hover {
-border: 2px solid #DC0000;
-}
-
-input.date {
-background: url(images/inputbg-2.png) no-repeat scroll 10px 12px;
-background-size: 15px 15px;
-padding-left:30px;
-}
-
-input.price {
-background: url(images/inputbg-3.png) no-repeat scroll 10px 12px;
-background-size: 15px 15px;
-padding-left:30px;
-color: #4BA93F;
-}
 
 /*placeholders & help text */
 
@@ -95,18 +102,21 @@ color: #000;
 font-size: 12px;
 padding:15px 10px;
 text-align: center;
-}
 
-.postshow-helptext.error {
-color: #DC0000;
-padding:15px 0 0 0;
-font-weight: 900;
-}
+  /* error helptext */
+  &.error {
+  color: #DC0000;
+  padding:15px 0 0 0;
+  font-weight: 900;
+  }
 
-.postshow-helptext.success {
-color: #4BA93F;
-padding:15px 0 0 0;
-font-weight: 900;
+  /* success helptext */
+  &.success {
+  color: #4BA93F;
+  padding:15px 0 0 0;
+  font-weight: 900;
+  }
+
 }
 
 ::-webkit-input-placeholder {
@@ -131,6 +141,8 @@ color: #B9B9B9;
 .postshow-wrap {
   select {width: 100%;}
   .filter-contain {max-width: 170px; margin: 0 auto;}
+  .success {background-color: rgba(241, 250, 215, 0.42);}
+  .fail {background-color: rgba(222, 13, 13, 0.19);}
 }
 
 .postshow {}
@@ -302,6 +314,3 @@ padding: 0 0 20px 0;
 width: 350px;
 margin: 0 auto;
 }
-
-.postshow-wrap.success {background-color: rgba(241, 250, 215, 0.42);}
-.postshow-wrap.fail {background-color: rgba(222, 13, 13, 0.19);}

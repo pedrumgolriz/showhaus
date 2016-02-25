@@ -1,7 +1,7 @@
 <!--░░░░░░░░░░░░ hero ░░░░░░░░░░░░-->
 <div class="hero-contain">
 	<!-- title -->
-	<div class="showhaus"><img src="./assets/logo.png" style="width:25px; vertical-align: inherit;"> <span>SHOWHAUS</span></div>
+	<div class="showhaus"></div>
 
 	<!-- main nav -->
 	<div class="nav">
@@ -40,14 +40,13 @@
 </div>
 -->
 
-<!-- intro note -->
-<div class="note">
-	<p> Displaying all <strong ng-if="freebox">free</strong> upcoming shows in <strong>{{venueSelect}}{{venueSelect.length>1 ? ',' : ''}} {{citySelect.length>1 ? citySelect : 'all cities'}}</strong>
-	<br><em>Please double check show details!</em> Many of the shows <a href="#!feeds">are scraped</a> and times/bands/venues may have changed.</p>
-</div>
-
 <!--░░░░░░░░░░░░ loading ░░░░░░░░░░░░-->
 <div class="content">
+	<!-- intro note -->
+	<div class="note">
+		<p> Displaying all <strong ng-if="freebox">free</strong> upcoming shows in <strong>{{venueSelect}}{{venueSelect.length>1 ? ',' : ''}} {{citySelect.length>1 ? citySelect : 'all cities'}}</strong>
+		<br><em>Please double check show details!</em> Many of the shows <a href="#!feeds">are scraped</a> and times/bands/venues may have changed.</p>
+	</div>
 
 	<div ng-show="loading" style="text-align:center; margin: 0 20px 20px 20px">
 		<div class="loading">
