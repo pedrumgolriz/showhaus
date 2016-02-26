@@ -1,4 +1,4 @@
-# showhaus
+# <img src="https://cloud.githubusercontent.com/assets/3460146/13335780/bd79be70-dbe0-11e5-9ba5-b04c73eeddd5.png" width="300"/>
 
 👋 Hey you! This is the source for [Showhaus](http://www.showhaus.org), a local concert aggregator.
 
