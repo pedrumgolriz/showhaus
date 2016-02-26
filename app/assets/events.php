@@ -32,5 +32,7 @@ $today_flag = "0";
     $row['description'] = html_entity_decode($row['description']);
     $return[] = $row;
   }
-	echo $_GET['callback'] . '('.json_encode($return).')';
+	$current = json_encode($return);
+	$file = 'eventlist.php';
+    file_put_contents($file, $current);
 ?>

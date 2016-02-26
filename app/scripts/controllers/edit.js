@@ -51,7 +51,7 @@ angular.module('showhaus')
 			});
 
 
-		var eventsQuery = preUrl + 'events.php?post=' + postnumber;
+		var eventsQuery = preUrl + 'eventlist.php?post=' + postnumber;
 		var venueQuery = preUrl + 'venuecity.php';
 		var venues = $resource(venueQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
 		var events = $resource(eventsQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});

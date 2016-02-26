@@ -74,8 +74,8 @@ angular.module('showhaus')
     return $resource(jsonQuery, {},{query: {method:'JSONP', params:{callback: 'JSON_CALLBACK'}, isArray:true}});
   })
   .factory('eventsFactory', function($resource) {
-    var jsonQuery = preUrl+'events.php';
-    return $resource(jsonQuery, {},{query: {method:'JSONP', params:{callback: 'JSON_CALLBACK'}, isArray:true}});
+    var jsonQuery = preUrl+'eventlist.php';
+    return $resource(jsonQuery);
   })
   .run(function($http, venueCityFactory, eventsFactory) {
     //venues = venueCityFactory.query();
