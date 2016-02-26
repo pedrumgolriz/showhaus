@@ -9,8 +9,10 @@
 		if(strtolower($row['city']==='brooklyn')){
 			$row['city'] = 'New York';
 		}
-		$thearray[] = [$row['city'],$row['venue'],$row['address']];
+		$thearray[] = $row['city'],$row['venue'],$row['address'];
 	}
-	echo $_GET['callback'] . '('.json_encode($thearray) .')';
 	//[city][venue]
+	$current = json_encode($thearray);
+    $file = 'locations.php';
+    file_put_contents($file, $current);
 ?>

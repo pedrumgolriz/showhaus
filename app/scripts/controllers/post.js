@@ -41,7 +41,7 @@ var venues = [];
 var preUrl = 'http://showhaus.org/assets/';//set to blank for release
 angular.module('showhaus')
 	.factory('venueCityFactory', function ($resource) {
-		var jsonQuery = preUrl + 'venuecity.php';
+		var jsonQuery = preUrl + 'locations.php';
 		return $resource(jsonQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
 	})
 	.animation('.rules', function () {

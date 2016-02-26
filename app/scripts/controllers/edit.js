@@ -52,7 +52,7 @@ angular.module('showhaus')
 
 
 		var eventsQuery = preUrl + 'eventlist.php?post=' + postnumber;
-		var venueQuery = preUrl + 'venuecity.php';
+		var venueQuery = preUrl + 'locations.php';
 		var venues = $resource(venueQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
 		var events = $resource(eventsQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
 		$scope.venues = venues.query();
