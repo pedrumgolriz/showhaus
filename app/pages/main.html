@@ -107,22 +107,20 @@
 				</a>
 
 			</div>
+			<!-- show page -->
+			<div class="expand-contain" ng-hide="event.fb_event">
+				<div class="show-img">
+					<img src="{{event.poster}}">
+				</div>
 
+				<!-- description -->
+				<div class="show-description" ng-bind-html="event.description"></div>
+				<br/>
+				<div class="expand-close" ng-click="collapse($event)">
+					<a href="#">&#9650; CLOSE &#9650;</a>
+				</div>
+			</div>
 		</li>
-
-		<!-- show page -->
-		<div class="expand-contain" ng-hide="event.fb_event">
-			<div class="show-img">
-				<img src="{{event.poster}}">
-			</div>
-
-			<!-- description -->
-			<div class="show-description" ng-bind-html="event.description"></div>
-			<br/>
-			<div class="expand-close" ng-click="collapse($event)">
-				<a href="#">&#9650; CLOSE &#9650;</a>
-			</div>
-		</div>
 	</div>
 
 	<!-- end show -->

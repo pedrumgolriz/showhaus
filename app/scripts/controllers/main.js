@@ -165,7 +165,7 @@ angular.module('showhaus')
 	}
 	$scope.expand = function(e){
 		e.preventDefault();
-		$(e.target).parents('.show-detail-contain').next('.expand-contain').slideToggle('slow');
+		$(e.target).parents('.show-detail-contain').children('.expand-contain').slideToggle('slow');
 	}
 	$scope.collapse = function(e){
 		e.preventDefault();
