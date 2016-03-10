@@ -788,11 +788,14 @@ a:visited {
 .show-price {
   padding: 1px 3px;
   border-radius: 3px;
-  color: white;
-  background-color: green;
+  color: green;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.23);
   font-size: 10px;
   display: inline-block;
   margin: 2px 5px;
+  font-weight: bold;
+  text-transform: uppercase;
   vertical-align: middle; }
 
 .show-tickets {
