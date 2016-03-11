@@ -99,8 +99,14 @@
 					<span class="show-price" ng-if="event.price==0 || (event.price==-1&&!event.ticket_uri)">
 						<span style="display:none">{{event.price=0}}</span>free
 					</span>
+					<!-- <span class="staff-pick">🌴 staff pick</span> -->
 
-					<!-- admin edit -->
+					<!-- staff notes
+					<div class="staff-notes">
+						Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus varius blandit sit amet non magna. Maecenas faucibus mollis interdum. Aenean lacinia bibendum nulla sed consectetur.</div> -->
+
+
+					<!-- admin edit
 					<div class="admin">
 						<a href="#">edit show</a>
 						<a href="#">delete show</a>
@@ -114,18 +120,22 @@
 							<textarea> test</textarea>
 						</div>
 
-						<a href="#" class="save"> save & publish </a>
+						<span class="save"><a href="#"> 💾 save & publish </a></span>
 
 					</div>
+					-->
 
 				</div>
 
 				<!-- tickets, if applicable -->
-				<a href="{{event.ticket_uri}}" target="_blank">
-					<div class="show-tickets" ng-if="event.ticket_uri">get tickets</div>
-				</a>
+				<div>
+					<a href="{{event.ticket_uri}}" target="_blank">
+						<div class="show-tickets" ng-if="event.ticket_uri">get tickets</div>
+					</a>
+				</div>
+		</div>
 
-			</div>
+
 			<!-- show page -->
 			<div class="expand-contain" ng-hide="event.fb_event">
 				<!-- disabling images for now

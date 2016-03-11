@@ -955,8 +955,15 @@ a:visited {
   /* checkbox */ }
   .admin a {
     margin: 0 10px 0 0; }
+  .admin a:hover {
+    border-bottom: 1px dotted gray !important; }
+  .admin .save {
+    padding-top: 10px;
+    display: inline-block; }
   .admin .checkbox {
-    display: inline; }
+    display: inline;
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 0 0 0 10px; }
   .admin input[type="checkbox"] {
     display: inline;
     width: 20px !important; }
@@ -964,6 +971,21 @@ a:visited {
     width: 100%;
     min-height: 120px;
     margin: 15px 0 0 0; }
+
+.staff-notes {
+  font-size: 11px;
+  padding-top: 15px;
+  max-width: 400px; }
+
+.staff-pick {
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding: 4px 3px 2px 3px;
+  background-color: #FF6B7F;
+  border-radius: 3px;
+  font-size: 10px;
+  color: #fff;
+  width: 70px; }
 
 /* ░░░░░░░░░░░░ post a show ░░░░░░░░░░░░ */
 /* hero */
