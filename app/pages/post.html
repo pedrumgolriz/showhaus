@@ -18,9 +18,10 @@
 	<!-- enter url -->
 	<div class="postshow-heading">SHOW URL (optional)</div>
 	<div class="postshow-wrap">
+		<!-- to add: if an input has "facebook" in the name, update the class to display a facebook icon instead of a link -->
 		<input placeholder="eg. https://www.facebook.com/events/462122660631611/" type="text" class="full url" ng-change="fbEvent()" ng-click="fbLogin()" ng-model="facebookEvent" name="external_event" ></input>
 		<div class="postshow-helptext">
-			<strong>Enter the Facebook URL of your show, if applicable.</strong>
+			<strong>Enter the URL of your show, if applicable.</strong>
 			<br>Your listing will redirect to the URL entered above.
 		</div>
 	</div>
@@ -49,7 +50,7 @@
 		<div class="postshow-title">
 			<input placeholder="title of show" type="text" class="full" ng-model="title"></input>
 			<div class="postshow-helptext">
-				The overall title of your show, including headliners and supporting acts.
+				List the performers starting with the headliner.
 			</div>
 		</div>
 		<!-- select venue -->
@@ -100,20 +101,23 @@
 			<div class="postshow-helptext">
 				The description below will appear on your post.
 			</div>
-			<textarea id="editor" ck-editor class="ck-editor" name="description" data-ng-model="description" type="text"></textarea>
+			<textarea id="editor" name="description" data-ng-model="description" type="text" style=" width: 300px; min-height:100px;"></textarea>
 		</div>
 	</div>
 
+<!-- temporarily disabled
 	<div class="postshow-heading" ng-if="!facebookEvent">EVENT ART</div>
-	<div class="postshow-wrap" ng-if="!facebookEvent">
+	<div class="postshow-wrap" ng-if="!facebookEvent"> -->
 		<!-- enter art -->
+		<!--
 		<div class="postshow-eventart">
 			<div id="imgDelete" alt="Remove Poster" ng-if="poster" ng-click="imgDelete()">x</div>
 			<img id="imgpreview" alt="Image Preview" ng-if="poster" src="{{poster}}" style="max-width:500px;"/>
 			<input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg" ng-model="poster" onchange="angular.element(this).scope().fileCheck()"/>
-			<!--<input type="text" style="display: none" ng-model="fbImage" value="{{fbImage}}" ng-if="fbImage"/>-->
+			<!--<input type="text" style="display: none" ng-model="fbImage" value="{{fbImage}}" ng-if="fbImage"/>
 		</div>
 	</div>
+-->
 
 	<div class="postshow-heading">CONFIRM & PUBLISH</div>
 	<div class="postshow-wrap">
