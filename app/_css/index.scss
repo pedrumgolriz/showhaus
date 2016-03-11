@@ -203,10 +203,9 @@ margin: 0 auto;
 .show-contain {
     border-bottom: 1px solid rgba(179, 179, 179, 0.31);
     min-height: 100px;
-    max-height: 200px;
+    max-height: 400px;
     padding: 5px 0 0 0;
     margin: 0 auto;
-    display: flex;
     width: 100%;
 
     /* content container */
@@ -482,5 +481,26 @@ border-radius: .6em;
     0% {opacity: 0;}
     100% {opacity: 1;}
   }
+
+}
+
+/* ░░░░░░░░░░░░ haus admin ░░░░░░░░░░░░ */
+
+.admin {
+  margin: 15px 0 0 0;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 15px;
+
+  /* links */
+  a {margin: 0 10px 0 0;}
+
+  /* checkbox */
+  .checkbox {display: inline;}
+  input[type="checkbox"] {
+    display: inline;
+    width: 20px!important
+  }
+  textarea {width: 100%; min-height: 120px;margin: 15px 0 0 0;}
 
 }

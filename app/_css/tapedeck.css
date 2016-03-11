@@ -713,10 +713,9 @@ a:visited {
 .show-contain {
   border-bottom: 1px solid rgba(179, 179, 179, 0.31);
   min-height: 100px;
-  max-height: 200px;
+  max-height: 400px;
   padding: 5px 0 0 0;
   margin: 0 auto;
-  display: flex;
   width: 100%;
   /* content container */
   /* if a show is happening today */
@@ -946,6 +945,26 @@ a:visited {
     opacity: 0; }
   100% {
     opacity: 1; } }
+/* ░░░░░░░░░░░░ haus admin ░░░░░░░░░░░░ */
+.admin {
+  margin: 15px 0 0 0;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  /* links */
+  /* checkbox */ }
+  .admin a {
+    margin: 0 10px 0 0; }
+  .admin .checkbox {
+    display: inline; }
+  .admin input[type="checkbox"] {
+    display: inline;
+    width: 20px !important; }
+  .admin textarea {
+    width: 100%;
+    min-height: 120px;
+    margin: 15px 0 0 0; }
+
 /* ░░░░░░░░░░░░ post a show ░░░░░░░░░░░░ */
 /* hero */
 .postshow-hero-contain {

@@ -65,7 +65,7 @@
 
 	<!-- show -->
 	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="event.price!=0&&freebox" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect}) | orderBy: orderByDate | itemsPerPage: 150" ng-hide="loading">
-		<li class="show-detail-contain">
+		<div class="show-detail-contain">
 
 			<!-- date / time -->
 			<div class="show-date">
@@ -99,6 +99,25 @@
 					<span class="show-price" ng-if="event.price==0 || (event.price==-1&&!event.ticket_uri)">
 						<span style="display:none">{{event.price=0}}</span>free
 					</span>
+
+					<!-- admin edit -->
+					<div class="admin">
+						<a href="#">edit show</a>
+						<a href="#">delete show</a>
+
+						<div class="checkbox">
+							<input type="checkbox">
+							<label>staff pick</label>
+						</div>
+
+						<div class="staff-notes">
+							<textarea> test</textarea>
+						</div>
+
+						<a href="#" class="save"> save & publish </a>
+
+					</div>
+
 				</div>
 
 				<!-- tickets, if applicable -->
@@ -109,9 +128,11 @@
 			</div>
 			<!-- show page -->
 			<div class="expand-contain" ng-hide="event.fb_event">
+				<!-- disabling images for now
 				<div class="show-img">
 					<img src="{{event.poster}}">
 				</div>
+			-->
 
 				<!-- description -->
 				<div class="show-description" ng-bind-html="event.description"></div>
@@ -120,7 +141,7 @@
 					<a href="#">&#9650; CLOSE &#9650;</a>
 				</div>
 			</div>
-		</li>
+		</div>
 	</div>
 
 	<!-- end show -->
