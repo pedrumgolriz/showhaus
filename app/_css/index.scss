@@ -203,7 +203,7 @@ margin: 0 auto;
 .show-contain {
     border-bottom: 1px solid rgba(179, 179, 179, 0.31);
     min-height: 100px;
-    max-height: 400px;
+    max-height: 800px;
     padding: 5px 0 0 0;
     margin: 0 auto;
     width: 100%;
@@ -289,7 +289,7 @@ margin: 0 auto;
     border: 1px solid rgba(0, 0, 0, 0.23);
     font-size: 10px;
     display: inline-block;
-    margin: 2px 5px;
+    margin: 2px 0 2px 5px;
     font-weight: bold;
     text-transform: uppercase;
     vertical-align: middle;
@@ -491,11 +491,19 @@ border-radius: .6em;
   font-size: 12px;
   background-color: rgba(0, 0, 0, 0.1);
   padding: 15px;
+  border-radius: 3px;
 
   /* links */
   a {margin: 0 10px 0 0;}
-  a:hover {border-bottom: 1px dotted gray !important;}
-  .save{padding-top: 10px; display: inline-block;}
+  a:hover {border-bottom: none !important;}
+  .save{
+    background-color: #eee;
+    padding: 6px 3px 6px 10px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    margin: 10px auto 0 auto;
+    &:hover {background-color: #fff;}
+  }
 
   /* checkbox */
   .checkbox {
@@ -512,7 +520,7 @@ border-radius: .6em;
   textarea {
     width: 100%;
     min-height: 120px;
-    margin: 15px 0 0 0;
+    margin: 0 0 15px 0;
   }
 }
 
@@ -520,15 +528,18 @@ border-radius: .6em;
   font-size: 11px;
   padding-top: 15px;
   max-width: 400px;
+  font-style: italic;
 }
 
 .staff-pick {
   text-transform: uppercase;
-  margin-bottom: 10px;
-  padding: 4px 3px 2px 3px;
+  margin: 0 0 0 5px;
+  padding: 3px 3px 1px 3px;
   background-color: #FF6B7F;
   border-radius: 3px;
   font-size: 10px;
   color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.23);
   width: 70px;
+  white-space:nowrap;
 }

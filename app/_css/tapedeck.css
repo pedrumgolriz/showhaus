@@ -568,6 +568,105 @@ a:visited {
   background-color: #000;
   opacity: 0.25; }
 
+.pagination-container {
+  text-align: center; }
+
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 30px 0;
+  border-radius: 4px; }
+
+.pagination > li {
+  display: inline; }
+
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd; }
+
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px; }
+
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px; }
+
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  z-index: 2;
+  color: #23527c;
+  background-color: #eee;
+  border-color: #ddd; }
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 3;
+  color: #fff;
+  cursor: default;
+  background-color: #337ab7;
+  border-color: #337ab7; }
+
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd; }
+
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333; }
+
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px; }
+
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px; }
+
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5; }
+
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px; }
+
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px; }
+
 /* ░░░░░░░░░░░░ main nav ░░░░░░░░░░░░ */
 .nav {
   height: 30px;
@@ -713,7 +812,7 @@ a:visited {
 .show-contain {
   border-bottom: 1px solid rgba(179, 179, 179, 0.31);
   min-height: 100px;
-  max-height: 400px;
+  max-height: 800px;
   padding: 5px 0 0 0;
   margin: 0 auto;
   width: 100%;
@@ -792,7 +891,7 @@ a:visited {
   border: 1px solid rgba(0, 0, 0, 0.23);
   font-size: 10px;
   display: inline-block;
-  margin: 2px 5px;
+  margin: 2px 0 2px 5px;
   font-weight: bold;
   text-transform: uppercase;
   vertical-align: middle; }
@@ -951,15 +1050,21 @@ a:visited {
   font-size: 12px;
   background-color: rgba(0, 0, 0, 0.1);
   padding: 15px;
+  border-radius: 3px;
   /* links */
   /* checkbox */ }
   .admin a {
     margin: 0 10px 0 0; }
   .admin a:hover {
-    border-bottom: 1px dotted gray !important; }
+    border-bottom: none !important; }
   .admin .save {
-    padding-top: 10px;
-    display: inline-block; }
+    background-color: #eee;
+    padding: 6px 3px 6px 10px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    margin: 10px auto 0 auto; }
+    .admin .save:hover {
+      background-color: #fff; }
   .admin .checkbox {
     display: inline;
     border-left: 1px solid rgba(0, 0, 0, 0.3);
@@ -970,22 +1075,25 @@ a:visited {
   .admin textarea {
     width: 100%;
     min-height: 120px;
-    margin: 15px 0 0 0; }
+    margin: 0 0 15px 0; }
 
 .staff-notes {
   font-size: 11px;
   padding-top: 15px;
-  max-width: 400px; }
+  max-width: 400px;
+  font-style: italic; }
 
 .staff-pick {
   text-transform: uppercase;
-  margin-bottom: 10px;
-  padding: 4px 3px 2px 3px;
+  margin: 0 0 0 5px;
+  padding: 3px 3px 1px 3px;
   background-color: #FF6B7F;
   border-radius: 3px;
   font-size: 10px;
   color: #fff;
-  width: 70px; }
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  width: 70px;
+  white-space: nowrap; }
 
 /* ░░░░░░░░░░░░ post a show ░░░░░░░░░░░░ */
 /* hero */
