@@ -713,10 +713,9 @@ a:visited {
 .show-contain {
   border-bottom: 1px solid rgba(179, 179, 179, 0.31);
   min-height: 100px;
-  max-height: 200px;
+  max-height: 400px;
   padding: 5px 0 0 0;
   margin: 0 auto;
-  display: flex;
   width: 100%;
   /* content container */
   /* if a show is happening today */
@@ -946,6 +945,48 @@ a:visited {
     opacity: 0; }
   100% {
     opacity: 1; } }
+/* ░░░░░░░░░░░░ haus admin ░░░░░░░░░░░░ */
+.admin {
+  margin: 15px 0 0 0;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  /* links */
+  /* checkbox */ }
+  .admin a {
+    margin: 0 10px 0 0; }
+  .admin a:hover {
+    border-bottom: 1px dotted gray !important; }
+  .admin .save {
+    padding-top: 10px;
+    display: inline-block; }
+  .admin .checkbox {
+    display: inline;
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 0 0 0 10px; }
+  .admin input[type="checkbox"] {
+    display: inline;
+    width: 20px !important; }
+  .admin textarea {
+    width: 100%;
+    min-height: 120px;
+    margin: 15px 0 0 0; }
+
+.staff-notes {
+  font-size: 11px;
+  padding-top: 15px;
+  max-width: 400px; }
+
+.staff-pick {
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding: 4px 3px 2px 3px;
+  background-color: #FF6B7F;
+  border-radius: 3px;
+  font-size: 10px;
+  color: #fff;
+  width: 70px; }
+
 /* ░░░░░░░░░░░░ post a show ░░░░░░░░░░░░ */
 /* hero */
 .postshow-hero-contain {
