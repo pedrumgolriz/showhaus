@@ -9,7 +9,7 @@ $mysqli = new mysqli("localhost", "read", "jX!57u6a", "haus");
 $_POST = file_get_contents("php://input");
 $_POST = json_decode($_POST, TRUE);
 $data = json_encode($_POST);
-$post = $_POST["id"];
+$post = $_POST["_"];
 $password = $_POST["password"];
 
 $checkAgainst = mysqli_query($mysqli, "SELECT * FROM events WHERE id = '".$post."' AND password = '".$password."' LIMIT 1");

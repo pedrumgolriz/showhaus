@@ -40,10 +40,10 @@ window.fbAsyncInit = function () {
 var venues = [];
 var preUrl = 'http://showhaus.org/assets/';//set to blank for release
 angular.module('showhaus')
-	.factory('venueCityFactory', function ($resource) {
-		var jsonQuery = preUrl + 'locations.php';
-		return $resource(jsonQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
-	})
+	.factory('venueCityFactory', function($resource) {
+	    var jsonQuery = preUrl+'locations.php';
+	    return $resource(jsonQuery);
+	  })
 	.animation('.rules', function () {
 		var NgHideClassName = 'ng-hide';
 		return {
@@ -72,6 +72,9 @@ angular.module('showhaus')
 		$scope.resetVenues = function () {
 			$scope.venue = '';
 		};
+		$scope.$watch(function(events){
+			$scope.events = events;
+		});
 		$scope.postEvent = function () {
 			if($scope.form.$valid) {
 				/*if($('#tags').val()===''){

@@ -69,10 +69,6 @@ var events = [];
 var preUrl = 'http://showhaus.org/assets/';//set to blank for release
 //####Main####//
 angular.module('showhaus')
-  .factory('venueCityFactory', function($resource) {
-    var jsonQuery = preUrl+'locations.php';
-    return $resource(jsonQuery);
-  })
   .factory('eventsFactory', function($resource) {
     var jsonQuery = preUrl+'eventlist.php';
     return $resource(jsonQuery);
