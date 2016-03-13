@@ -312,3 +312,12 @@ padding: 0 0 20px 0;
 width: 350px;
 margin: 0 auto;
 }
+
+textarea {
+    width: 460px;
+    height: 158px;
+    border-radius: 4px;
+    background-color: #fff;
+    //box-shadow: (0 1px #fff, inset 0 2px 3px rgba(1,1,1,.5));
+    border: solid 1px #aaa;
+}

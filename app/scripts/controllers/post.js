@@ -88,11 +88,11 @@ angular.module('showhaus')
 					'date': $scope.date,
 					'time': $scope.time,
 					'price': $scope.price,
-					'description': CKEDITOR.instances.editor.getData(),
+					'description': $scope.description,
 					//'tags': document.getElementById('tags').value,
 					'email': $scope.email,
-					'fbimage': $scope.fbImage,
-					'poster': file,
+					//'fbimage': $scope.fbImage,
+					//'poster': file,
 					'fb_event': $scope.fb_event,
 					'ticket_uri': $scope.ticket
 				};
@@ -117,7 +117,7 @@ angular.module('showhaus')
 			var eventNum = parseInt(facebookEvent.split('events/').pop().split('/')[0]);
 			$scope.fb_event = "http://facebook.com/events/"+eventNum;
 			if(!isNaN(eventNum)){
-				FB.api(
+				/*FB.api(
 					{
 						method: 'fql.query',
 						query: 'SELECT pic_cover, ticket_uri FROM event WHERE eid = ' + facebookEvent
@@ -134,7 +134,7 @@ angular.module('showhaus')
 							console.log(response.error);
 						}
 					}
-				);
+				);*/
 				FB.api(
 					{
 						method: 'fql.query',
@@ -242,7 +242,7 @@ angular.module('showhaus')
 				return true;
 			}
 			else{
-				$('[type=file]').wrap('<form>').parent('form').trigger('reset');
+				$('[type=file]').wrap('<form>'  ).parent('form').trigger('reset');
 				$('[type=file]').unwrap();
 				return false;
 			}
