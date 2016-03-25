@@ -35,9 +35,9 @@
 
 			<div class="filter-contain">
 				<select class="selectize-input items not-full disabled locked demo-default venue-select" name="city" ng-model="citySelect" required ng-change="resetVenues();" value="">
-				<option value="" disabled selected>-- select a city --</option>
-				<option value="baltimore">Baltimore</option>
-				<option value="new york">NYC</option>
+				<option value="" disabled>-- select a city --</option>
+				<option value="Baltimore">Baltimore</option>
+				<option value="New York">NYC</option>
 				<!--<option>DC</option>-->
 				</select>
 			</div>
@@ -57,10 +57,10 @@
 		<div class="postshow-venue">
 			<div class="filter-contain">
 				<select placeholder="SELECT VENUE" id="select-beast" class="demo-default venue-select" name="venue" ng-model="venue" required
-						data-placeholder="SELECT VENUE"  ng-disabled="citySelect=='all'">
+						data-placeholder="SELECT VENUE"  ng-disabled="citySelect==''">
 					<option value="" disabled selected>-- select a venue --</option>
-					<option>[ unlisted ]</option>
-					<option ng-repeat="place in venues | filter:citySelect" ng-show="citySelect">{{place[1]}}</option>
+					<option value="[ unlisted ]">[ unlisted ]</option>
+					<option ng-repeat="place in venues | filter:citySelect |orderBy: 'venue'" ng-show="citySelect">{{place["venue"]}}</option>
 					<optgroup label="Can't find your venue?" ng-if="citySelect!=''">
 					<option name="newvenue" value="newvenue">Add a venue</option>
 					</optgroup>

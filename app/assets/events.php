@@ -1,6 +1,6 @@
 <?php
 header('content-type: application/json; charset=utf-8');
-date_default_timezone_set('America/Los_Angeles');
+date_default_timezone_set('America/New_York');
 $server_date = date("m/d/Y");
 $today_flag = "0";
 	$mysqli = new mysqli("localhost", "read", "jX!57u6a", "haus");

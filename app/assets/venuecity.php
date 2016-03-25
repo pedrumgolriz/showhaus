@@ -6,10 +6,10 @@
 	$query = mysqli_query($mysqli, "SELECT * FROM venue");
 	$thearray = array();
 	while($row = mysqli_fetch_assoc($query)){
-		if(strtolower($row['city']==='brooklyn')){
+		if($row['city']=="Brooklyn"){
 			$row['city'] = 'New York';
 		}
-		$thearray[] = [$row['city'],$row['venue'],$row['address']];
+		$thearray[] = $row;
 	}
 	$current = json_encode($thearray);
     $file = 'locations.php';
