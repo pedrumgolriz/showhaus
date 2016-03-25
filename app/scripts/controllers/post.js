@@ -37,7 +37,6 @@ window.fbAsyncInit = function () {
 	js.src = 'https://connect.facebook.net/en_US/all.js';
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-var venues = [];
 var preUrl = 'http://showhaus.org/assets/';//set to blank for release
 angular.module('showhaus')
 	.factory('venueCityFactory', function($resource) {
@@ -59,16 +58,13 @@ angular.module('showhaus')
 			}
 		};
 	})
-	.run(function ($http, venueCityFactory) {
-		venues = new venueCityFactory.query();
-	})
-	.controller('PostCtrl', function ($scope, $http, $location) {
+	.controller('PostCtrl', function ($scope, $http, $location, venueCityFactory) {
 		$(".ui-dialog-content").dialog("destroy");
 		$(".date").datepicker({ minDate: 0 });
 		$(".time").timepicker({ minTime: 0, show24Hours: false, timeFormat: "h:mm TT"});
 		//facebook stuff
 		$scope.citySelect = getCookie('city');
-		$scope.venues = venues;
+		$scope.venues = new venueCityFactory.query();;
 		$scope.resetVenues = function () {
 			$scope.venue = '';
 		};
