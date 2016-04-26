@@ -92,6 +92,10 @@ angular
 				templateUrl: 'pages/feeds.html',
 				controller: 'FeedsCtrl'
 			})
+			.when('/archivedOrDeleted', {
+				templateUrl: 'pages/archivedOrDeleted.html',
+				controller: 'ArchiveCtrl'
+			})
 			.otherwise({
 				redirectTo: '/'
 			});
