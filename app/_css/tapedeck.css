@@ -757,13 +757,19 @@ a:visited {
   .filter .venue-filter {
     width: 210px;
     padding: 0 10px; }
+  .filter .staff-filter {
+    width: 100px;
+    padding: 5px 10px 5px 0;
+    display: inline; }
+    .filter .staff-filter .staff-pick {
+      margin: 0; }
   .filter .chosen-container {
     width: 100% !important; }
     .filter .chosen-container .chosen-single {
       background: white !important; }
   .filter .checkbox {
     display: inline;
-    margin: 0 0 0 5px; }
+    margin: 0 0 0 10px; }
   .filter input[type="checkbox"] {
     display: inline;
     width: 20px !important; }

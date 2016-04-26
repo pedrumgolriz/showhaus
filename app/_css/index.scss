@@ -122,9 +122,10 @@
     /* filter styles */
     .city-filter {width: 100px;}
     .venue-filter {width: 210px; padding: 0 10px;}
+    .staff-filter {width:100px; padding: 5px 10px 5px 0; display:inline;
+      .staff-pick {margin:0}}
 
     /* chosen override */
-
     .chosen-container {
       width: 100% !important;
 
@@ -133,7 +134,7 @@
     }
 
     /* checkbox */
-    .checkbox {display:inline; margin: 0 0 0 5px;}
+    .checkbox {display:inline; margin: 0 0 0 10px;}
     input[type="checkbox"] {display: inline; width: 20px !important;}
 
 }

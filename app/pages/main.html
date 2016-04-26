@@ -12,20 +12,29 @@
 	</div>
 
 	<!-- filter -->
+
 	<div class="filter">
+
+		<!--
 		<div class="filter-contain city-filter">
 			<select id="select-beast" class="filter-drop"  ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
 				<option value="Baltimore">Baltimore</option>
 				<option value="NYC">NYC</option>
 			</select>
 		</div>
-
+		-->
 		<div class="filter-contain venue-filter">
 			<select id="select-beast venueSelect" class="filter-drop" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
 				<option value="">-- all venues --</option>
 				<option ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
 			</select>
 		</div>
+
+		<div class="filter-contain staff-filter">
+			<input type="checkbox" name="staff">
+			<label><span class="staff-pick">Staff Picks</span></label>
+		</div>
+
 		<div class="checkbox">
 			<input type="checkbox" name="free" value="free" ng-model="freebox">
 			<label>Free Shows Only</label>
