@@ -45,56 +45,28 @@ angular.module('showhaus')
 			if(FB) {
 				FB.login();
 			}
-				FB.getLoginStatus(function (response) {
-					$scope.authToken = response.authResponse.accessToken;
-				});
-				var facebookTitle = $scope.search.split('facebook.com/')[1];
-				if(typeof(facebookTitle) != "undefined"){
-					facebookTitle = facebookTitle.split(/\W/g)[0];
-					$scope.search = "http://www.facebook.com/"+facebookTitle;
-                    FB.api({
-                            method: 'fql.query',
-                            query: 'SELECT name, page_url FROM page WHERE page_id IN (SELECT page_id FROM page WHERE username = "'+facebookTitle+'")',
-                            access_token: $scope.authToken
-                        },
-                        function (response) {
-                            if(localStorage.getItem('fb_response')) {
-                                localStorage.setItem('fb_response', parseInt(localStorage.getItem('fb_response'))+1);
-                            }
-                            else{
-                                localStorage.setItem('fb_response',1);
-                            }
-                            $scope.events = [];
-                            for (var i = 0; i < response.length; i++) {
-                                $scope.owner = response[i].name;
-                                $scope.url = response[i].page_url;
-                                /*var eid = response[i]['eid'];
-                                FB.api(eid, function (nested) {
-                                    for(var q = 0; q < response.length; q++){
-                                        if(response[q].eid == nested.id){
-                                            if(response[q]['pic_big']) {
-                                                nested.image = response[q]['pic_big'];
-                                            }
-                                            if(response[q]['ticket_uri']) {
-                                                nested.image = response[q]['ticket_uri'];
-                                            }
-                                        }
-                                     }
-                                    $scope.$apply(function () {
-                                        $scope.events.push(nested);
-                                    });
-                                    $scope.owner = $scope.events[0].name;
-                                    console.log($scope.owner);
-                                    localStorage.setItem('fb_response', parseInt(localStorage.getItem('fb_response'))+1);
-                                });*/
-                            }
-                            $scope.check();
-                        }
-                    );
-				}
-				else{
-					$scope.feedError = true;
-				}
+			FB.getLoginStatus(function (response) {
+				$scope.authToken = response.authResponse.accessToken;
+			});
+            FB.api('/'+$scope.search,
+                'GET',
+                function (response) {
+                    if(response.length !== 0 && !response.error && !response.error_code){
+                        $scope.owner = response.name;
+                        $scope.url = response.link;
+                        $scope.check();
+                    }
+                    else if(!$scope.feedError){
+                        $scope.feedError = true;
+                    }
+                    else if(!$scope.checkUrl){
+                        $scope.feedError = false;
+                        //$scope.search = $scope.search.substr(0, $scope.search.lastIndexOf("/"));
+                        $scope.checkUrl = true;
+                        //$scope.executeSearch();
+                    }
+                }
+            );
 		};
 		$scope.parseInt = function(string){
 			return parseInt(string);
