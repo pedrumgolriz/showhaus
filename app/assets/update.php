@@ -21,16 +21,16 @@ $date = mysqli_real_escape_string($mysqli, $_POST['date']);
 $time = mysqli_real_escape_string($mysqli, $_POST['time']);
 $price = mysqli_real_escape_string($mysqli, $_POST['price']);
 $description = mysqli_real_escape_string($mysqli, $_POST['description']);
-$tags = $_POST['tags'];
+/*$tags = $_POST['tags'];
 $tag1 = mysqli_real_escape_string($mysqli, $tags[0]);
 $tag2 = mysqli_real_escape_string($mysqli, $tags[1]);
 for ($i = 1; $i<count($tags); $i++){
     $tag2 = mysqli_real_escape_string($mysqli, $tags[$i]);
-}
+}*/
 $id = $_POST['id'];
 
 
-if($_POST["fbimage"]!=""){
+/*if($_POST["fbimage"]!=""){
     $poster = mysqli_real_escape_string($mysqli, $_POST["fbimage"]);
 }
 else if($_POST["poster"]){
@@ -39,11 +39,11 @@ else if($_POST["poster"]){
     $filename = uniqid(md5($_POST["poster"])).".".$fileExt;
     $poster = convert2image($_POST["poster"], $filename);
     copy($poster, "/var/www/vhosts/showhaus.org/i.showhaus.org/uploads/".$poster);
-}
+}*/
+$poster = null;
 
 
 $email = mysqli_real_escape_string($mysqli, $_POST['email']);
-$password = generate_password();
 $newvenue = mysqli_real_escape_string($mysqli, $_POST['venue_address']);
 if($_POST['newvenue']!=""){
     $theselect = mysqli_query($mysqli, "SELECT * FROM venue WHERE venue = '".$venue."' && city = '".$city."'");
@@ -53,12 +53,7 @@ if($_POST['newvenue']!=""){
     //eventually, update the address if mysqli_num_rows($theselect) > 0. It'll act like a kind of wiki
 }
 if($title){
-    if($poster){
-        mysqli_query($mysqli, "UPDATE events SET title = '$title', subtitle = '$subtitle', tag1 = '$tag1', tag2 = '$tag2', venue = '$venue', city = '$city', date = '$date', time = '$time', price = '$price', poster = '$poster', description = '$description' where id = '$id'");
-    }
-    else{
-        mysqli_query($mysqli, "UPDATE events SET title = '$title', subtitle = '$subtitle', tag1 = '$tag1', tag2 = '$tag2', venue = '$venue', city = '$city', date = '$date', time = '$time', price = '$price', description = '$description' where id = '$id'");
-    }
+    mysqli_query($mysqli, "UPDATE events SET title = '$title', subtitle = '$subtitle', tag1 = '$tag1', tag2 = '$tag2', venue = '$venue', city = '$city', date = '$date', time = '$time', price = '$price', description = '$description' where id = '$id'");
     /* close connection */
 }
 else{
@@ -67,6 +62,7 @@ else{
 $postnumber = mysqli_insert_id($mysqli);
 echo $postnumber;
 mysqli_close($mysqli);
+/*
 
 function convert2image($b64, $output_file){
     $ifp = fopen($output_file, "wb");
@@ -108,4 +104,5 @@ foreach($variables as $key => $value){
     $message = str_replace('{{ '.$key.' }}', $value, $message);
 }
 mail($to,$subject,$message,$headers);
+*/
 ?>

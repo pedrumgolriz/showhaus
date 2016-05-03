@@ -8,104 +8,85 @@
  * Controller of the showhausAngApp
  */
 angular.module('showhaus')
-	.animation('.rules', function () {
-		var NgHideClassName = 'ng-hide';
-		return {
-			beforeAddClass: function (element, className, done) {
-				if (className === NgHideClassName) {
-					$(element).slideUp(done); //jshint ignore:line
-				}
-			},
-			removeClass: function (element, className, done) {
-				if (className === NgHideClassName) {
-					$(element).hide().slideDown(done);//jshint ignore:line
-				}
-			}
-		};
+	.factory('venueCityFactory', function($resource) {
+	    var jsonQuery = preUrl+'locations.php';
+	    return $resource(jsonQuery);
+	  })
+	.factory('eventFactory', function($resource){
+		var jsonQuery = preUrl + 'eventlist.php';
+		return $resource(jsonQuery);
 	})
-	.controller('EditCtrl', function ($scope, $http, $location, $resource) {
+	.controller('EditCtrl', function ($scope, $http, $location, $resource, venueCityFactory, eventFactory) {
 		$(".ui-dialog-content").dialog("destroy");
+		$scope.events = new eventFactory.query();
+		$scope.venues = new venueCityFactory.query();
 
 		var preUrl = 'http://showhaus.org/assets/';//set to blank for release
-		var postnumber = $location.$$search.post;
-
-		$scope.editData = {
-			"password": localStorage.getItem('temp_p'),
-			"id": postnumber
-		}
+		$scope.postnumber = $location.$$search._;
 		$http.post(
 				preUrl + 'edit.php',
-			$scope.editData
+				{"_": $scope.postnumber}
 		).success(function (data, status) {
-				if(data=="success"){
-					localStorage.removeItem('temp_p');
-					$scope.showPage = true;
-				}else {
-					$scope.showPage = false;
-					$location.path('showpage/').search('post',postnumber);
+				if(data!=="fail"){
+					$scope._id = data;
 				}
-				//console.log(data);
+				else {
+					$scope.showPage = false;
+					$location.path('/archivedOrDeleted');
+				}
 			}).error(function (status) {
 				$('#passwordCheck').text('Please check your password and try again.');
 				$('#dialog input').addClass('postshow_error');
 			});
 
-
-		var eventsQuery = preUrl + 'eventlist.php?post=' + postnumber;
-		var venueQuery = preUrl + 'locations.php';
-		var venues = $resource(venueQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
-		var events = $resource(eventsQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}});
-		$scope.venues = venues.query();
-		$scope.events = events.query();
-		var f = 0; //f keeps track of when events is finally queried
-		$scope.$watch('events', function() {
-			if(f>0) {
-				$scope.venue = $scope.events[0].venue;
-				$scope.citySelect = $scope.events[0].city;
+		$scope.$watch('_id + events', function(){
+			if(typeof($scope._id) !== 'undefined' && $scope.events.length > 0){
+				$scope.event = $.grep($scope.events, function(e){ return e.id == $scope._id; });
+				if($scope.event.length === 0){
+					$location.path('/archivedOrDeleted');
+				}
+				$scope.showPage = true;
+				$scope.event = $scope.event[0];
 			}
-			f+=1;
-		}, true);
+		});
 
-		$scope.postEvent = function (isValid) {
+		$scope.postEvent = function (isValid, eventDetails) {
 			if(isValid&&$scope.citySelect !== 'all') {
 				if($('#tags').val()===''){
 					$('#tags').val('haus');
 				}
 				var file = $('#imgpreview').attr('src');
 				var data = {};
-				if(file===$scope.events[0].poster){
+				/*if(file===$scope.events[0].poster){
 					data = {
-						'city': $scope.citySelect,
-						'venue': $scope.venue,
-						'newvenue': $scope.newvenuename,
-						'venue_address': $scope.newvenueaddress,
-						'title': $scope.events[0].title,
-						'subtitle': $scope.events[0].subtitle,
-						'date': $scope.events[0].date,
-						'time': $scope.events[0].time,
-						'price': $scope.events[0].price,
-						'description': $scope.event.description,
-						'tags': $('#tags').val().split(','),
+						'city': eventDetails.city,
+						'venue': eventDetails.venue,
+						'newvenue': eventDetails.newvenuename,
+						'venue_address': eventDetails.newvenueaddress,
+						'title': eventDetails.title,
+						'subtitle': eventDetails.subtitle,
+						'date': eventDetails.date,
+						'time': eventDetails.time,
+						'price': eventDetails.price,
+						'description': eventDetails.description,
 						'id': $location.$$search.post
 					};
 				}
-				else {
+				else {*/
 					data = {
-						'city': $scope.citySelect,
-						'venue': $scope.venue,
-						'newvenue': $scope.newvenuename,
-						'venue_address': $scope.newvenueaddress,
-						'title': $scope.events[0].title,
-						'subtitle': $scope.events[0].subtitle,
-						'date': $scope.events[0].date,
-						'time': $scope.events[0].time,
-						'price': $scope.events[0].price,
-						'description': $scope.event.description,
-						'tags': $('#tags').val().split(','),
-						'poster': file,
-						'id': $location.$$search.post
+						'city': eventDetails.city,
+						'venue': eventDetails.venue,
+						'newvenue': eventDetails.newvenuename,
+						'venue_address': eventDetails.newvenueaddress,
+						'title': eventDetails.title,
+						'subtitle': eventDetails.subtitle,
+						'date': eventDetails.date,
+						'time': eventDetails.time,
+						'price': eventDetails.price,
+						'description': eventDetails.description,
+						'id': eventDetails.id
 					};
-				}
+				//}
 				$http.post(
 						preUrl + 'update.php',
 						data
@@ -126,7 +107,6 @@ angular.module('showhaus')
 				}
 			}
 		};
-		$scope.genreArray = ['grid','list'];
 		$scope.fileCheck = function(){
 			var file = $('input[type=file]')[0].files[0];
 			var size = file.size/1048576;
@@ -150,7 +130,7 @@ angular.module('showhaus')
 				width: 400,
 				height: 315,
 				buttons: {
-					'Ok': function() {
+					'Yes, Delete Show': function() {
 						$scope.deletePost();
 					},
 					'Cancel': function() {
@@ -179,10 +159,6 @@ angular.module('showhaus')
 				$('#passwordCheck').text('Please check your password and try again.');
 					$('#dialog input').addClass('postshow_error');
 			});
-		};
-		$scope.resetVenues = function () {
-			$scope.venue = '';
-			$('.filter_city').trigger("chosen:updated");
 		};
 		$('#postshow_date').datepicker({ minDate: 0 });
 		$('#postshow_time').timepicker({ minTime: 0, show24Hours: false, timeFormat: 'h:mm TT'});

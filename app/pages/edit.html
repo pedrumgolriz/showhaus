@@ -1,188 +1,112 @@
-<div id="static_topnav">
-	<div class="breadcrumbs">
-		<a href="#!main">SHOWHAUS</a> &gt; EDIT SHOW
-	</div>
+<div class="breadcrumb">
+	<div class="breadcrumb-nav">
+		<a href="#!">showhaus</a> > edit a show</div>
 </div>
-<span class="mainbody" ng-controller="EditCtrl">
-	<span style="display:none">{{event = events[0]}}</span>
-    <div style="text-align: center;"><img src="assets/editshow.png" style="max-height: 70px; padding: 60px 0 15px 0;">
-	</div>
-    <div class="readtherules" name="rules_anchor" style="background-color: #d62c2c;font-family: sans-serif;"
-		 ng-click="expand = !expand">
-		<p>BEFORE POSTING PLEASE <span style="font-weight: bold; text-decoration: underline;">READ THE RULES</span>
-	</div>
-    <div class="rules" ng-show="expand">
-		<ul>
-			<li><span>Be Descriptive</span></li>
-			<li style="list-style: none">When posting a show, do your best to
-				provide as much information on who is playing, what they sound
-				like, and what they look like. It makes for quality listings, and a
-				better understanding of our local music scene. HTML and CSS on your
-				listings is allowed and encouraged.
-			</li>
-			<li><span>Protect Smaller Venues</span></li>
-			<li style="list-style: none">Please do not post the addresses of
-				venues that are in residential areas or operate without an
-				entertainment/liquor license. Do not ask for the address in the
-				comments. Find these delicate places under your own
-				discretion.
-			</li>
-			<li><span>Show Deletion</span></li>
-			<li style="list-style: none">The admins and moderators reserve the
-				right to delete your posting if it's... a) not a show (or spam) b)
-				not a quality listing c) a duplicate event
-			</li>
-			<li><span>Don’t be a jerk</span></li>
-			<li style="list-style: none">We spent a lot of time making this a
-				nice place for shows. Be nice!
-			</li>
-		</ul>
-	</div>
-    <form ng-model="form" name="postshow" novalidate ng-submit="postEvent(postshow.$valid)" ng-if="showPage">
-		<div class="input_heading">
-			<strong>EVENT DETAILS</strong>
+<form ng-model="form" class="content page" novalidate ng-submit="postEvent(postshow.$valid, event)" name="postshow">
+		<h2>Edit SHOW</h2>
+
+		<!-- rules and guidelines -->
+		<div class="note">
+			<p><strong>Fill out the form below to add a show</strong>
+
+				<br> Once added, it should appear within the next few minutes.
+
+			<p><em>Hot tip:</em> Venues and artists can  automatically add events to Showhaus via Facebook using the <a href="#!/feeds">feeds section</a>.</p>
 		</div>
-		<div id="postshow_wrap">
-			<div class="postshow_input_wrap">
-				<div class="error_return">Please make sure to fill out all required fields!</div>
-				<select id="postshow_city" class="filter_city" name="city" ng-model="citySelect"
-						data-placeholder="SELECT CITY" ng-change="resetVenues()">
-					<option ng-selected="event.city == 'Baltimore'">Baltimore</option>
-					<option ng-selected="event.city == 'Brooklyn'">Brooklyn</option>
-					<option ng-selected="event.city == 'DC'">DC</option>
-				</select>
-				<select class="filter_city" id="postshow_venue" name="venue" ng-model="venue"
-						data-placeholder="SELECT VENUE">
-					<option ng-repeat="place in venues | filter: citySelect" ng-selected="event.venue == place[1]">{{place[1]}}</option>
-					<optgroup label="Can't find your venue?" ng-if="citySelect!=''"">
-						<option name="newvenue" value="newvenue">Add a venue</option>
-					</optgroup>
-				</select><a class="required" title="required">*</a>
-			</div>
-			<div class="postshow_input_wrap" ng-show="venue=='newvenue'">
-				<div class="addvenue">
-					<p><strong>Add New Venue</strong></p>
-					<input id="postshow_newvenuename" maxlength="25" name="newvenue" placeholder="name of venue"
-						   required type="text" style="margin-left: 20px" ng-model="newvenuename" ng-required="venue==newvenue">
-					<a class="required" title="required">*</a><br>
-					<br>
-					<input id="postshow_newvenueaddress" maxlength="75" name="venue_address" placeholder="address"
-						   type="text" ng-model="newvenueaddress">
+		<!--░░░░░░░░░░░░ show details ░░░░░░░░░░░░-->
+		<div class="postshow-heading">SHOW DETAILS</div>
+		<div class="postshow-wrap">
+
+			<!-- enter city -->
+			<div class="postshow-city">
+
+				<div class="filter-contain">
+					<select class="selectize-input items not-full disabled locked demo-default venue-select" name="city" ng-model="event.city" required ng-change="event.venue = ''" value="">
+						<option value="" disabled>-- select a city --</option>
+						<option value="Baltimore">Baltimore</option>
+						<option value="New York">NYC</option>
+						<!--<option>DC</option>-->
+					</select>
+				</div>
+				<div class="postshow-helptext">
+					The city where your show is happening.
 				</div>
 			</div>
-			<div class="postshow_input_wrap" style="margin-left: 20px;">
-				<input ng-model="event.title" id="postshow_showtitle" maxlength="80" name="title"
-					   required placeholder="title" type="text"><a class="required">*</a>
 
-				<p ng-attr-class="{{form.title.$error.required && 'required' || ''}}">The overall title of your show / headliner.</p>
-
-				<div>
-					<div id="title_remaining">
-						{{80 - event.title.length}} characters remaining
-					</div>
+			<!-- enter show title -->
+			<div class="postshow-title">
+				<input placeholder="title of show" type="text" class="full" ng-model="event.title"></input>
+				<div class="postshow-helptext">
+					List the performers starting with the headliner.
 				</div>
 			</div>
-			<div class="postshow_input_wrap">
-				<input ng-model="event.subtitle" id="postshow_subtitle" maxlength="110" name="subtitle" placeholder="subtitle"
-					   type="text" value="{{event.subtitle}}">
-
-				<p>Other bands, acts, etc.</p>
-
-				<div id="subtitle_remaining">
-					{{110 - event.subtitle.length}} characters remaining
+			<!-- select venue -->
+			<div class="postshow-venue">
+				<div class="filter-contain">
+					<select placeholder="SELECT VENUE" id="select-beast" class="demo-default venue-select" name="venue" ng-model="event.venue" required
+							data-placeholder="SELECT VENUE"  ng-disabled="event.city==''">
+						<option value="" disabled selected>-- select a venue --</option>
+						<option ng-repeat="place in venues | filter:citySelect |orderBy: 'venue'" >{{place["venue"]}}</option>
+						<optgroup label="Can't find your venue?" ng-if="citySelect!=''">
+							<option name="newvenue" value="newvenue">Add a venue</option>
+						</optgroup>
+					</select>
 				</div>
-			</div>
-			<div class="postshow_input_wrap" style="margin-left: 20px;">
-				<input id="postshow_date" name="date" placeholder="date" readonly required type="text" ng-model="event.date">
-				<input id="postshow_time" name="time" readonly required type="text" ng-model="event.time" placeholder="time">
-				<input id="postshow_price" name="price" placeholder="price" required style="color: green;" type="text"
-					   ng-model="event.price" numbers-only="numbers-only">
-				<a class="required" title="required">*</a>
 
-				<p>Enter "0" for the price if your show is <a class="free" style="font-size: 12px;">free</a></p>
-			</div>
-		</div>
-		<div class="input_heading">
-			EVENT DESCRIPTION
-		</div>
-		<div id="postshow_wrap">
-			<div class="input_wrap">
-				<div class="postshow_input_wrap">
-					<p>This is the content that will appear in your listing. Feel
-						free to embed images and videos.</p>
-
-					<p><a style="background-color: #dd2232; color:#fff; padding: 5px 10px; border-radius: 3px;">
-						Please remember to respect diy venues or private parties. Post
-						addresses at your own risk.</a></p>
-
-					<p id="slate">
-						<textarea id="editor" class="ck-editor" name="editor" name="description" rows="15" ng-model="event.description" value="{{event.descriptio}}"></textarea>
-					</p>
+				<div class="postshow-helptext">
+					If you can't find your venue, select <strong>Add Venue</strong>
+					<!--<br> If you don't want to give out an address, select <strong>Unlisted</strong>-->
 				</div>
-			</div>
-			<div class="postshow_input_wrap">
-				<p><strong><a style="margin-left: 20px;">How would you describe your show?</a></strong><a class="required" title="required">*</a></p>
-				<input ng-model="tags" type="hidden" id="tags" placeholder="tags" name="tags" style="width:350px;" value="{{event.tag1}},{{event.tag2!=''? event.tag2 : null}}">
-				<p>Enter at least one tag (eg. "Math Rock" , "Metal", "Space
-					Jazz")<br/>Use commas to seperate tags</p>
-			</div>
-		</div>
-		<div class="input_heading">
-			EVENT ART
-		</div>
-		<div id="postart_wrap">
-			<div class="postshow_input_wrap">
-				<br/>
-				<div id="drop" class="message">
-					<div id="imgDelete" alt="Remove Poster" ng-show="event.poster||poster" ng-click="imgDelete()">x</div>
-					<img id="imgpreview" alt="Image Preview" ng-show="event.poster||poster" src="{{event.poster||poster}}" style="max-width:500px;"/>
-					<input fileread="poster" type="file" name="image" accept="image/x-png, image/gif, image/jpeg" ng-model="poster" onchange="angular.element(this).scope().fileCheck()" ng-hide="event.poster||poster"/>
-                <span ng-hide="event.poster||poster"><p><strong>Drag and drop your poster here.</strong><br>
-					(.gif, .jpg, .png formats allowed. 5MB max)</p></span>
-				</div>
-			</div>
-		</div>
-		<div class="input_heading">
-			CONFIRM &amp; PUBLISH
-		</div>
-		<div id="postshow_wrap">
-			<p style="font-size: 16px; margin: 0 auto; width: 500px">
-				By clicking 'post show' I have
-				<a href="javascript:void();" ng-click="expand = !expand" style="font-size: 16px;" name="rulesagreement">read
-					the rules</a>
-				and agree to the
-				<a href="http://showhaus.org/rules" style="font-size: 16px;" target="_blank">privacy agreement</a>
-				and confirm that I am not a jerk.</p>
 
-			<div class="postshow_input_wrap">
-				<div style="text-align: center; margin: 10px auto 30px auto;">
-					<input ng-disabled="form.$invalid" type="submit" id="submit" class="smallbtn4" style="cursor:pointer;" name="updateposts" value="update show">
-					<input type="button" id="deleteshow" class="smallbtn4" style="cursor:pointer; background-color: red;  border: 1px solid red;" value="delete show" ng-click='deleteModal()'>
+				<div class="addvenue" ng-show="event.venue=='newvenue'">
+					<h4> ADD VENUE </h4>
+					<input placeholder="venue name" type="text" class="third" maxlength="25" name="newvenue" ng-model="newvenuename" ng-required="event.venue==newvenue"></input><p>
+
+					<input placeholder="address (optional)" type="text" class="third" name="venue_address" maxlength="75" ng-model="newvenueaddress"></input>
 				</div>
+
+			</div>
+
+			<!-- enter date & price -->
+			<div class="postshow-dateprice">
+				<input class="date" type="text" name="date" placeholder="date" readonly required type="text" ng-model="event.date" class="date"></input>
+				<input class="time" type="text" name="time" placeholder="time" readonly type="text" ng-model="event.time"></input>
+				<input placeholder="price" name="price" ng-model="event.price" numbers-only="numbers-only" type="text" class="mini price"></input>
+				<div class="postshow-helptext">
+					For free shows, enter <strong>$0</strong> as the price.
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="postshow-heading">EVENT DESCRIPTION</div>
+		<div class="postshow-wrap">
+			<!-- description -->
+			<div class="postshow-description">
+				<div class="postshow-helptext">
+					The description below will appear on your post.
+				</div>
+				<textarea ng-model="event.description" name="description" type="text" style=" width: 300px; min-height:100px;"></textarea>
+			</div>
+		</div>
+
+		<div class="postshow-heading">CONFIRM & PUBLISH</div>
+		<div class="postshow-wrap">
+			<!-- submit -->
+			<div class="postshow-delete">
+				<button class="delete_button" ng-click="deleteModal()">DELETE SHOW</button>
+			</div>
+			<div class="postshow-submit">
+				<button class="postshow_button" type="submit">SUBMIT SHOW</button>
 			</div>
 		</div>
 	</form>
+
 </span>
-<script>
-	$('#tags').select2({
-		tags: genreArray,
-		tokenSeparators: [','],
-		maximumSelectionSize: 2,
-		maximumInputLength: 12,
-		minimumSelectionSize: 1,
-		initSelection : function (element, callback) {
-			var data = [];
-			$(element.val().split(",")).each(function () {
-				data.push({id: this, text: this});
-			});
-			callback(data);
-		}
-	});
-</script>
+
 <div id="dialog" title="Are you sure?">
 	<p>Think about this decision for a second...<br/>
 		<strong><a style="color:red;">You're about to delete your entire listing</a></strong><br/>
 		Is that something you really want to do? It's permanent, you know!</p>
-	<p id="passwordCheck">Please enter your password below to proceed.</p>
-	<input type="password" ng-model="password"/>
 </div>
