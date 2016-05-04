@@ -269,8 +269,13 @@ angular.module('showhaus')
     /*
         End Pagination
     */
-    $scope.sendToGoogle = function(city, event, venue, staffPick){
-        $window.ga('send', 'pageview', { page: city+': '+event+' @ '+ venue});
+    $scope.sendToGoogle = function(city, event, venue, ticket){
+        if(ticket){
+            $window.ga('send', 'pageview', {ticket});
+        }
+        else{
+            $window.ga('send', 'pageview', { page: city+': '+event+' @ '+ venue});
+        }
     }
   })
   .filter('startFrom', function() {

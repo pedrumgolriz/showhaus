@@ -137,7 +137,7 @@
 
 				<!-- tickets, if applicable -->
 				<div>
-					<a href="{{event.ticket_uri}}" target="_blank">
+					<a href="{{event.ticket_uri}}" target="_blank" ng-click="sendToGoogle(event.city, event.title, event.venue, event.ticket_uri)">
 						<div class="show-tickets" ng-if="event.ticket_uri">get tickets</div>
 					</a>
 				</div>
