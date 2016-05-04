@@ -1,10 +1,18 @@
 <?php
 header('content-type: application/json; charset=utf-8');
+ini_set('display_errors', '1');
+    ini_set('max_execution_time', 0);
+    error_reporting(E_ALL);
 date_default_timezone_set('America/New_York');
 $server_date = date("m/d/Y");
 $today_flag = "0";
 	$mysqli = new mysqli("localhost", "read", "jX!57u6a", "haus");
-  $postnumber = htmlspecialchars(stripslashes($_GET['post']));
+  if($_GET){
+    $postnumber = htmlspecialchars(stripslashes($_GET['post']));
+  }
+  else{
+    $postnumber = "";
+  }
   if($postnumber!=""){
     $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS email FROM venue, events WHERE events.date >= '".$server_date."' AND events.venue = venue.venue AND '".$postnumber."' = events.id ORDER BY date ASC");
     $edit = 1;

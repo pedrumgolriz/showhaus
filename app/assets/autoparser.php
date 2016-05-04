@@ -38,7 +38,11 @@
     }
     $iter = 0;
     while($row = mysqli_fetch_assoc($currentVenues)){
-        $venues[$iter] = strtolower(str_replace(' ', '', $row['venue']."*".$row['city']));
+        //$venues[$iter] = {'venue': $row['venue'], 'city': $row['city']};
+        $venues[$iter] = new stdClass();
+        $venues[$iter] -> venue = $row['venue'];
+        $venues[$iter] -> city = $row['city'];
+        //strtolower(str_replace(' ', '', $row['venue']."*".$row['city']));
         $iter++;
     }
     
@@ -57,13 +61,7 @@
         try {
             $response = $fb->get('/'.$page);
             $facebookId = $response->getGraphObject()->getProperty('id');
-            if(!ctype_digit($facebookId)){
-                $facebookId = explode('.com/', $facebookId)[1];
-                $feedsEvents = $fb->get('/'.$facebookId.'events?start_time,ticket_uri')->getGraphEdge('GraphEvent');
-            }
-            else{
-                $feedsEvents = $fb->get('/'.$facebookId.'/events?start_time,ticket_uri')->getGraphEdge('GraphEvent');
-            }
+            $feedsEvents = $fb->get('/'.$facebookId.'/events?start_time,ticket_uri')->getGraphEdge('GraphEvent');
             $today = date("Y-m-d");
             for($i = 0; $i<sizeof($feedsEvents); $i++){
                 if(date_format($feedsEvents[$i]->getProperty('start_time'), 'Y-m-d') > $today){
@@ -72,17 +70,16 @@
             }
             //mysqli_close($mysqli);
         } catch(Facebook\Exceptions\FacebookResponseException $e) {
-            echo ' CFE ';
+            echo $e->getMessage();
         } catch(Facebook\Exceptions\FacebookSDKException $e) {
             echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            exit;
         }
     }
     
     function getEventDetails($fb, $eventId, $events, $venues, $mysqli){
         try {
             if(checkAgainstDB($eventId, $events)){
-                $eventId = $fb->get('/'.$eventId.'?fields=ticket_uri,start_time,name,place,description,picture')->getGraphObject();
+                $eventId = $fb->get('/'.$eventId.'?fields=ticket_uri,start_time,name,place,description')->getGraphObject();
                 if(is_object($eventId)){
                     postToDB($eventId, $venues, $mysqli);
                 }
@@ -109,54 +106,60 @@
     function postToDB($event, $venues, $mysqli){
         try{
             $title = $event->getProperty('name');
+            $title = mysqli_real_escape_string($mysqli, $title);
             $description = $event->getProperty('description');
+            $description = mysqli_real_escape_string($mysqli, $description);
             $testPlace = $event->getProperty('place');
             if(is_object($testPlace)){
                 $venue = $event->getProperty('place')->getProperty('name');
+                $venue = mysqli_real_escape_string($mysqli, $venue);
             }
             if(isset($venue)){
                 $property = $event->getProperty('place');
                 if(isset($property->getProperty('location')["name"])){
                     $venue = $property->getProperty('location')["name"];
+                    $venue = mysqli_real_escape_string($mysqli, $venue);
                 }
                 if(isset($property->getProperty('location')["city"])){
                     $city = $property->getProperty('location')["city"];
-                    echo $city;
+                    $city = mysqli_real_escape_string($mysqli, $city);
                 }
                 else{
-                    $temp = strtolower(str_replace(' ', '', $venue));
-                    //check if partial match in $venues
-                    $matches = implode(',',preg_grep("/".$temp."/", $venues));
-                    $city = substr($matches, strpos($matches, "*")+1);
+                    echo $property->getProperty('location');
                 }
                 if(isset($property->getProperty('location')["street"])){
                     $address = $property->getProperty('location')["street"];
+                    $address = mysqli_real_escape_string($mysqli,$address);
                 }
                 else{
                     $address = "";
                 }
                 if(isset($property->getProperty('location')["state"])){
                     $state = $property->getProperty('location')["state"];
+                    $state = mysqli_real_escape_string($mysqli, $state);
                 }
                 else{
                     $state = "";
                 }
                 if(isset($property->getProperty('location')["zip"])){
                     $zip = $property->getProperty('location')["zip"];
+                    $zip = mysqli_real_escape_string($mysqli, $zip);
                 }
                 else{
                     $zip = "";
                 }
                 if(isset($city)&&isset($venue)){
-                    if(in_array(strtolower(str_replace(' ', '', $venue."*".$city)), $venues)){
-                        echo " M&I ";
-                    }
-                    else{
-                        echo "#####NEW VENUE#####";
-                        mysqli_query($mysqli, "INSERT INTO `venue` (`venue`, `address`, `city`, `state`, `zip`) VALUES ('$venue','$address','$city','$state','$zip')");
+                    for($c = 0; $c < sizeof($venues); $c++){
+                        if($venues[$c]->venue == $venue && $venues[$c]->city == $city){
+                            echo "venue already exists";
+                        }
+                        else{
+                            mysqli_query($mysqli, "INSERT INTO `venue` (`venue`, `address`, `city`, `state`, `zip`) VALUES ('$venue','$address','$city','$state','$zip')");
+                            break;
+                        }
                     }
                 }
-                if($city!=""){
+                if(isset($city)){
                     $date = date_format($event->getProperty('start_time'), 'm/d/Y');
                     $time = date_format($event->getProperty('start_time'), 'g:i A');
                     $ticket_uri = $event->getProperty('ticket_uri');
@@ -175,7 +178,7 @@
                     $email = "feeder@showhaus.org";
                     $password = "tapedeck";
                     //post to events
-                    echo $fb_event;
+                    echo $venue." show posted\n";
                     mysqli_query($mysqli, "INSERT INTO events (`title`, `venue`, `city`, `date`, `time`, `price`, `email`, `password`, `fb_event`, `ticket_uri`) VALUES ('$title','$venue','$city','$date','$time','$price','$email','$password','$fb_event','$ticket_uri')");
                 }
             }
