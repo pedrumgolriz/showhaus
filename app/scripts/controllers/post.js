@@ -58,8 +58,11 @@ angular.module('showhaus')
 			}
 		};
 	})
-	.controller('PostCtrl', function ($scope, $http, $location, venueCityFactory) {
+	.controller('PostCtrl', function ($scope, $http, $location, venueCityFactory, $rootScope, $window) {
 		$(".ui-dialog-content").dialog("destroy");
+		$rootScope.$on('$routeChangeSuccess', function(){
+            $window.ga('send', 'pageview', { page: 'Post a Show' });
+        });
 		$(".date").datepicker({ minDate: 0 });
 		$(".time").timepicker({ minTime: 0, show24Hours: false, timeFormat: "h:mm TT"});
 		//facebook stuff
@@ -157,21 +160,25 @@ angular.module('showhaus')
 								this.insertText(response.description);
 							});*/
 							/* jshint ignore:end */
-							if(response.venue.state.toLowerCase() === 'dc' || response.venue.state.toLowerCase() === 'd.c' || response.venue.state.toLowerCase() === 'washington dc'){
-								$scope.citySelect = 'DC';
-							}
-							else{
-								$scope.citySelect = response.venue.city;
-							}
-							for(var q = 0; q < $scope.venues.length; q++){
-								if(response.location === $scope.venues[q][1]){
-									$scope.venue = $scope.venues[q][1];
+							console.log(response);
+							if(response.venue.state){
+								if(response.venue.state.toLowerCase() === 'dc' || response.venue.state.toLowerCase() === 'd.c' || response.venue.state.toLowerCase() === 'washington dc'){
+									$scope.citySelect = 'DC';
 								}
-							}
-							if($scope.venue != response.location){
-								$scope.venue = 'newvenue';
-								$scope.newvenuename = response.location;
-								$scope.newvenueaddress = response.venue.street;
+								else{
+									$scope.citySelect = response.venue.city;
+								}
+
+								for(var q = 0; q < $scope.venues.length; q++){
+									if(response.location === $scope.venues[q][1]){
+										$scope.venue = $scope.venues[q][1];
+									}
+								}
+								if($scope.venue != response.location){
+									$scope.venue = 'newvenue';
+									$scope.newvenuename = response.location;
+									$scope.newvenueaddress = response.venue.street;
+								}
 							}
 
 

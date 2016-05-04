@@ -36,11 +36,14 @@ angular.module('showhaus')
 	.run(function($http, feedsFactory) {
 		feeds = feedsFactory.query();
 	})
-	.controller('FeedsCtrl', function ($scope, $http, $route) {
+	.controller('FeedsCtrl', function ($scope, $http, $route, $rootScope, $window, $location) {
 		//
 		$scope.events = [];
 		$scope.feeds = feeds;
 		$(".ui-dialog-content").dialog("destroy");
+		$rootScope.$on('$routeChangeSuccess', function(){
+		    $window.ga('send', 'pageview', { page: 'Feeds' });
+		});
 		$scope.executeSearch = function(){
 			if(FB) {
 				FB.login();

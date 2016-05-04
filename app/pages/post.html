@@ -58,10 +58,10 @@
 			<div class="filter-contain">
 				<select placeholder="SELECT VENUE" id="select-beast" class="demo-default venue-select" name="venue" ng-model="venue" required
 						data-placeholder="SELECT VENUE"  ng-disabled="citySelect==''">
+					<optgroup label="Can't find your venue?" ng-if="citySelect!=''">
+						<option name="newvenue" value="newvenue">Add a venue</option>
 					<option value="" disabled selected>-- select a venue --</option>
 					<option ng-repeat="place in venues | filter:citySelect |orderBy: 'venue'" ng-show="citySelect">{{place["venue"]}}</option>
-					<optgroup label="Can't find your venue?" ng-if="citySelect!=''">
-					<option name="newvenue" value="newvenue">Add a venue</option>
 					</optgroup>
 				</select>
 			</div>

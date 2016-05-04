@@ -77,7 +77,7 @@ angular.module('showhaus')
     //venues = venueCityFactory.query();
   	events = eventsFactory.query();
   })
-  .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window){
+  .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope){
 	$(".ui-dialog-content").dialog("destroy");
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
@@ -269,6 +269,9 @@ angular.module('showhaus')
     /*
         End Pagination
     */
+    $scope.sendToGoogle = function(city, event, venue, staffPick){
+        $window.ga('send', 'pageview', { page: city+': '+event+' @ '+ venue});
+    }
   })
   .filter('startFrom', function() {
       return function(input, start) {

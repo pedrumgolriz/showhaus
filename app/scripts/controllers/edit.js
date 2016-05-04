@@ -16,8 +16,11 @@ angular.module('showhaus')
 		var jsonQuery = preUrl + 'eventlist.php';
 		return $resource(jsonQuery);
 	})
-	.controller('EditCtrl', function ($scope, $http, $location, $resource, venueCityFactory, eventFactory) {
+	.controller('EditCtrl', function ($scope, $http, $location, $resource, venueCityFactory, eventFactory, $rootScope, $window) {
 		$(".ui-dialog-content").dialog("destroy");
+		$rootScope.$on('$routeChangeSuccess', function(){
+            $window.ga('send', 'pageview', { page: 'Edit Show' });
+        });
 		$scope.events = new eventFactory.query();
 		$scope.venues = new venueCityFactory.query();
 
