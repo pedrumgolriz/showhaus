@@ -77,7 +77,7 @@ angular.module('showhaus')
     //venues = venueCityFactory.query();
   	events = eventsFactory.query();
   })
-  .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope){
+  .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope, $http){
 	$(".ui-dialog-content").dialog("destroy");
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
@@ -277,6 +277,48 @@ angular.module('showhaus')
             $window.ga('send', 'pageview', { page: city+': '+event+' @ '+ venue});
         }
     }
+
+    $scope.performance = performance.now();
+    $.getJSON("http://jsonip.com?callback=?", function (data) {$scope.ip_address = data.ip;});
+    $scope.checkPid = function(e){
+        var c = parseInt(sessionStorage.getItem('a'));
+        if(e.shiftKey&&e.which == 1 && c!==3){
+            var a = prompt("", "");
+
+            $http.post(
+                preUrl + 'checkAdmin.php',
+                {"a":a}
+            ).success(function (data) {
+                    if(data === "0" && !sessionStorage.getItem('a')){
+                        sessionStorage.setItem('a', 1)
+                        window.location.reload();
+                    }
+                    else if (data === "0" && sessionStorage.getItem('a')){
+                        var b = parseInt(sessionStorage.getItem('a'));
+                        b+=1;
+                        sessionStorage.setItem('a',b);
+                        window.location.reload();
+                    }
+                    else if(data === "1"){
+                        sessionStorage.setItem('a', 0);
+                    }
+                }).error(function (status) {
+                    console.log(status);
+                });
+
+            //post a, if wrong pw http://i.imgur.com/lYdRATj.gif
+            //post in session storage ff = 1
+            //if wrong pw again, store ff = 2
+            //again ff = 3
+            //if ff == 3, no longer popup
+        }
+        else if(c===3){
+            while(1==1){
+                window.open('http://i.imgur.com/lYdRATj.gif');
+            }
+        }
+    }
+
   })
   .filter('startFrom', function() {
       return function(input, start) {
