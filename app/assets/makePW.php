@@ -45,19 +45,13 @@ function generateStrongPassword()
     return str_shuffle($pw);
 }
 
-$to = "pedrumgolriz@gmail.com";
+$to = "pedrumgolriz@gmail.com, luismqueral@gmail.com";
 $subject = "[showhaus] your pass is ready";
 $from = "noreply@showhaus.org";
 $headers = "From: $from". "\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$message = file_get_contents("email2.html");
-$variables = array();
-$variables['the'] = "your new key: ";
-$variables['password'] = $password;
-foreach($variables as $key => $value){
-    $message = str_replace('{{ '.$key.' }}', $value, $message);
-}
+$message = "Your pass: ".$password;
 mail($to,$subject,$message,$headers);
 
 ?>
