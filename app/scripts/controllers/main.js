@@ -301,6 +301,7 @@ angular.module('showhaus')
                     }
                     else if(data === "1"){
                         sessionStorage.setItem('a', 0);
+                        $scope.adminMode = true;
                     }
                 }).error(function (status) {
                     console.log(status);
@@ -313,8 +314,10 @@ angular.module('showhaus')
             //if ff == 3, no longer popup
         }
         else if(c===3){
-            while(1==1){
+            var z = 0;
+            while(z < 700){
                 window.open('http://i.imgur.com/lYdRATj.gif');
+                z++;
             }
         }
     }
