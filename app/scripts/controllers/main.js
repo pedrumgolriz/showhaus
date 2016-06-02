@@ -77,7 +77,7 @@ angular.module('showhaus')
     //venues = venueCityFactory.query();
   	events = eventsFactory.query();
   })
-  .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope, $http){
+  .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope, $http, $route, eventsFactory){
 	$(".ui-dialog-content").dialog("destroy");
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
@@ -120,23 +120,6 @@ angular.module('showhaus')
     $scope.$watch(function() {
       return loadingService.isLoading();
     }, function(value) { $scope.loading = value; });
-	$scope.$watch(function(events){
-        for(var i = 0; i < $scope.events.length; i++){
-            $scope.eventVenues.push($scope.events[i].venue);
-            for(var q = 0; q < $scope.venues.length; q++){
-                var index = $scope.eventVenues.indexOf($scope.venues[q][1]);
-                if(index == -1){
-                    $scope.venues.splice(q,1);
-                }
-            }
-        }
-        if(INITIAL_EVENT_LENGTH > $scope.events.length){
-            console.log($scope.events.length-INITIAL_EVENT_LENGTH+" new events added");
-        }
-        $timeout(function () {
-            $('select').trigger('chosen:updated');
-        }, 0, false);
-    });
     //##Listen to events from showpage##//
     if(typeof getSetCity.get() === 'string'){
       $scope.citySelect = getSetCity.get();
@@ -282,36 +265,40 @@ angular.module('showhaus')
     $.getJSON("http://jsonip.com?callback=?", function (data) {$scope.ip_address = data.ip;});
     $scope.checkPid = function(e){
         var c = parseInt(sessionStorage.getItem('a'));
+        var a;
         if(e.shiftKey&&e.which == 1 && c!==3){
-            var a = prompt("", "");
+            if(localStorage.getItem('password')){
+                a = localStorage.getItem('password');
+            }
+            else{
+                a = prompt("", "");
+            }
 
             $http.post(
                 preUrl + 'checkAdmin.php',
                 {"a":a}
-            ).success(function (data) {
-                    if(data === "0" && !sessionStorage.getItem('a')){
-                        sessionStorage.setItem('a', 1)
+            ).success(function (g) {
+                    if(g === "0" && !sessionStorage.getItem('a')){
+                        sessionStorage.setItem('a', 1);
+                        localStorage.removeItem('password');
                         window.location.reload();
                     }
-                    else if (data === "0" && sessionStorage.getItem('a')){
+                    else if (g === "0" && sessionStorage.getItem('a')){
                         var b = parseInt(sessionStorage.getItem('a'));
                         b+=1;
                         sessionStorage.setItem('a',b);
+                        localStorage.removeItem('password');
                         window.location.reload();
                     }
-                    else if(data === "1"){
+                    else if(g === "1"){
                         sessionStorage.setItem('a', 0);
-                        $scope.adminMode = true;
+                        localStorage.setItem('password', a);
+                        $scope.editMode = true;
+                        return true;
                     }
                 }).error(function (status) {
                     console.log(status);
                 });
-
-            //post a, if wrong pw http://i.imgur.com/lYdRATj.gif
-            //post in session storage ff = 1
-            //if wrong pw again, store ff = 2
-            //again ff = 3
-            //if ff == 3, no longer popup
         }
         else if(c===3){
             var z = 0;

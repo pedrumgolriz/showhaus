@@ -75,7 +75,7 @@
 	<!-- intro -->
 
 	<!-- show -->
-	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="event.price!=0&&freebox" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect}) | orderBy: orderByDate | itemsPerPage: 150" ng-hide="loading">
+	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="(event.price!=0&&freebox)" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect}) | orderBy: orderByDate | itemsPerPage: 150">
 		<div class="show-detail-contain">
 
 			<!-- date / time -->
@@ -104,38 +104,37 @@
 
 			<!-- title -->
 			<div class="show-title">
-				<div class="title" ng-if="!event.fb_event" ng-click="expand($event); sendToGoogle(event.city, event.title, event.venue)"><a href="#">{{event.title}}</a></div>
-				<div class="title" ng-click="extshow(event.fb_event); sendToGoogle(event.city, event.title, event.venue)" ng-if="event.fb_event"><a href="#">{{event.title}}</a><i style="vertical-align: middle; margin: 0 0 0 8px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)"></i>
+				<span class="title" ng-if="!event.fb_event" ng-click="expand($event); sendToGoogle(event.city, event.title, event.venue)"><a href="#">{{event.title}}</a></span>
+				<span class="title" ng-if="event.fb_event"><a ng-click="extshow(event.fb_event); sendToGoogle(event.city, event.title, event.venue)" href="#">{{event.title}}</a>
+					<i style="vertical-align: middle; margin: 0 0 0 8px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)"></i>
+				</span>
+				<span class="title">
 					<span class="show-price" ng-if="event.price>0">${{event.price}}</span>
 					<span class="show-price" ng-if="event.price==0 || (event.price==-1&&!event.ticket_uri)">
 						<span style="display:none">{{event.price=0}}</span>free
 					</span>
-					<!--<span class="staff-pick">👍 staff pick</span>
+					<span ng-if="event.featured" class="staff-pick">staff pick</span>
 
-					&lt;!&ndash; staff notes &ndash;&gt;
-					<div class="staff-notes">
-						Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus varius blandit sit amet non magna. Maecenas faucibus mollis interdum. Aenean lacinia bibendum nulla sed consectetur.</div>
+					<div class="staff-notes" ng-if="event.featured">{{event.featured}}</div>
 
 
-					&lt;!&ndash; admin edit &ndash;&gt;
-					<div class="admin">
-						<a href="#">edit show</a>
-						<a href="#">delete show</a>
+					<div class="admin" ng-if="editMode">
+						<a ng-click="edit[$index] = true" href="#">edit show</a>
+						<a ng-click="minus($index)" href="#">delete show</a>
 
 						<div class="checkbox">
-							<input type="checkbox">
+							<input type="checkbox" ng-click="event.isChecked = !event.isChecked"/>
 							<label>staff pick</label>
 						</div>
 
-						<div class="staff-notes">
+						<div class="staff-notes" ng-if="event.isChecked">
 							<textarea placeholder="Staff notes go here - ONLY FILL THIS OUT IF YOU ARE FEATURING A SHOW."></textarea>
 						</div>
-						&lt;!&ndash; save changes &ndash;&gt;
-						<a href="#"><span class="save"> 💾 save & publish</span></a>
+						<a href="#" ng-if="event.isChecked"><span class="save"> 💾 save & publish</span></a>
 
-					</div>-->
+					</div>
 
-				</div>
+				</span>
 
 				<!-- tickets, if applicable -->
 				<div>
