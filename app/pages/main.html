@@ -1,18 +1,17 @@
+<div class="breadcrumb">
+	<div class="breadcrumb-nav home">
+		<a href="#!about">about</a>
+		<!-- :: <a href="#!api">api</a> -->
+		:: <a href="#!feeds">feeds</a>
+		:: <a href="#!post"><strong>post a show</strong></a>
+	</div>
+</div>
 <!--░░░░░░░░░░░░ hero ░░░░░░░░░░░░-->
 <div class="hero-contain">
 	<!-- title -->
 	<div class="showhaus"></div>
 
-	<!-- main nav -->
-	<div class="nav">
-		<a href="#!about">about</a>
-		<!-- :: <a href="#!api">api</a> -->
-		:: <a href="#!feeds">feeds</a>
-		:: <a href="#!post" class="postshow">post a show</a>
-	</div>
-
 	<!-- filter -->
-
 	<div class="filter">
 
 		<!--
@@ -52,6 +51,18 @@
 -->
 
 <!--░░░░░░░░░░░░ loading ░░░░░░░░░░░░-->
+<div ng-show="loading" style="text-align:center; margin: 30px 20px -10px 20px">
+	<div class="loading">
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>
+</div>
+
 <div class="content">
 	<!-- intro note
 	<div class="note">
@@ -60,18 +71,7 @@
 	</div> -->
 	<div class="heading">
 		Displaying <span style="color:red;">666</span> upcoming shows in <strong>New York City</strong>
-		<br><span style="font-size: 15px;">Please double check show details! We do our best but they aren't always accurate.</span>
-	</div>
-	<div ng-show="loading" style="text-align:center; margin: 0 20px 20px 20px">
-		<div class="loading">
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
+		<br><span style="font-size: 12px;">Please double check show details! We do our best but they aren't always accurate.</span>
 	</div>
 
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
