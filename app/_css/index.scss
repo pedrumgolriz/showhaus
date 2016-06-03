@@ -1,50 +1,3 @@
-/* ░░░░░░░░░░░░ main nav ░░░░░░░░░░░░ */
-
-.nav {
-    height: 30px;
-    max-width: 300px;
-    text-align: center;
-    padding: 5px 0 10px 0;
-    margin: 0 auto;
-
-    /* page links */
-
-    a, a:visited {
-        margin: 0 5px;
-        text-decoration: none;
-        color:gray
-    }
-
-    a:hover {
-        margin: 0 5px;
-        border-bottom: 1px dotted;
-        color:gray
-    }
-
-    /* post show link */
-    a.postshow {
-        color: red;
-        padding:3px 4px;
-    }
-
-    a.postshow:hover {
-        color: white;
-        background-color: red;
-        border-radius: 5px;
-        border-bottom: none;
-    }
-}
-
-/* ░░░░░░░░░░░░ mobile nav ░░░░░░░░░░░░ */
-
-@media (max-width:520px) {
-
-  .nav {padding: 5px 0 0 0;}
-
-}
-
-
-
 /* ░░░░░░░░░░░░ hero ░░░░░░░░░░░░ */
 
 .hero-contain {
@@ -59,7 +12,7 @@
     height:50px;
     font-size: 25px;
     font-weight: 700;
-    margin: 30px auto 0 auto;
+    margin: 30px auto 25px auto;
     background-image: url("../assets/header.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -151,15 +104,13 @@
       height: auto;
 
     .filter-contain {
-      display: block;
       margin: 15px auto;
       border: none;
+      display: inline-block;
     }
 
     .checkbox {
-      display: block;
       margin: 10px;
-      border-top: 1px solid #ddd;
       padding: 15px 0 0 0;
     }
 
@@ -174,8 +125,10 @@
 .heading {
 font-size:17px;
 text-align:center;
-border-bottom: 2px solid rgba(0, 0, 0, 0.25);
-padding: 25px 0 20px 0;
+border-bottom: 2px solid rgba(0, 0, 0, 0.18);
+padding: 20px 0 20px 0;
+line-height: normal;
+
 }
 
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░ */
@@ -225,7 +178,7 @@ margin: 0 auto;
 
     /* if a show is happening today */
     &.today {
-        background: rgba(248, 177, 177, 0.18) !important;
+        background: rgba(177, 209, 248, 0.18)!important;
     }
 
     /* if a show is expanded */
@@ -350,8 +303,9 @@ display: inline-block;
 
 
 .show-description {
-width:500px;
-margin: 30px auto 0 auto;
+  max-width: 55%;
+  margin: 30px auto 0 37%;
+  padding-right: 20%;
 }
 
 .expand-close {
@@ -376,12 +330,12 @@ text-decoration: none;
 @media (max-width:520px) {
 
   .show-contain .show-detail-contain {
-    padding: 10px 10px 25px 10px;
+    padding: 20px 10px 30px 10px;
     display: block;
 
     /* show title */
     .show-title {
-      width: 100%;
+      width: 90%;
       padding: 15px 0 0 0;
 
       & .title {max-width: 90%;}
@@ -405,13 +359,20 @@ text-decoration: none;
       & .day {font-size: 11px;}
       & .time {font-size: 11px; color: gray;}
     }
+
     .show-tickets {
-      margin: 15px 0 0 0;
+      margin: 15px auto 0 auto;
       font-size: .8em;
-      padding: 5px 10px;
-      float: left;
+      padding: 10px;
+      float: none;
       display: block;
+      width: 270px;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.42);
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      border-radius: 5px;
     }
+
   }
 }
 
