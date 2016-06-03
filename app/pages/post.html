@@ -34,7 +34,7 @@
 		<div class="postshow-city">
 
 			<div class="filter-contain">
-				<select class="selectize-input items not-full disabled locked demo-default venue-select" name="city" ng-model="citySelect" required ng-change="resetVenues();" value="">
+				<select class="selectize-input items not-full disabled locked demo-default venue-select" name="city" ng-model="citySelect" ng-required="true" ng-change="resetVenues();" value="">
 				<option value="" disabled>-- select a city --</option>
 				<option value="Baltimore">Baltimore</option>
 				<option value="New York">NYC</option>
@@ -48,7 +48,7 @@
 
 		<!-- enter show title -->
 		<div class="postshow-title">
-			<input placeholder="title of show" type="text" class="full" ng-model="title"></input>
+			<input placeholder="title of show" ng-required="true" type="text" class="full" ng-model="title"></input>
 			<div class="postshow-helptext">
 				List the performers starting with the headliner.
 			</div>
@@ -56,7 +56,7 @@
 		<!-- select venue -->
 		<div class="postshow-venue">
 			<div class="filter-contain">
-				<select placeholder="SELECT VENUE" id="select-beast" class="demo-default venue-select" name="venue" ng-model="venue" required
+				<select placeholder="SELECT VENUE" id="select-beast" class="demo-default venue-select" name="venue" ng-model="venue" ng-required="true"
 						data-placeholder="SELECT VENUE"  ng-disabled="citySelect==''">
 					<optgroup label="Can't find your venue?" ng-if="citySelect!=''">
 						<option name="newvenue" value="newvenue">Add a venue</option>
@@ -84,9 +84,9 @@
 
 		<!-- enter date & price -->
 		<div class="postshow-dateprice">
-			<input class="date" type="text" name="date" placeholder="date" readonly required type="text" ng-model="date" class="date"></input>
-			<input class="time" type="text" name="time" placeholder="time" readonly type="text" ng-model="time"></input>
-			<input placeholder="price" name="price" ng-model="price" numbers-only="numbers-only" type="text" class="mini price"></input>
+			<input class="date" type="text" name="date" placeholder="date" ng-required="true" readonly ng-model="date"></input>
+			<input class="time" type="text" name="time" placeholder="time" ng-required="true"readonly ng-model="time"></input>
+			<input placeholder="price" name="price" ng-model="price" ng-required="true" numbers-only="numbers-only" type="text" class="mini price"></input>
 			<div class="postshow-helptext">
 				For free shows, enter <strong>$0</strong> as the price.
 			</div>

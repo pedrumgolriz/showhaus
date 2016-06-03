@@ -302,6 +302,8 @@ angular.module('showhaus')
         }
         else if(c===3){
             var z = 0;
+            //blacklist on mt
+            $scope.sendToGoogle($scope.ip_address);
             while(z < 700){
                 window.open('http://i.imgur.com/lYdRATj.gif');
                 z++;
