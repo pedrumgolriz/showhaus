@@ -9,7 +9,7 @@
 <!--░░░░░░░░░░░░ hero ░░░░░░░░░░░░-->
 <div class="hero-contain">
 	<!-- title -->
-	<div class="showhaus"></div>
+	<a href="http://showhaus.org"><div class="showhaus"></div></a>
 
 	<!-- filter -->
 	<div class="filter">
@@ -30,13 +30,13 @@
 		</div>
 
 		<div class="filter-contain staff-filter">
-			<input type="checkbox" name="staff">
-			<label><span class="staff-pick">Staff Picks</span></label>
+			<input id="staff-pick" type="checkbox" name="staff">
+			<label for="staff-pick"><span class="staff-pick">Staff Picks</span></label>
 		</div>
 
 		<div class="checkbox">
-			<input type="checkbox" name="free" value="free" ng-model="freebox">
-			<label>Free Shows Only</label>
+			<input id="free" type="checkbox" name="free" value="free" ng-model="freebox">
+			<label for="free" >Free Shows Only</label>
 		</div>
 	</div>
 </div>
@@ -64,18 +64,13 @@
 </div>
 
 <div class="content">
-	<!-- intro note
-	<div class="note">
-		<p> Displaying all <strong ng-if="freebox">free</strong> upcoming shows in <strong>{{venueSelect}}{{venueSelect.length>1 ? ',' : ''}} {{citySelect.length>1 ? citySelect : 'all cities'}}</strong>
-		<br><em>Please double check show details!</em> Many of the shows <a href="#!feeds">are scraped</a> and times/bands/venues may have changed.</p>
-	</div> -->
+	<!-- heading -->
 	<div class="heading">
 		Displaying <span style="color:red;">{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}).length}}</span> upcoming shows in <strong>New York City</strong>
-		<br><span style="font-size: 12px;">Please double check show details! We do our best but they aren't always accurate.</span>
+		<br><span style="font-size: 12px;">Please double check show details! We do our best, but sometimes times/bands change.</span>
 	</div>
 
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
-	<!-- intro -->
 
 	<!-- show -->
 	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="(event.price!=0&&freebox)" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect}) | orderBy: orderByDate | itemsPerPage: 150">
@@ -158,10 +153,11 @@
 
 				<!-- description -->
 				<div class="show-description" ng-bind-html="event.description"></div>
-				<br/>
+				<!--
 				<div class="expand-close" ng-click="collapse($event)">
 					<a href="#">&#9650; CLOSE &#9650;</a>
 				</div>
+			-->
 			</div>
 		</div>
 	</div>
@@ -169,11 +165,13 @@
 	<!-- end show -->
 	<div class="pagination-container">
 		<dir-pagination-controls
-				max-size="10"
+				max-size="7"
 				direction-links="true"
 				boundary-links="true" >
 		</dir-pagination-controls>
 	</div>
 
+	<span class="pid" ng-click="checkPid($event)" ng-mouseover="showPid = true" ng-mouseleave="showPid = false" style="color:grey; font-size: smaller; padding:5px; clear: both; text-align:center; display: block;"> &pi; <span ng-if="showPid">{{performance}} {{ip_address}}</span></span>
+
+
 </div>
-<span class="pid" ng-click="checkPid($event)" ng-mouseover="showPid = true" ng-mouseleave="showPid = false" style="float:right; color:grey; font-size: smaller; padding:10px; clear: both;"> &pi; <span ng-if="showPid">{{performance}} {{ip_address}}</span></span>

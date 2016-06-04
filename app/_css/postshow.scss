@@ -292,6 +292,16 @@ button {
     color: white;
   }
 
+  &.light {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
+  &.light:hover {
+    background: #C1C1C1;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
   .home {
     cursor: pointer;
     display: inline-block;
@@ -304,6 +314,7 @@ button {
     font-weight: 700;
     font-size: 14px;
   }
+
 }
 
 /* special states */

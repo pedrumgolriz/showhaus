@@ -27,8 +27,11 @@ a:visited {color: black;}
 .breadcrumb {
 font-size: 12px;
 background-color: #F5F5F5;
-padding: 5px;
+padding: 5px 15px;
 color: #929292;
+  & a {text-decoration: none; color: #000;}
+  & a:hover {color: gray; border-bottom: 1px dotted gray;}
+
 }
 
 .breadcrumb-nav {
@@ -36,15 +39,11 @@ text-align: left;
 max-width: 750px;
 margin: 0 auto;
 color: #1b1b1b;
-  &.home {text-align: right; max-width: 100%; padding-right: 15px;}
+display:inline-block;
+  &.home {text-align: right; max-width: 100%; padding-right: 15px; display: block;}
   &.home a{margin: 0 5px;}
 
 }
-
-.breadcrumb-nav a {text-decoration: none; color: #000;}
-
-.breadcrumb-nav a:hover {color: gray; border-bottom: 1px dotted gray;}
-
 
 /* ░░░░░░░░░░░░ misc formatting ░░░░░░░░░░░░ */
 

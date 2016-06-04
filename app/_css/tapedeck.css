@@ -533,23 +533,29 @@ a:visited {
 /* ░░░░░░░░░░░░ standard page ░░░░░░░░░░░░ */
 .breadcrumb {
   font-size: 12px;
-  background-color: #eee;
-  padding: 5px;
+  background-color: #F5F5F5;
+  padding: 5px 15px;
   color: #929292; }
+  .breadcrumb a {
+    text-decoration: none;
+    color: #000; }
+  .breadcrumb a:hover {
+    color: gray;
+    border-bottom: 1px dotted gray; }
 
 .breadcrumb-nav {
   text-align: left;
   max-width: 750px;
   margin: 0 auto;
-  color: #1b1b1b; }
-
-.breadcrumb-nav a {
-  text-decoration: none;
-  color: #000; }
-
-.breadcrumb-nav a:hover {
-  color: gray;
-  border-bottom: 1px dotted gray; }
+  color: #1b1b1b;
+  display: inline-block; }
+  .breadcrumb-nav.home {
+    text-align: right;
+    max-width: 100%;
+    padding-right: 15px;
+    display: block; }
+  .breadcrumb-nav.home a {
+    margin: 0 5px; }
 
 /* ░░░░░░░░░░░░ misc formatting ░░░░░░░░░░░░ */
 .note {
@@ -667,36 +673,6 @@ a:visited {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px; }
 
-/* ░░░░░░░░░░░░ main nav ░░░░░░░░░░░░ */
-.nav {
-  height: 30px;
-  max-width: 300px;
-  text-align: center;
-  padding: 5px 0 10px 0;
-  margin: 0 auto;
-  /* page links */
-  /* post show link */ }
-  .nav a, .nav a:visited {
-    margin: 0 5px;
-    text-decoration: none;
-    color: gray; }
-  .nav a:hover {
-    margin: 0 5px;
-    border-bottom: 1px dotted;
-    color: gray; }
-  .nav a.postshow {
-    color: red;
-    padding: 3px 4px; }
-  .nav a.postshow:hover {
-    color: white;
-    background-color: red;
-    border-radius: 5px;
-    border-bottom: none; }
-
-/* ░░░░░░░░░░░░ mobile nav ░░░░░░░░░░░░ */
-@media (max-width: 520px) {
-  .nav {
-    padding: 5px 0 0 0; } }
 /* ░░░░░░░░░░░░ hero ░░░░░░░░░░░░ */
 .hero-contain {
   text-align: center;
@@ -709,7 +685,7 @@ a:visited {
   height: 50px;
   font-size: 25px;
   font-weight: 700;
-  margin: 30px auto 0 auto;
+  margin: 30px auto 25px auto;
   background-image: url("../assets/header.png");
   background-repeat: no-repeat;
   background-size: cover; }
@@ -755,11 +731,11 @@ a:visited {
   .filter .city-filter {
     width: 100px; }
   .filter .venue-filter {
-    width: 210px;
+    width: 230px;
     padding: 0 10px; }
   .filter .staff-filter {
     width: 100px;
-    padding: 5px 10px 5px 0;
+    padding: 5px 10px 5px 5px;
     display: inline; }
     .filter .staff-filter .staff-pick {
       margin: 0; }
@@ -783,13 +759,11 @@ a:visited {
     height: auto;
     /* filter styles */ }
     .filter .filter-contain {
-      display: block;
       margin: 15px auto;
-      border: none; }
+      border: none;
+      display: inline-block; }
     .filter .checkbox {
-      display: block;
       margin: 10px;
-      border-top: 1px solid #ddd;
       padding: 15px 0 0 0; }
     .filter .city-filter {
       width: 70%;
@@ -799,8 +773,8 @@ a:visited {
 .heading {
   font-size: 17px;
   text-align: center;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.25);
-  padding: 25px 0 20px 0; }
+  padding: 20px 25px;
+  line-height: normal; }
 
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░ */
 .content {
@@ -811,6 +785,10 @@ a:visited {
   .content.page {
     max-width: 650px !important;
     margin: 40px auto !important; }
+
+/*divider*/
+.content:before {
+  border-top: 2px solid rgba(0, 0, 0, 0.18); }
 
 .contain {
   max-width: 600px;
@@ -840,7 +818,7 @@ a:visited {
     display: block;
     width: 100%; }
   .show-contain.today {
-    background: rgba(248, 177, 177, 0.18) !important; }
+    background: rgba(177, 209, 248, 0.18) !important; }
   .show-contain #expand {
     background-color: #D8D8D8; }
   .show-contain .show-date {
@@ -953,8 +931,9 @@ a:visited {
   display: inline-block; }
 
 .show-description {
-  width: 500px;
-  margin: 30px auto 0 auto; }
+  max-width: 55%;
+  margin: 30px auto 0 37%;
+  padding-right: 20%; }
 
 .expand-close {
   text-align: center;
@@ -973,13 +952,13 @@ a:visited {
 /* ░░░░░░░░░░░░ mobile show ░░░░░░░░░░░░ */
 @media (max-width: 520px) {
   .show-contain .show-detail-contain {
-    padding: 10px 10px 25px 10px;
+    padding: 20px 10px 30px 10px;
     display: block;
     /* show title */
     /* venue */
     /* date/time */ }
     .show-contain .show-detail-contain .show-title {
-      width: 100%;
+      width: 90%;
       padding: 15px 0 0 0; }
       .show-contain .show-detail-contain .show-title .title {
         max-width: 90%; }
@@ -999,16 +978,21 @@ a:visited {
         font-size: 11px;
         color: gray; }
     .show-contain .show-detail-contain .show-tickets {
-      margin: 15px 0 0 0;
+      margin: 15px auto 0 auto;
       font-size: .8em;
-      padding: 5px 10px;
-      float: left;
-      display: block; } }
+      padding: 10px;
+      float: none;
+      display: block;
+      width: 270px;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.42);
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      border-radius: 5px; } }
 /* ░░░░░░░░░░░░ index pagination ░░░░░░░░░░░░ */
 .pagination-alt {
   margin: 0 auto;
   max-width: 800px;
-  padding: 20px; }
+  padding: 20px 0 0 0; }
   .pagination-alt .last {
     display: inline-block;
     width: 25%;
@@ -1344,6 +1328,12 @@ button {
   button:hover {
     background: gray;
     color: white; }
+  button.light {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15); }
+  button.light:hover {
+    background: #C1C1C1;
+    border: 1px solid rgba(0, 0, 0, 0.15); }
   button .home {
     cursor: pointer;
     display: inline-block;
