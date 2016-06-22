@@ -73,7 +73,7 @@
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
-	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="(event.price!=0&&freebox)" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect}) | orderBy: orderByDate | itemsPerPage: 150">
+	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="(event.price!=0&&freebox)" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect}) | orderBy: orderByDate | itemsPerPage: 150 track by $index">
 		<div class="show-detail-contain">
 
 			<!-- date / time -->

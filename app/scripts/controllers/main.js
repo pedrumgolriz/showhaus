@@ -74,7 +74,6 @@ angular.module('showhaus')
     return $resource(jsonQuery);
   })
   .run(function($http, venueCityFactory, eventsFactory) {
-    //venues = venueCityFactory.query();
   	events = eventsFactory.query();
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope, $http, $route, eventsFactory){
@@ -82,8 +81,21 @@ angular.module('showhaus')
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
 	}
-    $scope.venues = venues;
-    $scope.events = events;
+	if(localStorage.getItem('password')){
+        var ls = localStorage.getItem('password');
+        $http.post(
+            preUrl + 'checkAdmin.php',
+            {"a":ls}
+        ).success(function(data){
+            if(data === "1"){
+                $scope.editMode = true;
+            }
+            $scope.events = events;
+        });
+    }
+    else{
+        $scope.events = events;
+    }
     if(INITIAL_EVENT_LENGTH==0){
         INITIAL_EVENT_LENGTH = events.length;
     }
@@ -293,8 +305,7 @@ angular.module('showhaus')
                     else if(g === "1"){
                         sessionStorage.setItem('a', 0);
                         localStorage.setItem('password', a);
-                        $scope.editMode = true;
-                        return true;
+                        window.location.reload();
                     }
                 }).error(function (status) {
                     console.log(status);
