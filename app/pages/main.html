@@ -117,20 +117,21 @@
 
 
 					<div class="admin" ng-if="editMode">
-						<a ng-click="edit[$index] = true" href="#">edit show</a>
-						<a ng-click="minus($index)" href="#">delete show</a>
+						<a ng-click="editItem('edit', null, event.id)" href="#">edit show</a>
+						<a ng-click="editItem('delete', null, event.id)" href="#">delete show</a>
 
 						<div class="checkbox">
-							<input type="checkbox" ng-click="event.isChecked = !event.isChecked"/>
+							<input type="checkbox" ng-if="!event.featured" ng-click="event.isChecked = !event.isChecked"/>
+							<input type="checkbox" ng-if="event.featured" ng-checked="event.featured" disabled/>
 							<label>staff pick</label>
 						</div>
 
-						<div class="staff-notes" ng-if="event.isChecked">
-							<textarea placeholder="Staff notes go here - ONLY FILL THIS OUT IF YOU ARE FEATURING A SHOW."></textarea>
+						<div class="staff-notes" ng-if="event.isChecked || event.featured">
+							<textarea ng-model="event.featured" placeholder="Staff notes go here - ONLY FILL THIS OUT IF YOU ARE FEATURING A SHOW."></textarea>
 						</div>
-						<a href="#" ng-if="event.isChecked"><span class="save"> 💾 save & publish</span></a>
 
 					</div>
+						<a href="#" ng-if="event.isChecked" ng-click="editItem('staffPick', event.featured, event.id)"><span class="save"> 💾 save & publish</span></a>
 
 				</span>
 

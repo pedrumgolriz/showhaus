@@ -322,6 +322,33 @@ angular.module('showhaus')
         }
     }
 
+    $scope.staffPickComments = "";
+
+    $scope.editItem = function(mode, comments, postNumber){
+        var semp = localStorage.getItem('password');
+        $scope.theMode = mode;
+        $http.post(preUrl + 'staff.php', {'mode': mode, 'password': semp, 'comments': comments, 'postNumber': postNumber}).success(function(response){
+            switch($scope.mode){
+                case 'edit':
+                    window.open(response);
+                    break;
+                case 'delete':
+                    window.location.reload();
+                    break;
+                case 'staffPick':
+                    window.location.reload();
+                    break;
+            }
+        });
+        //mode possibilities: edit, delete, staffPick
+        //on edit click, data:{mode: "edit", password: ls}
+            //should return url to go to
+        //on delete click, data:{mode: "delete", password: ls}
+            //should return by making show disappear. Also triggers events.php
+        //on staffPick s&p, data:{mode: "staffPick", password: ls, comments: comments}
+            //should trigger events.php
+    }
+
   })
   .filter('startFrom', function() {
       return function(input, start) {
