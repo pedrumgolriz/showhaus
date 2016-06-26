@@ -121,7 +121,7 @@
 						<a ng-click="editItem('delete', null, event.id)" href="#">delete show</a>
 
 						<div class="checkbox">
-							<input type="checkbox" ng-if="!event.featured" ng-click="event.isChecked = !event.isChecked"/>
+							<input type="checkbox" ng-if="event.featured == 0" ng-click="event.isChecked = !event.isChecked"/>
 							<input type="checkbox" ng-if="event.featured" ng-checked="event.featured" disabled/>
 							<label>staff pick</label>
 						</div>
