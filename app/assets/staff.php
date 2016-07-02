@@ -29,11 +29,17 @@ while($row = mysqli_fetch_assoc($pwQuery)){
 if($mode == "edit"){
 	$editQuery = mysqli_query($mysqli, "SELECT * FROM events WHERE id = '".$postNumber."' LIMIT 1");
 	while($row = mysqli_fetch_assoc($editQuery)){
-    	echo $row['password'];
+    	if($row['password']!=="tapedeck"){
+    	    echo $row['password'];
+    	}
+    	else{
+    	    echo "false";
+    	}
     }
 }
 else if($mode == "delete"){
-	//run events.php
+	//run events.php]
+    mysqli_query($mysqli, "DELETE from events WHERE id = '".$postNumber."'");
 	include('events.php');
 	echo "delete";
 }

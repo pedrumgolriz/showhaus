@@ -328,9 +328,14 @@ angular.module('showhaus')
         var semp = localStorage.getItem('password');
         $scope.theMode = mode;
         $http.post(preUrl + 'staff.php', {'mode': mode, 'password': semp, 'comments': comments, 'postNumber': postNumber}).success(function(response){
-            switch($scope.mode){
+            switch($scope.theMode){
                 case 'edit':
-                    window.open(response);
+                    if(response!=="false"){
+                        window.open(response);
+                    }
+                    else{
+                        $(".editError ."+postNumber).fadeOut().next().delay(500).fadeIn();
+                    }
                     break;
                 case 'delete':
                     window.location.reload();
