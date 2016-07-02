@@ -118,9 +118,6 @@ angular.module('showhaus')
         $scope.citySelect = 'NYC';
       }
     };
-	if($scope.freebox){
-		console.log($scope.freebox);
-	}
     //set the city based on the users location
     $scope.citySelect = geolocation(); // jshint ignore:line
     //##go to showpage from list view##//
@@ -325,6 +322,7 @@ angular.module('showhaus')
     $scope.staffPickComments = "";
 
     $scope.staffPicks = false;
+    $scope.freeBox = false;
 
     $scope.editItem = function(mode, comments, postNumber){
         var semp = localStorage.getItem('password');
@@ -401,4 +399,18 @@ angular.module('showhaus')
         });
         return filtered;
     };
-  });
+  })
+  .filter("isFree", function(){
+    return function(input, box){
+        var filtered = [];
+        angular.forEach(input, function(item){
+            if(item.price==0 && box.price){
+                filtered.push(item);
+            }
+            else if(!box.price){
+                filtered.push(item);
+            }
+        });
+        return filtered;
+    }
+  })

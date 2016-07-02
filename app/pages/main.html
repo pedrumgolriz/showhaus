@@ -35,7 +35,7 @@
 		</div>
 
 		<div class="checkbox">
-			<input id="free" type="checkbox" name="free" value="free" ng-model="freebox">
+			<input id="free" type="checkbox" name="free" value="free" ng-click="freeBox = !freeBox">
 			<label for="free" >Free Shows Only</label>
 		</div>
 	</div>
@@ -66,14 +66,14 @@
 <div class="content">
 	<!-- heading -->
 	<div class="heading">
-		Displaying <span style="color:red;">{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}).length}}</span> upcoming shows in <strong>New York City</strong>
+		Displaying <span style="color:red;">{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}}</span> upcoming shows in <strong>New York City</strong>
 		<br><span style="font-size: 12px;">Please double check show details! We do our best, but sometimes times/bands change.</span>
 	</div>
 
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
-	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="(event.price!=0&&freebox)" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect} | isFeatured:{featured:staffPicks}) | orderBy: orderByDate | itemsPerPage: 150 track by $index">
+	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect} | isFeatured:{featured:staffPicks} | isFree:{price:freeBox}) | orderBy: orderByDate | itemsPerPage: 150 track by $index">
 		<div class="show-detail-contain">
 
 			<!-- date / time -->
