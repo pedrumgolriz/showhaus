@@ -30,7 +30,7 @@
 		</div>
 
 		<div class="filter-contain staff-filter">
-			<input id="staff-pick" type="checkbox" name="staff" ng-model="staffpicks">
+			<input id="staff-pick" type="checkbox" name="staff" ng-click="staffPicks = !staffPicks">
 			<label for="staff-pick"><span class="staff-pick">Staff Picks</span></label>
 		</div>
 
@@ -66,14 +66,14 @@
 <div class="content">
 	<!-- heading -->
 	<div class="heading">
-		Displaying <span style="color:red;">{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}).length}}</span> upcoming shows in <strong>New York City</strong>
+		Displaying <span style="color:red;">{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}).length}}</span> upcoming shows in <strong>New York City</strong>
 		<br><span style="font-size: 12px;">Please double check show details! We do our best, but sometimes times/bands change.</span>
 	</div>
 
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
-	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="(event.price!=0&&freebox) || (event.featured&&staffpicks)" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect}) | orderBy: orderByDate | itemsPerPage: 150 track by $index">
+	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" ng-hide="(event.price!=0&&freebox)" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect} | isFeatured:{featured:staffPicks}) | orderBy: orderByDate | itemsPerPage: 150 track by $index">
 		<div class="show-detail-contain">
 
 			<!-- date / time -->
@@ -111,9 +111,9 @@
 					<span class="show-price" ng-if="event.price==0 || (event.price==-1&&!event.ticket_uri)">
 						<span style="display:none">{{event.price=0}}</span>free
 					</span>
-					<span ng-if="event.featured" class="staff-pick">staff pick</span>
+					<span ng-if="event.featured!==0&&event.featured!==''" class="staff-pick">staff pick</span>
 
-					<div class="staff-notes" ng-if="event.featured">{{event.featured}}</div>
+					<div class="staff-notes" ng-if="event.featured!==''&&event.featured!==0">{{event.featured}}</div>
 
 
 					<div class="admin" ng-if="editMode">
@@ -126,8 +126,8 @@
 -->
 
 						<div class="checkbox">
-							<input type="checkbox" ng-if="event.featured == 0" ng-click="event.isChecked = !event.isChecked"/>
-							<input type="checkbox" ng-if="event.featured" ng-checked="event.featured" disabled/>
+							<input type="checkbox" ng-if="event.featured==0||event.featured==''" ng-click="event.isChecked = !event.isChecked"/>
+							<input type="checkbox" ng-if="event.featured!==''&&event.featured!==0" ng-checked="event.featured" disabled/>
 							<label>staff pick</label>
 						</div>
 

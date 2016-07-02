@@ -324,6 +324,8 @@ angular.module('showhaus')
 
     $scope.staffPickComments = "";
 
+    $scope.staffPicks = false;
+
     $scope.editItem = function(mode, comments, postNumber){
         var semp = localStorage.getItem('password');
         $scope.theMode = mode;
@@ -385,4 +387,18 @@ angular.module('showhaus')
   		}
   		return [];
   	};
+  })
+  .filter("isFeatured", function() {
+    return function(input, pick) {
+        var filtered = [];
+        angular.forEach(input, function(item) {
+          if(item.featured!=='' && pick.featured) {
+            filtered.push(item);
+          }
+          else if(!pick.featured){
+            filtered.push(item);
+          }
+        });
+        return filtered;
+    };
   });
