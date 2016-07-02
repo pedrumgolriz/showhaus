@@ -95,17 +95,17 @@
 		<div class="postshow-wrap">
 			<!-- submit -->
 			<div class="postshow-delete">
-				<button class="delete_button" ng-click="deleteModal()">DELETE SHOW</button>
+				<button class="delete_button" type="button" ng-click="deleteModal()">DELETE SHOW</button>
 			</div>
 			<div class="postshow-submit">
-				<button class="postshow_button" type="submit">SUBMIT SHOW</button>
+				<button class="postshow_button" type="submit">UPDATE SHOW</button>
 			</div>
 		</div>
 	</form>
 
 </span>
 
-<div id="dialog" title="Are you sure?">
+<div id="dialog" title="Are you sure?" ng-show="dialog">
 	<p>Think about this decision for a second...<br/>
 		<strong><a style="color:red;">You're about to delete your entire listing</a></strong><br/>
 		Is that something you really want to do? It's permanent, you know!</p>

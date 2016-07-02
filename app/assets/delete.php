@@ -9,16 +9,15 @@ $mysqli = new mysqli("localhost", "overwrite", "Mfve5@09", "haus");
 $_POST = file_get_contents("php://input");
 $_POST = json_decode($_POST, TRUE);
 $data = json_encode($_POST);
-$post = $_POST["id"];
-$password = $_POST["password"];
+$password = htmlspecialchars(stripslashes($_POST["password"]));
 
-$checkAgainst = mysqli_query($mysqli, "SELECT * FROM events WHERE id = '".$post."' AND password = '".$password."' LIMIT 1");
+$checkAgainst = mysqli_query($mysqli, "SELECT * FROM events WHERE password = '".$password."' LIMIT 1");
 
 if(mysqli_num_rows($checkAgainst)!=0) {
-    mysqli_query($mysqli, "DELETE from events WHERE id = '".$post."'");
+    mysqli_query($mysqli, "DELETE from events WHERE password = '".$password."'");
     echo "success";
 }
 else{
-    echo "SELECT * FROM events WHERE id = '".$post."' AND password = '".$password."' LIMIT 1";
+    echo "Error";
 }
 ?>

@@ -129,6 +129,7 @@ angular.module('showhaus')
 			$scope.events[0].poster = ''; //hardcode
 		};
 		$scope.deleteModal = function(){
+			$scope.dialog = true;
 			$('#dialog').dialog({
 				width: 400,
 				height: 315,
@@ -144,8 +145,7 @@ angular.module('showhaus')
 		};
 		$scope.deletePost = function() {
 			$scope.data = {
-				'id': $location.$$search.post,
-				'password': $scope.password
+				'password': $location.$$search._
 			};
 			$http.post(
 				preUrl + 'delete.php',
