@@ -45,6 +45,9 @@ else if($mode == "delete"){
 }
 else if($mode == "staffPick"){
 	//run events.php
+	if($comments==""){
+		$comments = 0;
+	}
 	mysqli_query($mysqli, "UPDATE events SET featured = '$comments' where id = '$postNumber'");
 	include('events.php');
 	echo "staffPick";

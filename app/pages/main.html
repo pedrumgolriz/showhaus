@@ -111,9 +111,9 @@
 					<span class="show-price" ng-if="event.price==0 || (event.price==-1&&!event.ticket_uri)">
 						<span style="display:none">{{event.price=0}}</span>free
 					</span>
-					<span ng-if="event.featured!==0&&event.featured!==''" class="staff-pick">staff pick</span>
+					<span ng-if="event.featured!==''" class="staff-pick">staff pick</span>
 
-					<div class="staff-notes" ng-if="event.featured!==''&&event.featured!==0">{{event.featured}}</div>
+					<div class="staff-notes" ng-if="event.featured!==''&&event.featured!=='0'">{{event.featured}}</div>
 
 
 					<div class="admin" ng-if="editMode">
@@ -127,11 +127,11 @@
 
 						<div class="checkbox">
 							<input type="checkbox" ng-if="event.featured==0||event.featured==''" ng-click="event.isChecked = !event.isChecked"/>
-							<input type="checkbox" ng-if="event.featured!==''&&event.featured!==0" ng-checked="event.featured" disabled/>
+							<input type="checkbox" ng-if="event.featured!==''" ng-checked="event.featured" disabled/>
 							<label>staff pick</label>
 						</div>
 
-						<div class="staff-notes" ng-if="event.isChecked || event.featured">
+						<div class="staff-notes" ng-if="event.isChecked || event.featured!==''">
 							<textarea ng-model="event.featured" placeholder="Staff notes go here - ONLY FILL THIS OUT IF YOU ARE FEATURING A SHOW."></textarea>
 						</div>
 
