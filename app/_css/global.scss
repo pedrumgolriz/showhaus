@@ -7,7 +7,7 @@ body {
 }
 
 h1 {font-size: 2em;}
-h2 {font-size: 1.5em; text-align: center;}
+h2 {font-size: 1.2em; text-align: center;}
 h3 {font-size: 1.2em;}
 h4 {font-size: 1.0em;}
 h5 {font-size: 0.9em;}
@@ -26,9 +26,11 @@ a:visited {color: black;}
 
 .breadcrumb {
 font-size: 12px;
-background-color: #F5F5F5;
 padding: 5px 15px;
 color: #929292;
+max-width: 825px;
+margin: 0 auto;
+border-bottom: 1px solid rgba(179, 179, 179, 0.31);
   & a {text-decoration: none; color: #000;}
   & a:hover {color: gray; border-bottom: 1px dotted gray;}
 
@@ -36,7 +38,7 @@ color: #929292;
 
 .breadcrumb-nav {
 text-align: left;
-max-width: 750px;
+max-width: 850px;
 margin: 0 auto;
 color: #1b1b1b;
 display:inline-block;
@@ -64,3 +66,5 @@ display:inline-block;
   background-color: #000;
   opacity: 0.25;
 }
+
+img.full-width {width: 100%;}
