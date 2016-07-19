@@ -1,10 +1,10 @@
 <div class="breadcrumb">
-	<span style="float:left;font-style:italic; opacity: .5;">an open showlist for new york city</span>
+	<!--<span style="float:left;font-style:italic; opacity: .5;">an open showlist for new york city</span>-->
 	<div class="breadcrumb-nav home">
 		<a href="#!about">about</a>
 		<!-- :: <a href="#!api">api</a> -->
-		:: <a href="#!feeds">feeds</a>
-		:: <a href="#!post"><strong>post a show</strong></a>
+		<a href="#!feeds">add a feed</a>
+		<a href="#!post"><strong>post a show</strong></a>
 	</div>
 </div>
 <!--░░░░░░░░░░░░ hero ░░░░░░░░░░░░-->
@@ -179,6 +179,5 @@
 	</div>
 
 	<span class="pid" ng-click="checkPid($event)" ng-mouseover="showPid = true" ng-mouseleave="showPid = false" style="color:grey; font-size: smaller; padding:5px; clear: both; text-align:center; display: block;"> &pi; <span ng-if="showPid">{{performance}} {{ip_address}}</span></span>
-
 
 </div>

@@ -45,6 +45,16 @@ display:inline-block;
   &.home {text-align: right; max-width: 100%; padding-right: 15px; display: block;}
   &.home a{margin: 0 5px;}
 
+  /* post a show */
+  strong:hover {
+    background-color:yellow;
+    padding: 3px 5px;
+    border-radius: 3px;
+    text-decoration: none;
+    margin: 0 -5px 0 -5px;
+    color: black;
+  }
+
 }
 
 /* ░░░░░░░░░░░░ misc formatting ░░░░░░░░░░░░ */
