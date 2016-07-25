@@ -32,7 +32,7 @@ function generateStrongPassword()
     }else{
         // default [a-zA-Z0-9]{9}
         $chars = $alpha . $alpha_upper . $numeric;
-        $length = 64;
+        $length = 12;
     }
 
     $len = strlen($chars);
