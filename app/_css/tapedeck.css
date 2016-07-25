@@ -550,7 +550,8 @@ a:visited {
   max-width: 850px;
   margin: 0 auto;
   color: #1b1b1b;
-  display: inline-block; }
+  display: inline-block;
+  /* post a show */ }
   .breadcrumb-nav.home {
     text-align: right;
     max-width: 100%;
@@ -558,6 +559,13 @@ a:visited {
     display: block; }
   .breadcrumb-nav.home a {
     margin: 0 5px; }
+  .breadcrumb-nav strong:hover {
+    background-color: yellow;
+    padding: 3px 5px;
+    border-radius: 3px;
+    text-decoration: none;
+    margin: 0 -5px 0 -5px;
+    color: black; }
 
 /* ░░░░░░░░░░░░ misc formatting ░░░░░░░░░░░░ */
 .note {
@@ -682,7 +690,7 @@ img.full-width {
 .hero-contain {
   text-align: center;
   margin: 0 auto;
-  max-width: 650px; }
+  max-width: 750px; }
   .hero-contain .logo {
     margin: 30px auto;
     padding: 0 20px; }
