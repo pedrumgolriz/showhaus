@@ -241,7 +241,9 @@ angular.module('showhaus')
 	$scope.orderByDate = function(item) {
         var date = new Date(item.date + ' ' + item.time);
         var now = new Date().getTime();
-        return date.getTime();
+        if(date.getTime()+6000000 > now){
+            return date.getTime();
+        }
     };
     /*
         Pagination
