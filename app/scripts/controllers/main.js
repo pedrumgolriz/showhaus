@@ -239,8 +239,9 @@ angular.module('showhaus')
         return day;
 	};
 	$scope.orderByDate = function(item) {
-        var date = new Date(item.date);
-        return date;
+        var date = new Date(item.date + ' ' + item.time);
+        var now = new Date().getTime();
+        return date.getTime();
     };
     /*
         Pagination
