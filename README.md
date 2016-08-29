@@ -4,9 +4,9 @@
 
 ### Getting Started
 
-To set up your own  instance of Showhaus, you can use [this install script](#). This should automatically install and configure most of the stack.
+Clone this repo and run `npm install`. That should set up most of the dependencies.
 
-Once you do that, there's a nifty bash script called ```bash.sh``` that initiates a local server and runs a SASS compiler. You can find it in the home directory.
+For development, we recommend running `bash.sh` which initiates a local server and runs a SASS compiler. You can find it in the home directory.
 
 ### APIs
 
