@@ -11,7 +11,7 @@
 <!--░░░░░░░░░░░░ hero ░░░░░░░░░░░░-->
 <div class="hero-contain">
 	<!-- title -->
-	<div class="logo"><img src="../assets/header.png" style="width:100%; max-width: 400px;"></div>
+	<div class="logo"><a href="http://showhaus.org"><img src="../assets/header.png" style="width:100%; max-width: 400px;"></a></div>
 
 	<!-- filter -->
 	<div class="filter">
@@ -67,8 +67,8 @@
 
 <div class="content">
 	<!-- heading -->
-	<div class="heading">
-		Displaying <span style="color:red;">{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}}</span> upcoming shows in <strong>New York City</strong>
+	<div class="heading"><strong>UPCOMING SHOWS IN NEW YORK CITY</strong>
+		 <br><span style="font-size: 10px; font-family: courier,monospace; color: rgba(0,0,0,.5);">Displaying {{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} shows</span>
 		<br><span style="font-size: 12px;">Please double check show details! We do our best, but sometimes times/bands change.</span>
 	</div>
 
