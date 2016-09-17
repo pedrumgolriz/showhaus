@@ -9,16 +9,15 @@
 }
 
 /*  mobile hero */
-
 @media (max-width:520px) {
-
   .hero-contain {padding: 5px 0 0 0;}
 
-
+  /* mobile nav realignments */
+  .tagline {display: none;}
+  .breadcrumb-nav, .breadcrumb-nav.home {padding: 0;}
 }
 
 /* filter bar */
-
 .filter {
     max-width: 510px;
     background-color: #fbfbfb;
@@ -81,11 +80,8 @@
 
 }
 
-
 /* ░░░░░░░░░░░░ mobile filter bar ░░░░░░░░░░░░ */
-
 @media (max-width:520px) {
-
   .filter {
       margin: 10px 20px 0 20px;
       border: none;
@@ -109,17 +105,16 @@
     /* filter styles */
     .city-filter {width: 70%; padding: 0 10px;}
     .venue-filter {width: 70%;}
-
   }
-
 }
 
 .heading {
-font-size:17px;
-text-align:center;
-padding: 20px 25px;
-line-height: normal;
-
+  text-align:center;
+  padding: 20px 25px;
+  line-height: normal;
+    h2 {
+      font-size:22px;
+      margin: 0;}
 }
 
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░ */
@@ -194,7 +189,6 @@ margin: 0 auto;
         /* show details (title, outbound icon, price) */
         .day {font-weight: 400;}
         .time {color: gray; font-size: 11px;}
-
     }
 
     /* 2. show venue */
@@ -204,7 +198,6 @@ margin: 0 auto;
         vertical-align: top;
         display: inline-block;
         font-size: 13px;
-
         & .venue {font-weight: 700;}
         & .address {color: gray; font-size: 11px;}
 
@@ -275,7 +268,6 @@ margin: 0 auto;
 
 
 /* ░░░░░░░░░░░░ expanded show ░░░░░░░░░░░░ */
-
 .show-detail-contain.expand {
 margin: -20px 0 0 0;
 background: url(/images/addvenuebg.png);
