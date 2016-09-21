@@ -694,6 +694,17 @@ img.full-width {
   .hero-contain .logo {
     margin: 40px auto;
     padding: 0 40px; }
+    .hero-contain .logo img {
+      width: 100%;
+      max-width: 400px; }
+
+.tagline-logo {
+  float: left; }
+
+.tagline-text {
+  float: left;
+  font-style: italic;
+  opacity: .5; }
 
 /*  mobile hero */
 @media (max-width: 520px) {
