@@ -88,7 +88,7 @@ function generate_password() {
 
 //Send eMail to user
 $to = $email;
-$subject = "🍍[showhaus] your show has been posted!";
+$subject = "🌻 showhaus - your show has been posted!";
 $from = "noreply@showhaus.org";
 $headers = "From: $from". "\r\n";
 $headers .= "MIME-Version: 1.0\r\n";

@@ -698,8 +698,14 @@ img.full-width {
       width: 100%;
       max-width: 400px; }
 
+/* lefthand tagline section */
 .tagline-logo {
-  float: left; }
+  float: left;
+  background-image: url(images/logo.png);
+  width: 15px;
+  background-size: 15px 15px;
+  height: 15px;
+  margin: 0 5px 0 0; }
 
 .tagline-text {
   float: left;

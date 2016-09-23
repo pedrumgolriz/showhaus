@@ -10,8 +10,21 @@
     }
 }
 
-.tagline-logo {float:left;}
-.tagline-text {float:left;font-style:italic; opacity: .5;}
+/* lefthand tagline section */
+.tagline-logo {
+  float: left;
+  background-image: url(images/logo.png);
+  width: 15px;
+  background-size: 15px 15px;
+  height: 15px;
+  margin: 0 5px 0 0;
+}
+
+.tagline-text {
+  float:left;
+  font-style:italic;
+  opacity: .5;
+}
 
 /*  mobile hero */
 @media (max-width:520px) {
