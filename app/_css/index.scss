@@ -141,6 +141,7 @@
     padding: 10px 20px 0 20px;
     margin: 0 auto 0 auto;
     max-width: 850px;
+    transition: .2s;
 
     /* basic page style overrides */
     &.page {
@@ -202,11 +203,10 @@ margin: 0 auto;
         padding: 0 20px 0 0;
         float: left;
         display: inline-block;
-        font-size: 13px;
 
         /* show details (title, outbound icon, price) */
         .day {font-weight: 400;}
-        .time {color: gray; font-size: 11px;}
+        .time {color: gray; font-size: 13px;}
     }
 
     /* 2. show venue */
@@ -215,9 +215,8 @@ margin: 0 auto;
         padding: 0 20px 0 0;
         vertical-align: top;
         display: inline-block;
-        font-size: 13px;
-        & .venue {font-weight: 700;}
-        & .address {color: gray; font-size: 11px;}
+        & .venue {font-weight: 600;}
+        & .address {color: gray; font-size: 13px;}
 
         .unlisted {opacity: .4;}
 
@@ -266,18 +265,21 @@ margin: 0 auto;
     font-size: .8em;
     text-align: left;
     color: rgba(0, 0, 0, 0.75);
-    font-weight: bold;
-    width: 90px;
+    font-weight: 600;
+    width: 100px;
     float: left;
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.05);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
     padding: 10px;
     margin: 15px 0 0 0;
     text-transform: uppercase;
+    line-height:normal;
 
     /* show tickets link */
     a {color:black; text-decoration: none;}
-    & a:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none;}
+    & a:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none; border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
+    & a:active {border:none;}
     & a:visited {text-decoration: none;}
 
     &:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none;}
@@ -354,8 +356,8 @@ text-decoration: none;
       display: inline-block;
       width: 60%;
 
-      & .venue {font-size: 11px;}
-      & .address {font-size: 11px;}
+      & .venue {}
+      & .address {font-size: 13px;}
     }
 
 

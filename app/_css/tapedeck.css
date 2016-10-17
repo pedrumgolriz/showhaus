@@ -497,9 +497,10 @@ Print styles
     page-break-after: avoid; } }
 /* ░░░░░░░░░░░░ typography ░░░░░░░░░░░░ */
 body {
-  font-family: 'Karla', Helvetica, sans-serif;
+  font-family: 'Proxima Nova', Helvetica, sans-serif;
   font-weight: 400;
-  font-size: 15px; }
+  font-size: 15px;
+  letter-spacing: .025em; }
 
 h1 {
   font-size: 2em; }
@@ -813,6 +814,7 @@ img.full-width {
   padding: 10px 20px 0 20px;
   margin: 0 auto 0 auto;
   max-width: 850px;
+  transition: .2s;
   /* basic page style overrides */ }
   .content.page {
     max-width: 650px !important;
@@ -858,25 +860,23 @@ img.full-width {
     padding: 0 20px 0 0;
     float: left;
     display: inline-block;
-    font-size: 13px;
     /* show details (title, outbound icon, price) */ }
     .show-contain .show-date .day {
       font-weight: 400; }
     .show-contain .show-date .time {
       color: gray;
-      font-size: 11px; }
+      font-size: 13px; }
   .show-contain .show-venue {
     width: 20%;
     padding: 0 20px 0 0;
     vertical-align: top;
     display: inline-block;
-    font-size: 13px;
     /* links */ }
     .show-contain .show-venue .venue {
-      font-weight: 700; }
+      font-weight: 600; }
     .show-contain .show-venue .address {
       color: gray;
-      font-size: 11px; }
+      font-size: 13px; }
     .show-contain .show-venue .unlisted {
       opacity: .4; }
     .show-contain .show-venue a:link {
@@ -922,14 +922,16 @@ img.full-width {
   font-size: .8em;
   text-align: left;
   color: rgba(0, 0, 0, 0.75);
-  font-weight: bold;
-  width: 90px;
+  font-weight: 600;
+  width: 100px;
   float: left;
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.05);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   padding: 10px;
   margin: 15px 0 0 0;
   text-transform: uppercase;
+  line-height: normal;
   /* show tickets link */ }
   .show-tickets a {
     color: black;
@@ -937,7 +939,10 @@ img.full-width {
   .show-tickets a:hover {
     background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    text-decoration: none; }
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+  .show-tickets a:active {
+    border: none; }
   .show-tickets a:visited {
     text-decoration: none; }
   .show-tickets:hover {
@@ -1000,10 +1005,8 @@ img.full-width {
     .show-contain .show-detail-contain .show-venue {
       display: inline-block;
       width: 60%; }
-      .show-contain .show-detail-contain .show-venue .venue {
-        font-size: 11px; }
       .show-contain .show-detail-contain .show-venue .address {
-        font-size: 11px; }
+        font-size: 13px; }
     .show-contain .show-detail-contain .show-date {
       display: inline-block;
       width: 20%; }
