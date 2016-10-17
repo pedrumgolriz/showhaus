@@ -533,10 +533,9 @@ a:visited {
 
 /* ░░░░░░░░░░░░ standard page ░░░░░░░░░░░░ */
 .breadcrumb {
-  font-size: 12px;
-  padding: 5px 15px;
+  padding: 10px 15px;
   color: #929292;
-  max-width: 950px;
+  max-width: 1200px;
   margin: 0 auto;
   border-bottom: 1px solid rgba(179, 179, 179, 0.31); }
   .breadcrumb a {
@@ -548,7 +547,7 @@ a:visited {
 
 .breadcrumb-nav {
   text-align: left;
-  max-width: 850px;
+  max-width: 1200px;
   margin: 0 auto;
   color: #1b1b1b;
   display: inline-block;
@@ -693,7 +692,7 @@ img.full-width {
   margin: 0 auto;
   max-width: 750px; }
   .hero-contain .logo {
-    margin: 40px auto;
+    margin: 40px auto 10px auto;
     padding: 0 40px; }
     .hero-contain .logo img {
       width: 100%;
@@ -703,7 +702,6 @@ img.full-width {
 .tagline-logo {
   float: left;
   background-image: url(images/logo.png);
-  width: 15px;
   background-size: 15px 15px;
   height: 15px;
   margin: 0 5px 0 0; }
@@ -726,14 +724,14 @@ img.full-width {
     padding: 0; } }
 /* filter bar */
 .filter {
-  max-width: 510px;
+  max-width: 650px;
   background-color: #fbfbfb;
-  margin: 0 auto;
+  margin: 0 auto 25px auto;
   border-radius: 5px;
   border: 1px solid #ddd;
   padding: 10px;
   font-size: 13px;
-  height: 25px;
+  height: 30px;
   /* filter styles */
   /* chosen override */
   /* checkbox */ }
@@ -759,7 +757,7 @@ img.full-width {
   .filter .city-filter {
     width: 100px; }
   .filter .venue-filter {
-    width: 230px;
+    width: 340px;
     padding: 0 10px; }
   .filter .staff-filter {
     width: 100px;
@@ -802,9 +800,10 @@ img.full-width {
     .filter .venue-filter {
       width: 70%; } }
 .heading {
-  text-align: center;
+  text-align: left;
   padding: 20px 25px;
-  line-height: normal; }
+  width: 460px;
+  margin: 0 auto; }
   .heading h2 {
     font-size: 22px;
     margin: 0; }
@@ -812,8 +811,8 @@ img.full-width {
 /* ░░░░░░░░░░░░ content contain ░░░░░░░░░░░ */
 .content {
   padding: 10px 20px 0 20px;
-  margin: 0 auto 0 auto;
-  max-width: 850px;
+  margin: 0 auto;
+  max-width: 950px;
   transition: .2s;
   /* basic page style overrides */ }
   .content.page {
@@ -906,24 +905,25 @@ img.full-width {
       color: black; }
 
 .show-price {
-  padding: 1px 3px;
+  padding: 4px 5px 3px 5px;
   border-radius: 3px;
   color: green;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.23);
-  font-size: 10px;
   display: inline-block;
   margin: 2px 0 2px 5px;
   font-weight: bold;
+  text-align: center;
   text-transform: uppercase;
-  vertical-align: middle; }
+  line-height: normal;
+  font-size: 12px; }
 
 .show-tickets {
   font-size: .8em;
   text-align: left;
   color: rgba(0, 0, 0, 0.75);
   font-weight: 600;
-  width: 100px;
+  width: 110px;
   float: left;
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.05);
@@ -1011,9 +1011,9 @@ img.full-width {
       display: inline-block;
       width: 20%; }
       .show-contain .show-detail-contain .show-date .day {
-        font-size: 11px; }
+        font-size: 13px; }
       .show-contain .show-detail-contain .show-date .time {
-        font-size: 11px;
+        font-size: 13px;
         color: gray; }
     .show-contain .show-detail-contain .show-tickets {
       margin: 20px 0 0 0; }
@@ -1107,18 +1107,17 @@ img.full-width {
     margin: 0 0 15px 0; }
 
 .staff-notes {
-  font-size: 11px;
   padding-top: 15px;
   max-width: 400px;
-  font-style: italic; }
+  color: gray; }
 
 .staff-pick {
   text-transform: uppercase;
   margin: 0 0 0 5px;
-  padding: 3px 3px 1px 3px;
+  padding: 4px 5px 3px 5px;
   background-color: #FF6B7F;
   border-radius: 3px;
-  font-size: 10px;
+  font-size: 12px;
   color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.23);
   width: 70px;

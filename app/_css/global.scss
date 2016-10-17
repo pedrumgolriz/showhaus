@@ -26,10 +26,9 @@ a:visited {color: black;}
 /* ░░░░░░░░░░░░ standard page ░░░░░░░░░░░░ */
 
 .breadcrumb {
-font-size: 12px;
-padding: 5px 15px;
+padding: 10px 15px;
 color: #929292;
-max-width: 950px;
+max-width: 1200px;
 margin: 0 auto;
 border-bottom: 1px solid rgba(179, 179, 179, 0.31);
   & a {text-decoration: none; color: #000;}
@@ -39,7 +38,7 @@ border-bottom: 1px solid rgba(179, 179, 179, 0.31);
 
 .breadcrumb-nav {
 text-align: left;
-max-width: 850px;
+max-width: 1200px;
 margin: 0 auto;
 color: #1b1b1b;
 display:inline-block;
