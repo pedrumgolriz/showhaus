@@ -6,7 +6,7 @@
     .logo {
       margin: 40px auto 10px auto;
       padding: 0 40px;
-        img {width:100%; max-width: 400px;}
+        img {width:100%; max-width: 450px;}
     }
 }
 
@@ -14,14 +14,14 @@
 .tagline-logo {
   float: left;
   background-image: url(images/logo.png);
-  background-size: 15px 15px;
-  height: 15px;
+  background-size: 20px 20px;
+  height: 20px;
+  width: 20px;
   margin: 0 5px 0 0;
 }
 
 .tagline-text {
   float:left;
-  font-style:italic;
   opacity: .5;
 }
 
@@ -79,7 +79,7 @@
     /* filter styles */
     .city-filter {width: 100px;}
     .venue-filter {width: 340px; padding: 0 10px;}
-    .staff-filter {width:100px; padding: 5px 10px 5px 5px; display:inline;
+    .staff-filter {width:135px; padding: 5px 10px 5px 5px; display:inline;
       .staff-pick {margin:0}
     }
 
@@ -128,8 +128,9 @@
 .heading {
   text-align: left;
   padding: 20px 25px;
-  width: 460px;
+  max-width: 530px;
   margin: 0 auto;
+  font-size: 19px;
     h2 {
       font-size:22px;
       margin: 0;}
@@ -180,7 +181,7 @@ margin: 0 auto;
 
     /* content container */
     .show-detail-contain {
-        padding: 10px 10px 20px 10px;
+        padding: 20px 10px 25px 10px;
         display: block;
         width: 100%;
     }
@@ -205,7 +206,7 @@ margin: 0 auto;
         display: inline-block;
 
         /* show details (title, outbound icon, price) */
-        .day {font-weight: 400;}
+        .day {font-weight: 300;}
         .time {color: gray; font-size: 13px;}
     }
 
@@ -215,7 +216,7 @@ margin: 0 auto;
         padding: 0 20px 0 0;
         vertical-align: top;
         display: inline-block;
-        & .venue {font-weight: 600;}
+        & .venue {font-weight: 500;}
         & .address {color: gray; font-size: 13px;}
 
         .unlisted {opacity: .4;}
@@ -231,6 +232,7 @@ margin: 0 auto;
         width: 55%;
         position: relative;
         display: inline-block;
+        font-size: 17px;
 
         & .title {
             position: relative;
@@ -255,7 +257,7 @@ margin: 0 auto;
     border: 1px solid rgba(0, 0, 0, 0.23);
     display: inline-block;
     margin: 2px 0 2px 5px;
-    font-weight: bold;
+    font-weight: 500;
     text-align: center;
     text-transform: uppercase;
     line-height: normal;
@@ -263,18 +265,17 @@ margin: 0 auto;
 }
 
 .show-tickets{
-    font-size: .8em;
-    text-align: left;
+    font-size: 14px;
+    text-align: center;
     color: rgba(0, 0, 0, 0.75);
-    font-weight: 600;
-    width: 110px;
+    font-weight: 500;
+    width: 105px;
     float: left;
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.05);
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
     padding: 10px;
     margin: 15px 0 0 0;
-    text-transform: uppercase;
     line-height:normal;
 
     /* show tickets link */
@@ -384,10 +385,14 @@ text-decoration: none;
 
 /* ░░░░░░░░░░░░ index pagination ░░░░░░░░░░░░ */
 
+.pagination-container {
+  padding: 40px 0 35px 0;
+}
+
 .pagination-alt {
   margin: 0 auto;
   max-width: 800px;
-  padding: 20px 0 0 0;
+  padding: 40px 0 10px 0;
 
   .last {
     display: inline-block;
@@ -413,51 +418,56 @@ text-decoration: none;
 
 /* ░░░░░░░░░░░░ load state ░░░░░░░░░░░░ */
 
-.loading span {
-display: inline-block;
-vertical-align: middle;
-width: .6em;
-height: .6em;
-margin: .2em;
-background: #007DB6;
-border-radius: .6em;
--webkit-animation: loading 1s infinite alternate;
+.loading{
+  padding: 40px 0;
 
-  &:nth-of-type(2) {
-    background: #008FB2;
-    -webkit-animation-delay: 0.2s;
-  }
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    width: .6em;
+    height: .6em;
+    margin: .2em;
+    background: #007DB6;
+    border-radius: .6em;
+    -webkit-animation: loading 1s infinite alternate;
 
-  &:nth-of-type(3) {
-    background: #009B9E;
-    -webkit-animation-delay: 0.4s;
-  }
+    &:nth-of-type(2) {
+      background: #008FB2;
+      -webkit-animation-delay: 0.2s;
+    }
 
-  &:nth-of-type(4) {
-    background: #00A77D;
-    -webkit-animation-delay: 0.6s;
-  }
+    &:nth-of-type(3) {
+      background: #009B9E;
+      -webkit-animation-delay: 0.4s;
+    }
 
-  &:nth-of-type(5) {
-    background: #00B247;
-    -webkit-animation-delay: 0.8s;
-  }
+    &:nth-of-type(4) {
+      background: #00A77D;
+      -webkit-animation-delay: 0.6s;
+    }
 
-  &:nth-of-type(6) {
-    background: #5AB027;
-    -webkit-animation-delay: 1.0s;
-  }
+    &:nth-of-type(5) {
+      background: #00B247;
+      -webkit-animation-delay: 0.8s;
+    }
 
-  &:nth-of-type(7) {
-    background: #A0B61E;
-    -webkit-animation-delay: 1.2s;
-  }
-  @-webkit-keyframes loading {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-  }
+    &:nth-of-type(6) {
+      background: #5AB027;
+      -webkit-animation-delay: 1.0s;
+    }
 
+    &:nth-of-type(7) {
+      background: #A0B61E;
+      -webkit-animation-delay: 1.2s;
+    }
+    @-webkit-keyframes loading {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+  }
 }
+
+
 
 /* ░░░░░░░░░░░░ haus admin ░░░░░░░░░░░░ */
 
@@ -516,4 +526,83 @@ border-radius: .6em;
   border: 1px solid rgba(0, 0, 0, 0.23);
   width: 70px;
   white-space:nowrap;
+}
+
+/* ░░░░░░░░░░░░ footer ░░░░░░░░░░░░ */
+
+footer {
+  background-color: rgba(179, 179, 179, 0.07);
+  width: 100%;
+
+  a {text-decoration: none; color: #338ea9;}
+  a:hover {color: #338ea9; border-bottom: 1px dotted;}
+  a:visited {color: #338ea9;}
+
+  .footer-contain {
+    margin: 0 auto;
+    vertical-align:top;
+    padding: 40px 0;
+    text-align: center;
+    max-width: 1400px;
+
+    /* containers */
+    .container {
+      display: inline-block;
+      vertical-align: top;
+      padding: 0 25px;
+      margin: 0 auto;
+      text-align: left;
+      position: relative;
+
+      &.about {width: 25%;}
+      &.get-in-touch{width: 15%;}
+      &.subscribe {width: 35%; float:right;}
+    }
+  }
+}
+
+.pid:hover {cursor: pointer; border-bottom: 1px dotted gray;}
+
+/* ░░░░░░░░░░░░ mobile footer ░░░░░░░░░░░░ */
+
+@media screen and (max-width: 840px) {
+  footer {text-align: left;
+
+    /* containers */
+    .footer-contain {
+      text-align:left;
+      padding: 20px 0;
+      width:85%;
+
+      .footer-contain.container {
+        width:100%;
+
+        &.about {width: 55%; padding: 20px 15px 0 0;}
+        &.get-in-touch{width: 30%; vertical-align: top;}
+        &.subscribe {
+          width: 100%;
+          display: block;
+          padding: 30px 0;
+          float: right;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .footer-contain.container {
+    padding: 20px 0;
+    width:100%;
+    display:block;
+
+    &.about {width: 100%;}
+    &.get-in-touch{width: 100%; vertical-align: top;}
+    &.subscribe {
+      width: 100%;
+      display: block;
+      padding: 30px 0;
+      float: right;
+    }
+  }
 }

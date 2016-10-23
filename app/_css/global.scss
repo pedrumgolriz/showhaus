@@ -1,20 +1,31 @@
+
 /* ░░░░░░░░░░░░ typography ░░░░░░░░░░░░ */
 
-body {
-    font-family: 'Proxima Nova', Helvetica, sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    letter-spacing: .025em;
-}
+@font-face {
+  font-family: 'Proxima Nova';
+src: url("/_fonts/ProximaNova-Light.eot") format("embedded-opentype"), url("/_fonts/ProximaNova-Light.woff") format("woff");
+  font-weight: 100; }
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url("/_fonts/ProximaNova-Regular.eot") format("embedded-opentype"), url("/_fonts/ProximaNova-Regular.woff") format("woff");
+  font-weight: 300; }
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url("/_fonts/ProximaNova-Semibold.eot") format("embedded-opentype"), url("/_fonts/ProximaNova-Semibold.woff") format("woff");
+  font-weight: 500; }
 
 h1 {font-size: 2em;}
-h2 {font-size: 1.2em; text-align: center;}
-h3 {font-size: 1.2em;}
+h2 {font-size: 1.7em; text-align: center; font-weight: 500;}
+h3 {font-size: 1.2em; margin: 0 0 10px 0;}
 h4 {font-size: 1.0em;}
 h5 {font-size: 0.9em;}
 h6 {font-size: 0.8em;}
 
 p {font-size: 15px/1.5em;}
+
+strong {font-weight:500;}
 
 
 /* ░░░░░░░░░░░░ links ░░░░░░░░░░░░ */
@@ -25,12 +36,19 @@ a:visited {color: black;}
 
 /* ░░░░░░░░░░░░ standard page ░░░░░░░░░░░░ */
 
+body {
+    font-family: 'Proxima Nova', Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: .01em;
+}
+
 .breadcrumb {
 padding: 10px 15px;
 color: #929292;
-max-width: 1200px;
+max-width: 100%;
 margin: 0 auto;
-border-bottom: 1px solid rgba(179, 179, 179, 0.31);
+background-color: rgba(179, 179, 179, 0.07);
   & a {text-decoration: none; color: #000;}
   & a:hover {color: gray; border-bottom: 1px dotted gray;}
 
@@ -42,7 +60,7 @@ max-width: 1200px;
 margin: 0 auto;
 color: #1b1b1b;
 display:inline-block;
-  &.home {text-align: right; max-width: 100%; padding-right: 15px; display: block;}
+  &.home {text-align: right; max-width: 100%; padding-right: 13px; display: block;}
   &.home a{margin: 0 5px;}
 
   /* post a show */
@@ -64,7 +82,6 @@ display:inline-block;
   border: 1px solid lightgray;;
   background-color: #FFFC9E;
   color: #000;
-  font-size: 12px;
   max-width:600px;
   margin: 15px auto;
   text-align: left;
@@ -78,3 +95,30 @@ display:inline-block;
 }
 
 img.full-width {width: 100%;}
+
+/* ░░░░░░░░░░░░ ui elements ░░░░░░░░░░░░ */
+
+.button {
+  font-size: 15px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.75);
+  font-weight: 400;
+  width: 105px;
+  float: left;
+  border-radius: 3px;
+  background-color: rgb(51, 142, 174);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  margin: 15px 0 0 0;
+  text-transform: none;
+  color: #fff;
+  line-height: normal;
+
+  /* button states */
+  a {
+    text-decoration: none;
+    a:hover {background-color: rgba(51, 142, 174, .7); cursor: pointer; text-decoration: none; border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
+    a:active {border:none;}
+    a:visited {text-decoration: none;}
+  }
+}

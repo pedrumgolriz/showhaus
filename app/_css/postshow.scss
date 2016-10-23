@@ -23,9 +23,10 @@ input {
     width: 90% !important;
 
     &[type="text"] {
-        padding: 10px;
-        border: 1px solid lightgray;
+        padding: 12px;
+        border: 2px solid rgba(0,0,0,.3);
         border-radius: 3px;
+        display: block;
     }
 
     &[type="checkbox"] {
@@ -33,25 +34,25 @@ input {
     }
 
     [type="text"]:hover {
-    border: 1px solid gray;
+    border: 2px solid rgba(0,0,0,.4);
     }
 
     &[type="text"]:focus,
     &[type="text"].focus {
-    border: solid 1px #969696;
-    background-color: #fff;
-    -webkit-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26);
-    -moz-box-shadow:    2px 2px 4px 0px rgba(50, 50, 50, 0.26);
-    box-shadow:         2px 2px 4px 0px rgba(50, 50, 50, 0.26);
+      border: solid 2px rgba(0,0,0,.5);
+      background-color: #fff;
+      -webkit-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26);
+      -moz-box-shadow:    2px 2px 4px 0px rgba(50, 50, 50, 0.26);
+      box-shadow:         2px 2px 4px 0px rgba(50, 50, 50, 0.26);
     }
 
     /* input size */
     &.full {max-width:420px;}
     &.third {max-width: 280px;}
     &.half {width: 40% !important; max-width:200px;}
-    &.date {width: 30% !important; max-width:100px; margin-right:20px;}
-    &.time {width: 25% !important; max-width:100px;}
-    &.mini {width: 20% !important; max-width: 80px;}
+    &.date {width: 30% !important; max-width:100px; margin-right:20px; display:inline-block;}
+    &.time {width: 25% !important; max-width:100px; display:inline-block;}
+    &.mini {width: 20% !important; max-width: 80px; display:inline-block;}
 
 
     /* input styles */
@@ -60,7 +61,7 @@ input {
     background-size: 15px 15px;
     padding-left:30px;
     background-color: white;
-    margin: 25px 0 0 0;
+    margin: 10px 0 0 0;
     }
 
     &.success,
@@ -88,30 +89,32 @@ input {
     &.error:hover {
     border: 2px solid #DC0000;
     }
-
 }
-
 
 /*placeholders & help text */
 
+.postshow-label {
+  display:block;
+  margin: 15px 0 10px 0;
+}
+
 .postshow-helptext {
-color: #000;
-font-size: 12px;
-padding:15px 10px;
-text-align: center;
+  color: rgba(0,0,0,.6);
+  font-size: 14px;
+  padding:15px 0 10px 0;
 
   /* error helptext */
   &.error {
   color: #DC0000;
   padding:15px 0 0 0;
-  font-weight: 900;
+  font-weight: 500;
   }
 
   /* success helptext */
   &.success {
   color: #4BA93F;
   padding:15px 0 0 0;
-  font-weight: 900;
+  font-weight: 500;
   }
 
 }
@@ -137,34 +140,27 @@ color: #B9B9B9;
 
 .postshow-wrap {
   select {width: 100%;}
-  .filter-contain {max-width: 170px; margin: 0 auto;}
+  .filter-contain {max-width: 170px;}
   .success {background-color: rgba(241, 250, 215, 0.42);}
   .fail {background-color: rgba(222, 13, 13, 0.19);}
 }
 
-.postshow {}
-
 .postshow-heading {
-    background-color: #aaa;
-    color: #fff;
+    color: rgba(0,0,0,.9);
     max-width: 650px;
     width: 100%;
     margin: 0 auto;
-    padding: 8px 2px;
-    text-align: center;
-    border-radius: 3px 3px 0 0;
-    border: 1px solid #aaa;
-    font-size: 12px;
-    font-weight: 700;
+    padding: 30px 0 0 0;
+    text-align: left;
+    border-top: 2px solid rgba(179, 179, 179, 0.2);
+    font-size: 22px;
+    font-weight: 300;
 }
 
 .postshow-wrap {
     max-width: 650px;
     width: 100%;
-    margin: 0 auto 10px auto;
-    text-align: center;
-    border: 1px solid lightgray;
-    border-radius: 0 0 2px 2px;
+    margin: 0 auto 30px auto;
     background-color: #fff;
     border-top: none;
     padding: 2px;
@@ -185,51 +181,39 @@ color: #B9B9B9;
 }
 
 .postshow-url {
-text-align: center;
-min-height:75px;
-max-width: 650px;
-margin: 25px auto;
-padding: 25px 20px;
-border : 1px solid lightgray;
-border-radius: 4px;
-/* background-color: rgba(241, 250, 215, 0.42); */
+  min-height:75px;
+  max-width: 650px;
+  margin: 25px auto;
+  padding: 25px 20px;
+  border : 1px solid lightgray;
+  border-radius: 4px;
+  /* background-color: rgba(241, 250, 215, 0.42); */
 }
 
 .postshow-city {
-text-align: center;
-margin: 0 auto;
-padding: 40px 0 10px 0;
-width: 100%;
+  padding: 0 0 10px 0;
+  width: 100%;
 }
 
 .postshow-title {
-text-align: center;
-margin: 0 auto;
-padding: 20px 0;
+  margin: 0 auto;
+  padding: 0 0 10px 0;
 }
 
 .postshow-venue {
-    text-align: center;
-    min-height:75px;
-    background-color: lightgray;
-    margin: 0 auto;
-    padding: 25px 0 10px 0;
-    border-radius: 4px;
-    background: url(images/addvenuebg.png);
-    width: 80%;
-    max-width: 475px;
+  min-height:75px;
+  padding: 0 10px 0 0;
+  max-width: 475px;
 }
 
 .postshow-dateprice {
-  text-align: center;
   margin: 0 auto;
-  padding: 30px 0;
+  padding: 5px 0 10px 0;
 }
 
 .postshow-description {
-  text-align: center;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 .postshow-eventart {
@@ -238,7 +222,6 @@ text-align: center;
   min-height: 30px;
   padding: 150px 0;
   border: 5px dashed lightgray;
-  max-width: 500px;
   color: gray;
 
   & input {
@@ -254,81 +237,47 @@ text-align: center;
   }
 }
 
-
-
 .postshow-email {
-  text-align: center;
-  margin: 0 auto;
-  padding: 30px 0;
-  max-width: 475px;
-  width: 100%;
+  padding: 10px 0 30px 0;
 }
 
 .postshow-submit {
-  text-align: center;
   margin-bottom: 30px;
-}
-
-/* button styles */
-
-
-
-button {
-  cursor: pointer;
-  display: inline-block;
-  border-radius: 4px;
-  width: 200px;
-  padding: 10px 0;
-  outline: 0;
-  border: none;
-  vertical-align: baseline;
-  background: #e0e1e2;
-  color: rgba(0,0,0,.6);
-  font-weight: 700;
-  font-size: 14px;
-
-  &:hover {
-    background: gray;
-    color: white;
-  }
-
-  &.light {
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-  }
-
-  &.light:hover {
-    background: #C1C1C1;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-  }
-
-  .home {
-    cursor: pointer;
-    display: inline-block;
-
-    outline: 0;
-    border: none;
-    vertical-align: baseline;
-    background: #e0e1e2;
-    color: rgba(0,0,0,.6);
-    font-weight: 700;
-    font-size: 14px;
-  }
-
 }
 
 /* special states */
 .postshow-venue .addvenue {
-padding: 0 0 20px 0;
-width: 350px;
-margin: 0 auto;
+  padding: 10px 20px 20px 20px;
+  width: 350px;
+  background-color: rgba(0,0,0,.05);
+  border-radius: 3px;
 }
 
 textarea {
-    width: 460px;
-    height: 158px;
-    border-radius: 4px;
-    background-color: #fff;
-    //box-shadow: (0 1px #fff, inset 0 2px 3px rgba(1,1,1,.5));
-    border: solid 1px #aaa;
+  width: 100%;
+  max-width: 420px;
+  height: 158px;
+  border-radius: 4px;
+  background-color: #fff;
+  border: solid 2px #aaa;
 }
+
+button {
+  font-size: 14px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.75);
+  font-weight: 500;
+  width: 170px;
+  float: left;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 15px 0 0 0;
+  line-height: normal;
+  &:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none; border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
+  }
+
+  /*feeds classes */
+  .feeds {margin: 0 0 90px 0;}
