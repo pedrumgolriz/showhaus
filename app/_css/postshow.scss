@@ -265,18 +265,18 @@ textarea {
 button {
   font-size: 14px;
   text-align: center;
-  color: rgba(0, 0, 0, 0.75);
+  color: #fff;
   font-weight: 500;
   width: 170px;
   float: left;
   border-radius: 3px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(51, 142, 174, 1);
   border: none;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   padding: 10px;
   margin: 15px 0 0 0;
   line-height: normal;
-  &:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none; border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
+  &:hover {background-color: rgba(51, 142, 174, .9); cursor: pointer; text-decoration: none;}
   }
 
   /*feeds classes */

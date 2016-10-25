@@ -67,6 +67,7 @@
 <!--░░░░░░░░░░░░ loading ░░░░░░░░░░░░-->
 <div ng-show="loading" style="text-align:center; margin: 30px 20px -10px 20px">
 	<div class="loading">
+		Loading...<br>
 		<span></span>
 		<span></span>
 		<span></span>
@@ -152,7 +153,7 @@
 				<!-- tickets, if applicable -->
 				<div>
 					<a href="{{event.ticket_uri}}" target="_blank" ng-click="sendToGoogle(event.city, event.title, event.venue, event.ticket_uri)">
-						<div class="show-tickets" ng-if="event.ticket_uri">🎫&nbsp;&nbsp;get tickets</div>
+						<div class="show-tickets" ng-if="event.ticket_uri">🎫&nbsp;&nbsp;Get Tickets</div>
 					</a>
 				</div>
 		</div>
@@ -185,7 +186,31 @@
 				boundary-links="true" >
 		</dir-pagination-controls>
 	</div>
-
-	<span class="pid" ng-click="checkPid($event)" ng-mouseover="showPid = true" ng-mouseleave="showPid = false" style="color:grey; font-size: smaller; padding:5px; clear: both; text-align:center; display: block;"> &pi; <span ng-if="showPid">{{performance}} {{ip_address}}</span></span>
-
 </div>
+
+<footer>
+	<div class="footer-contain">
+		<div class="container subscribe">
+			<h3>📫 Get Showhaus Weekly </h3>
+			Sign up to our newsletter to recieve weekly showlistings.
+			<br><br>
+			<input placeholder="Enter your Email Address" ng-required="true" type="text" ng-model="title"></input>
+			<a href="#"><div class="button">Subscribe</div></a>
+		</div>
+
+		<div class="container about">
+			<h3> About Showhaus </h3>
+			Showhaus is a resource for daily concert listings in the New York City area. While we include larger venues, our goal is also to promote shows at smaller, independant, and artist-run spaces around the city.
+			<br> Learn More
+		</div>
+
+		<div class="container get-in-touch">
+			<h3> Get in Touch </h3>
+			<a href="#!post">Submit Your Show</a>
+			<br><a href="#!about">Contact Us</a>
+			<br><a href="#!feeds">Add a Facebook Feed</a>
+		</div>
+
+			<br><span class="pid" ng-click="checkPid($event)" ng-mouseover="showPid = true" ng-mouseleave="showPid = false" style="color:grey; font-size: smaller; padding:35px 0 0 0; clear: both; text-align:center; display: inline-block;"> &pi; <span ng-if="showPid">{{performance}} {{ip_address}}</span></span>
+	</div>
+</footer>

@@ -556,7 +556,7 @@ footer {
 
       &.about {width: 25%;}
       &.get-in-touch{width: 15%;}
-      &.subscribe {width: 35%; float:right;}
+      &.subscribe {width: 40%;}
     }
   }
 }
@@ -571,20 +571,17 @@ footer {
     /* containers */
     .footer-contain {
       text-align:left;
-      padding: 20px 0;
-      width:85%;
+      padding: 10px 0;
+      width:80%;
 
-      .footer-contain.container {
+      .container {
+        padding: 20px 0;
         width:100%;
+        display:inline-block;
 
-        &.about {width: 55%; padding: 20px 15px 0 0;}
-        &.get-in-touch{width: 30%; vertical-align: top;}
-        &.subscribe {
-          width: 100%;
-          display: block;
-          padding: 30px 0;
-          float: right;
-        }
+        &.about {width: 100%; padding: 30px 0 10px 0;}
+        &.get-in-touch{width: 100%;}
+        &.subscribe {width: 100%; display: block;}
       }
     }
   }

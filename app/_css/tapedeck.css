@@ -1205,8 +1205,7 @@ footer {
       footer .footer-contain .container.get-in-touch {
         width: 15%; }
       footer .footer-contain .container.subscribe {
-        width: 35%;
-        float: right; }
+        width: 40%; }
 
 .pid:hover {
   cursor: pointer;
@@ -1219,21 +1218,20 @@ footer {
     /* containers */ }
     footer .footer-contain {
       text-align: left;
-      padding: 20px 0;
-      width: 85%; }
-      footer .footer-contain .footer-contain.container {
-        width: 100%; }
-        footer .footer-contain .footer-contain.container.about {
-          width: 55%;
-          padding: 20px 15px 0 0; }
-        footer .footer-contain .footer-contain.container.get-in-touch {
-          width: 30%;
-          vertical-align: top; }
-        footer .footer-contain .footer-contain.container.subscribe {
+      padding: 10px 0;
+      width: 80%; }
+      footer .footer-contain .container {
+        padding: 20px 0;
+        width: 100%;
+        display: inline-block; }
+        footer .footer-contain .container.about {
           width: 100%;
-          display: block;
-          padding: 30px 0;
-          float: right; } }
+          padding: 30px 0 10px 0; }
+        footer .footer-contain .container.get-in-touch {
+          width: 100%; }
+        footer .footer-contain .container.subscribe {
+          width: 100%;
+          display: block; } }
 @media screen and (max-width: 440px) {
   .footer-contain.container {
     padding: 20px 0;
@@ -1470,22 +1468,21 @@ textarea {
 button {
   font-size: 14px;
   text-align: center;
-  color: rgba(0, 0, 0, 0.75);
+  color: #fff;
   font-weight: 500;
   width: 170px;
   float: left;
   border-radius: 3px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: #338eae;
   border: none;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   padding: 10px;
   margin: 15px 0 0 0;
   line-height: normal; }
   button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(51, 142, 174, 0.9);
     cursor: pointer;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+    text-decoration: none; }
 
 /*feeds classes */
 .feeds {
