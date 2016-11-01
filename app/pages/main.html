@@ -18,6 +18,13 @@
 	<!-- title -->
 	<div class="logo"><a href="http://showhaus.org"><img src="../assets/header.png"></a></div>
 
+	<!-- heading -->
+	<div class="heading">
+		Below is a list of <strong>{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} upcoming concerts</strong> in New York City.
+		<p> Please double check show times and venues as they are subject to change.
+		<p>Contact info@showhaus.org with any questions or concerns.
+	</div>
+
 	<!-- filter -->
 	<div class="filter">
 
@@ -60,6 +67,7 @@
 <!--░░░░░░░░░░░░ loading ░░░░░░░░░░░░-->
 <div ng-show="loading" style="text-align:center; margin: 30px 20px -10px 20px">
 	<div class="loading">
+		Loading...<br>
 		<span></span>
 		<span></span>
 		<span></span>
@@ -71,12 +79,6 @@
 </div>
 
 <div class="content">
-	<!-- heading -->
-	<div class="heading">
-		<h2>UPCOMING SHOWS IN NEW YORK CITY</h2>
-		<span style="font-size: 13px; color: rgba(0,0,0,.5);">Displaying {{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} shows</span>
-		<div style="font-size: 12px; padding: 20px 0 0 0;">Please double check show details! We do our best, but sometimes times/bands change.</div>
-	</div>
 
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
@@ -151,7 +153,7 @@
 				<!-- tickets, if applicable -->
 				<div>
 					<a href="{{event.ticket_uri}}" target="_blank" ng-click="sendToGoogle(event.city, event.title, event.venue, event.ticket_uri)">
-						<div class="show-tickets" ng-if="event.ticket_uri">🎫&nbsp;&nbsp;get tickets</div>
+						<div class="show-tickets" ng-if="event.ticket_uri">🎫&nbsp;&nbsp;Get Tickets</div>
 					</a>
 				</div>
 		</div>
@@ -184,7 +186,31 @@
 				boundary-links="true" >
 		</dir-pagination-controls>
 	</div>
-
-	<span class="pid" ng-click="checkPid($event)" ng-mouseover="showPid = true" ng-mouseleave="showPid = false" style="color:grey; font-size: smaller; padding:5px; clear: both; text-align:center; display: block;"> &pi; <span ng-if="showPid">{{performance}} {{ip_address}}</span></span>
-
 </div>
+
+<footer>
+	<div class="footer-contain">
+		<div class="container subscribe">
+			<h3>📫 Get Showhaus Weekly </h3>
+			Sign up to our newsletter to recieve weekly showlistings.
+			<br><br>
+			<input placeholder="Coming Soon!" ng-required="true" type="text" ng-model="title" disabled></input>
+			<!-- <a href="#"><div class="button">Subscribe</div></a> -->
+		</div>
+
+		<div class="container about">
+			<h3> About Showhaus </h3>
+			Showhaus is a resource for daily concert listings in the New York City area. We are a small team of dedicated volunteers aiming to make local music accessible to all.
+			<br><br> <a href="#!about">Learn More</a>
+		</div>
+
+		<div class="container get-in-touch">
+			<h3> Get in Touch </h3>
+			<a href="#!post">Submit Your Show</a>
+			<br><a href="#!about">Contact Us</a>
+			<br><a href="#!feeds">Add a Facebook Feed</a>
+		</div>
+
+			<br><span class="pid" ng-click="checkPid($event)" ng-mouseover="showPid = true" ng-mouseleave="showPid = false" style="color:grey; font-size: smaller; padding:35px 0 0 0; clear: both; text-align:center; display: inline-block;"> &pi; <span ng-if="showPid">{{performance}} {{ip_address}}</span></span>
+	</div>
+</footer>

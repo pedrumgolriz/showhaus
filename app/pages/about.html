@@ -13,7 +13,7 @@
 
 <div class="content page">
   <h2>ABOUT</h2>
-  <p>Showhaus is an open classifieds for local music.
+  <p>Showhaus is a resource for daily concert listings in the New York City area. We are a small team of dedicated volunteers aiming to make local music accessible to all. 
   <h3>Aggregation</h3>
   <p>Shows are aggregated through <a href="#!post">user submissions</a> and from our list of <a href="#!feeds">show feeds</a>.
   <p>Feeds are user-submitted and comprise of the Facebook pages of bands and venues. Periodocially, Showhaus will scrape these pages for new events and display them on the site. This method allows us to scape shows not found on traditional ticketing or concert API's.
@@ -25,5 +25,31 @@
   <a> Any questions can be send to <a href="#">luismqueral@gmail.com</a></p>
 
   <h3>Who made this?</h3>
-  <p>Shwohaus was designed and developed by <a href="http://luisquer.al">Luis Queral</a> and <a href="http://pedrumgolriz.com/">Pedrum Golriz</a>.
+  <p>Showhaus was designed and developed by <a href="http://luisquer.al">Luis Queral</a> and <a href="http://pedrumgolriz.com/">Pedrum Golriz</a>.
 </div>
+<footer>
+	<div class="footer-contain">
+		<div class="container subscribe">
+			<h3>📫 Get Showhaus Weekly </h3>
+			Sign up to our newsletter to recieve weekly showlistings.
+			<br><br>
+			<input placeholder="Coming Soon!" ng-required="true" type="text" ng-model="title" disabled></input>
+			<!-- <a href="#"><div class="button">Subscribe</div></a> -->
+		</div>
+
+		<div class="container about">
+			<h3> About Showhaus </h3>
+			Showhaus is a resource for daily concert listings in the New York City area. We are a small team of dedicated volunteers aiming to make local music accessible to all.
+			<br><br> <a href="#!about">Learn More</a>
+		</div>
+
+		<div class="container get-in-touch">
+			<h3> Get in Touch </h3>
+			<a href="#!post">Submit Your Show</a>
+			<br><a href="#!about">Contact Us</a>
+			<br><a href="#!feeds">Add a Facebook Feed</a>
+		</div>
+
+			<br><span class="pid" ng-click="checkPid($event)" ng-mouseover="showPid = true" ng-mouseleave="showPid = false" style="color:grey; font-size: smaller; padding:35px 0 0 0; clear: both; text-align:center; display: inline-block;"> &pi; <span ng-if="showPid">{{performance}} {{ip_address}}</span></span>
+	</div>
+</footer>
