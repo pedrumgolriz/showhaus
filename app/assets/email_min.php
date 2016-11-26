@@ -1,3 +1,21 @@
+<pre style="display:hide">
+<?php
+	//server connection stuff for subscribers db
+	//use eventlist.php to sort what cities posts to send to what people; up to 7 days of shows
+	$jsonEventList = include 'eventlist.php';
+	$eventList = json_decode($jsonEventList);
+	$eventListCities = array();
+	for($i = 0; $i < count($eventList); $i++){
+		if(array_search($eventList[$i]['city'], $eventListCities) === 0){
+			array_push($eventListCities, $eventList[$i]['city']);
+		}
+	}
+?>
+</pre>
+<?php
+	echo $eventList[0];
+	var_dump( $eventListCities);
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

@@ -63,9 +63,6 @@ function geolocation() {
 }
 /* jshint ignore:end */
 //##End Geolocation##//
-var venues = [];
-var INITIAL_EVENT_LENGTH = 0;
-var events = [];
 var preUrl = 'http://showhaus.org/assets/';//set to blank for release
 //####Main####//
 angular.module('showhaus')
@@ -73,10 +70,8 @@ angular.module('showhaus')
     var jsonQuery = preUrl+'eventlist.php';
     return $resource(jsonQuery);
   })
-  .run(function($http, venueCityFactory, eventsFactory) {
-  	events = eventsFactory.query();
-  })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope, $http, $route, eventsFactory){
+    $scope.events = new eventsFactory.query();
 	$(".ui-dialog-content").dialog("destroy");
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
@@ -90,14 +85,7 @@ angular.module('showhaus')
             if(data === "1"){
                 $scope.editMode = true;
             }
-            $scope.events = events;
         });
-    }
-    else{
-        $scope.events = events;
-    }
-    if(INITIAL_EVENT_LENGTH==0){
-        INITIAL_EVENT_LENGTH = events.length;
     }
 	$scope.eventVenues = [];
     //##FILTERS##//
@@ -143,10 +131,6 @@ angular.module('showhaus')
 	$scope.formattedSubtitle = function(sub){
 		sub.replace(/(<([^>]+)>)/ig,"")
 		return sub;
-	}
-	var numPages = events.length / 10;
-	if(parseInt(numPages)>1){
-		$scope.numPages = parseInt(numPages);
 	}
 	$scope.getNumber = function(num) {
 		return new Array(num);
@@ -356,6 +340,20 @@ angular.module('showhaus')
         //on staffPick s&p, data:{mode: "staffPick", password: ls, comments: comments}
             //should trigger events.php
     }
+
+    $scope.subscribe = function(){
+        if($scope.userEmail && $scope.citySelect){
+            $http.post(
+                preUrl + 'subscribe.php',
+                {"email":$scope.userEmail,
+                 "city": $scope.citySelect
+                }
+            ).then(function(data){
+                console.log(data);
+                alert('You are signed up for the newsletter')
+            });
+        }
+    };
 
   })
   .filter('startFrom', function() {
