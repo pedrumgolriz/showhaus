@@ -95,7 +95,7 @@
 			<div class="postshow-helptext">
 				<strong>Enter the URL of a Facebook page.</strong>
 				<br>Showhaus will scrape any events associated with that page.
-				<br><button ng-click="executeSearch();" class="light"> submit feed </button>
+				<br><button ng-click="executeSearch();" class="light"> Submit Feed </button>
 			</div>
 		</div>
 	</div>
@@ -103,8 +103,8 @@
 	<div class="contain">
 		<table style="margin: 30px 0 0 0; width:100%">
 			<tr>
-				<th>title of feed</th>
-				<th class="feeds-dateadded">date added</th>
+				<th>Title of Feed</th>
+				<th class="feeds-dateadded">Date Added</th>
 			</tr>
 			<tr ng-repeat="feed in feeds.slice().reverse()">
 				<td><a href="{{feed[2]}}" target="_blank">{{feed[0]}}</a></td>
@@ -120,14 +120,14 @@
 			<h3>📫 Get Showhaus Weekly </h3>
 			Sign up to our newsletter to recieve weekly showlistings.
 			<br><br>
-			<input placeholder="Enter your Email Address" ng-required="true" type="text" class="full" ng-model="title"></input>
-			<a href="#"><div class="button">Subscribe</div></a>
+			<input placeholder="Coming Soon!" ng-required="true" type="text" ng-model="title" disabled></input>
+			<!-- <a href="#"><div class="button">Subscribe</div></a> -->
 		</div>
 
 		<div class="container about">
 			<h3> About Showhaus </h3>
-			Showhaus is a resource for daily concert listings in the New York City area. While we include larger venues, our goal is also to promote shows at smaller, independant, and artist-run spaces around the city.
-			<br> Learn More
+			Showhaus is a resource for daily concert listings in the New York City area. We are a small team of dedicated volunteers aiming to make local music accessible to all.
+			<br><br> <a href="#!about">Learn More</a>
 		</div>
 
 		<div class="container get-in-touch">

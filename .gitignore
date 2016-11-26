@@ -3,3 +3,5 @@ node_modules
 dist
 bower_components/
 lib
+app/_css/.sass-cache/*
+app/_css/main.css
