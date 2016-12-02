@@ -63,9 +63,6 @@ function geolocation() {
 }
 /* jshint ignore:end */
 //##End Geolocation##//
-var venues = [];
-var INITIAL_EVENT_LENGTH = 0;
-var events = [];
 var preUrl = 'http://showhaus.org/assets/';//set to blank for release
 //####Main####//
 angular.module('showhaus')
@@ -73,13 +70,17 @@ angular.module('showhaus')
     var jsonQuery = preUrl+'eventlist.php';
     return $resource(jsonQuery);
   })
-  .run(function($http, venueCityFactory, eventsFactory) {
-  	events = eventsFactory.query();
-  })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope, $http, $route, eventsFactory){
+    $scope.events = new eventsFactory.query();
 	$(".ui-dialog-content").dialog("destroy");
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
+	}
+	if($location.$$search.dev){
+        $scope.numItems = 1;
+	}
+	else{
+	    $scope.numItems = 150;
 	}
 	if(localStorage.getItem('password')){
         var ls = localStorage.getItem('password');
@@ -90,14 +91,7 @@ angular.module('showhaus')
             if(data === "1"){
                 $scope.editMode = true;
             }
-            $scope.events = events;
         });
-    }
-    else{
-        $scope.events = events;
-    }
-    if(INITIAL_EVENT_LENGTH==0){
-        INITIAL_EVENT_LENGTH = events.length;
     }
 	$scope.eventVenues = [];
     //##FILTERS##//
@@ -143,10 +137,6 @@ angular.module('showhaus')
 	$scope.formattedSubtitle = function(sub){
 		sub.replace(/(<([^>]+)>)/ig,"")
 		return sub;
-	}
-	var numPages = events.length / 10;
-	if(parseInt(numPages)>1){
-		$scope.numPages = parseInt(numPages);
 	}
 	$scope.getNumber = function(num) {
 		return new Array(num);
@@ -273,55 +263,6 @@ angular.module('showhaus')
         }
     }
 
-    $scope.performance = performance.now();
-    $.getJSON("http://jsonip.com?callback=?", function (data) {$scope.ip_address = data.ip;});
-    $scope.checkPid = function(e){
-        var c = parseInt(sessionStorage.getItem('a'));
-        var a;
-        if(e.shiftKey&&e.which == 1 && c!==3){
-            if(localStorage.getItem('password')){
-                a = localStorage.getItem('password');
-            }
-            else{
-                a = prompt("", "");
-            }
-
-            $http.post(
-                preUrl + 'checkAdmin.php',
-                {"a":a}
-            ).success(function (g) {
-                    if(g === "0" && !sessionStorage.getItem('a')){
-                        sessionStorage.setItem('a', 1);
-                        localStorage.removeItem('password');
-                        window.location.reload();
-                    }
-                    else if (g === "0" && sessionStorage.getItem('a')){
-                        var b = parseInt(sessionStorage.getItem('a'));
-                        b+=1;
-                        sessionStorage.setItem('a',b);
-                        localStorage.removeItem('password');
-                        window.location.reload();
-                    }
-                    else if(g === "1"){
-                        sessionStorage.setItem('a', 0);
-                        localStorage.setItem('password', a);
-                        window.location.reload();
-                    }
-                }).error(function (status) {
-                    console.log(status);
-                });
-        }
-        else if(c===3){
-            var z = 0;
-            //blacklist on mt
-            $scope.sendToGoogle($scope.ip_address);
-            while(z < 700){
-                window.open('http://i.imgur.com/lYdRATj.gif');
-                z++;
-            }
-        }
-    }
-
     $scope.staffPickComments = "";
 
     $scope.staffPicks = false;
@@ -356,7 +297,6 @@ angular.module('showhaus')
         //on staffPick s&p, data:{mode: "staffPick", password: ls, comments: comments}
             //should trigger events.php
     }
-
   })
   .filter('startFrom', function() {
       return function(input, start) {

@@ -1187,7 +1187,7 @@ footer {
   footer a:visited {
     color: #338ea9; }
   footer .footer-contain {
-    margin: 130px auto 0 auto;
+    margin: 100px auto 0 auto;
     vertical-align: top;
     padding: 40px 0;
     text-align: center;
@@ -1268,7 +1268,7 @@ input {
   /* input size */
   /* input styles */
   /* error input styles */ }
-  input[type="text"] {
+  input[type="text"], input[type="email"] {
     padding: 12px;
     border: 2px solid rgba(0, 0, 0, 0.3);
     border-radius: 3px;
@@ -1277,7 +1277,7 @@ input {
     display: inline; }
   input [type="text"]:hover {
     border: 2px solid rgba(0, 0, 0, 0.4); }
-  input[type="text"]:focus, input[type="text"].focus {
+  input[type="text"]:focus, input[type="email"]:focus {
     border: solid 2px rgba(0, 0, 0, 0.5);
     background-color: #fff;
     -webkit-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26);

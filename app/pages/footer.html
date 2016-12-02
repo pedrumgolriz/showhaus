@@ -1,0 +1,27 @@
+<footer>
+    <div class="footer-contain col-lg-12">
+        <form class="container subscribe col-lg-4" name="newsletterForm">
+            <h3>📫 Get Showhaus Weekly </h3>
+            Sign up to our newsletter to receive weekly show listings.
+            <br><br>
+            <label for="newsletter-signup">Email address</label>
+            <input id="newsletter-signup" class="form-control" placeholder="Enter your Email Address" type="email" ng-model="userEmail" name="userEmail"/>
+            <a href="#" ng-click="subscribe()"><div class="button">Subscribe</div></a>
+            <span class="postshow-helptext error" style="margin:-3px 0 0 10px; display: inline-block" ng-if="newsletterForm.$invalid">Please enter a valid email</span>
+        </form>
+
+        <div class="container about col-lg-4">
+            <h3> About Showhaus </h3>
+            Showhaus is a resource for daily concert listings in the New York City area. While we include larger venues, our goal is also to promote shows at smaller, independent, and artist-run spaces around the city.
+            <br/> <a href="#!about">Learn More</a>
+        </div>
+
+        <div class="container get-in-touch col-lg-4">
+            <h3> Get in Touch </h3>
+            <a href="#!post">Submit Your Show</a>
+            <br><a href="#!about">Contact Us</a>
+            <br><a href="#!feeds">Add a Facebook Feed</a>
+        </div>
+    </div>
+    <span  ng-if="mainPage" class="pid" ng-click="checkPid($event)" ng-mouseover="showPid = true" ng-mouseleave="showPid = false" style="float:right;color:grey; font-size: smaller; text-align:center; bottom: 0; margin: -20px 1%"> &pi; <span ng-if="showPid">{{performance}} {{ip_address}}</span></span>
+</footer>
