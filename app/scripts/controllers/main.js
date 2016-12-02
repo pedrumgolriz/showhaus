@@ -76,6 +76,12 @@ angular.module('showhaus')
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
 	}
+	if($location.$$search.dev){
+        $scope.numItems = 1;
+	}
+	else{
+	    $scope.numItems = 150;
+	}
 	if(localStorage.getItem('password')){
         var ls = localStorage.getItem('password');
         $http.post(
@@ -257,55 +263,6 @@ angular.module('showhaus')
         }
     }
 
-    $scope.performance = performance.now();
-    $.getJSON("http://jsonip.com?callback=?", function (data) {$scope.ip_address = data.ip;});
-    $scope.checkPid = function(e){
-        var c = parseInt(sessionStorage.getItem('a'));
-        var a;
-        if(e.shiftKey&&e.which == 1 && c!==3){
-            if(localStorage.getItem('password')){
-                a = localStorage.getItem('password');
-            }
-            else{
-                a = prompt("", "");
-            }
-
-            $http.post(
-                preUrl + 'checkAdmin.php',
-                {"a":a}
-            ).success(function (g) {
-                    if(g === "0" && !sessionStorage.getItem('a')){
-                        sessionStorage.setItem('a', 1);
-                        localStorage.removeItem('password');
-                        window.location.reload();
-                    }
-                    else if (g === "0" && sessionStorage.getItem('a')){
-                        var b = parseInt(sessionStorage.getItem('a'));
-                        b+=1;
-                        sessionStorage.setItem('a',b);
-                        localStorage.removeItem('password');
-                        window.location.reload();
-                    }
-                    else if(g === "1"){
-                        sessionStorage.setItem('a', 0);
-                        localStorage.setItem('password', a);
-                        window.location.reload();
-                    }
-                }).error(function (status) {
-                    console.log(status);
-                });
-        }
-        else if(c===3){
-            var z = 0;
-            //blacklist on mt
-            $scope.sendToGoogle($scope.ip_address);
-            while(z < 700){
-                window.open('http://i.imgur.com/lYdRATj.gif');
-                z++;
-            }
-        }
-    }
-
     $scope.staffPickComments = "";
 
     $scope.staffPicks = false;
@@ -340,21 +297,6 @@ angular.module('showhaus')
         //on staffPick s&p, data:{mode: "staffPick", password: ls, comments: comments}
             //should trigger events.php
     }
-
-    $scope.subscribe = function(){
-        if($scope.userEmail && $scope.citySelect){
-            $http.post(
-                preUrl + 'subscribe.php',
-                {"email":$scope.userEmail,
-                 "city": $scope.citySelect
-                }
-            ).then(function(data){
-                console.log(data);
-                alert('You are signed up for the newsletter')
-            });
-        }
-    };
-
   })
   .filter('startFrom', function() {
       return function(input, start) {

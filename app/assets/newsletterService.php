@@ -112,7 +112,7 @@
                   $message = str_replace('{{ '.$key.' }}', $value, $message);
                 }
                 echo $message;
-                mail($to,$subject,$message,$headers);
+                //mail($to,$subject,$message,$headers);
 			}
 		}
 	}

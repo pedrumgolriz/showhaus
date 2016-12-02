@@ -82,7 +82,7 @@
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
-	<div ng-if="!loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect} | isFeatured:{featured:staffPicks} | isFree:{price:freeBox}) | orderBy: orderByDate | itemsPerPage: 150 track by $index">
+	<div class="show-contain" ng-class="event.date==today ? 'today' : ''" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect} | isFeatured:{featured:staffPicks} | isFree:{price:freeBox}) | orderBy: orderByDate | itemsPerPage: numItems track by $index">
 		<div class="show-detail-contain">
 
 			<!-- date / time -->
@@ -186,29 +186,4 @@
 		</dir-pagination-controls>
 	</div>
 </div>
-
-<footer>
-	<div class="footer-contain col-lg-12">
-		<div class="container subscribe col-lg-4">
-			<h3>📫 Get Showhaus Weekly </h3>
-			Sign up to our newsletter to receive weekly show listings.
-			<br><br>
-			<input placeholder="Enter your Email Address" type="email" ng-model="userEmail"/>
-			<a href="#" ng-click="subscribe()"><div class="button">Subscribe</div></a>
-		</div>
-
-		<div class="container about col-lg-4">
-			<h3> About Showhaus </h3>
-			Showhaus is a resource for daily concert listings in the New York City area. While we include larger venues, our goal is also to promote shows at smaller, independent, and artist-run spaces around the city.
-			<br> Learn More
-		</div>
-
-		<div class="container get-in-touch col-lg-4">
-			<h3> Get in Touch </h3>
-			<a href="#!post">Submit Your Show</a>
-			<br><a href="#!about">Contact Us</a>
-			<br><a href="#!feeds">Add a Facebook Feed</a>
-		</div>
-	</div>
-	<br><span class="pid" ng-click="checkPid($event)" ng-mouseover="showPid = true" ng-mouseleave="showPid = false" style="float:right;color:grey; font-size: smaller; padding:35px 0 0 0; clear: both; text-align:center; display: inline-block;"> &pi; <span ng-if="showPid">{{performance}} {{ip_address}}</span></span>
-</footer>
+<showhaus-footer main-page="true"></showhaus-footer>
