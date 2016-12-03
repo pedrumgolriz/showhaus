@@ -530,7 +530,7 @@ h6 {
   font-size: 0.8em; }
 
 p {
-  font-size: 15px/1.5em; }
+  font-size: 15px; }
 
 strong {
   font-weight: 500; }
@@ -546,7 +546,7 @@ a:visited {
 body {
   font-family: 'Proxima Nova', Helvetica, sans-serif;
   font-weight: 300;
-  font-size: 15px;
+  font-size: 13px;
   letter-spacing: .01em; }
 
 .breadcrumb {
@@ -605,7 +605,7 @@ img.full-width {
 
 /* ░░░░░░░░░░░░ ui elements ░░░░░░░░░░░░ */
 .button {
-  font-size: 15px;
+  font-size: 14px;
   text-align: center;
   color: rgba(0, 0, 0, 0.75);
   font-weight: 400;
@@ -937,7 +937,7 @@ img.full-width {
     width: 55%;
     position: relative;
     display: inline-block;
-    font-size: 17px;
+    font-size: 15px;
     /* links */ }
     .show-contain .show-title .title {
       position: relative; }
@@ -963,10 +963,10 @@ img.full-width {
   text-align: center;
   text-transform: uppercase;
   line-height: normal;
-  font-size: 12px; }
+  font-size: 11px; }
 
 .show-tickets {
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
   color: rgba(0, 0, 0, 0.75);
   font-weight: 500;
@@ -975,7 +975,7 @@ img.full-width {
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.05);
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  padding: 8px 6px;
   margin: 15px 0 0 0;
   line-height: normal;
   /* show tickets link */ }
@@ -1168,7 +1168,7 @@ img.full-width {
   padding: 4px 5px 3px 5px;
   background-color: #FF6B7F;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 11px;
   color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.23);
   width: 70px;
@@ -1186,8 +1186,10 @@ footer {
     border-bottom: 1px dotted; }
   footer a:visited {
     color: #338ea9; }
+  footer label {
+    margin: 0 0 15px 0; }
   footer .footer-contain {
-    margin: 100px auto 0 auto;
+    margin: 130px auto 0 auto;
     vertical-align: top;
     padding: 40px 0;
     text-align: center;
@@ -1265,10 +1267,11 @@ input {
   background-color: #fff;
   box-sizing: border-box;
   width: 90% !important;
+  margin: 10px 0 0 0;
   /* input size */
   /* input styles */
   /* error input styles */ }
-  input[type="text"], input[type="email"] {
+  input[type="text"] {
     padding: 12px;
     border: 2px solid rgba(0, 0, 0, 0.3);
     border-radius: 3px;
@@ -1277,7 +1280,7 @@ input {
     display: inline; }
   input [type="text"]:hover {
     border: 2px solid rgba(0, 0, 0, 0.4); }
-  input[type="text"]:focus, input[type="email"]:focus {
+  input[type="text"]:focus, input[type="text"].focus {
     border: solid 2px rgba(0, 0, 0, 0.5);
     background-color: #fff;
     -webkit-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26);

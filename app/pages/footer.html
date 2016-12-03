@@ -2,9 +2,7 @@
     <div class="footer-contain col-lg-12">
         <form class="container subscribe col-lg-4" name="newsletterForm">
             <h3>📫 Get Showhaus Weekly </h3>
-            Sign up to our newsletter to receive weekly show listings.
-            <br><br>
-            <label for="newsletter-signup">Email address</label>
+            <label for="newsletter-signup">Sign up to our newsletter to receive weekly show listings.</label>
             <input id="newsletter-signup" class="form-control" placeholder="Enter your Email Address" type="email" ng-model="userEmail" name="userEmail"/>
             <a href="#" ng-click="subscribe()"><div class="button">Subscribe</div></a>
             <span class="postshow-helptext error" style="margin:-3px 0 0 10px; display: inline-block" ng-if="newsletterForm.$invalid">Please enter a valid email</span>
