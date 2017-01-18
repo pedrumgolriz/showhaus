@@ -72,6 +72,8 @@ angular.module('showhaus')
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope, $http, $route, eventsFactory){
     $scope.events = new eventsFactory.query();
+    $scope.eventsList = $scope.events.splice(0, 50);
+    $scope.nextPage = $scope.events.splice($scope.currentPage*50, 50);
 	$(".ui-dialog-content").dialog("destroy");
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
@@ -80,7 +82,7 @@ angular.module('showhaus')
         $scope.numItems = 1;
 	}
 	else{
-	    $scope.numItems = 150;
+	    $scope.numItems = 50;
 	}
 	if(localStorage.getItem('password')){
         var ls = localStorage.getItem('password');
