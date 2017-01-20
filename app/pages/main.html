@@ -27,29 +27,23 @@
 	<!-- filter -->
 	<div class="filter">
 
-	<!--
-		<div class="filter-contain city-filter">
-			<select id="select-beast" class="filter-drop"  ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
-				<option value="Baltimore">Baltimore</option>
-				<option value="NYC">NYC</option>
-			</select>
+		<!--
+            <div class="filter-contain city-filter">
+                <select id="select-beast" class="filter-drop"  ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
+                    <option value="Baltimore">Baltimore</option>
+                    <option value="NYC">NYC</option>
+                </select>
+            </div>
+        -->
+		<div class="filter-contain staff-filter" style="display:table-cell">
+			<label class="btn btn-danger btn-sm" ng-class="staffPicks ? 'active' : ''">
+				<input type="checkbox" ng-checked="staffPicks" name="staff" ng-click="staffPicks = !staffPicks"> Staff Picks
+			</label>
 		</div>
-	-->
-		<div class="filter-contain venue-filter">
-			<select id="select-beast venueSelect" class="filter-drop" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
-				<option value="">-- all venues --</option>
-				<option ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
-			</select>
-		</div>
-
-		<div class="filter-contain staff-filter">
-			<input id="staff-pick" type="checkbox" name="staff" ng-checked="staffPicks" ng-click="staffPicks = !staffPicks">
-			<label for="staff-pick"><span class="staff-pick">Staff Picks</span></label>
-		</div>
-
-		<div class="checkbox">
-			<input id="free" type="checkbox" name="free" value="free" ng-checked="freebox" ng-click="freeBox = !freeBox">
-			<label for="free" >Free Shows Only</label>
+		<div class="checkbox" style="display:table-cell">
+			<label class="btn btn-secondary btn-sm" ng-class="freeBox ? 'active' : ''">
+				<input type="checkbox" name="free" ng-checked="freeBox" value="free" ng-click="freeBox = !freeBox"> Free Shows
+			</label>
 		</div>
 	</div>
 </div>
@@ -106,7 +100,7 @@
 			<!-- venue -->
 			<div class="show-venue">
 				<div class="venue">{{event.venue}}</div>
-				<div class="address"><a rel="nofollow" ng-click="popupMap($event, event.address, event.city);" target="_blank">{{event.address}}</a></div>
+				<a class="address" rel="nofollow" href="https://maps.google.com/?q={{event.address}} {{event.city}}">{{event.address}}</a>
 			</div>
 
 			<!-- title -->
@@ -115,7 +109,7 @@
 				<span class="title" ng-if="event.fb_event"><a ng-click="extshow(event.fb_event); sendToGoogle(event.city, event.title, event.venue)" href="#">{{event.title}}</a>
 					<i style="vertical-align: middle; margin: 0 0 0 8px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)"></i>
 				</span>
-				<span class="title">
+				<div class="title">
 					<span class="show-price" ng-if="event.price>0">${{event.price}}</span>
 					<span class="show-price" ng-if="event.price==0 || (event.price==-1&&!event.ticket_uri)">
 						<span style="display:none">{{event.price=0}}</span>free
@@ -126,13 +120,13 @@
 
 
 					<div class="admin" ng-if="editMode">
-<!--
-						<a ng-click="editItem('edit', null, event.id)" href="#">edit show</a>
--->
+						<!--
+                                                <a ng-click="editItem('edit', null, event.id)" href="#">edit show</a>
+                        -->
 						<a ng-click="editItem('delete', null, event.id)" href="#">delete show</a>
-<!--
-						<span class="editError {{event.id}}">Parsed shows cannot be edited.</span>
--->
+						<!--
+                                                <span class="editError {{event.id}}">Parsed shows cannot be edited.</span>
+                        -->
 
 						<div class="checkbox">
 							<input type="checkbox" ng-if="event.featured==0||event.featured==''" ng-click="event.isChecked = !event.isChecked"/>
@@ -145,17 +139,15 @@
 						</div>
 
 					</div>
-						<a href="#" ng-if="event.isChecked" ng-click="editItem('staffPick', event.featured, event.id)"><span class="save"> 💾 save & publish</span></a>
+					<a href="#" ng-if="event.isChecked" ng-click="editItem('staffPick', event.featured, event.id)"><span class="save"> 💾 save & publish</span></a>
 
-				</span>
+				</div>
 
 				<!-- tickets, if applicable -->
-				<div>
-					<a href="{{event.ticket_uri}}" target="_blank" ng-click="sendToGoogle(event.city, event.title, event.venue, event.ticket_uri)">
-						<div class="show-tickets" ng-if="event.ticket_uri">🎫&nbsp;&nbsp;Get Tickets</div>
-					</a>
+				<div ng-if="event.ticket_uri">
+					<a href="#" class="show-tickets btn btn-sm" ng-click="sendToGoogle(event.city, event.title, event.venue, event.ticket_uri); extshow(event.ticket_uri)">🚀 Get Tickets &nbsp;</a>
 				</div>
-		</div>
+			</div>
 
 
 			<!-- show page -->
@@ -178,7 +170,7 @@
 	</div>
 
 	<!-- end show -->
-	<div class="pagination-container">
+	<div class="pagination-container" style="margin-bottom:-100px;">
 		<dir-pagination-controls
 				max-size="7"
 				direction-links="true"

@@ -354,7 +354,7 @@ module.exports = function (grunt) {
 		  dest: '<%= yeoman.dist %>/styles/images',
 		  src: '{,*/*}*',
 		  expand: true
-	  }
+	  },
     },
 
     // Run some tasks in parallel to speed up the build process
