@@ -71,11 +71,11 @@ angular
 			/*.when('/showpage', {
 				templateUrl: 'pages/showpage.html',
 				controller: 'ShowpageCtrl'
-			})
-			.when('/showpage/:city/:venue/', {
+			})*/
+			.when('/showpage/:id/:city/:venue/:title/', {
 				templateUrl: 'pages/showpage.html',
 				controller: 'ShowpageCtrl'
-			})*/
+			})
 			.when('/post', {
 				templateUrl: 'pages/post.html',
 				controller: 'PostCtrl'

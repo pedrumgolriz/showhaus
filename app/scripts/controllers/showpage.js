@@ -35,9 +35,10 @@ angular.module('showhaus')
 	if($location.$$search.post === ''){
 		$location.path('/main');
 	}
-    var postnumber = $location.$$search.post;
-    var jsonQuery = preUrl + 'eventlist.php?post=' + postnumber;
+    var postnumber = $location.url().split('/')[2];
+    var jsonQuery = preUrl + 'events.php?post=' + postnumber;
     $scope.events = $resource(jsonQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}}).query();
+    console.log($scope.events);
     $scope.fbshare = function(postnumber){
       FB.ui({
         method: 'share',

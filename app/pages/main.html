@@ -112,8 +112,8 @@
 			<!-- title -->
 			<div class="show-title">
 				<span class="title" ng-if="!event.fb_event" ng-click="expand($event); sendToGoogle(event.city, event.title, event.venue)"><a href="#">{{event.title}}</a></span>
-				<span class="title" ng-if="event.fb_event"><a ng-click="extshow(event.fb_event); sendToGoogle(event.city, event.title, event.venue)" href="#">{{event.title}}</a>
-					<i style="vertical-align: middle; margin: 0 0 0 8px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="extshow(event.fb_event)"></i>
+				<span class="title" ng-if="event.fb_event"><a ng-click="go(event); sendToGoogle(event.city, event.title, event.venue)" href="#">{{event.title}}</a>
+					<i style="vertical-align: middle; margin: 0 0 0 8px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="go(event)"></i>
 				</span>
 				<span class="title">
 					<span class="show-price" ng-if="event.price>0">${{event.price}}</span>
@@ -150,10 +150,8 @@
 				</span>
 
 				<!-- tickets, if applicable -->
-				<div>
-					<a href="{{event.ticket_uri}}" target="_blank" ng-click="sendToGoogle(event.city, event.title, event.venue, event.ticket_uri)">
-						<div class="show-tickets" ng-if="event.ticket_uri">🎫&nbsp;&nbsp;Get Tickets</div>
-					</a>
+				<div ng-if="event.ticket_uri">
+					<a href="#" class="show-tickets btn btn-sm" ng-click="sendToGoogle(event.city, event.title, event.venue, event.ticket_uri); extshow(event.ticket_uri)">🚀 Get Tickets &nbsp;&nbsp;</a>
 				</div>
 		</div>
 
