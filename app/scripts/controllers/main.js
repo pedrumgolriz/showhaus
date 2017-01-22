@@ -270,6 +270,10 @@ angular.module('showhaus')
     $scope.staffPicks = false;
     $scope.freeBox = false;
 
+    $scope.getFBPoster = function(event){
+        return event.split('/')[event.split('/').length-1];
+    }
+
     $scope.editItem = function(mode, comments, postNumber){
         var semp = localStorage.getItem('password');
         $scope.theMode = mode;

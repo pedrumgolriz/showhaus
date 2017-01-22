@@ -343,6 +343,12 @@ module.exports = function (grunt) {
         dest: '<%= yeoman.dist %>/styles',
         src: '{,*/}*'
       },
+      fonts:{
+        expand: true,
+        cwd: '<%= yeoman.app %>/_fonts',
+        dest: '<%= yeoman.dist %>/fonts',
+        src: '{,*/}*'
+      },
 	  assets:{
 		  cwd: '<%= yeoman.app %>/assets',  // set working folder / root to copy
 		  src: '**/*',           // copy all files and subfolders

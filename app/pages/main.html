@@ -35,15 +35,24 @@
                 </select>
             </div>
         -->
-		<div class="filter-contain staff-filter" style="display:table-cell">
-			<label class="btn btn-danger btn-sm" ng-class="staffPicks ? 'active' : ''">
-				<input type="checkbox" ng-checked="staffPicks" name="staff" ng-click="staffPicks = !staffPicks"> Staff Picks
-			</label>
+
+		<div class="filter-contain venue-filter" style="table-row">
+			<select id="select-beast venueSelect" class="filter-drop" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
+				<option value="">-- all venues --</option>
+				<option ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
+			</select>
 		</div>
-		<div class="checkbox" style="display:table-cell">
-			<label class="btn btn-secondary btn-sm" ng-class="freeBox ? 'active' : ''">
-				<input type="checkbox" name="free" ng-checked="freeBox" value="free" ng-click="freeBox = !freeBox"> Free Shows
-			</label>
+		<div style="display: table-row">
+			<div class="filter-contain staff-filter" >
+				<label class="btn btn-danger btn-sm" ng-class="staffPicks ? 'active' : ''">
+					<input type="checkbox" ng-checked="staffPicks" name="staff" ng-click="staffPicks = !staffPicks"> Staff Picks
+				</label>
+			</div>
+			<div class="checkbox">
+				<label class="btn btn-secondary btn-sm" ng-class="freeBox ? 'active' : ''">
+					<input type="checkbox" name="free" ng-checked="freeBox" value="free" ng-click="freeBox = !freeBox"> Free Shows
+				</label>
+			</div>
 		</div>
 	</div>
 </div>
