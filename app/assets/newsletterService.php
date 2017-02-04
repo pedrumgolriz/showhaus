@@ -48,6 +48,7 @@
                 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
                 $message = file_get_contents("email_min.html");
                 $variables = array();
+                $variables['email'] = $to;
                 $variables['city'] = $userTable[$z]['city'];
                 $variables['tuesdayShows'] = '';
                 $variables['wednesdayShows'] = '';
@@ -112,7 +113,7 @@
                   $message = str_replace('{{ '.$key.' }}', $value, $message);
                 }
                 echo $message;
-                //mail($to,$subject,$message,$headers);
+                mail($to,$subject,$message,$headers);
 			}
 		}
 	}
