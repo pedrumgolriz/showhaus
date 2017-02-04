@@ -1,4 +1,13 @@
-# Apache Configuration File
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+
+RewriteCond %{QUERY_STRING} ^_escaped_fragment_=(.*)$
+RewriteRule ^$ /assets/snapshot.php$1 [QSA,L]
+</IfModule>
+
+
+#Apache Configuration File
 
 # (!) Using `.htaccess` files slows down Apache, therefore, if you have access
 # to the main server config file (usually called `httpd.conf`), you should add
