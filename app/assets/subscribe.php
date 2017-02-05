@@ -15,6 +15,21 @@ $check =  mysqli_query($mysqli, "SELECT * FROM subscribers WHERE email = '".$ema
 if(mysqli_num_rows($check)==0){
 	mysqli_query($mysqli, "INSERT INTO subscribers (email, city) VALUES ('$email', '$city')");
 	echo true;
+	$to = $email;
+    $subject = "Subscription Success!";
+	$from = "noreply@showhaus.org";
+    $headers = "From: $from". "\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+    $message = file_get_contents("email_success.html");
+    $variables = array();
+    $variables['email'] = $to;
+    $variables['city'] = $city;
+
+    foreach($variables as $key => $value){
+        $message = str_replace('{{ '.$key.' }}', $value, $message);
+	}
+    mail($to,$subject,$message,$headers);
 }
 else{
 	echo false;
