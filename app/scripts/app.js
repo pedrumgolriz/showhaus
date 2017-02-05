@@ -84,6 +84,9 @@ angular
 				templateUrl: 'pages/success.html',
 				controller: 'SuccessCtrl'
 			})
+			.when('/newsletter-success', {
+				templateUrl: 'assets/email_success.html'
+			})
 			.when('/edit',{
 				templateUrl: 'pages/edit.html',
 				controller: 'EditCtrl'
@@ -227,7 +230,7 @@ angular
             scope: {
                mainPage: '=mainPage'
             },
-            controller: function($scope, $http) {
+            controller: function($scope, $http, $location) {
             $scope.performance = performance.now();
                 $.getJSON("http://jsonip.com?callback=?", function (data) {$scope.ip_address = data.ip;});
                 $scope.checkPid = function(e){
@@ -302,8 +305,7 @@ angular
                          "city": getcookies
                         }
                     ).then(function(data){
-                        console.log(data);
-                        alert('You are signed up for the weekly newsletter!')
+                        $location.path('/newsletter-success');
                     });
                   }
                };
