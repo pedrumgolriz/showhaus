@@ -10,7 +10,6 @@
 	$htmlTemplate = "";
 	//restrict date to 7 days ahead of current time
 	for($i = 0; $i < count($eventList); $i++){
-		if(!array_search($eventList[$i]['city'], $eventListCities)){
 			$today = time();
 			$dateOfEvent = $eventList[$i]['date'];
 			$dateDiff = $dateOfEvent - $today;
@@ -19,7 +18,7 @@
 				array_push($eventListCities, $eventList[$i]['city']);
 			}
 			$goneThru = true;
-		}
+
 	}
 	//list of cities with events
 	$eventListCities = array_values(array_unique($eventListCities));
@@ -39,7 +38,7 @@
 	}
 	for($q = 0; $q < count($eventListCities); $q++){
 		for($z = 0; $z < count($userTable); $z++){
-			if($eventListCities[$q] === $userTable[$z]['city'] && $goneThru == true){
+			if($eventListCities[$q] === $userTable[$z]['city']){
 				$to = $userTable[$z]['email'];
                 $subject = "Upcoming Shows in ".$userTable[$z]['city'];
                 $from = "noreply@showhaus.org";
@@ -64,48 +63,50 @@
                 //loop thru eventslist
                 //for each day Tues to Mon
                 for($f = 0; $f < count($finalEventList); $f++){
-	                $showTemplate = $finalEventList[$f]['title'];
-	                $venueTemplate = '<div style="font-size:12px">@ '.$finalEventList[$f]['venue'].'</div><br/>';
-	                if($finalEventList[$f]['fb_event']){
-	                    $showTemplate = "<div><a href='".$finalEventList[$f]['fb_event']."'>".$showTemplate."</a>";
-	                    if($finalEventList[$f]['featured'] !== ''){
-                            $showTemplate.= "<b> &#128077;</b>";
-                        }
-                        else{
-                            $showTemplate.="</div>";
-                        }
-	                }
-	                else{
-                        $showTemplate = "<div>".$showTemplate."</div>";
-	                }
-	                $eventStrTime = strtotime($finalEventList[$f]['date']);
-	                if(date("l", $eventStrTime) === "Tuesday"){
-	                    $variables['tuesdayShows'].=$showTemplate.$venueTemplate;
-	                    $variables['tuesdayDate'] = $finalEventList[$f]['date'];
-	                }
-	                else if(date("l", $eventStrTime) === "Wednesday"){
-	                    $variables['wednesdayShows'] .= $showTemplate.$venueTemplate;
-                        $variables['wednesdayDate'] = $finalEventList[$f]['date'];
-	                }
-	                else if(date("l", $eventStrTime) === "Thursday"){
-                        $variables['thursdayShows'] .= $showTemplate.$venueTemplate;
-                        $variables['thursdayDate'] = $finalEventList[$f]['date'];
-                    }
-                    else if(date("l", $eventStrTime) === "Friday"){
-                        $variables['fridayShows'] .= $showTemplate.$venueTemplate;
-                        $variables['fridayDate'] = $finalEventList[$f]['date'];
-                    }
-                    else if(date("l", $eventStrTime) === "Saturday"){
-                        $variables['saturdayShows'] .= $showTemplate.$venueTemplate;
-                        $variables['saturdayDate'] = $finalEventList[$f]['date'];
-                    }
-                    else if(date("l", $eventStrTime) === "Sunday"){
-                        $variables['sundayShows'] .= $showTemplate.$venueTemplate;
-                        $variables['sundayDate'] = $finalEventList[$f]['date'];
-                    }
-                    else if(date("l", $eventStrTime) === "Monday"){
-                        $variables['mondayShows'] .= $showTemplate.$venueTemplate;
-                        $variables['mondayDate'] = $finalEventList[$f]['date'];
+	                if($userTable[$z]['city'] === $finalEventList[$f]['city']){
+		                $showTemplate = $finalEventList[$f]['title'];
+		                $venueTemplate = '<div style="font-size:12px">@ '.$finalEventList[$f]['venue'].'</div><br/>';
+		                if($finalEventList[$f]['fb_event']){
+		                    $showTemplate = "<div><a href='".$finalEventList[$f]['fb_event']."'>".$showTemplate."</a>";
+		                    if($finalEventList[$f]['featured'] !== ''){
+	                            $showTemplate.= "<b> &#128077;</b>";
+	                        }
+	                        else{
+	                            $showTemplate.="</div>";
+	                        }
+		                }
+		                else{
+	                        $showTemplate = "<div>".$showTemplate."</div>";
+		                }
+		                $eventStrTime = strtotime($finalEventList[$f]['date']);
+		                if(date("l", $eventStrTime) === "Tuesday"){
+		                    $variables['tuesdayShows'].=$showTemplate.$venueTemplate;
+		                    $variables['tuesdayDate'] = $finalEventList[$f]['date'];
+		                }
+		                else if(date("l", $eventStrTime) === "Wednesday"){
+		                    $variables['wednesdayShows'] .= $showTemplate.$venueTemplate;
+	                        $variables['wednesdayDate'] = $finalEventList[$f]['date'];
+		                }
+		                else if(date("l", $eventStrTime) === "Thursday"){
+	                        $variables['thursdayShows'] .= $showTemplate.$venueTemplate;
+	                        $variables['thursdayDate'] = $finalEventList[$f]['date'];
+	                    }
+	                    else if(date("l", $eventStrTime) === "Friday"){
+	                        $variables['fridayShows'] .= $showTemplate.$venueTemplate;
+	                        $variables['fridayDate'] = $finalEventList[$f]['date'];
+	                    }
+	                    else if(date("l", $eventStrTime) === "Saturday"){
+	                        $variables['saturdayShows'] .= $showTemplate.$venueTemplate;
+	                        $variables['saturdayDate'] = $finalEventList[$f]['date'];
+	                    }
+	                    else if(date("l", $eventStrTime) === "Sunday"){
+	                        $variables['sundayShows'] .= $showTemplate.$venueTemplate;
+	                        $variables['sundayDate'] = $finalEventList[$f]['date'];
+	                    }
+	                    else if(date("l", $eventStrTime) === "Monday"){
+	                        $variables['mondayShows'] .= $showTemplate.$venueTemplate;
+	                        $variables['mondayDate'] = $finalEventList[$f]['date'];
+	                    }
                     }
                 }
 
