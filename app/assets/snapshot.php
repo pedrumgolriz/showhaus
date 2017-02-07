@@ -4,9 +4,10 @@ ini_set('display_errors', '1');
     error_reporting(E_ALL);
 date_default_timezone_set('America/New_York');
 $server_date = date("m/d/Y");
+$limitTo = rand(800, 1000);
 
 $mysqli = new mysqli("localhost", "read", "jX!57u6a", "haus");
-$query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS email FROM venue, events WHERE STR_TO_DATE(events.date, '%m/%d/%Y') >= STR_TO_DATE('".$server_date."', '%m/%d/%Y') AND events.venue = venue.venue GROUP BY events.id LIMIT 1000");
+$query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS email FROM venue, events WHERE STR_TO_DATE(events.date, '%m/%d/%Y') >= STR_TO_DATE('".$server_date."', '%m/%d/%Y') AND events.venue = venue.venue GROUP BY events.id LIMIT ".$limitTo."");
 
 
 
@@ -21,7 +22,7 @@ $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS ema
     <head>
         <title>showhaus: new york show listings and venues </title>
         <meta name="description" content="showhaus is an open directory of live music and venues across a variety of cities.">
-          <meta name="keywords" content="concerts, music, shows, venues, diy, indie">
+          <meta name="keywords" content="concerts, music, shows, venues, diy, indie, diy electronic music, music diy, music marketing for the diy musician, underground">
           <meta name="google-site-verification" content="0JT4T9OaYhqVePWErhSX--jCQjyYX8ItSsw4vJjxodE" />
           <link rel="icon" type="image/png" href="../favicon.ico">
     </head>
@@ -66,10 +67,12 @@ $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS ema
                         </td> 
                         <td class="location" itemprop="location" itemscope itemtype="http://schema.org/Place"> 
                            <span class="name" itemprop="name">@ <?php echo $row['venue'];?></span>
-                           <span itemprop="address"><a href="http://showhaus.org/#!/<?php echo $row['id'];?>/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['title'];?>">Details</a></span>
+                           <div itemprop="address"><a href="http://showhaus.org/#!/<?php echo $row['id'];?>/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['title'];?>">Details</a></div>
                         </td> 
                         <td class="url" itemprop="url" itemscope itemtype="http://schema.org/Url">
-                            <a href="http://showhaus.org/#!/<?php echo $row['id'];?>/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['title'];?>">http://showhaus.org/#!/<?php echo $row['id'];?>/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['title'];?></a>
+                            <a href="http://showhaus.org/#!/<?php echo $row['id'];?>/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['title'];?>">
+                                http://showhaus.org/#!/<?php echo $row['id'];?>/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['title'];?>
+                            </a>
                         </td>
                     </tr>
             <?php
