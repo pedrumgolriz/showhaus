@@ -52,6 +52,11 @@ $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS ema
         <?php
             while($row = mysqli_fetch_array($query)) {
             ?>
+                    <tr>
+                        <th colspan="6">
+                            <?php echo $row['title'];?>
+                        </th>
+                    </tr>
                     <tr class="event-wrapper" itemscope itemtype="http://schema.org/Event">
                         <td itemprop="name"><a href="http://showhaus.org/#!/<?php echo $row['id'];?>/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['title'];?>"><?php echo $row['title'];?></a></p> 
                         <td class="event-date" itemprop="startDate" content="<?php echo $row['date'];?>"><?php echo $row['date'];?></span></td>
