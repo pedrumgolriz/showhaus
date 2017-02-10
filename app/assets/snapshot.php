@@ -6,6 +6,7 @@ date_default_timezone_set('America/New_York');
 $server_date = date("m/d/Y");
 $limitTo = rand(800, 1000);
 
+
 $mysqli = new mysqli("localhost", "read", "jX!57u6a", "haus");
 $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS email FROM venue, events WHERE STR_TO_DATE(events.date, '%m/%d/%Y') >= STR_TO_DATE('".$server_date."', '%m/%d/%Y') AND events.venue = venue.venue GROUP BY events.id LIMIT ".$limitTo."");
 
@@ -38,7 +39,6 @@ $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS ema
                 <a href="http://showhaus.org/#!post"><strong>post a show</strong></a>
             </div>
         </div>
-        <h1><?php echo mysqli_num_rows($query) ?> Upcoming Shows</h1>
 
     <table border="1"> 
         <tr>
@@ -52,13 +52,8 @@ $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS ema
         <?php
             while($row = mysqli_fetch_array($query)) {
             ?>
-                    <tr>
-                        <th colspan="6">
-                            <?php echo $row['title'];?>
-                        </th>
-                    </tr>
                     <tr class="event-wrapper" itemscope itemtype="http://schema.org/Event">
-                        <td itemprop="name"><a href="http://showhaus.org/#!/<?php echo $row['id'];?>/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['title'];?>"><?php echo $row['title'];?></a></p> 
+                        <td itemprop="name"><a href="http://showhaus.org/#!/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['id'];?>"><span itemprop="name"><?php echo $row['title'];?></span></a></td> 
                         <td class="event-date" itemprop="startDate" content="<?php echo $row['date'];?>"><?php echo $row['date'];?></span></td>
                         <td class="event-time" itemprop="doorTime" content="<?php echo $row['time'];?>"><?php echo $row['time'];?></span></td>
                         <td class="event-fees"> 
@@ -75,8 +70,8 @@ $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS ema
                            <div itemprop="address"><a href="http://showhaus.org/#!/<?php echo $row['id'];?>/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['title'];?>">Details</a></div>
                         </td> 
                         <td class="url" itemprop="url" itemscope itemtype="http://schema.org/Url">
-                            <a href="http://showhaus.org/#!/<?php echo $row['id'];?>/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['title'];?>">
-                                http://showhaus.org/#!/<?php echo $row['id'];?>/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['title'];?>
+                            <a href="http://showhaus.org/#!/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['id'];?>">
+                                http://showhaus.org/#!/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['id'];?>
                             </a>
                         </td>
                     </tr>
