@@ -16,7 +16,8 @@ angular
 		'ngRoute',
 		'ngSanitize',
 		'ngTouch',
-		'angularUtils.directives.dirPagination'
+		'angularUtils.directives.dirPagination',
+		'ngLocationUpdate'
 	])
 	.factory('loadingService', function () {
 		var service = {
@@ -72,10 +73,6 @@ angular
 				templateUrl: 'pages/showpage.html',
 				controller: 'ShowpageCtrl'
 			})*/
-			.when('/showpage/:id/:city/:venue/:title/', {
-				templateUrl: 'pages/showpage.html',
-				controller: 'ShowpageCtrl'
-			})
 			.when('/post', {
 				templateUrl: 'pages/post.html',
 				controller: 'PostCtrl'
@@ -97,7 +94,8 @@ angular
 				controller: 'ArchiveCtrl'
 			})
 			.otherwise({
-				redirectTo: '/'
+				templateUrl: 'pages/main.html',
+                controller: 'MainCtrl'
 			});
 		$httpProvider.responseInterceptors.push('onCompleteInterceptor');
 		$locationProvider.hashPrefix('!');

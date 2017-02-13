@@ -71,8 +71,27 @@ angular.module('showhaus')
     return $resource(jsonQuery);
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope, $http, $route, eventsFactory){
-    $scope.events = new eventsFactory.query();
-	$(".ui-dialog-content").dialog("destroy");
+    $scope.postQuery = parseInt(window.location.hash.split('/')[window.location.hash.split('/').length-1]);
+    $rootScope.$on('event', function(event, obj){
+        $scope.events = obj.events;
+    })
+    if($scope.events === undefined){
+        $scope.events = new eventsFactory.query();
+    }
+    else{
+        $(".ui-dialog-content").dialog("destroy");
+    }
+
+    $scope.displayedEvent = "";
+    $scope.events.$promise.then(function(data){
+        for(var i = 0; i < data.length; i++){
+            if($scope.postQuery == data[i].id){
+                $scope.go(data[i]);
+            }
+        }
+        return data;
+    });
+
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
 	}
@@ -93,7 +112,6 @@ angular.module('showhaus')
             }
         });
     }
-	$scope.eventVenues = [];
     //##FILTERS##//
     $scope.list = true; //sets list as default view
     $scope.resetVenues = function(){
@@ -116,9 +134,10 @@ angular.module('showhaus')
     $scope.citySelect = geolocation(); // jshint ignore:line
     //##go to showpage from list view##//
     $scope.go = function (event) {
-	  var venue = event.venue.replace(/\s/g, '_');
-	  var title = event.title.replace(/\s/g, '_')
-      $location.path('showpage/'+event.id+'/'+event.city+'/'+event.venue+'/'+title);
+      $('.showModal').dialog({closeText: "", title:event.title});
+      $scope.displayedEvent = event;
+      $location.update_path("/"+event.city+"/"+event.venue+"/"+event.id, true);
+      $rootScope.broadcast('events', $scope.events);
     };
     //####//
     $scope.$watch(function() {
@@ -357,4 +376,4 @@ angular.module('showhaus')
         });
         return filtered;
     }
-  })
+  });
