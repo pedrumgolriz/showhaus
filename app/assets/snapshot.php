@@ -67,7 +67,7 @@ $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS ema
                         </td> 
                         <td class="location" itemprop="location" itemscope itemtype="http://schema.org/Place"> 
                            <span class="name" itemprop="name">@ <?php echo $row['venue'];?></span>
-                           <div itemprop="address"><a href="http://showhaus.org/#!/<?php echo $row['id'];?>/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['title'];?>">Details</a></div>
+                           <div itemprop="address"><a href="http://showhaus.org/#!/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['id'];?>">Details</a></div>
                         </td> 
                         <td class="url" itemprop="url" itemscope itemtype="http://schema.org/Url">
                             <a href="http://showhaus.org/#!/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['id'];?>">

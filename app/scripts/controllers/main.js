@@ -136,7 +136,11 @@ angular.module('showhaus')
     $scope.go = function (event) {
       $('.showModal').dialog({closeText: "", title:event.title});
       $scope.displayedEvent = event;
-      $location.update_path("/"+event.city+"/"+event.venue+"/"+event.id, true);
+      var url = "/"+event.city+"/"+event.venue+"/"+event.id;
+      url = url.replace(/ /g,"_");
+
+
+      $location.update_path(url, true);
       $rootScope.broadcast('events', $scope.events);
     };
     //####//
