@@ -314,8 +314,8 @@ margin: 0 auto;
         display: inline-block;
 
         /* show details (title, outbound icon, price) */
-        .day {font-weight: 300;}
-        .time {color: gray; font-size: 13px;}
+        .day {font-weight: 300; padding: 0 0 5px 0;}
+        .time {color: gray; font-size: 11px;}
     }
 
     /* 2. show venue */
@@ -324,8 +324,8 @@ margin: 0 auto;
         padding: 0 20px 0 0;
         vertical-align: top;
         display: inline-block;
-        & .venue {font-weight: 500;}
-        & .address {color: gray; font-size: 13px;}
+        & .venue {font-weight: 500; padding: 0 0 5px 0;}
+        & .address {color: gray; font-size: 11px;}
 
         .unlisted {opacity: .4;}
 

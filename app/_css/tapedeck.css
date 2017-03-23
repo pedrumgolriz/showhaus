@@ -989,10 +989,11 @@ img.full-width {
     display: inline-block;
     /* show details (title, outbound icon, price) */ }
     .show-contain .show-date .day {
-      font-weight: 300; }
+      font-weight: 300;
+      padding: 0 0 5px 0; }
     .show-contain .show-date .time {
       color: gray;
-      font-size: 13px; }
+      font-size: 11px; }
   .show-contain .show-venue {
     width: 20%;
     padding: 0 20px 0 0;
@@ -1000,10 +1001,11 @@ img.full-width {
     display: inline-block;
     /* links */ }
     .show-contain .show-venue .venue {
-      font-weight: 500; }
+      font-weight: 500;
+      padding: 0 0 5px 0; }
     .show-contain .show-venue .address {
       color: gray;
-      font-size: 13px; }
+      font-size: 11px; }
     .show-contain .show-venue .unlisted {
       opacity: .4; }
     .show-contain .show-venue a:link {
