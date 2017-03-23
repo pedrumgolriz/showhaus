@@ -1,40 +1,43 @@
-<div class="breadcrumb">
-	<!-- tagline -->
-	<div class="tagline">
-		<span class="tagline-logo"></span>
-		<span class="tagline-text"><a href="#!">local, open concert listings</a></span>
+<!-- Header
+================================================ -->
+
+<section class="showhaus-lead">
+
+	<!-- Description -->
+	<div class="lead-description">
+		👋&nbsp;&nbsp;Hello, Showhaus is a friendly local concert aggregator. Learn more about how it works <a href="#">here</a>.
 	</div>
 
-	<!-- nav -->
-	<div class="breadcrumb-nav home">
-		<a href="#!about">about</a>
-		<!-- :: <a href="#!api">api</a> -->
-		<a href="#!feeds">add a feed</a>
-		<a href="#!post"><strong>post a show</strong></a>
-	</div>
-</div>
-<!--░░░░░░░░░░░░ hero ░░░░░░░░░░░░-->
-<div class="hero-contain">
-	<!-- title -->
-	<div class="logo"><a href="http://showhaus.org"><img src="../assets/header.png"></a></div>
-
-	<!-- heading -->
-	<div class="heading">
-		Below is a list of <strong>{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} upcoming concerts</strong> in New York City.
-		<p><small>Please double check show times and venues as they are subject to change.</small></p>
+	<!-- Logo -->
+	<div class="lead__logo">
+		<a href="http://showhaus.org"><img class="logo-item" src="../assets/header.png"></a>
 	</div>
 
-	<!-- filter -->
-	<div class="filter">
+	<!-- Main Nav -->
+	<nav class="lead__main-nav">
+		<ul class="main-nav-contain">
+			<li class="main-nav__item">
+				<a href="#">FAQ</a>
+			</li>
+			<li class="main-nav__item">
+				<a href="#">Data Feeds</a>
+			</li>
+			<li class="main-nav__item">
+				<a href="#">Submit a Show</a>
+			</li>
+		</ul>
+	</nav>
 
-	<!--
+	<!-- Filter -->
+	<div class="content-filter filter">
+
 		<div class="filter-contain city-filter">
 			<select id="select-beast" class="filter-drop"  ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
 				<option value="Baltimore">Baltimore</option>
 				<option value="NYC">NYC</option>
 			</select>
 		</div>
-	-->
+
 		<div class="filter-contain venue-filter">
 			<select id="select-beast venueSelect" class="filter-drop" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
 				<option value="">-- all venues --</option>
@@ -52,7 +55,23 @@
 			<label for="free" >Free Shows Only</label>
 		</div>
 	</div>
-</div>
+
+</section>
+
+<!-- Content Lead
+================================================ -->
+<section class="main-content-lead">
+
+		<div class="city-heading__extra-info">
+			<h3 class="city-heading__header">Displaying <strong>{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} upcoming concerts</strong> in New York City.</h3>
+			Please double check show times and venues as they are subject to change!</p>
+		</div>
+	</div>
+
+
+</section>
+
+
 
 <span class="ask"></span>
 

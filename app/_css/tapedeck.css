@@ -544,9 +544,9 @@ a:visited {
 
 /* ░░░░░░░░░░░░ standard page ░░░░░░░░░░░░ */
 body {
-  font-family: 'Proxima Nova', Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-weight: 300;
-  font-size: 15px;
+  font-size: 13px;
   letter-spacing: .01em; }
 
 .breadcrumb {
@@ -591,7 +591,7 @@ body {
   background-color: #FFFC9E;
   color: #000;
   max-width: 600px;
-  margin: 15px auto;
+  margin: 13px auto;
   text-align: left;
   padding: 0 10px; }
 
@@ -605,7 +605,7 @@ img.full-width {
 
 /* ░░░░░░░░░░░░ ui elements ░░░░░░░░░░░░ */
 .button {
-  font-size: 15px;
+  font-size: 13px;
   text-align: center;
   color: rgba(0, 0, 0, 0.75);
   font-weight: 400;
@@ -731,7 +731,89 @@ img.full-width {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px; }
 
-/* ░░░░░░░░░░░░ hero ░░░░░░░░░░░░ */
+/* Mixins
+   ========================================================================== */
+/* Homepage
+================================================ */
+/* Showhaus Lead
+======================== */
+.showhaus-lead {
+  margin: 0 auto 20px auto;
+  max-width: 100%;
+  background: #fff;
+  /* Gradient if we ever want it */
+  height: auto; }
+
+/* Description */
+.lead-description {
+  font-size: 14px;
+  max-width: 100%;
+  margin: 0 auto 60px auto;
+  text-align: center;
+  padding: 15px 0 15px 0;
+  background-color: #f9f9f9; }
+
+/* Logo */
+.lead__logo {
+  max-width: 480px;
+  margin: 0 auto 20px auto;
+  padding: 0; }
+
+.logo-item {
+  width: 100%;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor; }
+
+/* Navigation */
+.lead__main-nav {
+  display: block;
+  margin: 0 auto 50px auto;
+  text-align: center; }
+
+.main-nav-contain {
+  padding: 0;
+  background: none;
+  margin: 0; }
+
+.main-nav__item {
+  padding: 0;
+  background: none;
+  margin: 0;
+  display: inline-block;
+  font-size: 16px;
+  margin: 0 10px; }
+  .main-nav__item a {
+    color: #000;
+    text-decoration: none; }
+  .main-nav__item a:hover {
+    border-bottom: 1px dotted #000; }
+
+.main-nav__item--submit {
+  padding: 0;
+  background: none;
+  margin: 0;
+  display: inline-block;
+  font-size: 18px;
+  margin: 0 10px; }
+
+/* Content Lead
+======================== */
+.city-heading {
+  margin: 0 auto 40px auto;
+  max-width: 550px; }
+
+.city-heading__header {
+  font-size: 20px;
+  padding: 0;
+  margin: 0 0 10px 0;
+  font-weight: 300; }
+
+.city-heading__extra-info {
+  font-size: 15px;
+  text-align: center; }
+
 .hero-contain {
   text-align: center;
   margin: 0 auto;
@@ -771,7 +853,7 @@ img.full-width {
 .filter {
   max-width: 650px;
   background-color: #fbfbfb;
-  margin: 0 auto 25px auto;
+  margin: 0 auto 45px auto;
   border-radius: 5px;
   border: 1px solid #ddd;
   padding: 10px;
@@ -802,7 +884,7 @@ img.full-width {
   .filter .city-filter {
     width: 100px; }
   .filter .venue-filter {
-    width: 340px;
+    width: 240px;
     padding: 0 10px; }
   .filter .staff-filter {
     width: 135px;
@@ -879,7 +961,7 @@ img.full-width {
     margin: 10px 0 0 0; } }
 /* ░░░░░░░░░░░░ show ░░░░░░░░░░░░ */
 .show-contain {
-  border-bottom: 1px solid rgba(179, 179, 179, 0.31);
+  border-bottom: 2px solid rgba(179, 179, 179, 0.15);
   min-height: 100px;
   max-height: 800px;
   padding: 5px 0 0 0;
@@ -937,7 +1019,7 @@ img.full-width {
     width: 55%;
     position: relative;
     display: inline-block;
-    font-size: 17px;
+    font-size: 15px;
     /* links */ }
     .show-contain .show-title .title {
       position: relative; }
@@ -963,10 +1045,10 @@ img.full-width {
   text-align: center;
   text-transform: uppercase;
   line-height: normal;
-  font-size: 12px; }
+  font-size: 10px; }
 
 .show-tickets {
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
   color: rgba(0, 0, 0, 0.75);
   font-weight: 500;
@@ -981,20 +1063,17 @@ img.full-width {
   /* show tickets link */ }
   .show-tickets a {
     color: black;
-    text-decoration: none; }
-  .show-tickets a:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    cursor: pointer;
     text-decoration: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
-  .show-tickets a:active {
-    border: none; }
-  .show-tickets a:visited {
-    text-decoration: none; }
+    transition: .2s; }
   .show-tickets:hover {
     background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    text-decoration: none; }
+    text-decoration: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.3) !important;
+    transition: .2s; }
+  .show-tickets:active {
+    border-bottom: none;
+    transition: .2s; }
 
 /* ░░░░░░░░░░░░ expanded show ░░░░░░░░░░░░ */
 .show-detail-contain.expand {
@@ -1187,7 +1266,7 @@ footer {
   footer a:visited {
     color: #338ea9; }
   footer .footer-contain {
-    margin: 100px auto 0 auto;
+    margin: 130px auto 0 auto;
     vertical-align: top;
     padding: 40px 0;
     text-align: center;
@@ -1268,7 +1347,7 @@ input {
   /* input size */
   /* input styles */
   /* error input styles */ }
-  input[type="text"], input[type="email"] {
+  input[type="text"] {
     padding: 12px;
     border: 2px solid rgba(0, 0, 0, 0.3);
     border-radius: 3px;
@@ -1277,7 +1356,7 @@ input {
     display: inline; }
   input [type="text"]:hover {
     border: 2px solid rgba(0, 0, 0, 0.4); }
-  input[type="text"]:focus, input[type="email"]:focus {
+  input[type="text"]:focus, input[type="text"].focus {
     border: solid 2px rgba(0, 0, 0, 0.5);
     background-color: #fff;
     -webkit-box-shadow: 2px 2px 4px 0px rgba(50, 50, 50, 0.26);
