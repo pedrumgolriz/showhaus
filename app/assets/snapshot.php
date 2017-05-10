@@ -17,7 +17,7 @@ if($qs > 0){
     <html>
             <head>
                 <title><?php echo $row['title'];?></title>
-                <meta name="description" content="showhaus is an open directory of live music and venues across a variety of cities.">
+                <meta name="description" content="<?php echo $row['description'];?>">
                   <meta name="keywords" content="concerts, music, shows, venues, diy, indie, diy electronic music, music diy, music marketing for the diy musician, underground">
                   <meta name="google-site-verification" content="0JT4T9OaYhqVePWErhSX--jCQjyYX8ItSsw4vJjxodE" />
                   <link rel="icon" type="image/png" href="../favicon.ico">
@@ -27,12 +27,6 @@ if($qs > 0){
                     <div class="tagline">
                         <span class="tagline-text"><?php echo $row['title'];?></span>
                     </div>
-                    <div class="breadcrumb-nav home">
-                        <a href="http://showhaus.org/#!about">about</a>
-                        <!-- :: <a href="#!api">api</a> -->
-                        <a href="http://showhaus.org/#!feeds">feeds</a>
-                        <a href="http://showhaus.org/#!post"><strong>post a show</strong></a>
-                    </div>
                 </div>
 
             <table border="1"> 
@@ -40,6 +34,7 @@ if($qs > 0){
                     <th>Title</th>
                     <th>Date</th>
                     <th>Time</th>
+                    <th>Description</th>
                     <th>Price/Tickets</th>
                     <th>Venue</th>
                     <th>Url</th>
@@ -47,8 +42,9 @@ if($qs > 0){
 
                     <tr class="event-wrapper" itemscope itemtype="http://schema.org/Event">
                         <td itemprop="name"><a href="http://showhaus.org/#!/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['id'];?>"><span itemprop="name"><?php echo $row['title'];?></span></a></td> 
-                        <td class="event-date" itemprop="startDate" content="<?php echo $row['date'];?>"><?php echo $row['date'];?></span></td>
-                        <td class="event-time" itemprop="doorTime" content="<?php echo $row['time'];?>"><?php echo $row['time'];?></span></td>
+                        <td class="event-date" itemprop="startDate" content="<?php echo $row['date'];?>"><?php echo $row['date'];?></td>
+                        <td class="event-time" itemprop="doorTime" content="<?php echo $row['time'];?>"><?php echo $row['time'];?></td>
+                        <td class="event-description" itemprop="about" content="<?php echo $row['description'];?>"><?php echo $row['description'];?></td>
                         <td class="event-fees"> 
                             <span>Price:
                                 <span itemprop="offers" itemscope itemtype="http://schema.org/Offer"> 
