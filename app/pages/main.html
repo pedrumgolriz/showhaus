@@ -4,8 +4,9 @@
 <section class="showhaus-lead">
 
 	<!-- Description -->
-	<div class="lead-description">
-		👋&nbsp;&nbsp;Hello, Showhaus is a friendly local concert aggregator. Learn more about how it works <a href="#">here</a>.
+	<div class="lead-description" ng-if="firstTimeVisitor">
+		👋&nbsp;&nbsp;Hello, Showhaus is a friendly local concert aggregator. Learn more about how it works <a href="#!/about">here</a>.
+		<a title="dismiss" class="fa fa-times closeTopBar" aria-hidden="true" ng-click="dismissHelp()"></a>
 	</div>
 
 	<!-- Logo -->
@@ -17,13 +18,13 @@
 	<nav class="lead__main-nav">
 		<ul class="main-nav-contain">
 			<li class="main-nav__item">
-				<a href="#">FAQ</a>
+				<a href="#!/about">About</a>
 			</li>
 			<li class="main-nav__item">
-				<a href="#">Data Feeds</a>
+				<a href="#!/feeds">Data Feeds</a>
 			</li>
 			<li class="main-nav__item">
-				<a href="#">Submit a Show</a>
+				<a href="#!/post">Submit a Show</a>
 			</li>
 		</ul>
 	</nav>
@@ -63,7 +64,7 @@
 <section class="main-content-lead">
 
 		<div class="city-heading__extra-info">
-			<h3 class="city-heading__header">Displaying <strong>{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} upcoming concerts</strong> in New York City.</h3>
+			<h3 class="city-heading__header">Displaying <strong>{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} upcoming concerts</strong> in {{citySelect}}.</h3>
 			Please double check show times and venues as they are subject to change!</p>
 		</div>
 	</div>

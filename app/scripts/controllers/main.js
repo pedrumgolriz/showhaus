@@ -72,6 +72,7 @@ angular.module('showhaus')
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope, $http, $route, eventsFactory){
     $scope.postQuery = parseInt(window.location.hash.split('/')[window.location.hash.split('/').length-1]);
+    $scope.firstTimeVisitor = true;
     $rootScope.$on('event', function(event, obj){
         $scope.events = obj.events;
     })
@@ -91,6 +92,15 @@ angular.module('showhaus')
         }
         return data;
     });
+
+    if(sessionStorage.getItem("og")){
+        $scope.firstTimeVisitor = false;
+    }
+
+    $scope.dismissHelp = function(){
+        sessionStorage.setItem("og", 1);
+        $scope.firstTimeVisitor = false;
+    }
 
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
