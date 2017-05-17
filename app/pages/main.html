@@ -5,7 +5,7 @@
 
 	<!-- Description -->
 	<div class="lead-description" ng-if="firstTimeVisitor">
-		👋&nbsp;&nbsp;Hello, Showhaus is a friendly local concert aggregator. Learn more about how it works <a href="#!/about">here</a>.
+		&#128075; &nbsp;&nbsp;Hello, Showhaus is a friendly local concert aggregator. Learn more about how it works <a href="#!/about">here</a>.
 		<a title="dismiss" class="fa fa-times closeTopBar" aria-hidden="true" ng-click="dismissHelp()"></a>
 	</div>
 
@@ -33,16 +33,13 @@
 	<div class="content-filter filter">
 
 		<div class="filter-contain city-filter">
-			<select id="select-beast" class="filter-drop"  ng-model="citySelect" ng-change="setNewCookie();resetVenues()">
-				<option value="Baltimore">Baltimore</option>
-				<option value="NYC">NYC</option>
-			</select>
+			<select ng-change="setNewCookie();resetVenues()" ng-model="citySelect" ng-options="city.city for city in events | unique:'city'"></select>
 		</div>
 
 		<div class="filter-contain venue-filter">
 			<select id="select-beast venueSelect" class="filter-drop" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
 				<option value="">-- all venues --</option>
-				<option ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
+				<option ng-repeat="venue in events | filter:cityselect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
 			</select>
 		</div>
 
@@ -64,7 +61,7 @@
 <section class="main-content-lead">
 
 		<div class="city-heading__extra-info">
-			<h3 class="city-heading__header">Displaying <strong>{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} upcoming concerts</strong> in {{citySelect}}.</h3>
+			<h3 class="city-heading__header">Displaying <strong>{{(events|filter:{city:cityselect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} upcoming concerts</strong> in {{cityselect}}.</h3>
 			Please double check show times and venues as they are subject to change!</p>
 		</div>
 	</div>
@@ -102,7 +99,7 @@
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
-	<div class="show-contain" ng-class="event.date==today ? 'today' : ''" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect} | isFeatured:{featured:staffPicks} | isFree:{price:freeBox}) | orderBy: orderByDate | itemsPerPage: numItems track by $index">
+	<div class="show-contain" ng-class="event.date==today ? 'today' : ''" dir-paginate="event in filtered = (events | filter: {city:cityselect} | filter:{venue:venueSelect} | isFeatured:{featured:staffPicks} | isFree:{price:freeBox}) | orderBy: orderByDate | itemsPerPage: numItems track by $index">
 		<div class="show-detail-contain">
 
 			<!-- date / time -->

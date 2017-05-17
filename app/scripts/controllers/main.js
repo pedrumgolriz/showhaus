@@ -29,13 +29,10 @@ function geolocation() {
   if (getcookies === 'all'){
     getcookies = '';
   }
-  if(getcookies === ''){
-    getcookies = 'NYC';
-  }
   if (getcookies.length > 0) {
     return getcookies;
   }
-  /*else if (navigator.geolocation && !getcookies) {
+  else if (navigator.geolocation && !getcookies) {
     navigator.geolocation.getCurrentPosition(
       function (pos) {
         var point = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
@@ -59,7 +56,7 @@ function geolocation() {
           }
         });
       });
-  }*/
+  }
 }
 /* jshint ignore:end */
 //##End Geolocation##//
@@ -72,6 +69,7 @@ angular.module('showhaus')
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope, $http, $route, eventsFactory){
     $scope.postQuery = parseInt(window.location.hash.split('/')[window.location.hash.split('/').length-1]);
+    $scope.citySelect = {city:'all'};
     $scope.firstTimeVisitor = true;
     $rootScope.$on('event', function(event, obj){
         $scope.events = obj.events;
@@ -88,6 +86,9 @@ angular.module('showhaus')
         for(var i = 0; i < data.length; i++){
             if($scope.postQuery == data[i].id){
                 $scope.go(data[i]);
+            }
+            if(data[i].city.toLowerCase() === "ny" || data[i].city.toLowerCase() === "queens"){
+                data[i].city = "NYC";
             }
         }
         return data;
@@ -132,35 +133,47 @@ angular.module('showhaus')
     };
     //####//
     $scope.setNewCookie = function(){
-      if($scope.citySelect!==''){
-        document.cookie = 'city=' + $scope.citySelect;
+      if($scope.cityselect!==''){
+        document.cookie = 'city=' + $scope.cityselect;
       }
       else{
         document.cookie = 'city=NYC';
-        $scope.citySelect = 'NYC';
+        $scope.cityselect = 'NYC';
       }
     };
     //set the city based on the users location
-    $scope.citySelect = geolocation(); // jshint ignore:line
+    $scope.cityselect = geolocation(); // jshint ignore:line
     //##go to showpage from list view##//
     $scope.go = function (event) {
-      $('.showModal').dialog({closeText: "", title:event.title});
+      $(".ui-dialog-content").dialog("destroy");
+      $('.showModal').dialog(
+        {closeText: "", title:event.title,
+        modal: true,
+            create: function() {
+              $(".ui-dialog").find(".ui-dialog-titlebar").css({
+                'background-image': 'none',
+                'color': 'black',
+                'background-color': 'white',
+                'border': 'none'
+              });
+              $(".ui-widget-overlay+.ui-front").css({
+                'background-color': 'blue'
+              })
+            }
+        }
+        );
       $scope.displayedEvent = event;
       var url = "/"+event.city+"/"+event.venue+"/"+event.id;
       url = url.replace(/ /g,"_");
 
 
       $location.update_path(url, true);
-      $rootScope.broadcast('events', $scope.events);
     };
     //####//
     $scope.$watch(function() {
       return loadingService.isLoading();
     }, function(value) { $scope.loading = value; });
     //##Listen to events from showpage##//
-    if(typeof getSetCity.get() === 'string'){
-      $scope.citySelect = getSetCity.get();
-    }
     if(typeof getSetVenue.get() === 'string'){
       $scope.venueSelect = getSetVenue.get();
     }
@@ -187,7 +200,7 @@ angular.module('showhaus')
 		window.open(url,'_blank');
 	}
 	$scope.$watchCollection('citySelect', function() {
-		if($scope.citySelect==""){
+		if($scope.cityselect==""){
 			$scope.resetVenues();
 		}
 	});
@@ -316,10 +329,13 @@ angular.module('showhaus')
                     }
                     break;
                 case 'delete':
-                    window.location.reload();
+                    for(var i in $scope.events){
+                        if($scope.events[i].id === postNumber){
+                            $scope.events.splice(i, 1);
+                        }
+                    }
                     break;
                 case 'staffPick':
-                    window.location.reload();
                     break;
             }
         });
