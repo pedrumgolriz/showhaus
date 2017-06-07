@@ -1,29 +1,5 @@
 <div id="fb-root"></div>
-<div ng-repeat="event in events">
-  <div id="static_topnav">
-    <div class="breadcrumbs">
-      <a href="#!/">SHOWHAUS</a> &gt;
-      <a href="#!/" ng-click="setCity(event.city)">{{event.city}}</a> &gt;
-      <a href="#!/" ng-click="setCity(event.city); setVenue(event.venue)">{{event.venue}}</a> &gt;
-      <span id="showpage_title_breadcrumbs">{{event.title}}</span>
-    </div>
-    <div class="editshow">[ <a href="#" ng-click="edit(event.id)">EDIT SHOW<a/> ]</div>
-  </div>
-  <div id="showpage_util">
-    <div class="showpage_share"><strong>share:</strong>
-     <span class="share_fb">
-        <a ng-click="fbshare({{event.id}})">[ FACEBOOK ]</a>
-      </span>
-      <span class="share_twitter">
-        <a ng-href="https://twitter.com/intent/tweet?url=http://showha.us/?post={{event.id}}&text={{event.title}}&hashtags=showhaus,{{event.city}},{{event.venue}}">[ TWITTER ]</a>
-      </span>
-    </div>
-    <div class="showpage_tags"><strong>tags:</strong> "{{event.tag1}}" <span ng-if="event.tag2!=''">"{{event.tag2}}"</span></div>
-
-
-
-
-  </div>
+<div>
   <div id="showpage_wrap">
     <div class="title"> {{event.title}} </div>
     <div class="subtitle" ng-if="event.subtitle"> {{event.subtitle}} </div>

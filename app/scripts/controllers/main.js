@@ -69,8 +69,9 @@ angular.module('showhaus')
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope, $http, $route, eventsFactory){
     $scope.postQuery = parseInt(window.location.hash.split('/')[window.location.hash.split('/').length-1]);
-    $scope.citySelect = {city:'all'};
+    $scope.citySelect = 'all';
     $scope.firstTimeVisitor = true;
+    $scope.showPage = false;
     $rootScope.$on('event', function(event, obj){
         $scope.events = obj.events;
     })
@@ -127,47 +128,30 @@ angular.module('showhaus')
     $scope.list = true; //sets list as default view
     $scope.resetVenues = function(){
       $scope.venueSelect = "";
+      $scope.filteredVenues = [];
       $timeout(function () {
         $('select').trigger('chosen:updated');
       }, 0, false);
     };
     //####//
-    $scope.setNewCookie = function(){
-      if($scope.cityselect!==''){
-        document.cookie = 'city=' + $scope.cityselect;
+    $scope.setNewCookie = function(e){
+      if($scope.citySelect){
+        document.cookie = 'city=' + $scope.citySelect;
       }
       else{
         document.cookie = 'city=NYC';
-        $scope.cityselect = 'NYC';
+        $scope.citySelect = 'NYC';
       }
     };
     //set the city based on the users location
-    $scope.cityselect = geolocation(); // jshint ignore:line
+    $scope.citySelect = geolocation(); // jshint ignore:line
     //##go to showpage from list view##//
     $scope.go = function (event) {
-      $(".ui-dialog-content").dialog("destroy");
-      $('.showModal').dialog(
-        {closeText: "", title:event.title,
-        modal: true,
-            create: function() {
-              $(".ui-dialog").find(".ui-dialog-titlebar").css({
-                'background-image': 'none',
-                'color': 'black',
-                'background-color': 'white',
-                'border': 'none'
-              });
-              $(".ui-widget-overlay+.ui-front").css({
-                'background-color': 'blue'
-              })
-            }
-        }
-        );
       $scope.displayedEvent = event;
       var url = "/"+event.city+"/"+event.venue+"/"+event.id;
       url = url.replace(/ /g,"_");
-
-
       $location.update_path(url, true);
+      $scope.showPage = true;
     };
     //####//
     $scope.$watch(function() {
@@ -199,11 +183,6 @@ angular.module('showhaus')
 	$scope.extshow = function(url){
 		window.open(url,'_blank');
 	}
-	$scope.$watchCollection('citySelect', function() {
-		if($scope.cityselect==""){
-			$scope.resetVenues();
-		}
-	});
 	var today = new Date();
 	var dd = today.getDate();
 	var mm = today.getMonth()+1; //January is 0!

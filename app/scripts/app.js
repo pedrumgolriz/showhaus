@@ -307,4 +307,15 @@ angular
                };
             }
         };
+    })
+    .directive('showPage', function(){
+        return {
+            restrict: 'E',
+            templateUrl: 'pages/showpage.html',
+            controller: 'ShowpageCtrl',
+            scope: {
+               events: '=events',
+               close: '='
+            }
+        };
     });

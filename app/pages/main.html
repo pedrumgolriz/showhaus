@@ -1,7 +1,7 @@
 <!-- Header
 ================================================ -->
 
-<section class="showhaus-lead">
+<section class="showhaus-lead" ng-if="!showPage">
 
 	<!-- Description -->
 	<div class="lead-description" ng-if="firstTimeVisitor">
@@ -31,15 +31,17 @@
 
 	<!-- Filter -->
 	<div class="content-filter filter">
-
 		<div class="filter-contain city-filter">
-			<select ng-change="setNewCookie();resetVenues()" ng-model="citySelect" ng-options="city.city for city in events | unique:'city'"></select>
+			<select ng-change="setNewCookie($event); resetVenues()" ng-model="citySelect">
+				<option ng-if="events.length" ng-repeat="city in events | unique:'city'">{{city.city}}</option>
+				<option ng-if="!events.length" disabled selected="selected">loading</option>
+			</select>
 		</div>
 
 		<div class="filter-contain venue-filter">
 			<select id="select-beast venueSelect" class="filter-drop" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
 				<option value="">-- all venues --</option>
-				<option ng-repeat="venue in events | filter:cityselect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
+				<option ng-if="(events|filter:{city:citySelect}|filter:{venue:venue.venue}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length" ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
 			</select>
 		</div>
 
@@ -58,10 +60,10 @@
 
 <!-- Content Lead
 ================================================ -->
-<section class="main-content-lead">
+<section ng-if="!showPage" class="main-content-lead">
 
 		<div class="city-heading__extra-info">
-			<h3 class="city-heading__header">Displaying <strong>{{(events|filter:{city:cityselect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} upcoming concerts</strong> in {{cityselect}}.</h3>
+			<h3 class="city-heading__header">Displaying <strong>{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} upcoming concerts</strong> in {{citySelect}}.</h3>
 			Please double check show times and venues as they are subject to change!</p>
 		</div>
 	</div>
@@ -94,12 +96,12 @@
 	</div>
 </div>
 
-<div class="content">
+<div class="content" ng-if="!showPage">
 
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
-	<div class="show-contain" ng-class="event.date==today ? 'today' : ''" dir-paginate="event in filtered = (events | filter: {city:cityselect} | filter:{venue:venueSelect} | isFeatured:{featured:staffPicks} | isFree:{price:freeBox}) | orderBy: orderByDate | itemsPerPage: numItems track by $index">
+	<div class="show-contain" ng-class="event.date==today ? 'today' : ''" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect} | isFeatured:{featured:staffPicks} | isFree:{price:freeBox}) | orderBy: orderByDate | itemsPerPage: numItems track by $index">
 		<div class="show-detail-contain">
 
 			<!-- date / time -->
@@ -201,5 +203,28 @@
 		</dir-pagination-controls>
 	</div>
 </div>
-<div id="dialog" class="showModal" style="display:none">{{displayedEvent}}</div>
+<div class="content" ng-if="showPage">
+	<div id="static_topnav">
+		<div class="breadcrumbs">
+			<a href="javascript:void(0);" ng-click="$parent.showPage = !$parent.showPage">SHOWHAUS</a> &gt;
+			<span id="showpage_title_breadcrumbs">{{event.title}}</span>
+		</div>
+	</div>
+	<div id="showpage_util">
+		<div class="showpage_share"><strong>share:</strong>
+     <span class="share_fb">
+        <a ng-click="fbshare({{event.id}})">[ FACEBOOK ]</a>
+      </span>
+      <span class="share_twitter">
+        <a ng-href="https://twitter.com/intent/tweet?url=http://showha.us/?post={{event.id}}&text={{event.title}}&hashtags=showhaus,{{event.city}},{{event.venue}}">[ TWITTER ]</a>
+      </span>
+		</div>
+		<div class="showpage_tags"><strong>tags:</strong> "{{event.tag1}}" <span ng-if="event.tag2!=''">"{{event.tag2}}"</span></div>
+
+
+
+
+	</div>
+	<show-page events="events"></show-page>
+</div>
 <showhaus-footer main-page="true"></showhaus-footer>

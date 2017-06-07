@@ -28,21 +28,25 @@ window.fbAsyncInit = function () {
   js.src = 'https://connect.facebook.net/en_US/all.js';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-var preUrl = 'http://showhaus.org/assets/';//set to blank for release
 angular.module('showhaus')
   .controller('ShowpageCtrl', function ($scope, $resource, $location, getSetCity, getSetVenue, $http) {
 	$(".ui-dialog-content").dialog("destroy");
+	var postnumber = $location.url().split('/');
+        postnumber = postnumber[postnumber.length-1];
+	$scope.event = null;
+	for(var i in $scope.events){
+	  if($scope.events[i].id === postnumber){
+	    $scope.event = $scope.events[i];
+	  }
+	}
+	console.log($scope.event);
 	if($location.$$search.post === ''){
 		$location.path('/main');
 	}
-    var postnumber = $location.url().split('/')[2];
-    var jsonQuery = preUrl + 'events.php?post=' + postnumber;
-    $scope.events = $resource(jsonQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}}).query();
-    console.log($scope.events);
     $scope.fbshare = function(postnumber){
       FB.ui({
         method: 'share',
-        href: 'http://showhaus.org/#!/?post='+postnumber,
+        href: $location.path
       });
     };
     /* jshint ignore:start */
