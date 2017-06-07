@@ -129,9 +129,6 @@ angular.module('showhaus')
     $scope.resetVenues = function(){
       $scope.venueSelect = "";
       $scope.filteredVenues = [];
-      $timeout(function () {
-        $('select').trigger('chosen:updated');
-      }, 0, false);
     };
     //####//
     $scope.setNewCookie = function(e){
@@ -152,6 +149,10 @@ angular.module('showhaus')
       url = url.replace(/ /g,"_");
       $location.update_path(url, true);
       $scope.showPage = true;
+    };
+    $scope.removeUrl = function(){
+        $location.update_path('/', true);
+        $scope.showPage = !$scope.showPage;
     };
     //####//
     $scope.$watch(function() {
@@ -183,6 +184,11 @@ angular.module('showhaus')
 	$scope.extshow = function(url){
 		window.open(url,'_blank');
 	}
+	$scope.$watchCollection('citySelect', function() {
+		if($scope.citySelect==""){
+			$scope.resetVenues();
+		}
+	});
 	var today = new Date();
 	var dd = today.getDate();
 	var mm = today.getMonth()+1; //January is 0!
