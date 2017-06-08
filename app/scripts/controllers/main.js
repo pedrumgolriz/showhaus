@@ -72,6 +72,7 @@ angular.module('showhaus')
     $scope.citySelect = 'all';
     $scope.firstTimeVisitor = true;
     $scope.showPage = false;
+    $scope.currentURL = $location.url();
     $rootScope.$on('event', function(event, obj){
         $scope.events = obj.events;
     })

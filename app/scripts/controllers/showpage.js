@@ -33,10 +33,16 @@ angular.module('showhaus')
 	$(".ui-dialog-content").dialog("destroy");
 	var postnumber = $location.url().split('/');
         postnumber = postnumber[postnumber.length-1];
+    $scope.eventPicture = null;
 	$scope.event = null;
 	for(var i in $scope.events){
 	  if($scope.events[i].id === postnumber){
 	    $scope.event = $scope.events[i];
+	    var fbEvent = $scope.events[i].fb_event.split('/events/');
+	    fbEvent = parseInt(fbEvent[1]);
+	    $http.get("https://graph.facebook.com/v2.9/"+fbEvent+"?fields=cover&access_token=204851123020578|0joKWgaSJfM197SAhfZCMAzILhY").success(function(data){
+	        $scope.eventPicture = data.cover.source;
+	    });
 	  }
 	}
 	console.log($scope.event);
