@@ -171,6 +171,18 @@ angular.module('showhaus')
 		sub.replace(/(<([^>]+)>)/ig,"")
 		return sub;
 	}
+	$scope.cityQualifies = function(cityName){
+	    var cityList = [];
+	    for(var t in $scope.events){
+	        if($scope.events[t].city === cityName){
+	            cityList.push($scope.events[t]);
+	        }
+	    }
+	    if(cityList.length > 5){
+	        return true;
+	    }
+	    return false;
+	};
 	$scope.getNumber = function(num) {
 		return new Array(num);
 	}

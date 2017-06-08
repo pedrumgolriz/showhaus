@@ -32,7 +32,7 @@
 	<div class="content-filter filter">
 		<div class="filter-contain city-filter">
 			<select ng-disabled="loading" ng-change="setNewCookie($event); resetVenues()" ng-model="$parent.citySelect">
-				<option ng-if="events.length" ng-repeat="city in events | unique:'city'">{{city.city}}</option>
+				<option ng-if="events.length && cityQualifies(city.city)" ng-repeat="city in events | unique:'city'">{{city.city}}</option>
 				<option ng-if="!events.length" disabled selected="selected">loading</option>
 			</select>
 		</div>
