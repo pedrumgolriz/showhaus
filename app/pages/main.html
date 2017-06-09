@@ -202,27 +202,19 @@
 		</dir-pagination-controls>
 	</div>
 </div>
+<div class="breadcrumb" ng-if="showPage">
+	<div class="tagline">
+		<span class="tagline-logo"></span>
+		<span class="tagline-text"><a href="#!">showhaus</a></span>
+	</div>
+	<div class="breadcrumb-nav home">
+		<a href="#!about">about</a>
+		<!-- :: <a href="#!api">api</a> -->
+		<a href="#!feeds">add a feed</a>
+		<a href="#!post"><strong>post a show</strong></a>
+	</div>
+</div>
 <div class="content" ng-if="showPage">
-	<div id="static_topnav">
-		<div class="breadcrumbs">
-			<a href="javascript:void(0);" ng-click="removeUrl()">SHOWHAUS</a> &gt;
-			<span id="showpage_title_breadcrumbs">{{event.title}}</span>
-		</div>
-	</div>
-	<div id="showpage_util">
-		<div class="showpage_share"><strong>share:</strong>
-     <span class="share_fb">
-        <a ng-click="fbshare({{event.id}})">[ FACEBOOK ]</a>
-      </span>
-      <span class="share_twitter">
-        <a ng-href="https://twitter.com/intent/tweet?url=http://showha.us/?post={{event.id}}&text={{event.title}}&hashtags=showhaus,{{event.city}},{{event.venue}}">[ TWITTER ]</a>
-      </span>
-		</div>
-
-
-
-
-	</div>
 	<show-page events="events"></show-page>
 </div>
 <showhaus-footer main-page="true"></showhaus-footer>
