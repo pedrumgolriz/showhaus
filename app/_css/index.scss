@@ -726,7 +726,7 @@ footer {
 .showDetails{
     background: transparent;
     border: none;
-    height: 210px;
+    height: 175px;
     resize: none;
 }
 
@@ -738,4 +738,13 @@ footer {
 .ticketLink{
     text-decoration: none;
     font-size: 25px;
+}
+.eventDetails{
+    text-align: center;
+    > span{
+        border: 1px solid black;
+        font-weight: 500;
+        padding: 5px;
+        border-radius: 5px;
+    }
 }
