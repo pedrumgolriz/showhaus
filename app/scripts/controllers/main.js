@@ -348,7 +348,16 @@ angular.module('showhaus')
             //should return by making show disappear. Also triggers events.php
         //on staffPick s&p, data:{mode: "staffPick", password: ls, comments: comments}
             //should trigger events.php
-    }
+    };
+    $rootScope.$on('$locationChangeSuccess', function() {
+        $rootScope.actualLocation = $location.path();
+    });
+
+    $rootScope.$watch(function () {return $location.path()}, function (newLocation, oldLocation) {
+        if($rootScope.actualLocation === newLocation) {
+            $rootScope.$broadcast('showPage', false);
+        }
+    });
   })
   .filter('startFrom', function() {
       return function(input, start) {
