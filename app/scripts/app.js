@@ -232,6 +232,7 @@ angular
                 $scope.checkPid = function(e){
                     if($scope.staffEdit){
                         $scope.staffEdit = !$scope.staffEdit;
+                        localStorage.removeItem('password');
                     }
                     else{
 	                    var c = parseInt(sessionStorage.getItem('a'));

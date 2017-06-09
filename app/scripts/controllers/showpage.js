@@ -29,7 +29,7 @@ window.fbAsyncInit = function () {
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 angular.module('showhaus')
-  .controller('ShowpageCtrl', function ($scope, $resource, $location, getSetCity, getSetVenue, $http, $sce, $sanitize) {
+  .controller('ShowpageCtrl', function ($scope, $resource, $location, getSetCity, getSetVenue, $http, $sce, $sanitize, $rootScope) {
 	$(".ui-dialog-content").dialog("destroy");
 	var postnumber = $location.url().split('/');
         postnumber = postnumber[postnumber.length-1];
@@ -122,5 +122,8 @@ angular.module('showhaus')
 			html.replace("<", "&lt;")
 		}
         return $sce.trustAsHtml(html);
+    }
+    $scope.closePage = function(){
+        $rootScope.$broadcast('showPage', false);
     }
   });
