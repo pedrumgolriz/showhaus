@@ -25,7 +25,7 @@
         <button ng-click="closePage()" class="closebttn"><i>&#10005;</i></button>
       </div>
       <textarea class="showDetails" readonly data-ng-bind-html="toTrustedHTML(event.description)"></textarea>
-      <a href="javascript:void(0);" ng-if="!readMore" ng-click="readMore = true" class="readmore"></a>
+      <a href="javascript:void(0);" ng-if="!readMore && event.description.length > 50" ng-click="readMore = true" class="readmore"></a>
     </div>
   </div>
 </div>
