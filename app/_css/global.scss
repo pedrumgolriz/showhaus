@@ -166,7 +166,7 @@ $blue:#1e76e3;
 .flex {
   min-height:100vh;
   display: flex;
-  margin: 0 -100%;
+  margin: 0px -100%;
   align-items:center;
   justify-content:center;
 }
@@ -180,14 +180,14 @@ img {
 .card {
   margin:0px 30px;
   width:380px;
-  height:600px;
+  height: 65%;
   position:relative;
   border-radius:6px;
   overflow:hidden;
   background-color:#FFF;
   box-shadow: 0 19px 48px rgba(0,0,0,0.30), 0 15px 32px rgba(0,0,0,0.22);
   .header {
-    height:200px;
+    height:150px;
     width:100%;
     background-color:$secondary;
     position:relative;
@@ -231,19 +231,16 @@ img {
     }
   }
   .card-content {
-    height:400px;
+    max-height:400px;
     width:100%;
     overflow-x:hidden;
     padding:20px 30px 30px 30px;
     background-color:#FAFAFA;
-    overflow-y:hidden;
     transition: all .4s cubic-bezier(.4,0,.2,1) .3s;
     &.full {
-      height:600px;
       overflow-y:scroll;
       .articlemeta {
-        transform:translateY(30px);
-        opacity:0;
+        opacity:1;
       }
       .closebar {
         opacity:1;
