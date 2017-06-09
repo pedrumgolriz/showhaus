@@ -27,7 +27,7 @@
        <div class="closebar">
          <button ng-click="closePage()" class="closebttn"><i>&#10005;</i></button>
        </div>
-       <textarea ng-class="readMore ? 'full' : ''" class="showDetails" readonly data-ng-bind-html="toTrustedHTML(event.description)"></textarea>
+       <pre ng-class="readMore ? 'full' : ''" class="showDetails" readonly ng-bind-html="event.description | linky"></pre>
        <a href="javascript:void(0);" ng-if="!readMore && event.description.length > 250" ng-click="readMore = true" class="readmore"></a>
        <h3><a href="javascript:void(0);" ng-if="readMore" ng-click="readMore = false">&#x25b3;</a></h3>
        <br/>

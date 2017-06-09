@@ -333,7 +333,8 @@ module.exports = function (grunt) {
 	        'scripts/*',
 	        'scripts/chosen/*',
 	        'pages/*html',
-	        'assets/**/*'
+	        'assets/**/*',
+	        '/_fonts/*'
           ]
         }]
       },
@@ -354,6 +355,12 @@ module.exports = function (grunt) {
 		  dest: '<%= yeoman.dist %>/styles/images',
 		  src: '{,*/*}*',
 		  expand: true
+	  },
+	  fonts: {
+	    cwd: '<%= yeoman.app %>/_fonts',
+        dest: '<%= yeoman.dist %>/_fonts',
+        src: '{,*/*}*',
+        expand: true
 	  }
     },
 
