@@ -29,11 +29,12 @@ window.fbAsyncInit = function () {
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 angular.module('showhaus')
-  .controller('ShowpageCtrl', function ($scope, $resource, $location, getSetCity, getSetVenue, $http) {
+  .controller('ShowpageCtrl', function ($scope, $resource, $location, getSetCity, getSetVenue, $http, $sce, $sanitize) {
 	$(".ui-dialog-content").dialog("destroy");
 	var postnumber = $location.url().split('/');
         postnumber = postnumber[postnumber.length-1];
     $scope.eventPicture = null;
+    $scope.readMore = false;
 	$scope.event = null;
 	for(var i in $scope.events){
 	  if($scope.events[i].id === postnumber){
@@ -113,4 +114,13 @@ angular.module('showhaus')
 				$('#dialog input').addClass('postshow_error');
 			});
 	};
+	$scope.toTrustedHTML = function( html ){
+		if(html.indexOf(">") > -1){
+			html.replace(">", "&gt;")
+		}
+		else if(html.indexOf("<") > -1){
+			html.replace("<", "&lt;")
+		}
+        return $sce.trustAsHtml(html);
+    }
   });

@@ -40,7 +40,8 @@ pedrum golriz - http://pedrumgolriz.com
   <link rel="stylesheet" href="_css/colorbox.css">
   <!-- endbuild -->
 </head>
-<body ng-app="showhaus">
+
+<body ng-app="showhaus" ng-controller="IndexCtrl" ng-class="showPage ? 'backgroundProcess' : ''">
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -78,6 +79,7 @@ pedrum golriz - http://pedrumgolriz.com
 <script src="scripts/jquery.timepicker.min.js"></script>
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
+<script src="scripts/controllers/index.js"></script>
 <script src="scripts/controllers/main.js"></script>
 <script src="scripts/controllers/about.js"></script>
 <script src="scripts/controllers/post.js"></script>

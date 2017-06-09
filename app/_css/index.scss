@@ -6,7 +6,7 @@
 .showhaus-lead {
   margin: 0 auto 20px auto;
   max-width: 100%;
-  background: #fff;
+  background: transparent;
   /* Gradient if we ever want it */
   // background: -moz-linear-gradient(top, #F2C94C 0%, #ffffff 100%); /* FF3.6-15 */
   // background: -webkit-linear-gradient(top, #F2C94C 0%,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
@@ -151,7 +151,6 @@
     border: 1px solid #ddd;
     padding: 10px;
     font-size: 13px;
-    height: 30px;
 
     .filter-contain {
         border-right: 1px solid #ddd;
@@ -376,7 +375,6 @@ margin: 0 auto;
     text-align: center;
     color: rgba(0, 0, 0, 0.75);
     font-weight: 500;
-    width: 105px;
     float: left;
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.05);
@@ -715,4 +713,24 @@ footer {
       float: right;
     }
   }
+}
+
+.showEvent{
+    position: fixed;
+    top: 0;
+    left: 25%;
+    right: 25%;
+    z-index: 500;
+}
+
+.showDetails{
+    background: transparent;
+    border: none;
+    height: 210px;
+    resize: none;
+}
+
+.backgroundProcess{
+    background-color: rgba(0,0,0,.2) !important;
+    overflow: hidden;
 }

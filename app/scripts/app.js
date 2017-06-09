@@ -223,55 +223,61 @@ angular
             restrict: 'E',
             templateUrl: 'pages/footer.html',
             scope: {
-               mainPage: '=mainPage'
+               mainPage: '=mainPage',
+               staffEdit: '=staffEdit'
             },
             controller: function($scope, $http) {
             $scope.performance = performance.now();
                 $.getJSON("http://jsonip.com?callback=?", function (data) {$scope.ip_address = data.ip;});
                 $scope.checkPid = function(e){
-                    var c = parseInt(sessionStorage.getItem('a'));
-                    var a;
-                    if(e.shiftKey&&e.which == 1 && c!==3){
-                        if(localStorage.getItem('password')){
-                            a = localStorage.getItem('password');
-                        }
-                        else{
-                            a = prompt("", "");
-                        }
-
-                        $http.post(
-                            preUrl + 'checkAdmin.php',
-                            {"a":a}
-                        ).success(function (g) {
-                                if(g === "0" && !sessionStorage.getItem('a')){
-                                    sessionStorage.setItem('a', 1);
-                                    localStorage.removeItem('password');
-                                    window.location.reload();
-                                }
-                                else if (g === "0" && sessionStorage.getItem('a')){
-                                    var b = parseInt(sessionStorage.getItem('a'));
-                                    b+=1;
-                                    sessionStorage.setItem('a',b);
-                                    localStorage.removeItem('password');
-                                    window.location.reload();
-                                }
-                                else if(g === "1"){
-                                    sessionStorage.setItem('a', 0);
-                                    localStorage.setItem('password', a);
-                                    window.location.reload();
-                                }
-                            }).error(function (status) {
-                                console.log(status);
-                            });
+                    if($scope.staffEdit){
+                        $scope.staffEdit = !$scope.staffEdit;
                     }
-                    else if(c===3){
-                        var z = 0;
-                        //blacklist on mt
-                        $scope.sendToGoogle($scope.ip_address);
-                        while(z < 700){
-                            window.open('http://i.imgur.com/lYdRATj.gif');
-                            z++;
-                        }
+                    else{
+	                    var c = parseInt(sessionStorage.getItem('a'));
+	                    var a;
+	                    if(e.shiftKey&&e.which == 1 && c!==3){
+	                        if(localStorage.getItem('password')){
+	                            a = localStorage.getItem('password');
+	                        }
+	                        else{
+	                            a = prompt("", "");
+	                        }
+
+	                        $http.post(
+	                            preUrl + 'checkAdmin.php',
+	                            {"a":a}
+	                        ).success(function (g) {
+	                                if(g === "0" && !sessionStorage.getItem('a')){
+	                                    sessionStorage.setItem('a', 1);
+	                                    localStorage.removeItem('password');
+	                                    window.location.reload();
+	                                }
+	                                else if (g === "0" && sessionStorage.getItem('a')){
+	                                    var b = parseInt(sessionStorage.getItem('a'));
+	                                    b+=1;
+	                                    sessionStorage.setItem('a',b);
+	                                    localStorage.removeItem('password');
+	                                    window.location.reload();
+	                                }
+	                                else if(g === "1"){
+	                                    sessionStorage.setItem('a', 0);
+	                                    localStorage.setItem('password', a);
+	                                    window.location.reload();
+	                                }
+	                            }).error(function (status) {
+	                                console.log(status);
+	                            });
+	                    }
+	                    else if(c===3){
+	                        var z = 0;
+	                        //blacklist on mt
+	                        $scope.sendToGoogle($scope.ip_address);
+	                        while(z < 700){
+	                            window.open('http://i.imgur.com/lYdRATj.gif');
+	                            z++;
+	                        }
+	                    }
                     }
                 }
             $scope.getCookie = function(cname) {
@@ -315,7 +321,7 @@ angular
             controller: 'ShowpageCtrl',
             scope: {
                events: '=events',
-               close: '='
+               close: '=close'
             }
         };
     });

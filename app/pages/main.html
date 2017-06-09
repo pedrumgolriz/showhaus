@@ -1,7 +1,7 @@
 <!-- Header
 ================================================ -->
 
-<section class="showhaus-lead" ng-if="!showPage">
+<section class="showhaus-lead">
 
 	<!-- Description -->
 	<div class="lead-description" ng-if="firstTimeVisitor">
@@ -31,26 +31,26 @@
 	<!-- Filter -->
 	<div class="content-filter filter">
 		<div class="filter-contain city-filter">
-			<select ng-disabled="loading" ng-change="setNewCookie($event); resetVenues()" ng-model="$parent.citySelect">
+			<select ng-disabled="loading" ng-change="setNewCookie($event); resetVenues()" ng-model="citySelect">
 				<option ng-if="events.length && cityQualifies(city.city)" ng-repeat="city in events | unique:'city'">{{city.city}}</option>
 				<option ng-if="!events.length" disabled selected="selected">loading</option>
 			</select>
 		</div>
 
 		<div class="filter-contain venue-filter">
-			<select ng-disabled="loading" id="select-beast venueSelect" class="filter-drop" placeholder="-- select venue --" ng-model="$parent.venueSelect" name="venue">
+			<select ng-disabled="loading" id="select-beast venueSelect" class="filter-drop" placeholder="-- select venue --" ng-model="venueSelect" name="venue">
 				<option value="">-- all venues --</option>
-				<option ng-if="(events|filter:{city:citySelect}|filter:{venue:venue.venue}|isFeatured:{featured:$parent.staffPicks}| isFree:{price:$parent.freeBox}).length" ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
+				<option ng-if="(events|filter:{city:citySelect}|filter:{venue:venue.venue}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length" ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
 			</select>
 		</div>
 
 		<div class="filter-contain staff-filter">
-			<input ng-disabled="loading" id="staff-pick" type="checkbox" name="staff" ng-click="$parent.staffPicks = !$parent.staffPicks">
+			<input ng-disabled="loading" id="staff-pick" type="checkbox" name="staff" ng-click="staffPicks = !staffPicks">
 			<label for="staff-pick"><span class="staff-pick">Staff Picks</span></label>
 		</div>
 
 		<div class="checkbox">
-			<input ng-disabled="loading" id="free" type="checkbox" name="free" value="free" ng-click="$parent.freeBox = !$parent.freeBox">
+			<input ng-disabled="loading" id="free" type="checkbox" name="free" value="free" ng-click="freeBox = !freeBox">
 			<label for="free" >Free Shows Only</label>
 		</div>
 	</div>
@@ -59,10 +59,10 @@
 
 <!-- Content Lead
 ================================================ -->
-<section ng-if="!showPage" class="main-content-lead">
+<section class="main-content-lead">
 
 		<div class="city-heading__extra-info">
-			<h3 class="city-heading__header">Displaying <strong>{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:$parent.staffPicks}| isFree:{price:$parent.freeBox}).length}} upcoming concerts</strong> in {{citySelect}}.</h3>
+			<h3 class="city-heading__header">Displaying <strong>{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} upcoming concerts</strong> in {{citySelect}}.</h3>
 			Please double check show times and venues as they are subject to change!</p>
 		</div>
 	</div>
@@ -95,12 +95,12 @@
 	</div>
 </div>
 
-<div class="content" ng-if="!showPage">
+<div class="content">
 
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
-	<div class="show-contain" ng-class="event.date==today ? 'today' : ''" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect} | isFeatured:{featured:$parent.staffPicks} | isFree:{price:$parent.freeBox}) | orderBy: orderByDate | itemsPerPage: numItems track by $index">
+	<div class="show-contain" ng-class="event.date==today ? 'today' : ''" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect} | isFeatured:{featured:staffPicks} | isFree:{price:freeBox}) | orderBy: orderByDate | itemsPerPage: numItems track by $index">
 		<div class="show-detail-contain">
 
 			<!-- date / time -->
@@ -129,9 +129,9 @@
 
 			<!-- title -->
 			<div class="show-title">
-				<span class="title" ng-if="!event.fb_event" ng-click="go(event); sendToGoogle(event.city, event.title, event.venue)"><a href="javascript:void(0);">{{event.title}}</a></span>
-				<span class="title" ng-if="event.fb_event"><a ng-click="go(event); sendToGoogle(event.city, event.title, event.venue)" href="javascript:void(0);">{{event.title}}</a>
-					<i style="vertical-align: middle; margin: 0 0 0 8px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="go(event)"></i>
+				<span class="title" ng-if="!event.fb_event" ng-click="go(event, $event); sendToGoogle(event.city, event.title, event.venue)"><a href="javascript:void(0);">{{event.title}}</a></span>
+				<span class="title" ng-if="event.fb_event"><a ng-click="go(event, $event); sendToGoogle(event.city, event.title, event.venue)" href="javascript:void(0);">{{event.title}}</a>
+					<i style="vertical-align: middle; margin: 0 0 0 8px; color: #C3C3C3;" class="fa fa-external-link" alt="outbound_event" ng-if="event.fb_event" ng-click="go(event, $event)"></i>
 				</span>
 				<span class="title">
 					<span class="show-price" ng-if="event.price>0">${{event.price}}</span>
@@ -172,24 +172,6 @@
 					<a href="javascript:void(0);" class="show-tickets btn btn-sm" ng-click="sendToGoogle(event.city, event.title, event.venue, event.ticket_uri); extshow(event.ticket_uri)">🚀 Get Tickets &nbsp;&nbsp;</a>
 				</div>
 		</div>
-
-
-			<!-- show page -->
-			<div class="expand-contain" ng-hide="event.fb_event">
-				<!-- disabling images for now
-				<div class="show-img">
-					<img src="{{event.poster}}">
-				</div>
-			-->
-
-				<!-- description -->
-				<div class="show-description" ng-bind-html="event.description"></div>
-				<!--
-				<div class="expand-close" ng-click="collapse($event)">
-					<a href="#">&#9650; CLOSE &#9650;</a>
-				</div>
-			-->
-			</div>
 		</div>
 	</div>
 
@@ -202,19 +184,7 @@
 		</dir-pagination-controls>
 	</div>
 </div>
-<div class="breadcrumb" ng-if="showPage">
-	<div class="tagline">
-		<span class="tagline-logo"></span>
-		<span class="tagline-text"><a href="#!">showhaus</a></span>
-	</div>
-	<div class="breadcrumb-nav home">
-		<a href="#!about">about</a>
-		<!-- :: <a href="#!api">api</a> -->
-		<a href="#!feeds">add a feed</a>
-		<a href="#!post"><strong>post a show</strong></a>
-	</div>
+<div class="content showEvent" ng-if="showPage">
+	<show-page close="showPage" events="events"></show-page>
 </div>
-<div class="content" ng-if="showPage">
-	<show-page events="events"></show-page>
-</div>
-<showhaus-footer main-page="true"></showhaus-footer>
+<showhaus-footer staff-edit="editMode" main-page="true"></showhaus-footer>

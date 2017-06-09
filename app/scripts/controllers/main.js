@@ -150,7 +150,11 @@ angular.module('showhaus')
       url = url.replace(/ /g,"_");
       $location.update_path(url, true);
       $scope.showPage = true;
+      $rootScope.$broadcast('showPage', true);
     };
+    $rootScope.$on('showPage', function(event, obj){
+        $scope.showPage = obj;
+    })
     $scope.removeUrl = function(){
         $location.update_path('/', true);
         $scope.showPage = !$scope.showPage;
