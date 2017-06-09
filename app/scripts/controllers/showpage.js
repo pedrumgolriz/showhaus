@@ -124,6 +124,7 @@ angular.module('showhaus')
         return $sce.trustAsHtml(html);
     }
     $scope.closePage = function(){
+        $location.update_path("/", true);
         $rootScope.$broadcast('showPage', false);
     }
   });
