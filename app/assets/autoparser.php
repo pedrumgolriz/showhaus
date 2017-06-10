@@ -79,9 +79,9 @@
     function getEventDetails($fb, $eventId, $events, $venues, $mysqli){
         try {
             if(checkAgainstDB($eventId, $events)){
-                $eventId = $fb->get('/'.$eventId.'?fields=ticket_uri,start_time,name,place,description')->getGraphList();
-                for($v=0; $v<count($eventId); $v++){
-                    postToDB($eventId[$v], $venues, $mysqli);
+                $eventId = $fb->get('/'.$eventId.'?fields=ticket_uri,start_time,name,place,description')->getGraphObject();
+                if(is_object($eventId)){
+                    postToDB($eventId, $venues, $mysqli);
                 }
             }
         } catch(Facebook\Exceptions\FacebookResponseException $e) {
@@ -95,12 +95,12 @@
     }
 
     function checkAgainstDB($eventId, $events){
-        for($t = 0; $t<count($events); $t++){
-            if($events[$t] == $eventId){
-                return false;
-            }
+        if(in_array($eventId, $events)){
+            return false; //exists in array, therefore ignore
         }
-        return true;
+        else{
+            return true;
+        }
     }
 
     function postToDB($event, $venues, $mysqli){
