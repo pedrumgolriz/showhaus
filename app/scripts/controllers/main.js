@@ -29,6 +29,9 @@ function geolocation() {
   if (getcookies === 'all'){
     getcookies = '';
   }
+  if(getcookies.toLowerCase() === "washington"){
+    getcookies = 'DC';
+  }
   if (getcookies.length > 0) {
     return getcookies;
   }
@@ -91,6 +94,9 @@ angular.module('showhaus')
             }
             if(data[i].city.toLowerCase() === "ny" || data[i].city.toLowerCase() === "queens"){
                 data[i].city = "NYC";
+            }
+            if(data[i].city.toLowerCase() === "washington"){
+                data[i].city = "DC";
             }
         }
         return data;
