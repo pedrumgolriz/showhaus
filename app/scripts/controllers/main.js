@@ -88,15 +88,21 @@ angular.module('showhaus')
 
     $scope.displayedEvent = "";
     $scope.events.$promise.then(function(data){
+        var NYC_CITIES = ["ny","queens","brooklyn","long island city"];
+        var DC_CITIES = ["washington","dc","washington dc","washington d.c", "d.c", "d.c.", "washington d.c.", "arlington", "vienna", "alexandria"];
         for(var i = 0; i < data.length; i++){
             if($scope.postQuery == data[i].id){
                 $scope.go(data[i]);
             }
-            if(data[i].city.toLowerCase() === "ny" || data[i].city.toLowerCase() === "queens"){
-                data[i].city = "NYC";
+            for(var ny in NYC_CITIES){
+                if(data[i].city.toLowerCase() === NYC_CITIES[ny]){
+                    data[i].city = "NYC";
+                }
             }
-            if(data[i].city.toLowerCase() === "washington"){
-                data[i].city = "DC";
+            for(var dc in DC_CITIES){
+                if(data[i].city.toLowerCase() === DC_CITIES[dc]){
+                    data[i].city = "DC";
+                }
             }
         }
         return data;
