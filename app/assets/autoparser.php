@@ -2,31 +2,31 @@
     ini_set('display_errors', '1');
     ini_set('max_execution_time', 0);
     error_reporting(E_ALL);
-    
+
     date_default_timezone_set('US/Eastern');
     require_once __DIR__ . '/Facebook/autoload.php';
-    
+
     $fb = new Facebook\Facebook([
                                 'app_id' => '204851123020578',
                                 'app_secret' => 'e744d44a65ce289709993b66bffb3318',
                                 'default_graph_version' => 'v2.5',
                                 'default_access_token' => '204851123020578|0joKWgaSJfM197SAhfZCMAzILhY', // optional
                                 ]);
-    
+
 
     $mysqli = new mysqli("localhost", "write", "dxV6m6~8", "haus");
-    
+
     //Array that holds each event object
     $events = [];
     $feeds = [];
     $iter = 0;
     $venues = [];
-    
+
     //Get all facebook page names from feed table & get all the current events with facebook url's and check it against the facebook column
     $currentFacebookEvents = mysqli_query($mysqli, "SELECT fb_event FROM events WHERE fb_event != ''");
     $currentFeeds = mysqli_query($mysqli, "SELECT url FROM feeds");
     $currentVenues = mysqli_query($mysqli, "SELECT venue, city FROM venue");
-    
+
     while($row = mysqli_fetch_assoc($currentFacebookEvents)){
         $events[$iter] = explode('/events/',$row['fb_event'])[1];
         $iter++;
@@ -45,18 +45,18 @@
         //strtolower(str_replace(' ', '', $row['venue']."*".$row['city']));
         $iter++;
     }
-    
+
     foreach ($feeds as &$page){
         getEventsByPage($fb, $page, $events, $venues, $mysqli);
     }
-    
+
     //run each facebook page thru fql and store into array as object
-    
+
     //echo facebook page details & correct data to match showhaus structure
-    
+
     //check that the event id is not currently in the events table
     //if event[i].id is NOT in events table, post to events table with master password and feeder@showhaus.org
-    
+
     function getEventsByPage($fb, $page, $events, $venues, $mysqli){
         try {
             $response = $fb->get('/'.$page);
@@ -75,7 +75,7 @@
             echo 'Facebook SDK returned an error: ' . $e->getMessage();
         }
     }
-    
+
     function getEventDetails($fb, $eventId, $events, $venues, $mysqli){
         try {
             if(checkAgainstDB($eventId, $events)){
@@ -93,7 +93,7 @@
             exit;
         }
     }
-    
+
     function checkAgainstDB($eventId, $events){
         if(in_array($eventId, $events)){
             return false; //exists in array, therefore ignore
@@ -102,7 +102,7 @@
             return true;
         }
     }
-    
+
     function postToDB($event, $venues, $mysqli){
         try{
             $title = $event->getProperty('name');
@@ -179,7 +179,7 @@
                     $password = "tapedeck";
                     //post to events
                     echo $venue." show posted\n";
-                    mysqli_query($mysqli, "INSERT INTO events (`title`, `venue`, `city`, `date`, `time`, `price`, `email`, `password`, `fb_event`, `ticket_uri`) VALUES ('$title','$venue','$city','$date','$time','$price','$email','$password','$fb_event','$ticket_uri')");
+                    mysqli_query($mysqli, "INSERT INTO events (`title`, `venue`, `city`, `date`, `time`, `price`, `email`, `password`, `fb_event`, `ticket_uri`, `description`) VALUES ('$title','$venue','$city','$date','$time','$price','$email','$password','$fb_event','$ticket_uri', '$description')");
                 }
             }
         }

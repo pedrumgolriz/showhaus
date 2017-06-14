@@ -14,7 +14,7 @@ $today_flag = "0";
     $postnumber = "";
   }
   if($postnumber!=""){
-    $query = mysqli_query($mysqli, "SELECT DISTINCT *, NULL AS password, NULL AS email FROM venue, events WHERE events.date >= '".$server_date."' AND events.venue = venue.venue AND '".$postnumber."' = events.id ORDER BY date ASC");
+    $query = mysqli_query($mysqli, "SELECT * FROM events WHERE id = '".$postnumber."'");
     $edit = 1;
   }
   else{
@@ -22,25 +22,37 @@ $today_flag = "0";
     $edit = 0;
   }
   $return = array();
-  while($row = mysqli_fetch_assoc($query)){
-    //formatting of dates
-    //format the location of the image
-    if($row['poster']!=""){
-      if(substr($row['poster'], 0, 4)=="http"){
-        $row['poster'] = html_entity_decode($row['poster']);
-      }
-      else{
-        $row['poster'] = "http://i.showhaus.org/uploads/".$row['poster'];
-      }
-    }
-    if( strtolower($row['city']) == "brooklyn" || strtolower($row['city']) == "new york" ){
-      $row['city'] = "NYC";
-    }
-    //echo $row['city'];
-    $row['description'] = html_entity_decode($row['description']);
-    $return[] = $row;
+  if($postnumber!=""){
+    while($row = mysqli_fetch_assoc($query)){
+            if( strtolower($row['city']) == "brooklyn" || strtolower($row['city']) == "new york" ){
+              $row['city'] = "NYC";
+            }
+            $row['description'] = html_entity_decode($row['description']);
+            $return[] = $row;
+          }
+          echo $_GET['callback'] . '('.json_encode($return) .')';
   }
-	$current = json_encode($return);
-	$file = 'eventlist.php';
-    file_put_contents($file, $current);
+  else{
+    while($row = mysqli_fetch_assoc($query)){
+        //formatting of dates
+        //format the location of the image
+        if($row['poster']!=""){
+          if(substr($row['poster'], 0, 4)=="http"){
+            $row['poster'] = html_entity_decode($row['poster']);
+          }
+          else{
+            $row['poster'] = "http://i.showhaus.org/uploads/".$row['poster'];
+          }
+        }
+        if( strtolower($row['city']) == "brooklyn" || strtolower($row['city']) == "new york" ){
+          $row['city'] = "NYC";
+        }
+        //echo $row['city'];
+        $row['description'] = html_entity_decode($row['description']);
+        $return[] = $row;
+      }
+    	$current = json_encode($return);
+    	$file = 'eventlist.php';
+        file_put_contents($file, $current);
+  }
 ?>

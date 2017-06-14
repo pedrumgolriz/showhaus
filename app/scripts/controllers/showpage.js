@@ -28,20 +28,32 @@ window.fbAsyncInit = function () {
   js.src = 'https://connect.facebook.net/en_US/all.js';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-var preUrl = 'http://showhaus.org/assets/';//set to blank for release
 angular.module('showhaus')
-  .controller('ShowpageCtrl', function ($scope, $resource, $location, getSetCity, getSetVenue, $http) {
+  .controller('ShowpageCtrl', function ($scope, $resource, $location, getSetCity, getSetVenue, $http, $sce, $sanitize, $rootScope) {
 	$(".ui-dialog-content").dialog("destroy");
+	var postnumber = $location.url().split('/');
+        postnumber = postnumber[postnumber.length-1];
+    $scope.eventPicture = null;
+    $scope.readMore = false;
+	$scope.event = null;
+	for(var i in $scope.events){
+	  if($scope.events[i].id === postnumber){
+	    $scope.event = $scope.events[i];
+	    var fbEvent = $scope.events[i].fb_event.split('/events/');
+	    fbEvent = parseInt(fbEvent[1]);
+	    $http.get("https://graph.facebook.com/v2.9/"+fbEvent+"?fields=cover&access_token=204851123020578|0joKWgaSJfM197SAhfZCMAzILhY").success(function(data){
+	        $scope.eventPicture = data.cover.source;
+	    });
+	  }
+	}
+	console.log($scope.event);
 	if($location.$$search.post === ''){
 		$location.path('/main');
 	}
-    var postnumber = $location.$$search.post;
-    var jsonQuery = preUrl + 'eventlist.php?post=' + postnumber;
-    $scope.events = $resource(jsonQuery, {}, {query: {method: 'JSONP', params: {callback: 'JSON_CALLBACK'}, isArray: true}}).query();
     $scope.fbshare = function(postnumber){
       FB.ui({
         method: 'share',
-        href: 'http://showhaus.org/#!/?post='+postnumber,
+        href: $location.path
       });
     };
     /* jshint ignore:start */
@@ -102,4 +114,17 @@ angular.module('showhaus')
 				$('#dialog input').addClass('postshow_error');
 			});
 	};
+	$scope.toTrustedHTML = function( html ){
+		if(html.indexOf(">") > -1){
+			html.replace(">", "&gt;")
+		}
+		else if(html.indexOf("<") > -1){
+			html.replace("<", "&lt;")
+		}
+        return $sce.trustAsHtml(html);
+    }
+    $scope.closePage = function(){
+        $location.update_path("/", true);
+        $rootScope.$broadcast('showPage', false);
+    }
   });

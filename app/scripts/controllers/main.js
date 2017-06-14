@@ -29,13 +29,13 @@ function geolocation() {
   if (getcookies === 'all'){
     getcookies = '';
   }
-  if(getcookies === ''){
-    getcookies = 'NYC';
+  if(getcookies.toLowerCase() === "washington"){
+    getcookies = 'DC';
   }
   if (getcookies.length > 0) {
     return getcookies;
   }
-  /*else if (navigator.geolocation && !getcookies) {
+  else if (navigator.geolocation && !getcookies) {
     navigator.geolocation.getCurrentPosition(
       function (pos) {
         var point = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
@@ -59,7 +59,7 @@ function geolocation() {
           }
         });
       });
-  }*/
+  }
 }
 /* jshint ignore:end */
 //##End Geolocation##//
@@ -71,10 +71,52 @@ angular.module('showhaus')
     return $resource(jsonQuery);
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope, $http, $route, eventsFactory){
-    $scope.events = new eventsFactory.query();
-    $scope.eventsList = $scope.events.splice(0, 50);
-    $scope.nextPage = $scope.events.splice($scope.currentPage*50, 50);
-	$(".ui-dialog-content").dialog("destroy");
+    $scope.postQuery = parseInt(window.location.hash.split('/')[window.location.hash.split('/').length-1]);
+    $scope.citySelect = 'all';
+    $scope.firstTimeVisitor = true;
+    $scope.showPage = false;
+    $scope.currentURL = $location.url();
+    $rootScope.$on('event', function(event, obj){
+        $scope.events = obj.events;
+    })
+    if($scope.events === undefined){
+        $scope.events = new eventsFactory.query();
+    }
+    else{
+        $(".ui-dialog-content").dialog("destroy");
+    }
+
+    $scope.displayedEvent = "";
+    $scope.events.$promise.then(function(data){
+        var NYC_CITIES = ["ny","queens","brooklyn","long island city"];
+        var DC_CITIES = ["washington","dc","washington dc","washington d.c", "d.c", "d.c.", "washington d.c.", "arlington", "vienna", "alexandria"];
+        for(var i = 0; i < data.length; i++){
+            if($scope.postQuery == data[i].id){
+                $scope.go(data[i]);
+            }
+            for(var ny in NYC_CITIES){
+                if(data[i].city.toLowerCase() === NYC_CITIES[ny]){
+                    data[i].city = "NYC";
+                }
+            }
+            for(var dc in DC_CITIES){
+                if(data[i].city.toLowerCase() === DC_CITIES[dc]){
+                    data[i].city = "DC";
+                }
+            }
+        }
+        return data;
+    });
+
+    if(sessionStorage.getItem("og")){
+        $scope.firstTimeVisitor = false;
+    }
+
+    $scope.dismissHelp = function(){
+        sessionStorage.setItem("og", 1);
+        $scope.firstTimeVisitor = false;
+    }
+
 	if($location.$$search.post && $location.$$url.split('=')[1]){
 		$location.path('/showpage').search('post', $location.$$search.post);
 	}
@@ -82,7 +124,7 @@ angular.module('showhaus')
         $scope.numItems = 1;
 	}
 	else{
-	    $scope.numItems = 50;
+	    $scope.numItems = 150;
 	}
 	if(localStorage.getItem('password')){
         var ls = localStorage.getItem('password');
@@ -95,18 +137,15 @@ angular.module('showhaus')
             }
         });
     }
-	$scope.eventVenues = [];
     //##FILTERS##//
     $scope.list = true; //sets list as default view
     $scope.resetVenues = function(){
       $scope.venueSelect = "";
-      $timeout(function () {
-        $('select').trigger('chosen:updated');
-      }, 0, false);
+      $scope.filteredVenues = [];
     };
     //####//
-    $scope.setNewCookie = function(){
-      if($scope.citySelect!==''){
+    $scope.setNewCookie = function(e){
+      if($scope.citySelect){
         document.cookie = 'city=' + $scope.citySelect;
       }
       else{
@@ -117,18 +156,26 @@ angular.module('showhaus')
     //set the city based on the users location
     $scope.citySelect = geolocation(); // jshint ignore:line
     //##go to showpage from list view##//
-    $scope.go = function ( city, venue, id ) {
-	  venue = venue.replace(/\s/g, '_');
-      $location.path('showpage/'+city+'/'+venue+'/').search('post',id);
+    $scope.go = function (event) {
+      $scope.displayedEvent = event;
+      var url = "/"+event.city+"/"+event.venue+"/"+event.id;
+      url = url.replace(/ /g,"_");
+      $location.update_path(url, true);
+      $scope.showPage = true;
+      $rootScope.$broadcast('showPage', true);
+    };
+    $rootScope.$on('showPage', function(event, obj){
+        $scope.showPage = obj;
+    })
+    $scope.removeUrl = function(){
+        $location.update_path('/', true);
+        $scope.showPage = !$scope.showPage;
     };
     //####//
     $scope.$watch(function() {
       return loadingService.isLoading();
     }, function(value) { $scope.loading = value; });
     //##Listen to events from showpage##//
-    if(typeof getSetCity.get() === 'string'){
-      $scope.citySelect = getSetCity.get();
-    }
     if(typeof getSetVenue.get() === 'string'){
       $scope.venueSelect = getSetVenue.get();
     }
@@ -140,6 +187,18 @@ angular.module('showhaus')
 		sub.replace(/(<([^>]+)>)/ig,"")
 		return sub;
 	}
+	$scope.cityQualifies = function(cityName){
+	    var cityList = [];
+	    for(var t in $scope.events){
+	        if($scope.events[t].city === cityName){
+	            cityList.push($scope.events[t]);
+	        }
+	    }
+	    if(cityList.length > 5){
+	        return true;
+	    }
+	    return false;
+	};
 	$scope.getNumber = function(num) {
 		return new Array(num);
 	}
@@ -270,10 +329,6 @@ angular.module('showhaus')
     $scope.staffPicks = false;
     $scope.freeBox = false;
 
-    $scope.getFBPoster = function(event){
-        return event.split('/')[event.split('/').length-1];
-    }
-
     $scope.editItem = function(mode, comments, postNumber){
         var semp = localStorage.getItem('password');
         $scope.theMode = mode;
@@ -288,10 +343,13 @@ angular.module('showhaus')
                     }
                     break;
                 case 'delete':
-                    window.location.reload();
+                    for(var i in $scope.events){
+                        if($scope.events[i].id === postNumber){
+                            $scope.events.splice(i, 1);
+                        }
+                    }
                     break;
                 case 'staffPick':
-                    window.location.reload();
                     break;
             }
         });
@@ -302,7 +360,16 @@ angular.module('showhaus')
             //should return by making show disappear. Also triggers events.php
         //on staffPick s&p, data:{mode: "staffPick", password: ls, comments: comments}
             //should trigger events.php
-    }
+    };
+    $rootScope.$on('$locationChangeSuccess', function() {
+        $rootScope.actualLocation = $location.path();
+    });
+
+    $rootScope.$watch(function () {return $location.path()}, function (newLocation, oldLocation) {
+        if($rootScope.actualLocation === newLocation) {
+            $rootScope.$broadcast('showPage', false);
+        }
+    });
   })
   .filter('startFrom', function() {
       return function(input, start) {
@@ -362,4 +429,4 @@ angular.module('showhaus')
         });
         return filtered;
     }
-  })
+  });

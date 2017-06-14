@@ -1,0 +1,61 @@
+/* Mixins
+   ========================================================================== */
+
+// Calc
+// -------------------------
+@mixin calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+// Clearfix
+// -------------------------
+// For clearing floats like a boss
+@mixin clearfix() {
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+}
+
+// Text overflow
+// -------------------------
+// Requires inline-block or block for proper styling
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Triangles
+// -------------------------
+// http://apps.eky.hk/css-triangle-generator/
+@mixin triangle() {
+  border-style: solid;
+  content: ' ';
+  display: block;
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+
+// Reset List Style
+// -------------------------
+// Get rid of pesky list styles
+@mixin list-reset() {
+  padding: 0;
+  background: none;
+  margin: 0;
+}
+
+// Horizontal List
+// -------------------------
+// Get rid of pesky list styles for horizontal navs
+@mixin horizontal-list() {
+  padding: 0;
+  background: none;
+  margin: 0;
+  display: inline-block;
+}

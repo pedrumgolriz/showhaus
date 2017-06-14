@@ -1,4 +1,112 @@
-/* ░░░░░░░░░░░░ hero ░░░░░░░░░░░░ */
+/* Homepage
+================================================ */
+
+/* Showhaus Lead
+======================== */
+.showhaus-lead {
+  margin: 0 auto 20px auto;
+  max-width: 100%;
+  background: transparent;
+  /* Gradient if we ever want it */
+  // background: -moz-linear-gradient(top, #F2C94C 0%, #ffffff 100%); /* FF3.6-15 */
+  // background: -webkit-linear-gradient(top, #F2C94C 0%,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
+  // background: linear-gradient(to bottom, #F2C94C 0%,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F2C94C', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+  height: auto;
+}
+
+/* Description */
+
+.lead-description {
+  font-size: 14px;
+  max-width: 100%;
+  margin: 0 auto 60px auto;
+  text-align: center;
+  padding: 15px 0 15px 0;
+  background-color: #f9f9f9;
+}
+
+/* Logo */
+
+.lead__logo {
+  max-width: 480px;
+  margin: 0 auto 20px auto;
+  padding: 0;
+}
+
+.logo-item {
+  width: 100%;
+  // Crispy Crispy
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+/* Navigation */
+.lead__main-nav {
+  display: block;
+  margin: 0 auto 50px auto;
+  text-align: center;
+}
+
+.main-nav-contain {
+  @include list-reset;
+}
+
+.main-nav__item {
+  @include horizontal-list;
+  font-size: 16px;
+  margin: 0 10px;
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+  a:hover {
+    border-bottom: 1px dotted #000;
+  }
+}
+
+.main-nav__item--submit {
+  @include horizontal-list;
+  font-size: 18px;
+  margin: 0 10px;
+}
+
+
+/* Content Lead
+======================== */
+.main-content-lead {
+
+}
+
+.city-heading {
+  margin: 0 auto 40px auto;
+  max-width: 550px;
+}
+
+.city-heading__header{
+  font-size: 20px;
+  padding: 0;
+  margin: 0 0 10px 0;
+  font-weight: 300;
+}
+
+.city-heading__extra-info {
+    font-size: 15px;
+    text-align:center;
+}
+
+
+
+
+
+
+
+
+
+
+
 .hero-contain {
     text-align: center;
     margin: 0 auto;
@@ -26,7 +134,7 @@
 }
 
 /*  mobile hero */
-@media (max-width:520px) {
+@media (max-width:220px) {
   .hero-contain {padding: 5px 0 0 0;}
 
   /* mobile nav realignments */
@@ -36,14 +144,13 @@
 
 /* filter bar */
 .filter {
-    max-width: 650px;
+    max-width: 680px;
     background-color: #fbfbfb;
-    margin: 0 auto 25px auto;
+    margin: 0 auto 45px auto;
     border-radius: 5px;
     border: 1px solid #ddd;
     padding: 10px;
     font-size: 13px;
-    height: 60px;
 
     .filter-contain {
         border-right: 1px solid #ddd;
@@ -77,8 +184,8 @@
     }
 
     /* filter styles */
-    .city-filter {width: 100px;}
-    .venue-filter {width: 340px; padding: 0 10px;}
+    .city-filter {width: 110px;}
+    .venue-filter {width: 240px; padding: 0 10px;}
     .staff-filter {width:135px; padding: 5px 10px 5px 5px; display:inline;
       .staff-pick {margin:0}
     }
@@ -121,7 +228,6 @@
 
     /* filter styles */
     .city-filter {width: 70%; padding: 0 10px;}
-    .venue-filter {width: 70%;}
   }
 }
 
@@ -172,7 +278,7 @@ margin: 0 auto;
 /* ░░░░░░░░░░░░ show ░░░░░░░░░░░░ */
 
 .show-contain {
-    border-bottom: 1px solid rgba(179, 179, 179, 0.31);
+    border-bottom: 2px solid rgba(179, 179, 179, 0.15);
     min-height: 100px;
     max-height: 800px;
     padding: 5px 0 0 0;
@@ -206,8 +312,8 @@ margin: 0 auto;
         display: inline-block;
 
         /* show details (title, outbound icon, price) */
-        .day {font-weight: 300;}
-        .time {color: gray; font-size: 13px;}
+        .day {font-weight: 300; padding: 0 0 5px 0;}
+        .time {color: gray; font-size: 11px;}
     }
 
     /* 2. show venue */
@@ -216,8 +322,8 @@ margin: 0 auto;
         padding: 0 20px 0 0;
         vertical-align: top;
         display: inline-block;
-        & .venue {font-weight: 500;}
-        & .address {color: gray; font-size: 13px;}
+        & .venue {font-weight: 500; padding: 0 0 5px 0;}
+        & .address {color: gray; font-size: 11px;}
 
         .unlisted {opacity: .4;}
 
@@ -232,7 +338,7 @@ margin: 0 auto;
         width: 55%;
         position: relative;
         display: inline-block;
-        font-size: 17px;
+        font-size: 15px;
 
         & .title {
             position: relative;
@@ -261,30 +367,35 @@ margin: 0 auto;
     text-align: center;
     text-transform: uppercase;
     line-height: normal;
-    font-size:12px;
+    font-size:10px;
 }
 
 .show-tickets{
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
     color: rgba(0, 0, 0, 0.75);
     font-weight: 500;
-    width: 105px;
     float: left;
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.05);
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid rgba(0,0,0,.1);
     padding: 10px;
     margin: 15px 0 0 0;
     line-height:normal;
 
     /* show tickets link */
-    a {color:black; text-decoration: none;}
-    & a:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none; border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
-    & a:active {border:none;}
-    & a:visited {text-decoration: none;}
-
-    &:hover {background-color: rgba(0, 0, 0, 0.1); cursor: pointer; text-decoration: none;}
+    a {
+      color:black;
+      text-decoration: none;
+      transition: .2s;
+    }
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      cursor: pointer; text-decoration: none;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.3)!important;
+      transition: .2s;
+    }
+    &:active {border-bottom:none; transition: .2s;}
 }
 
 
@@ -602,4 +713,42 @@ footer {
       float: right;
     }
   }
+}
+
+.showEvent{
+    position: fixed;
+    top: 0;
+    left: 25%;
+    right: 25%;
+    z-index: 500;
+}
+
+.showDetails{
+    background: transparent;
+    border: none;
+    height: 180px;
+    resize: none;
+    white-space: pre-line;
+}
+
+.backgroundProcess{
+    background-color: rgba(0,0,0,.2) !important;
+    overflow: hidden;
+}
+
+.ticketLink{
+    text-decoration: none;
+    font-size: 25px;
+}
+.eventDetails{
+    text-align: center;
+    > span{
+        border: 1px solid black;
+        font-weight: 500;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    &.full{
+        height: 100%;
+    }
 }

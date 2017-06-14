@@ -1,37 +1,21 @@
 <!--
-;`',
-`,  `,
- ',   ;   ,,-""==..,
-  \    ','          \
-,-""'-., ;    '    __.-="-.;
-," ,,_    "V      _."
-;,'   ''-,          "=--,_
-,-''    _  _       `,
-/   ,.-+(_)(_)´--.,   ;
-,'  /   ; (_)       `\ ,
-; ,/    ;._.;         ;
-!,'     ;   ;
-V'      ;   ;
-    ;._.;
-    ;   ;
-    ;   ;        ~
-~              ;._.;
-~    ;   ;
-   .´   `.                ~
-__,.--;.___.;--.,___
-_,,-""      ;     ;       ""-,,_
-.-´´            ;     ;             ``-.
-",              ´       `               ,"
-"-_                                _-"
-~       ``----..,_          __,,..bmw-´
-  ```''''´´´                  ~
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-  _ |_   _       |_   _.      _
- _> | | (_) \/\/ | | (_| |_| _>
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-questions? want to contribute?
-email this guy: luismqueral@gmail.com
+███████╗██╗  ██╗ ██████╗ ██╗    ██╗
+██╔════╝██║  ██║██╔═══██╗██║    ██║
+███████╗███████║██║   ██║██║ █╗ ██║
+╚════██║██╔══██║██║   ██║██║███╗██║
+███████║██║  ██║╚██████╔╝╚███╔███╔╝
+╚══════╝╚═╝  ╚═╝ ╚═════╝  ╚══╝╚══╝
+
+██╗  ██╗ █████╗ ██╗   ██╗███████╗
+██║  ██║██╔══██╗██║   ██║██╔════╝
+███████║███████║██║   ██║███████╗
+██╔══██║██╔══██║██║   ██║╚════██║
+██║  ██║██║  ██║╚██████╔╝███████║
+╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝
+
+luis queral - http://luisquer.al
+pedrum golriz - http://pedrumgolriz.com
 
 -->
 
@@ -39,14 +23,13 @@ email this guy: luismqueral@gmail.com
 <html class="no-js">
 <head>
   <meta charset="utf-8">
+  <meta name="fragment" content="!">
   <title>showhaus: new york show listings and venues </title>
-    <meta name="description" content="showhaus is an open directory of live music and venues across a variety of cities.">
+  <meta name="description" content="showhaus is an open directory of live music and venues across a variety of cities.">
   <meta name="keywords" content="concerts, music, shows, venues, diy, indie">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <meta name="google-site-verification" content="0JT4T9OaYhqVePWErhSX--jCQjyYX8ItSsw4vJjxodE" />
-  <link rel="icon"
-        type="image/png"
-        href="/favicon.ico">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <meta name="google-site-verification" content="0JT4T9OaYhqVePWErhSX--jCQjyYX8ItSsw4vJjxodE" />
+  <link rel="icon" type="image/png" href="/favicon.ico">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css({.tmp,app}) styles/main.css -->
     <!-- bower:css -->
@@ -55,12 +38,10 @@ email this guy: luismqueral@gmail.com
   <link rel="stylesheet" href="_css/jqtheme/jquery-ui.min.css">
   <link rel="stylesheet" href="_css/font-awesome.min.css">
   <link rel="stylesheet" href="_css/colorbox.css">
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" >
-    <!-- endbuild -->
-  <!--install karla via google fonts -->
-  <link href='https://fonts.googleapis.com/css?family=Karla:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <!-- endbuild -->
 </head>
-<body ng-app="showhaus">
+
+<body ng-app="showhaus" ng-controller="IndexCtrl" ng-class="showPage ? 'backgroundProcess' : ''">
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -91,14 +72,14 @@ email this guy: luismqueral@gmail.com
 <script src="bower_components/ckeditor/ckeditor.js"></script>
 <script src="bower_components/jquery-colorbox/jquery.colorbox.js"></script>
 <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
-<script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-location-update/angular-location-update.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script src="scripts/jquery.timepicker.min.js"></script>
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
+<script src="scripts/controllers/index.js"></script>
 <script src="scripts/controllers/main.js"></script>
 <script src="scripts/controllers/about.js"></script>
 <script src="scripts/controllers/post.js"></script>

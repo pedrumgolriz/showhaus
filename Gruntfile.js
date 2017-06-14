@@ -75,10 +75,10 @@ module.exports = function (grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 9000,
+        port: 9001,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: '0.0.0.0',
-        livereload: 35729
+        livereload: 35730
       },
       livereload: {
         options: {
@@ -333,7 +333,8 @@ module.exports = function (grunt) {
 	        'scripts/*',
 	        'scripts/chosen/*',
 	        'pages/*html',
-	        'assets/**/*'
+	        'assets/**/*',
+	        '/_fonts/*'
           ]
         }]
       },
@@ -341,12 +342,6 @@ module.exports = function (grunt) {
         expand: true,
         cwd: '<%= yeoman.app %>/_css',
         dest: '<%= yeoman.dist %>/styles',
-        src: '{,*/}*'
-      },
-      fonts:{
-        expand: true,
-        cwd: '<%= yeoman.app %>/_fonts',
-        dest: '<%= yeoman.dist %>/fonts',
         src: '{,*/}*'
       },
 	  assets:{
@@ -361,6 +356,12 @@ module.exports = function (grunt) {
 		  src: '{,*/*}*',
 		  expand: true
 	  },
+	  fonts: {
+	    cwd: '<%= yeoman.app %>/_fonts',
+        dest: '<%= yeoman.dist %>/_fonts',
+        src: '{,*/*}*',
+        expand: true
+	  }
     },
 
     // Run some tasks in parallel to speed up the build process
