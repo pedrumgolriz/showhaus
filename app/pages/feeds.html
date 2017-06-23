@@ -10,74 +10,6 @@
 		<a href="#!post"><strong>post a show</strong></a>
 	</div>
 </div>
-
-<!--<div id="logo_container">
-  <div class="logo" onclick="window.location = '#!main';"></div>
-  <div class="learnmore">
-    admin panel
-  </div>
-</div>-->
-<!--<article class="rest">
-  <div id="static_wrap">
-	<h1><strong>feeds</strong></h1>
-  </div>
-
-	<div id="filter_contain" style="margin: 0 auto;">
-		<div id="filter">
-			<div class="search">
-				<input type="text" placeholder="facebook link" ng-model="search" width="100px" />
-				<input type="submit" ng-click="executeSearch()"/>
-			</div>
-		</div>
-	</div>
-	<div class="listview_contain" style="margin: 0 auto;">
-
-
-		&lt;!&ndash; table &ndash;&gt;
-		<table class="gridtable" ng-if="events.length">
-			<tr>
-				<th class="datetime">image</th>
-				<th class="datetime">date/time</th>
-				<th class="title">title of show</th>
-				<th class="tableprice">$$$</th>
-				<th class="tablevenue">venue</th>
-			</tr>
-			<tbody class="theEvents">
-			<tbody ng-repeat="event in events">
-			<tr ng-class="event.featured=='today' ? 'list_today':''" ng-click="">
-				<td class="list_align" ng-if="event.image">
-					<img class="admin_image" ng-src="event.image"/>
-				</td>
-				<td class="list_align">
-					<strong>{{event.start_time.split('T')[0]}}</strong>
-					<br/>
-					<div class="list_subtext">{{event.start_time.split('T')[1].split('-')[0]}}</div>
-				</td>
-				<td>
-            <span class="titles">
-              <strong>{{event.name}}</strong>
-				<br/>
-              <span class="subtitle admin-description" ng-if="event.description">{{event.description}}</span>
-            </span>
-					<div class="list_category">{{event.tag1}}</div>
-					<div class="list_category" ng-if="event.tag2">{{event.tag2}}</div>
-				</td>
-				<td class="list_align">
-					<span ng-if="event.description.split('$')[1]">${{parseInt(event.description.split('$')[1])}}</span>
-					<span ng-if="!event.description.split('$')[1]">???</span>
-				</td>
-				<td class="list_align">
-					<strong>{{event.location}}</strong>
-					<br/>
-					<div class="list_subtext" ng-if="event.venue">{{event.street}}</div>
-				</td>
-			</tr>
-			</tbody>
-			</tbody>
-		</table>
-	</div>
-</article>-->
-
 <div class="content page">
 
 	<!--░░░░░░░░░░░░ begin content  ░░░░░░░░░░░░-->
@@ -91,7 +23,7 @@
 		<div class="postshow-wrap feeds">
             <span class="postshow-helptext error" ng-show="feedError">Invalid feed url! This page may have already been added. Please check below</span>
 			<span class="postshow-helptext error" ng-show="checkUrl">Please check your url! Only the main page can be accepted.</span>
-			<input placeholder="eg. https://www.facebook.com/silentbarn" ng-model="search" type="text" class="full url"></input>
+			<input placeholder="eg. https://www.facebook.com/silentbarn" ng-model="search" type="text" class="full url"/>
 			<div class="postshow-helptext">
 				<strong>Enter the URL of a Facebook page.</strong>
 				<br>Showhaus will scrape any events associated with that page.
@@ -101,17 +33,24 @@
 	</div>
 	<p>
 	<div class="contain">
+		<input type="text" ng-model="searchFeeds" placeholder="&#x1F50D; search feeds" class="full"/>
 		<table style="margin: 30px 0 0 0; width:100%">
 			<tr>
 				<th>Title of Feed</th>
 				<th class="feeds-dateadded">Date Added</th>
 			</tr>
-			<tr ng-repeat="feed in feeds.slice().reverse()">
+			<tr dir-paginate="feed in filtered = (feeds.slice().reverse() | filter:searchFeeds | itemsPerPage: 50) track by $index">
 				<td><a href="{{feed[2]}}" target="_blank">{{feed[0]}}</a></td>
 				<td>{{feed[1]}}</td>
 			</tr>
 		</table>
-
+		<div class="pagination-container">
+			<dir-pagination-controls
+					max-size="7"
+					direction-links="true"
+					boundary-links="true" >
+			</dir-pagination-controls>
+		</div>
 	</div>
 </div>
 <showhaus-footer></showhaus-footer>
