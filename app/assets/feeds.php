@@ -6,7 +6,7 @@
 	$query = mysqli_query($mysqli, "SELECT * FROM feeds");
 	$thearray = array();
 	while($row = mysqli_fetch_assoc($query)){
-		$thearray[] = [$row['page'],$row['date'],$row['url']];
+		$thearray[] = $row;
 	}
 	echo $_GET['callback'] . '('.json_encode($thearray) .')';
 	//[city][venue]

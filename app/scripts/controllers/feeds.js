@@ -12,8 +12,8 @@ window.fbAsyncInit = function () {
 	FB.init({
 		appId: '204851123020578',
 		status: true,
-		xfbml: true
-		//version: 'v2.'
+		xfbml: true,
+		version: 'v2.5'
 	});
 };
 (function (d, s, id) {
@@ -44,6 +44,7 @@ angular.module('showhaus')
 		$rootScope.$on('$routeChangeSuccess', function(){
 		    $window.ga('send', 'pageview', { page: 'Feeds' });
 		});
+		$scope.tabView = false;
 		$scope.executeSearch = function(){
 			if(FB) {
 				FB.login();
@@ -113,5 +114,49 @@ angular.module('showhaus')
 	                    $scope.feedError = true;
 	                });
 			}
-		}
+		};
+		$scope.sendFBMessage = function(page){
+			var parsePage = page.url.split("https://www.facebook.com/");
+			page = parsePage[1];
+			page = FB.api(
+	            page,
+	            function (response) {
+	              if (response && !response.error) {
+	                /*FB.ui({
+                      method: 'send',
+                      link: 'http://www.showhaus.org/#!/feeds',
+                      app_id: '204851123020578',
+                      to: response.id,
+                      feedform_user_message: "Hey! I'm Pedrum with Showhaus.org. I'm writing to let you know that your page has been added to our list of feeds. Anytime you post an event, it will automatically show up on our list."
+                    });*/
+                    var request = {
+	                    "sender":{
+	                      "id":"showhaus"
+	                    },
+	                    "recipient":{
+	                      "id": response.id
+	                    },
+	                    "timestamp":Date.now(),
+	                    "message":{
+	                      "text":"Hey! I'm Pedrum with Showhaus.org. I'm writing to let you know that your page has been added to our list of feeds. Anytime you post an event, it will automatically show up on our list."
+	                    }
+	                  };
+
+                    $http.post(
+                        'https://graph.facebook.com/v2.6/showhaus/messages?access_token=EAAC6T55rYyIBAKiKxg26dG1iGdm7osQCJVhDdcBhRCZAszxyTiwqxx4fdjEd96PzKR6C884ZC4ZA6lldEvFAuj4AU81FtsfF9K0W9zYjZCbx2G0GZCwPAIZBGgQLp7xTGEPR2LIINbzNU4vRu2QNdtmkLLy6bozWVonOWhGlRsiuOXFJlMMKe4eFoB649cdJQZD',
+                        JSON.stringify(request)
+                    ).success(function(data){
+                        console.log(data);
+                    });
+                    var data = {
+                        'id': page.ai
+                    };
+                    /*$http.post(
+                        preUrl + 'messageFeed.php',
+                        data
+                    )*/
+	              }
+	            }
+	        );
+		};
   });

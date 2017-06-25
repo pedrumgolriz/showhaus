@@ -116,7 +116,7 @@ else{
                 <th>Url</th>
             </tr>
             <?php
-                while($row = mysqli_fetch_array($query)) {
+                while($row = mysqli_fetch_array($query)) {  
                 ?>
                         <tr class="event-wrapper" itemscope itemtype="http://schema.org/Event">
                             <td itemprop="name"><a href="http://showhaus.org/#!/<?php echo $row['city'];?>/<?php echo $row['venue'];?>/<?php echo $row['id'];?>"><span itemprop="name"><?php echo $row['title'];?></span></a></td> 

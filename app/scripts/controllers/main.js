@@ -20,7 +20,7 @@ function getCookie(cname) {
   }
   return '';
 }
-function geolocation() {
+function geolocation(cityList) {
   var DC_ZIP_ARRAY = [20001, 20900];
   var BALTIMORE_ZIP_ARRAY = [21000, 22000];
   var BROOKLYN_ZIP_ARRAY = [11200, 11240];
@@ -43,22 +43,19 @@ function geolocation() {
           'latLng': point
         }, function (res, status) {
           if (status === google.maps.GeocoderStatus.OK && typeof res[0] !== 'undefined') {
-            var zip = res[0].formatted_address.match(/,\s\w{2}\s(\d{5})/)[1];
-            if (zip >= DC_ZIP_ARRAY[0] && zip <= DC_ZIP_ARRAY[1]) {
-              //GEO_CITY = 'DC';
+            for(var i in res){
+                for(var t in cityList){
+                    if(res[i].formatted_address.indexOf(cityList[t].city) > -1){
+                        GEO_CITY = cityList[t].city;
+                        document.cookie = 'city=' + GEO_CITY;
+                    }
+                }
             }
-            else if (zip >= BALTIMORE_ZIP_ARRAY[0] && zip <= BALTIMORE_ZIP_ARRAY[1]) {
-              GEO_CITY = 'Baltimore';
-            }
-            else if (zip >= BROOKLYN_ZIP_ARRAY[0] && zip <= BROOKLYN_ZIP_ARRAY[1]) {
-              GEO_CITY = 'NYC';
-            }
-            document.cookie = 'zip=' + zip;
             document.cookie = 'city=' + GEO_CITY;
-            return GEO_CITY;
           }
         });
       });
+      return GEO_CITY;
   }
 }
 /* jshint ignore:end */
@@ -154,7 +151,7 @@ angular.module('showhaus')
       }
     };
     //set the city based on the users location
-    $scope.citySelect = geolocation(); // jshint ignore:line
+    $scope.citySelect = geolocation($scope.events); // jshint ignore:line
     //##go to showpage from list view##//
     $scope.go = function (event) {
       $scope.displayedEvent = event;
@@ -194,7 +191,7 @@ angular.module('showhaus')
 	            cityList.push($scope.events[t]);
 	        }
 	    }
-	    if(cityList.length > 5){
+	    if(cityList.length > 15){
 	        return true;
 	    }
 	    return false;

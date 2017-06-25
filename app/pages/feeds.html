@@ -40,8 +40,8 @@
 				<th class="feeds-dateadded">Date Added</th>
 			</tr>
 			<tr dir-paginate="feed in filtered = (feeds.slice().reverse() | filter:searchFeeds | itemsPerPage: 50) track by $index">
-				<td><a href="{{feed[2]}}" target="_blank">{{feed[0]}}</a></td>
-				<td>{{feed[1]}}</td>
+				<td><a href="{{feed.url}}" target="_blank">{{feed.page}}</a></td>
+				<td>{{feed.date}}</td>
 			</tr>
 		</table>
 		<div class="pagination-container">
