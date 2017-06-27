@@ -154,7 +154,7 @@
 
     .filter-contain {
         border-right: 1px solid #ddd;
-        display: inline-block;
+        display: inline-flex;
         padding: 0 10px 0 0;
     }
 
@@ -212,11 +212,14 @@
       height: auto;
       background-color: #fbfbfb;
       border: 1px solid #ddd;
+      display: table-cell;
+      text-align: center;
 
     .filter-contain {
       margin: 15px auto;
       border: none;
-      display: inline-block;
+      display: inline-flex;
+      max-width: 200px;
       transition: .5s;
     }
 
@@ -449,7 +452,7 @@ text-decoration: none;
 
 /* ░░░░░░░░░░░░ mobile show ░░░░░░░░░░░░ */
 
-@media (max-width:520px) {
+@media (max-width:620px) {
 
   .show-contain .show-detail-contain {
     padding: 20px 10px 30px 10px;

@@ -170,7 +170,7 @@ angular.module('showhaus')
     };
     //####//
     $scope.$watch(function() {
-      return loadingService.isLoading();
+      $scope.loading = loadingService.isLoading();
     }, function(value) { $scope.loading = value; });
     //##Listen to events from showpage##//
     if(typeof getSetVenue.get() === 'string'){
@@ -184,6 +184,7 @@ angular.module('showhaus')
 		sub.replace(/(<([^>]+)>)/ig,"")
 		return sub;
 	}
+	$scope.selectOptions = {dropdownAutoWidth : true};
 	$scope.cityQualifies = function(cityName){
 	    var cityList = [];
 	    for(var t in $scope.events){
@@ -287,6 +288,7 @@ angular.module('showhaus')
         return day;
 	};
 	$scope.orderByDate = function(item) {
+	    var index = $scope.filtered.indexOf(item);
         var date = new Date(item.date + ' ' + item.time);
         var now = new Date().getTime();
         if(date.getTime()+6000000 > now){

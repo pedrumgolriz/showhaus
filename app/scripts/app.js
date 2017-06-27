@@ -17,7 +17,8 @@ angular
 		'ngSanitize',
 		'ngTouch',
 		'angularUtils.directives.dirPagination',
-		'ngLocationUpdate'
+		'ngLocationUpdate',
+		'ui.select2'
 	])
 	.factory('loadingService', function () {
 		var service = {
