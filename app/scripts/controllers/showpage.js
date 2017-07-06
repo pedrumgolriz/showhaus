@@ -139,15 +139,14 @@ angular.module('showhaus')
 	                data
 	            ).success(function (data, status) {
 	                $scope.sharingActive = false;
-	                $rootScope.$broadcast('ogImage', data);
+	                $rootScope.$broadcast('ogImage', data+"?r="+Math.random());
                     FB.ui({
                       method: 'feed',
                       redirect_uri: "http://showhaus.org/"+window.location.hash,
                       link: "http://showhaus.org/"+window.location.hash,
-                      from: "showhaus",
                       caption: event.title,
                       name: event.title,
-                      picture: data,
+                      picture: data+"?r="+Math.random(),
                       description: event.description
                     }, function(response){
                         $scope.sharingActive = false;
