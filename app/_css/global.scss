@@ -195,7 +195,7 @@ img {
     background-position:center top;
     transition: all .4s cubic-bezier(.4,0,.2,1) .3s;
     &.collapse {
-      height:0px;
+      height: 350px;
     }
     .title {
       height:200px;

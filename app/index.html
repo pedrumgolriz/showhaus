@@ -20,7 +20,7 @@ pedrum golriz - http://pedrumgolriz.com
 -->
 
 <!doctype html>
-<html class="no-js">
+<html class="no-js" ng-app="showhaus" ng-controller="IndexCtrl">
 <head>
   <meta charset="utf-8">
   <meta name="fragment" content="!">
@@ -28,21 +28,26 @@ pedrum golriz - http://pedrumgolriz.com
   <meta name="description" content="showhaus is an open directory of live music and venues across a variety of cities.">
   <meta name="keywords" content="concerts, music, shows, venues, diy, indie">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <meta property="og:image" content="{{meta}}">
   <meta name="google-site-verification" content="0JT4T9OaYhqVePWErhSX--jCQjyYX8ItSsw4vJjxodE" />
+  <meta name="google-play-app" content="app-id=org.showhaus.mobile">
   <link rel="icon" type="image/png" href="/favicon.ico">
+  <link rel="android-touch-icon" href="_css/images/icon.png" />
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css({.tmp,app}) styles/main.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/select2/select2.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+    <link rel="stylesheet" href="bower_components/smart-app-banner/smart-app-banner.css" />
     <!-- endbower -->
   <link rel="stylesheet" href="_css/main.css">
   <link rel="stylesheet" href="_css/jqtheme/jquery-ui.min.css">
+  <link rel="stylesheet" href="_css/select2.css">
   <link rel="stylesheet" href="_css/font-awesome.min.css">
   <link rel="stylesheet" href="_css/colorbox.css">
   <!-- endbuild -->
 </head>
 
-<body ng-app="showhaus" ng-controller="IndexCtrl" ng-class="showPage ? 'backgroundProcess' : ''">
+<body ng-class="showPage ? 'backgroundProcess' : ''">
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -66,6 +71,7 @@ pedrum golriz - http://pedrumgolriz.com
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-ui-select/dist/select.js"></script>
 <script src="bower_components/json3/lib/json3.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -78,10 +84,11 @@ pedrum golriz - http://pedrumgolriz.com
 <script src="bower_components/jquery-colorbox/jquery.colorbox.js"></script>
 <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
 <script src="bower_components/angular-location-update/angular-location-update.js"></script>
-<script src="bower_components/select2/select2.js"></script>
-<script src="bower_components/angular-ui-select2/src/select2.js"></script>
+<script src="bower_components/smart-app-banner/smart-app-banner.js"></script>
+<script src="bower_components/dom-to-image/src/dom-to-image.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script src="scripts/jquery.timepicker.min.js"></script>
 <!-- build:js({.tmp,app}) scripts/scripts.js -->

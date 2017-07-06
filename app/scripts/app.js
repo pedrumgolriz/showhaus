@@ -18,7 +18,7 @@ angular
 		'ngTouch',
 		'angularUtils.directives.dirPagination',
 		'ngLocationUpdate',
-		'ui.select2'
+		'ui.select'
 	])
 	.factory('loadingService', function () {
 		var service = {

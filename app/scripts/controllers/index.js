@@ -14,4 +14,7 @@ angular.module('showhaus')
     $rootScope.$on('showPage', function(event, obj){
         $scope.showPage = obj;
     })
+    $rootScope.$on('ogImage', function(event, obj){
+        $scope.meta = obj;
+    })
   });

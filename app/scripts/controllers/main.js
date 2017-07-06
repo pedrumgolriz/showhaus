@@ -69,8 +69,11 @@ angular.module('showhaus')
   })
   .controller('MainCtrl', function($scope, $location, loadingService, getSetCity, getSetVenue, $timeout, $window, $rootScope, $http, $route, eventsFactory){
     $scope.postQuery = parseInt(window.location.hash.split('/')[window.location.hash.split('/').length-1]);
-    $scope.citySelect = 'all';
+    $scope.citySelect = {};
+    $scope.venueSelect = {};
     $scope.firstTimeVisitor = true;
+    $scope.cityList = [];
+    $scope.venueList = [];
     $scope.showPage = false;
     $scope.currentURL = $location.url();
     $rootScope.$on('event', function(event, obj){
@@ -101,6 +104,10 @@ angular.module('showhaus')
                     data[i].city = "DC";
                 }
             }
+            if($scope.cityQualifies(data[i].city) && $scope.cityList.indexOf(data[i].city) == -1){
+                $scope.cityList.push(data[i].city);
+            }
+            $scope.resetVenues();
         }
         return data;
     });
@@ -137,21 +144,28 @@ angular.module('showhaus')
     //##FILTERS##//
     $scope.list = true; //sets list as default view
     $scope.resetVenues = function(){
-      $scope.venueSelect = "";
-      $scope.filteredVenues = [];
+      $scope.venueSelect.selected = "";
+      $scope.venueList = [];
+      for(var i in $scope.events){
+        if($scope.events[i].city == $scope.citySelect.selected){
+            if($scope.venueList.indexOf($scope.events[i].venue) == -1){
+                $scope.venueList.push($scope.events[i].venue);
+            }
+        }
+      }
     };
     //####//
     $scope.setNewCookie = function(e){
-      if($scope.citySelect){
-        document.cookie = 'city=' + $scope.citySelect;
+      if($scope.citySelect.selected){
+        document.cookie = 'city=' + $scope.citySelect.selected;
       }
       else{
         document.cookie = 'city=NYC';
-        $scope.citySelect = 'NYC';
+        $scope.citySelect.selected = 'NYC';
       }
     };
     //set the city based on the users location
-    $scope.citySelect = geolocation($scope.events); // jshint ignore:line
+    $scope.citySelect.selected = geolocation($scope.events); // jshint ignore:line
     //##go to showpage from list view##//
     $scope.go = function (event) {
       $scope.displayedEvent = event;
@@ -169,12 +183,13 @@ angular.module('showhaus')
         $scope.showPage = !$scope.showPage;
     };
     //####//
+    $scope.searchEvents = "";
     $scope.$watch(function() {
       $scope.loading = loadingService.isLoading();
     }, function(value) { $scope.loading = value; });
     //##Listen to events from showpage##//
     if(typeof getSetVenue.get() === 'string'){
-      $scope.venueSelect = getSetVenue.get();
+      $scope.venueSelect.selected = getSetVenue.get();
     }
 	$scope.openMaps = function(address){
 		address = address.replace(/\s+/g, '+');
@@ -212,7 +227,7 @@ angular.module('showhaus')
 		window.open(url,'_blank');
 	}
 	$scope.$watchCollection('citySelect', function() {
-		if($scope.citySelect==""){
+		if($scope.citySelect.selected==""){
 			$scope.resetVenues();
 		}
 	});

@@ -11,7 +11,7 @@
 
 	<!-- Logo -->
 	<div class="lead__logo">
-		<a href="http://showhaus.org"><img class="logo-item" src="../assets/header.png"></a>
+		<a href="/#!"><img class="logo-item" src="assets/header.png"></a>
 	</div>
 
 	<!-- Main Nav -->
@@ -27,23 +27,36 @@
 				<a href="#!/post">Submit a Show</a>
 			</li>
 		</ul>
+		<!--<div ng-hide="loading" class="main-nav-contain">
+			<input width="50" type="text" ng-model="searchEvents" placeholder="&#x1F50D; search events" class="full"/>
+		</div>-->
 	</nav>
 	<!-- Filter -->
 	<div class="content-filter filter">
 		<div class="filter-contain">
-			<select items-selected="citySelect" ui-select2="selectOptions" data-placeholder="{{citySelect ? citySelect : '-- select city --'}}" ng-disabled="loading" ng-change="setNewCookie($event); resetVenues();" ng-model="citySelect">
-				<option value=""></option>
-				<option ng-selected="citySelect" ng-if="events.length && cityQualifies(city.city)" ng-repeat="city in events | unique:'city'">{{city.city}}</option>
-				<option ng-if="!events.length" disabled selected="selected">loading</option>
-			</select>
+			<ui-select search-enabled="false" class="city-filter" append-to-body="false" ng-disabled="loading" theme="select2" ng-change="setNewCookie($event); resetVenues();" ng-model="citySelect.selected">
+				<ui-select-match placeholder="city">{{$select.selected}}</ui-select-match>
+				<ui-select-choices ng-hide="!$select.open" repeat="city in cityList">
+					<span ng-bind-html="city"></span>
+				</ui-select-choices>
+			</ui-select>
 		</div>
 
 		<div class="filter-contain">
-			<select items-selected="venueSelect" ui-select2="selectOptions" ng-disabled="loading" id="select-beast venueSelect" class="filter-drop" data-placeholder="{{venueSelect ? venueSelect : '-- select venue --'}}" ng-model="venueSelect" name="venue">
+			<ui-select class="venue-filter" append-to-body="true" ng-disabled="loading" theme="select2" ng-model="venueSelect.selected">
+				<ui-select-match placeholder="filter by venue">{{$select.selected}}</ui-select-match>
+				<ui-select-choices ng-hide="!$select.open" repeat="venue in venueList | orderBy: 'venue' | filter: $select.search">
+					<span ng-bind-html="venue | highlight: $select.search"></span>
+				</ui-select-choices>
+			</ui-select>
+		</div>
+
+		<!--<div class="filter-contain">
+			<ui-select theme="selectize" items-selected="venueSelect" ng-disabled="loading" id="select-beast venueSelect" class="filter-drop" data-placeholder="{{venueSelect ? venueSelect : '&#45;&#45; select venue &#45;&#45;'}}" ng-model="venueSelect.selected" name="venue">
 				<option  value=""></option>
 				<option ng-selected="venueSelect" ng-if="(events|filter:{city:citySelect}|filter:{venue:venue.venue}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length" ng-repeat="venue in events | filter:citySelect | unique:'venue' | orderBy: 'venue'">{{venue.venue}}</option>
-			</select>
-		</div>
+			</ui-select>
+		</div>-->
 
 		<div class="filter-contain staff-filter">
 			<input ng-disabled="loading" id="staff-pick" type="checkbox" name="staff" ng-click="staffPicks = !staffPicks">
@@ -58,16 +71,15 @@
 
 </section>
 
+
 <!-- Content Lead
 ================================================ -->
 <section class="main-content-lead">
 
 		<div class="city-heading__extra-info">
-			<h3 class="city-heading__header">Displaying <strong>{{(events|filter:{city:citySelect}|filter:{venue:venueSelect}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} upcoming concerts</strong> in {{citySelect}}.</h3>
+			<h3 class="city-heading__header">Displaying <strong>{{(events|filter:{city:citySelect.selected}|filter:{venue:venueSelect.selected}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} upcoming concerts</strong> in {{citySelect.selected}}.</h3>
 			Please double check show times and venues as they are subject to change!</p>
 		</div>
-	</div>
-
 
 </section>
 
@@ -101,7 +113,7 @@
 	<!--░░░░░░░░░░░░ begin show list ░░░░░░░░░░░░-->
 
 	<!-- show -->
-	<div ng-hide="loading" class="show-contain" ng-class="event.date==today ? 'today' : ''" dir-paginate="event in filtered = (events | filter: {city:citySelect} | filter:{venue:venueSelect} | isFeatured:{featured:staffPicks} | isFree:{price:freeBox}) | orderBy: orderByDate | itemsPerPage: numItems track by $index">
+	<div class="show-contain" ng-class="event.date==today ? 'today' : ''" dir-paginate="event in filtered = (events | filter: {city:citySelect.selected} | filter:{venue:venueSelect.selected} | filter: searchEvents | isFeatured:{featured:staffPicks} | isFree:{price:freeBox}) | orderBy: orderByDate | itemsPerPage: numItems track by $index">
 		<div class="show-detail-contain">
 
 			<!-- date / time -->

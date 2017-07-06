@@ -35,6 +35,7 @@ angular.module('showhaus')
         postnumber = postnumber[postnumber.length-1];
     $scope.eventPicture = null;
     $scope.readMore = false;
+    $scope.sharingActive = false;
 	$scope.event = null;
 	for(var i in $scope.events){
 	  if($scope.events[i].id === postnumber){
@@ -122,6 +123,50 @@ angular.module('showhaus')
 			html.replace("<", "&lt;")
 		}
         return $sce.trustAsHtml(html);
+    }
+    $scope.fbShare = function(node, event){
+        $scope.sharingActive = true;
+        node = node.target.parentNode.parentElement.parentElement;
+	    domtoimage.toPng(node)
+	        .then(function (dataUrl) {
+	            var img = new Image();
+	            img.src = dataUrl;
+	            var data = {
+	                data: img.src
+	            };
+	            $http.post(
+	                preUrl+ 'fbshare.php',
+	                data
+	            ).success(function (data, status) {
+	                $scope.sharingActive = false;
+	                $rootScope.$broadcast('ogImage', data);
+                    FB.ui({
+                      method: 'feed',
+                      redirect_uri: "http://showhaus.org/"+window.location.hash,
+                      link: "http://showhaus.org/"+window.location.hash,
+                      from: "showhaus",
+                      caption: event.title,
+                      name: event.title,
+                      picture: data,
+                      description: event.description
+                    }, function(response){
+                        $scope.sharingActive = false;
+                    });
+                });
+
+	        })
+	        .catch(function (error) {
+	            console.error('oops, something went wrong!', error);
+	        });
+	        function dataURItoBlob(dataURI) {
+                var byteString = atob(dataURI.split(',')[1]);
+                var ab = new ArrayBuffer(byteString.length);
+                var ia = new Uint8Array(ab);
+                for (var i = 0; i < byteString.length; i++) {
+                    ia[i] = byteString.charCodeAt(i);
+                }
+                return new Blob([ab], {type: 'image/png'});
+            }
     }
     $scope.closePage = function(){
         $location.update_path("/", true);

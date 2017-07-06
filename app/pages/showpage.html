@@ -1,37 +1,48 @@
 <div id="fb-root"></div>
-<div class="flex">
+<div class="flex" ng-init="readMore = true">
   <div class="card">
-    <div class="header" style="background-image: url({{eventPicture}});">
-    </div>
-    <div class="title">
-      <div>
-        <h2>{{event.title}}</h2>
-        <div class="eventDetails">
-          <span>{{event.date}}</span> <span>{{event.time}}</span> <span>{{event.venue}}</span>
+    <div>
+        <div class="header" style="background-image: url({{eventPicture}});">
         </div>
-      </div>
-    </div>
-    <div class="card-content" ng-click="readMore = !readMore" ng-class="readMore ? 'full' : ''">
-      <!-- <div class="articlemeta">
-         <ul class="left">
-           <li ng-if="event.fb_event" ng-click="window.open(event.fb_event, '_blank')"><a class="ticketLink" target="_blank" href="{{event.fb_event}}">&#x303d;</a></li>
-           <li ng-if="event.ticket_uri"><a class="ticketLink" title="purchase tickets" href="{{event.ticket_uri}}" target="_blank">&#127915;</a></li>
-         </ul>
-         <ul class="right">
-           <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
-           </li>
-         </ul>
+        <div class="title">
+          <div>
+            <h2>{{event.title}}</h2>
+            <div class="eventDetails">
+              <span>{{event.date}}</span> <span>{{event.time}}</span> <span>{{event.venue}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-content" ng-class="readMore ? 'full' : ''">
+          <!-- <div class="articlemeta">
+             <ul class="left">
+               <li ng-if="event.fb_event" ng-click="window.open(event.fb_event, '_blank')"><a class="ticketLink" target="_blank" href="{{event.fb_event}}">&#x303d;</a></li>
+               <li ng-if="event.ticket_uri"><a class="ticketLink" title="purchase tickets" href="{{event.ticket_uri}}" target="_blank">&#127915;</a></li>
+             </ul>
+             <ul class="right">
+               <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+               </li>
+             </ul>
 
 
-       </div>-->
-       <div class="closebar">
-         <button ng-click="closePage()" class="closebttn"><i>&#10005;</i></button>
-       </div>
-       <pre ng-class="readMore ? 'full' : ''" class="showDetails" readonly ng-bind-html="event.description | linky:'_blank'"></pre>
-       <a href="javascript:void(0);" ng-if="!readMore && event.description.length > 250" ng-click="readMore = true" class="readmore"></a>
-       <h3><a href="javascript:void(0);" ng-if="readMore" ng-click="readMore = false">&#x25b3;</a></h3>
-       <br/>
-     </div>
+           </div>-->
+           <div class="closebar">
+             <button ng-click="closePage()" class="closebttn"><i>&#10005;</i></button>
+           </div>
+           <pre ng-class="readMore ? 'full' : ''" class="showDetails" readonly ng-bind-html="event.description | linky:'_blank'"></pre>
+           <!--<a href="javascript:void(0);" ng-if="!readMore && event.description.length > 250" ng-click="readMore = true" class="readmore"></a>-->
+    <!--
+           <h3><a href="javascript:void(0);" ng-if="readMore" ng-click="readMore = false">&#x25b3;</a></h3>
+    -->
+           <br/>
+            <div ng-if="!sharingActive" id="fb-share-button" ng-click="fbShare($event, event)">
+                <svg viewBox="0 0 12 12" preserveAspectRatio="xMidYMid meet">
+                    <path class="svg-icon-path" d="M9.1,0.1V2H8C7.6,2,7.3,2.1,7.1,2.3C7,2.4,6.9,2.7,6.9,3v1.4H9L8.8,6.5H6.9V12H4.7V6.5H2.9V4.4h1.8V2.8 c0-0.9,0.3-1.6,0.7-2.1C6,0.2,6.6,0,7.5,0C8.2,0,8.7,0,9.1,0.1z"></path>
+                </svg>
+                <span>Share</span>
+            </div>
+            <div ng-if="sharingActive">Find thousands of local events near you. showhaus.org<p>the place for shows</p></div>
+         </div>
+        </div>
    </div>
  </div>
  <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
