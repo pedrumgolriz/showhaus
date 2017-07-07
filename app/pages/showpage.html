@@ -40,6 +40,9 @@
                 </svg>
                 <span>Share</span>
             </div>
+            <div ng-if="event.ticket_uri && !sharingActive" class="pull-right">
+                <a href="javascript:void(0);" class="show-tickets btn btn-sm" ng-click="sendToGoogle(event.city, event.title, event.venue, event.ticket_uri); extshow(event.ticket_uri)">🚀 Get Tickets &nbsp;&nbsp;</a>
+            </div>
             <div ng-if="sharingActive">Find thousands of local events near you. showhaus.org<p>the place for shows</p></div>
          </div>
         </div>
