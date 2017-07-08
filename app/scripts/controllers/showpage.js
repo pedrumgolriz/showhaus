@@ -37,6 +37,9 @@ angular.module('showhaus')
     $scope.readMore = false;
     $scope.sharingActive = false;
     $scope.isCordovaApp = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+    $scope.extshow = function(uri){
+        window.open(url,'_blank');
+    };
 	$scope.event = null;
 	for(var i in $scope.events){
 	  if($scope.events[i].id === postnumber){
