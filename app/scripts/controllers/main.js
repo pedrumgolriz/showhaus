@@ -9,30 +9,16 @@
  */
 //##Geolocation##//
 /* jshint ignore:start */
-function getCookie(cname) {
-  var name = cname + '=';
-  var ca = document.cookie.split(';');
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i].trim();
-    if (c.indexOf(name) === 0){
-      return c.substring(name.length, c.length);
-    }
-  }
-  return '';
-}
 function geolocation(cityList) {
   var DC_ZIP_ARRAY = [20001, 20900];
   var BALTIMORE_ZIP_ARRAY = [21000, 22000];
   var BROOKLYN_ZIP_ARRAY = [11200, 11240];
   var GEO_CITY = '';
-  var getcookies = getCookie('city');
+  var getcookies = localStorage.getItem('city');
   if (getcookies === 'all'){
     getcookies = '';
   }
-  if(getcookies.toLowerCase() === "washington"){
-    getcookies = 'DC';
-  }
-  if (getcookies.length > 0) {
+  if (getcookies) {
     return getcookies;
   }
   else if (navigator.geolocation && !getcookies) {
@@ -47,11 +33,11 @@ function geolocation(cityList) {
                 for(var t in cityList){
                     if(res[i].formatted_address.indexOf(cityList[t].city) > -1){
                         GEO_CITY = cityList[t].city;
-                        document.cookie = 'city=' + GEO_CITY;
+                        localStorage.setItem('city', GEO_CITY);
                     }
                 }
             }
-            document.cookie = 'city=' + GEO_CITY;
+            localStorage.setItem('city', GEO_CITY);
           }
         });
       });
@@ -79,38 +65,38 @@ angular.module('showhaus')
     $rootScope.$on('event', function(event, obj){
         $scope.events = obj.events;
     })
-    if($scope.events === undefined){
-        $scope.events = new eventsFactory.query();
-    }
-    else{
-        $(".ui-dialog-content").dialog("destroy");
-    }
 
     $scope.displayedEvent = "";
-    $scope.events.$promise.then(function(data){
-        var NYC_CITIES = ["ny","queens","brooklyn","long island city"];
-        var DC_CITIES = ["washington","dc","washington dc","washington d.c", "d.c", "d.c.", "washington d.c.", "arlington", "vienna", "alexandria"];
-        for(var i = 0; i < data.length; i++){
-            if($scope.postQuery == data[i].id){
-                $scope.go(data[i]);
-            }
-            for(var ny in NYC_CITIES){
-                if(data[i].city.toLowerCase() === NYC_CITIES[ny]){
-                    data[i].city = "NYC";
+    if(sessionStorage.getItem('events')){
+        $scope.events = JSON.parse(sessionStorage.getItem('events'));
+    }
+    else{
+        $scope.events.$promise.then(function(data){
+            var NYC_CITIES = ["ny","queens","brooklyn","long island city"];
+            var DC_CITIES = ["washington","dc","washington dc","washington d.c", "d.c", "d.c.", "washington d.c.", "arlington", "vienna", "alexandria"];
+            for(var i = 0; i < data.length; i++){
+                if($scope.postQuery == data[i].id){
+                    $scope.go(data[i]);
                 }
-            }
-            for(var dc in DC_CITIES){
-                if(data[i].city.toLowerCase() === DC_CITIES[dc]){
-                    data[i].city = "DC";
+                for(var ny in NYC_CITIES){
+                    if(data[i].city.toLowerCase() === NYC_CITIES[ny]){
+                        data[i].city = "NYC";
+                    }
                 }
+                for(var dc in DC_CITIES){
+                    if(data[i].city.toLowerCase() === DC_CITIES[dc]){
+                        data[i].city = "DC";
+                    }
+                }
+                if($scope.cityQualifies(data[i].city) && $scope.cityList.indexOf(data[i].city) == -1){
+                    $scope.cityList.push(data[i].city);
+                }
+                $scope.resetVenues();
             }
-            if($scope.cityQualifies(data[i].city) && $scope.cityList.indexOf(data[i].city) == -1){
-                $scope.cityList.push(data[i].city);
-            }
-            $scope.resetVenues();
-        }
-        return data;
-    });
+            sessionStorage.setItem('events', JSON.stringify(data));
+            return data;
+        });
+    }
 
     if(sessionStorage.getItem("og")){
         $scope.firstTimeVisitor = false;
@@ -157,10 +143,10 @@ angular.module('showhaus')
     //####//
     $scope.setNewCookie = function(e){
       if($scope.citySelect.selected){
-        document.cookie = 'city=' + $scope.citySelect.selected;
+        localStorage.setItem('city', $scope.citySelect.selected);
       }
       else{
-        document.cookie = 'city=NYC';
+        localStorage.setItem('city', "NYC");
         $scope.citySelect.selected = 'NYC';
       }
     };

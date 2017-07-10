@@ -77,7 +77,8 @@
 <section class="main-content-lead">
 
 		<div class="city-heading__extra-info">
-			<h3 class="city-heading__header">Displaying <strong>{{(events|filter:{city:citySelect.selected}|filter:{venue:venueSelect.selected}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} upcoming concerts</strong> in {{citySelect.selected}}.</h3>
+			<h3 class="city-heading__header" ng-if="citySelect.selected !== ''">Displaying <strong>{{(events|filter:{city:citySelect.selected}|filter:{venue:venueSelect.selected}|isFeatured:{featured:staffPicks}| isFree:{price:freeBox}).length}} upcoming concerts</strong> in {{citySelect.selected}}.</h3>
+			<h3 class="city-heading__header" ng-if="citySelect.selected == ''">Displayed upcoming concerts in all cities.</h3>
 			Please double check show times and venues as they are subject to change!</p>
 		</div>
 
