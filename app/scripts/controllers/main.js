@@ -71,6 +71,7 @@ angular.module('showhaus')
         $scope.events = JSON.parse(sessionStorage.getItem('events'));
     }
     else{
+        $scope.events = new eventsFactory.query();
         $scope.events.$promise.then(function(data){
             var NYC_CITIES = ["ny","queens","brooklyn","long island city"];
             var DC_CITIES = ["washington","dc","washington dc","washington d.c", "d.c", "d.c.", "washington d.c.", "arlington", "vienna", "alexandria"];
