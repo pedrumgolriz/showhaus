@@ -62,13 +62,58 @@ angular.module('showhaus')
     $scope.venueList = [];
     $scope.showPage = false;
     $scope.currentURL = $location.url();
+    $scope.citySelect.selected = geolocation($scope.events); // jshint ignore:line
     $rootScope.$on('event', function(event, obj){
         $scope.events = obj.events;
     })
+    $scope.cityQualifies = function(cityName){
+        var cityList = [];
+        for(var t in $scope.events){
+            if($scope.events[t].city === cityName){
+                cityList.push($scope.events[t]);
+            }
+        }
+        if(cityList.length > 15){
+            return true;
+        }
+        return false;
+    };
+    $scope.resetVenues = function(){
+      $scope.venueSelect.selected = "";
+      $scope.venueList = [];
+      for(var i in $scope.events){
+        if($scope.events[i].city == $scope.citySelect.selected){
+            if($scope.venueList.indexOf($scope.events[i].venue) == -1){
+                $scope.venueList.push($scope.events[i].venue);
+            }
+        }
+      }
+    };
 
     $scope.displayedEvent = "";
     if(sessionStorage.getItem('events')){
         $scope.events = JSON.parse(sessionStorage.getItem('events'));
+        var NYC_CITIES = ["ny","queens","brooklyn","long island city"];
+        var DC_CITIES = ["washington","dc","washington dc","washington d.c", "d.c", "d.c.", "washington d.c.", "arlington", "vienna", "alexandria"];
+        for(var i = 0; i < $scope.events.length; i++){
+            if($scope.postQuery == $scope.events[i].id){
+                $scope.go($scope.events[i]);
+            }
+            for(var ny in NYC_CITIES){
+                if($scope.events[i].city.toLowerCase() === NYC_CITIES[ny]){
+                    $scope.events[i].city = "NYC";
+                }
+            }
+            for(var dc in DC_CITIES){
+                if($scope.events[i].city.toLowerCase() === DC_CITIES[dc]){
+                    $scope.events[i].city = "DC";
+                }
+            }
+            if($scope.cityQualifies($scope.events[i].city) && $scope.cityList.indexOf($scope.events[i].city) == -1){
+                $scope.cityList.push($scope.events[i].city);
+            }
+        }
+        $scope.resetVenues();
     }
     else{
         $scope.events = new eventsFactory.query();
@@ -130,17 +175,6 @@ angular.module('showhaus')
     }
     //##FILTERS##//
     $scope.list = true; //sets list as default view
-    $scope.resetVenues = function(){
-      $scope.venueSelect.selected = "";
-      $scope.venueList = [];
-      for(var i in $scope.events){
-        if($scope.events[i].city == $scope.citySelect.selected){
-            if($scope.venueList.indexOf($scope.events[i].venue) == -1){
-                $scope.venueList.push($scope.events[i].venue);
-            }
-        }
-      }
-    };
     //####//
     $scope.setNewCookie = function(e){
       if($scope.citySelect.selected){
@@ -151,8 +185,6 @@ angular.module('showhaus')
         $scope.citySelect.selected = 'NYC';
       }
     };
-    //set the city based on the users location
-    $scope.citySelect.selected = geolocation($scope.events); // jshint ignore:line
     //##go to showpage from list view##//
     $scope.go = function (event) {
       $scope.displayedEvent = event;
@@ -187,18 +219,6 @@ angular.module('showhaus')
 		return sub;
 	}
 	$scope.selectOptions = {dropdownAutoWidth : true};
-	$scope.cityQualifies = function(cityName){
-	    var cityList = [];
-	    for(var t in $scope.events){
-	        if($scope.events[t].city === cityName){
-	            cityList.push($scope.events[t]);
-	        }
-	    }
-	    if(cityList.length > 15){
-	        return true;
-	    }
-	    return false;
-	};
 	$scope.getNumber = function(num) {
 		return new Array(num);
 	}
