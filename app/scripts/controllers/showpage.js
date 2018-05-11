@@ -46,7 +46,7 @@ angular.module('showhaus')
 	    $scope.event = $scope.events[i];
 	    var fbEvent = $scope.events[i].fb_event.split('/events/');
 	    fbEvent = parseInt(fbEvent[1]);
-	    $http.get("https://graph.facebook.com/v2.9/"+fbEvent+"?fields=cover&access_token=204851123020578|0joKWgaSJfM197SAhfZCMAzILhY").success(function(data){
+	    $http.get("https://graph.facebook.com/v2.9/"+fbEvent+"?fields=picture&access_token=204851123020578|0joKWgaSJfM197SAhfZCMAzILhY").success(function(data){
 	        $scope.eventPicture = data.cover.source;
 	    });
 	  }
